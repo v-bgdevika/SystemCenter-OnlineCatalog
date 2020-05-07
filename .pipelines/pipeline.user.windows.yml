@@ -16,19 +16,19 @@ environment:
 restore:
   commands:
     - !!defaultcommand
-      name: 'Node Restore'
-      command: 'src/WindowsServerSample/Node/restore.cmd'
+      name: 'AzureDevOpsExtension Restore'
+      command: 'src/WindowsServerSample/AzureDevOpsExtension/restore.cmd'
       fail_on_stderr: false
 
 build:
   commands:
     - !!buildcommand
-      name: 'Build Node'
+      name: 'Build AzureDevOpsExtension'
       fail_on_stderr: false
-      command: 'src/WindowsServerSample/Node/officialBuild.cmd'
+      command: 'src/WindowsServerSample/AzureDevOpsExtension/build.cmd'
       artifacts:
-        - from: 'src/WindowsServerSample/Node'
-          to: 'Windows/Node'
+        - from: 'src/WindowsServerSample/azure-devops-extension-sample'
+          to: 'Windows/AzureDevOpsExtension'
           include:
             - '**/*'
 
