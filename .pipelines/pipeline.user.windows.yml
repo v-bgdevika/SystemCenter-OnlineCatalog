@@ -30,7 +30,7 @@ build:
         - from: 'src/WindowsServerSample/Node'
           to: 'Windows/Node'
           include:
-            - '**/*'
+            - '**/build/static**/*'
 
 static_analysis_options:
   policheck_options:
