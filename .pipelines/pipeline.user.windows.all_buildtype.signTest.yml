@@ -1,0 +1,68 @@
+environment:
+  host:
+    os: 'windows'
+    flavor: 'server'
+    version: '2019'
+  runtime:
+    provider: 'appcontainer'
+    image: 'cdpxwin1809.azurecr.io/global/vse2017:latest'
+    source_mode: 'map'
+
+signing_options:
+  profile: 'azure'
+
+restore:
+  commands:
+    - !!defaultcommand
+      name: 'Restore CSharp'
+      command: 'src\WindowsServerSample\VisualStudio\restore.cmd'
+
+
+build:
+  commands:
+    - !!buildcommand
+      name: 'Build CSharp'
+      command: 'src\WindowsServerSample\VisualStudio\build.cmd'
+      fail_on_stderr: false
+      artifacts:
+        - from: 'src\WindowsServerSample\VisualStudio\Various\ClassLibrary\bin\Debug'
+          to: 'Dotnet_ClassLibrary'
+          include:
+            - '**/*'
+          signing_options:
+            sign_inline: true
+        - from: 'src\WindowsServerSample\VisualStudio\Various\ClassLibrary.Test\bin\Debug'
+          to: 'ClassLibrary.Test'
+          include:
+            - '**/*'
+
+static_analysis_options:
+  policheck_options:
+    scan_comments: true
+    files_to_scan:
+      - exclude:
+        - 'src\WindowsServerSample\VisualStudio2015\AspNet45AppInsights\Scripts\modernizr-2.6.2.js'
+        - 'src\WindowsServerSample\VisualStudio2015\AspNet46\Scripts\modernizr-2.6.2.js'
+        - 'src\WindowsServerSample\VisualStudio2015\DjangoWebProject\app\static\app\scripts\modernizr-2.6.2.js'
+        - 'src\WindowsServerSample\VisualStudio2015\CordovaApp\Project_Readme.html'
+        - 'src\WindowsServerSample\VisualStudio2015\TypescriptCordovaApp\Project_Readme.html'
+        - 'src\**\node_modules\**.js'
+        - 'src\**\node_modules\**.txt'
+        - 'src\**\node_modules\**.md'
+  binskim_options:
+    files_to_scan:
+      - from: 'src'
+        exclude:
+        - '**/node_modules/**/*.exe'
+        - '**/node_modules/**/*.js'
+        - '**/Go/*.exe'
+  moderncop_options:
+    files_to_scan:
+      - from: 'src'
+        exclude:
+        - '**/Node/**/*.js'  # Ignore all because ModernCop does not support ES6+ JavaScript, which is what this application is written with. We are supposed to use TSLint instead. https://www.1eswiki.com/wiki/Secure_Development_Tools_Extension_For_Azure_DevOps
+        - '**/AzureDevOpsExtension/**/*.js'  # Ignore all because ModernCop does not support ES6+ JavaScript, which is what this application is written with. We are supposed to use TSLint instead. https://www.1eswiki.com/wiki/Secure_Development_Tools_Extension_For_Azure_DevOps
+        - '**/node_modules/**/*.exe'
+        - '**/node_modules/**/*.js'
+
+        
