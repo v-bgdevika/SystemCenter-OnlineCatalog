@@ -1,0 +1,626 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Set defaults after processing user settings, but before processing shipped targets which also set defaults -->
+  <PropertyGroup>
+    <GenerateAdditionalSources Condition="'$(GenerateAttributesFile)'!='false'">true</GenerateAdditionalSources>
+  </PropertyGroup> 
+
+  <Sdk Name="Microsoft.Build.CentralPackageVersions"/>
+  <Sdk Name="Microsoft.Build.Artifacts"/>
+  
+  <!-- 
+  
+  =======================================================
+  
+  PACKAGE CONFIG
+  
+  =======================================================
+  
+  -->
+  
+    <Target Name="RestorePackagesConfig"
+          AfterTargets="Restore"
+          DependsOnTargets="Restore"
+          Condition="'$(RestoreEnablePackagesConfig)' != 'false'">
+    <Error Text="The &quot;RestoreNuGetExePath&quot; property must be specified when restore is enabled for packages.config."
+           Condition="'$(RestoreNuGetExePath)' == '' Or !Exists($(RestoreNuGetExePath))"/>
+    <PropertyGroup>
+      <RestorePackagesConfigSlnFile Condition="'$(RestorePackagesConfigSlnFile)' == ''">$(MSBuildProjectFullPath).sln</RestorePackagesConfigSlnFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <!-- Filter to projects that have a packages.config -->
+      <_RestoreProjectPathItemsWithPackagesConfig Include="@(_RestoreProjectPathItems)"
+                                                  Condition="Exists('%(RootDir)%(Directory)packages.config')" />
+    </ItemGroup>
+
+    <WriteLinesToFile File="$(RestorePackagesConfigSlnFile)"
+                      Overwrite="true"
+                      Condition="@(_RestoreProjectPathItemsWithPackagesConfig->Count()) > 0"
+                      Lines="Microsoft Visual Studio Solution File, Format Version 12.00;
+@(_RestoreProjectPathItemsWithPackagesConfig->'Project(&quot;&quot;) = &quot;&quot;, &quot;%(FullPath)&quot;, &quot;&quot;', '
+EndProject
+');EndProject" />
+
+    <Exec Command="&quot;$(RestoreNuGetExePath)&quot; restore &quot;$(RestorePackagesConfigSlnFile)&quot; -MSBuildPath &quot;$(MSBuildBinPath)&quot; $(PackagesConfigRestoreAdditionalArguments)"
+          Condition="@(_RestoreProjectPathItemsWithPackagesConfig->Count()) > 0" />
+
+    <Delete Files="$(RestorePackagesConfigSlnFile)"
+            Condition="Exists($(RestorePackagesConfigSlnFile))" />
+  </Target>
+  
+  
+  <!-- 
+  
+  =======================================================
+  
+  VERSIONING
+  
+  =======================================================
+  
+  -->
+  
+  <!--
+  Configuration:
+
+    Attributes File Generation:
+      $(GenerateAttributesFile) : set to false to block _generated.* creation
+
+    Versioning:
+      $(GenerateCorextVersions) : set to false to skip version parsing from versions xml (or htm)
+      $(AssemblyVersionDefinitionFile) : location of versions.xml file
+
+-->
+
+  <PropertyGroup>
+    <!-- ensure _PreBuild is at the front and _PostBuild at the end -->
+    <BuildDependsOn>_PreBuild;$(BuildDependsOn);_PostBuild</BuildDependsOn>
+  </PropertyGroup>
+
+
+  <PropertyGroup>
+    <MsBuildAllProjects>$(MsBuildAllProjects);$(MsBuildThisFileFullPath)</MsBuildAllProjects>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- create a unique moniker per build to avoid races on clean machines or manipulation of global TEMP.  Line copied from Microsoft.Common.CurrentVersion.targets -->
+    <TargetFrameworkMonikerAssemblyAttributesPath Condition="'$(TargetFrameworkMoniker)' != ''">$([System.IO.Path]::Combine('$(IntermediateOutputPath)','$(TargetFrameworkMoniker).AA$(DefaultLanguageSourceExtension)'))</TargetFrameworkMonikerAssemblyAttributesPath>
+  </PropertyGroup>
+
+  <!--
+      Clear GenerateCompiledExpressionsTempFilePathForEditing out to avoid running the GenerateCompiledExpressionsTempFile target, which creates
+      TemporaryGeneratedFile_* files when building in VS. These temp files would be missing after a command-line build since it's guarded by the
+      BuildingInsideVisualStudio and cause VS to think the project is out of date. These temp files are always empty (why?), so do not actually matter.
+      For details, see: %MSBuildFrameworkToolsPath%\Microsoft.WorkflowBuildExtensions.targets
+    -->
+  <PropertyGroup>
+    <GenerateCompiledExpressionsTempFilePathForEditing />
+  </PropertyGroup>
+
+
+  <!-- Default Configuration -->
+  <PropertyGroup>
+    <GenerateCorextVersions Condition="'$(GenerateCorextVersions)'=='' and ('$(BuildVersionFile)'!='' or '$(AssemblyVersionName)'!='' or '$(AssemblyFileVersionName)'!='')">true</GenerateCorextVersions>
+    <GenerateAttributesFile Condition=" '$(UsingMicrosoftNETSdk)' == 'true' " >false</GenerateAttributesFile>
+    <GenerateAttributesFile Condition="'$(GenerateAttributesFile)'==''">true</GenerateAttributesFile>
+    <!-- CoreXT Include Path defaults for version files -->
+    <IncludePath Condition="'$(COREXT_VERSION_PATH)'!=''">$(IncludePath);$(COREXT_VERSION_PATH);</IncludePath>
+  </PropertyGroup>
+
+
+  <!--
+    ============================================================
+    * __IncludeAsmFileVer  CompactFramework projects don't have AssemblyFileVersion, so add a custom attribute to the compilation
+    * Should not do it for C++ as managed C++ on devices is not suported.
+    * [IN]
+    * $(IsSmartDeviceProject)              : True if this is a CompactFramework project
+    * $(DefaultLanguageSourceExtension)    : Set in msbuild targets to cppvbcs based on the project type
+    * $(Language)                          : Set to C++, VB, C#
+    *
+    * [OUT]
+    * @(Compile)                           : Add the AsmFileVer[lang] file to the compile list (non C++ projects)
+  <Target Name="_IncludeAsmFileVer"
+          BeforeTargets="_PreBuild"
+          DependsOnTargets="ParseVersionFiles"
+          Condition="'$(IsSmartDeviceProject)' == 'true' and '$(GenerateAttributesFile)'=='true'">
+    <ItemGroup Condition="'$(Language)' != 'C++'">
+      <Compile Include="$(MSBuildToolsPath)\etc\CompactFramework\AsmFileVer$(DefaultLanguageSourceExtension)" />
+    </ItemGroup>
+  </Target>
+  -->
+
+  <!-- Default AssemblyAttributes -->
+  <PropertyGroup>
+    <_NoDefaultAssemblyComVisible>$(AssemblyComVisible)</_NoDefaultAssemblyComVisible>
+    <_NoDefaultAssemblyClsCompliant>$(AssemblyClsCompliant)</_NoDefaultAssemblyClsCompliant>
+    <AssemblyComVisible Condition="'$(AssemblyComVisible)' == ''">false</AssemblyComVisible>
+    <AssemblyClsCompliant Condition="'$(AssemblyClsCompliant)' == ''">true</AssemblyClsCompliant>
+    <AssemblyVersionName Condition="'$(AssemblyVersionName)' == ''">asmver</AssemblyVersionName>
+    <AssemblyFileVersionName Condition="'$(AssemblyFileVersionName)' == ''">filever</AssemblyFileVersionName>
+    <AssemblyAttributesPath>$(IntermediateOutputPath)_generated$(DefaultLanguageSourceExtension)</AssemblyAttributesPath>
+    <AssemblyAttributesRcPath>$(IntermediateOutputPath)_generated.rc</AssemblyAttributesRcPath>
+    <AssemblyAttributesRcInclude Condition="'$(AssemblyAttributesRcInclude)'=='' and Exists('$(COREXT_VERSION_PATH)\bldver.rc')">"$(COREXT_VERSION_PATH)\bldver.rc"</AssemblyAttributesRcInclude>
+    <!--
+      AssemblyTitle value is displayed in Explorer as Properties / Details / "File description"
+      and is used by Visual Studio's "Add Reference" dialog as "Component Name"
+    -->
+    <AssemblyTitle Condition="'$(AssemblyTitle)' == '' AND '$(UseDefaultAssemblyTitle)' != 'false'">$(AssemblyName)</AssemblyTitle>
+  </PropertyGroup>
+
+
+  <!--
+    ============================================================
+    * _SetAssemblyAttributesCpp : Configure default version information for _generated.rc
+    *                             Skipped for StaticLibrary
+    * [IN]
+    * $(GenerateAssemblyFileVersion) : Set to false to avoid the default version generation
+    * $(AssemblyProduct)       : RC_VERSION_PRODUCT_NAME
+    * $(AssemblyCopyright)     : RC_VERSION_LEGAL_COPYRIGHT
+    * $(AssemblyCompany)       : RC_VERSION_COMPANY_NAME
+    * $(AssemblyDescription)   : RC_VERSION_FILE_DESCRIPTION
+    * $(TargetName)            : RC_VERSION_FILE_DESCRIPTION if AssemblyDescription is not set
+    * $(AssemblyTitle)         : RC_VERSION_INTERNAL_NAME
+    * $(AssemblyTrademark)     : RC_VERSION_LEGAL_TRADEMARKS
+    *
+    * [OUT]
+    * @(ResourceCompile) : link to the _generated.rc for rc compilation
+  -->
+  <Target Name="_SetAssemblyAttributesCpp"
+          BeforeTargets="_PreBuild"
+          DependsOnTargets="ParseVersionFiles"
+          Condition="'$(Language)'=='C++' AND '$(GenerateAssemblyFileVersion)'!='false' AND '$(ConfigurationType)'!='StaticLibrary' and '$(GenerateAttributesFile)'=='true'">
+
+    <!-- from %public_root%\inc\bldver.rc
+      VALUE "CompanyName", RC_VERSION_COMPANY_NAME
+      VALUE "FileDescription", 
+      VALUE "InternalName", RC_VERSION_INTERNAL_NAME
+      VALUE "LegalCopyright", RC_VERSION_LEGAL_COPYRIGHT
+      VALUE "LegalTrademarks", RC_VERSION_LEGAL_TRADEMARKS
+      VALUE "OriginalFilename", RC_VERSION_ORIGINAL_FILE_NAME
+      VALUE "ProductName", RC_VERSION_PRODUCT_NAME
+
+      * These two are currently set globally by beaver in public\inc\bldver.h - we could generate a .h per dir
+      * but that seems excessive currently just to get unique versioning per leaf build.
+      VALUE "FileVersion", INET_VERSION
+      VALUE "ProductVersion", INET_VERSION
+    -->
+    <ItemGroup>
+      <VersionResourceAttribute Include="RC_VERSION_COMPANY_NAME" Condition="'$(AssemblyCompany)' != ''">
+        <Value>$(AssemblyCompany)</Value>
+      </VersionResourceAttribute>
+      <VersionResourceAttribute Include="RC_VERSION_FILE_DESCRIPTION" Condition="'$(AssemblyDescription)' != ''">
+        <Value>$(AssemblyDescription)</Value>
+      </VersionResourceAttribute>
+      <VersionResourceAttribute Include="RC_VERSION_FILE_DESCRIPTION" Condition="'$(AssemblyDescription)' == ''">
+        <Value>$(TargetName)</Value>
+      </VersionResourceAttribute>
+      <VersionResourceAttribute Include="RC_VERSION_INTERNAL_NAME" Condition="'$(AssemblyTitle)' != ''">
+        <Value>$(AssemblyTitle)</Value>
+      </VersionResourceAttribute>
+      <VersionResourceAttribute Include="RC_VERSION_LEGAL_COPYRIGHT" Condition="'$(AssemblyCopyright)' != ''">
+        <Value>$(AssemblyCopyright)</Value>
+      </VersionResourceAttribute>
+      <VersionResourceAttribute Include="RC_VERSION_LEGAL_TRADEMARKS" Condition="'$(AssemblyTrademark)' != ''">
+        <Value>$(AssemblyTrademark)</Value>
+      </VersionResourceAttribute>
+      <VersionResourceAttribute Include="RC_VERSION_ORIGINAL_FILE_NAME" Condition="'$(TargetFileName)' != ''">
+        <Value>$(TargetFileName)</Value>
+      </VersionResourceAttribute>
+      <VersionResourceAttribute Include="RC_VERSION_PRODUCT_NAME" Condition="'$(AssemblyProduct)' != ''">
+        <Value>$(AssemblyProduct)</Value>
+      </VersionResourceAttribute>
+
+      <!-- Include it as a build resource -->
+      <ResourceCompile Include="$(AssemblyAttributesRcPath)" />
+
+    </ItemGroup>
+
+    <WriteLinesToFile 
+        File="$(AssemblyAttributesRcPath)" 
+        Lines="@(VersionResourceAttribute -> '#define %(Identity) %22%(Value)\0%22')" 
+        Overwrite="true" />
+    <WriteLinesToFile
+        File="$(AssemblyAttributesRcPath)"
+        Lines="#include $(AssemblyAttributesRcInclude)"
+        Overwrite="false" 
+        Condition="'$(AssemblyAttributesRcInclude)'!=''"/>
+
+  </Target>
+
+  <!--
+    ============================================================
+    * _SetAssemblyAttributes : Configure default values for _generated.* source files
+    * [IN]
+    * $(_NoDefaultAssemblyComVisible)         : Value of AssemblyComVisible before our default was applied (for warnings)
+    * $(_NoDefaultAssemblyClsCompliant)       : Value of AssemblyClsCompliant before our default was applied (for warnings)
+    * $(AssemblyAllowPartiallyTrustedCallers) : [System.Security.AllowPartiallyTrustedCallers] (true/false)
+    * $(AssemblyInformationalVersion)         : [System.Reflection.AssemblyInformationalVersion]
+    * $(AssemblyNeutralResourcesLanguage)     : [System.Resources.NeutralResourcesLanguage]
+    * $(AssemblyVersion)       : [System.Reflection.AssemblyVersion] : set by ParseVersionFiles
+    * $(AssemblyFileVersion)   : [System.Reflection.AssemblyFileVersion] : set by ParseVersionFiles
+    * $(AssemblyComVisible)    : [System.Runtime.InteropServices.ComVisible] (true/false)
+    * $(AssemblyClsCompliant)  : [System.CLSCompliant] (true/false)
+    * $(AssemblyProduct)       : [System.Reflection.AssemblyProduct]
+    * $(AssemblyCopyright)     : [System.Reflection.AssemblyCopyright]
+    * $(AssemblyCompany)       : [System.Reflection.AssemblyCompany]
+    * $(AssemblyDescription)   : [System.Reflection.AssemblyDescription]
+    * $(AssemblyTitle)         : [System.Reflection.AssemblyTitle]
+    * $(AssemblyTrademark)     : [System.Reflection.AssemblyTrademark]
+    * $(AssemblyCulture)       : [System.Reflection.AssemblyCulture]
+    * $(AssemblyConfiguration) : [System.Reflection.AssemblyConfiguration]
+    *
+    * [OUT]
+    * @(AssemblyAttributes) : dynamic items to write to _generated.* during GenerateAdditionalSources
+  -->
+
+  <Target Name="_SetAssemblyAttributes"
+          BeforeTargets="_PreBuild"
+          DependsOnTargets="ParseVersionFiles"
+          Condition="'$(GenerateAttributesFile)'=='true'">
+
+      <!-- =============================================================================================
+      ** Common AssemblyInfo file generation settings
+      **
+      ** Unicode Character Index : http://www.unicode.org/charts/charindex.html
+      ** Unicode Display Glyph Chart: http://www.unicode.org/charts/PDF/U0080.pdf
+      ** Use the above URLs to find code point values for all characters including special symbols used here
+      ** Symbol: Name = Copyright, Unicode Point Value = 0x00A9
+      ** Symbol: Name = Registered, Unicode Point Value = 0x00AE
+      ** Symbol: Name = Trademark, Unicode Point Value = 0x2122
+      ** Example: <CompanyName>Microsoft&#x00AE; Corporation</CompanyName>
+    -->
+
+    <ItemGroup>
+
+    <!-- 
+      ** We provide a switch for ComVisible and CLSCompliant attributes so that they can be disabled 
+      ** when compiling Script# projects where these types are missing.
+    -->
+      <AssemblyAttributes Include="System.Runtime.InteropServices.ComVisible" Condition="'$(SkipAssemblyComVisible)' != 'true'">
+        <_Parameter1>$(AssemblyComVisible)</_Parameter1>
+      </AssemblyAttributes>
+
+      <AssemblyAttributes Include="System.CLSCompliant" Condition="'$(SkipAssemblyClsCompliant)' != 'true'">
+        <_Parameter1>$(AssemblyClsCompliant)</_Parameter1>
+      </AssemblyAttributes>
+
+      <AssemblyAttributes Include="System.Security.AllowPartiallyTrustedCallers"  Condition="'$(AssemblyAllowPartiallyTrustedCallers)' == 'true' AND  '$(IsSmartDeviceProject)' != 'true'" />
+
+      <AssemblyAttributes Include="System.Reflection.AssemblyProduct" Condition="'$(AssemblyProduct)' != ''">
+        <_Parameter1>$(AssemblyProduct)</_Parameter1>
+      </AssemblyAttributes>
+
+      <AssemblyAttributes Include="System.Reflection.AssemblyCopyright" Condition="'$(AssemblyCopyright)' != ''">
+        <_Parameter1>$(AssemblyCopyright)</_Parameter1>
+      </AssemblyAttributes>
+
+      <AssemblyAttributes Include="System.Reflection.AssemblyCompany" Condition="'$(AssemblyCompany)' != ''">
+        <_Parameter1>$(AssemblyCompany)</_Parameter1>
+      </AssemblyAttributes>
+
+      <AssemblyAttributes Include="System.Reflection.AssemblyDescription" Condition="'$(AssemblyDescription)' != ''" >
+        <_Parameter1>$(AssemblyDescription)</_Parameter1>
+      </AssemblyAttributes>
+
+      <AssemblyAttributes Include="System.Reflection.AssemblyTitle" Condition="'$(AssemblyTitle)' != ''" >
+        <_Parameter1>$(AssemblyTitle)</_Parameter1>
+      </AssemblyAttributes>
+
+      <AssemblyAttributes Include="System.Reflection.AssemblyTrademark" Condition="'$(AssemblyTrademark)' != ''" >
+        <_Parameter1>$(AssemblyTrademark)</_Parameter1>
+      </AssemblyAttributes>
+
+      <AssemblyAttributes Include="System.Reflection.AssemblyCulture" Condition="'$(AssemblyCulture)' != ''" >
+        <_Parameter1>$(AssemblyCulture)</_Parameter1>
+      </AssemblyAttributes>
+
+      <AssemblyAttributes Include="System.Reflection.AssemblyConfiguration" Condition="'$(AssemblyConfiguration)' != ''" >
+        <_Parameter1>$(AssemblyConfiguration)</_Parameter1>
+      </AssemblyAttributes>
+
+      <AssemblyAttributes Include="System.Reflection.AssemblyVersion" Condition="'$(AssemblyVersion)' != ''" >
+        <_Parameter1>$(AssemblyVersion)</_Parameter1>
+      </AssemblyAttributes>
+
+      <AssemblyAttributes Include="System.Reflection.AssemblyInformationalVersion" Condition="'$(AssemblyInformationalVersion)' != ''" >
+        <_Parameter1>$(AssemblyInformationalVersion)</_Parameter1>
+      </AssemblyAttributes>
+
+      <AssemblyAttributes Include="System.Resources.NeutralResourcesLanguage" Condition="'$(AssemblyNeutralResourcesLanguage)' != ''" >
+        <_Parameter1>$(AssemblyNeutralResourcesLanguage)</_Parameter1>
+      </AssemblyAttributes>
+
+      <!-- CompactFramework does not support AssemblyFileVersion attribute -->
+      <AssemblyAttributes Include="System.Reflection.AssemblyFileVersion" Condition="'$(AssemblyFileVersion)' != ''" >
+        <_Parameter1>$(AssemblyFileVersion)</_Parameter1>
+      </AssemblyAttributes>
+
+    </ItemGroup>
+
+  </Target>
+
+  <!--
+    ============================================================
+    * ParseVersionFiles : Read the version files and create Properties for each component, as well as file and assembly versions
+    * [IN]
+    * $(BuildVersion)        : If set with two following properties, the target won't run - if set alone, used instead of the version file
+    * $(AssemblyVersion)     : If set with above and below properties, the target won't run
+    * $(AssemblyFileVersion) : If set with two preceeding properties, the target won't run
+    * $(BuildVersionFile)              : Pointer to the version.htm file
+    * $(AssemblyVersionDefinitionFile) : Pointer to the versions.xml file
+    * $(GenerateAssemblyVersion) : False to skip creation of $(AssemblyVersion)
+    * $(AssemblyVersionName)     : Name to lookup in versions.xml for the AssemblyVersion
+    * $(GenerateAssemblyFileVersion) : False to skip creation of $(AssemblyFileVersion)
+    * $(AssemblyFileVersionName)     : Name to lookup in versions.xml for the AssemblyFileVersion
+    *
+    * [OUT]
+    * $(ProductMajorVersion) : ##.xx.xx.xx
+    * $(ProductMinorVersion) : xx.##.xx.xx
+    * $(BuildMajorVersion)   : xx.xx.##.xx
+    * $(BuildMinorVersion)   : xx.xx.xx.##
+    * $(ProductVersion)      : ##.##.xx.xx
+    * $(BuildVersion)        : ##.##.##.##
+    * $(AssemblyVersion)     : Full version based on AssemblyVersionName and versions.xml
+    * $(AssemblyFileVersion) : Full version based on AssemblyFileVersionName and versions.xml
+  -->
+  <Target Name="ParseVersionFiles"
+          BeforeTargets="_PreBuild"
+          Condition="('$(BuildVersion)'=='' or '$(AssemblyVersion)'=='' or '$(AssemblyFileVersion)'=='') and '$(GenerateCorextVersions)' == 'true'">
+
+    <!-- BuildVersionFile (the old .htm file) may not exist.  That is fine, we may just use the xml later -->
+    <GetBuildVersion VersionFileName="$(BuildVersionFile)" VersionFileType="VersionsHtm" Version="$(BuildVersion)" Condition="Exists('$(BuildVersionFile)')">
+
+      <Output TaskParameter="BuildMajorVersion"   PropertyName="BuildMajorVersion" />
+      <Output TaskParameter="BuildMinorVersion"   PropertyName="BuildMinorVersion" />
+      <Output TaskParameter="ProductMajorVersion" PropertyName="ProductMajorVersion" />
+      <Output TaskParameter="ProductMinorVersion" PropertyName="ProductMinorVersion" />
+
+    </GetBuildVersion>
+    <Message Importance="low" Text="GetBuildVersion: ProductMajor=$(ProductMajorVersion), ProductMinor=$(ProductMinorVersion), BuildMajor=$(BuildMajorVersion), BuildMinor=$(BuildMinorVersion)" 
+             Condition="Exists('$(BuildVersionFile)')"/>
+
+
+    <GetVersionFromName AssemblyVersionDefinitionFile="$(AssemblyVersionDefinitionFile)" VersionName="$(AssemblyVersionName)"
+      Condition="'$(AssemblyVersion)' == '' and '$(GenerateAssemblyVersion)' != 'false' and '$(AssemblyVersionDefinitionFile)' != '' and '$(AssemblyVersionName)' != ''">
+
+      <Output TaskParameter="VersionNumber" PropertyName="AssemblyVersion" />
+
+    </GetVersionFromName>
+    <Message Importance="low" Text="GetVersionFromName: Name=$(AssemblyVersionName), Value=$(AssemblyVersion)" />
+
+    <GetVersionFromName AssemblyVersionDefinitionFile="$(AssemblyVersionDefinitionFile)" VersionName="$(AssemblyFileVersionName)"
+      Condition="'$(AssemblyFileVersion)' == '' and '$(GenerateAssemblyFileVersion)' != 'false' and '$(AssemblyVersionDefinitionFile)' != '' and '$(AssemblyFileVersionName)' != ''">
+
+      <Output TaskParameter="VersionNumber" PropertyName="AssemblyFileVersion" />
+      <Output TaskParameter="ProductMajor" PropertyName="ProductMajorVersion" />
+      <Output TaskParameter="ProductMinor" PropertyName="ProductMinorVersion" />
+      <Output TaskParameter="BuildMajor" PropertyName="BuildMajorVersion" />
+      <Output TaskParameter="BuildMinor" PropertyName="BuildMinorVersion" />
+
+    </GetVersionFromName>
+    <Message Importance="low" Text="GetVersionFromName: Name=$(AssemblyFileVersionName), Value=$(AssemblyFileVersion), ProductMajor=$(ProductMajorVersion), ProductMinor=$(ProductMinorVersion), BuildMajor=$(BuildMajorVersion), BuildMinor=$(BuildMinorVersion)" />
+
+    <PropertyGroup>
+      <ProductVersion>$(ProductMajorVersion).$(ProductMinorVersion)</ProductVersion>
+      <BuildVersion>$(ProductMajorVersion).$(ProductMinorVersion).$(BuildMajorVersion).$(BuildMinorVersion)</BuildVersion>
+    </PropertyGroup>
+
+  </Target>
+
+  <Target Name="_PreBuild"/>
+  <Target Name="_PostBuild"/>
+  
+  
+  <!-- 
+  
+  =======================================================
+  
+  BIN PLACE
+  
+  =======================================================
+  
+  -->
+  
+  <PropertyGroup>
+    <BinplaceFile Condition="!Exists('$(BinplaceFile)')" />
+    <BinplaceFile Condition="'$(BinplaceFile)'=='' AND Exists('$(EnlistmentRoot)\build\placefile')">$(EnlistmentRoot)\build\placefile</BinplaceFile>
+    <BinplaceSymbols Condition="'$(BinplaceSymbols)' == ''">-y -S $(OutputRoot)\Symbols\$(BuildType)\$(BuildArchitecture)</BinplaceSymbols>
+    <BinplaceHandleSpacesInFileName Condition="'$(BinplaceHandleSpacesInFileName)'==''">false</BinplaceHandleSpacesInFileName>
+    <BinplaceCheckRelativePath Condition="'$(BinplaceCheckRelativePath)'==''">true</BinplaceCheckRelativePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <!-- Binplace supports no DestinationFolder where placefiles are used, but the metadata has to be defined -->
+    <Binplace>
+      <visible>false</visible>
+      <DestinationFolder />
+    </Binplace>
+  </ItemDefinitionGroup>
+  <!--
+    ============================================================
+    * BinplaceFiles : Run binplace.exe on Binplace items
+    * [IN]
+    * $(BinplaceNoSymChk)          : True to turn off checks for valid pdb files for each exe/dll copied
+    * $(BinplaceSymbols)           : Symbols flags for binplace (e.g., -y -S [symbolPath])
+    * $(BinplaceFile)              : Placefile for binplace (if empty, ROOT\build\placefile used)
+    * $(BinplaceHandleSpacesInFileName): Enable logic to handle spaces in filename
+    * $(BinplaceAdditionalOptions) : Additional flags for binplace
+    * @(Binplace)                  : Files to binplace
+    *   %(DestinationFolder)       : Target destination, rooted at OutputRoot (can be colon delimited for multiple paths)
+    *   %(DestinationFileName)     : Target file name after copy (rename)
+  -->
+  <Target Name="BinplaceFiles" AfterTargets="_PostBuild" DependsOnTargets="$(BinplaceFilesDependsOn)" Condition="'@(Binplace)' != ''">
+    <!-- If DestinationFolder is rooted ("E:\etc"), then binplace will consider it as two folders relative to $(OutputRoot), fail fast in this case -->
+    <!-- System.IO.Path.IsPathRooted does not work here, because it considers \target\blah\ to be a rooted path -->
+    <Error Text="Binplace destination must not be rooted, it should be relative to %24(OutputRoot): %(Binplace.Identity)=&gt;%(Binplace.DestinationFolder)" Condition="'$(BinplaceCheckRelativePath)'=='true' and '%(Binplace.DestinationFolder)'!='' and $([System.Text.RegularExpressions.Regex]::Match(%(Binplace.DestinationFolder), '^[a-zA-Z]:\\.*').Success)" />
+    <PropertyGroup>
+      <_BinplaceCmd>/R $(OutputRoot)\. /:NOCV $(BinplaceSymbols) -:LOGPDB /:CVTCIL</_BinplaceCmd>
+      <_BinplaceCmd Condition="'$(BinplaceFile)' != ''">$(_BinplaceCmd) /P $(BinplaceFile)</_BinplaceCmd>
+      <_BinplaceCmd Condition="'$(BinplaceNoSymChk)' != 'true'">$(_BinplaceCmd) /:DBG /j</_BinplaceCmd>
+    </PropertyGroup>
+    <!-- Add quotes around file names with spaces.
+         Still cannot handle quotes in folder names, because binplace parses trailing slash in quoted folder name as an escape sequence -->
+    <ItemGroup Condition="'$(BinplaceHandleSpacesInFileName)' == 'true'">
+      <BinplacesWithSpaces Include="@(Binplace)" Condition="'%(Binplace.FullPath)' != '' and $([System.String]::Copy(%(Binplace.FullPath)).Contains(' '))" />
+      <_BinplaceFiles Include="&quot;%(BinplacesWithSpaces.FullPath)&quot; " Condition="'%(BinplacesWithSpaces.DestinationFolder)' == '' and '%(BinplacesWithSpaces.DestinationFileName)' == '' and '%(BinplacesWithSpaces.FullPath)' != ''" />
+      <_BinplaceFiles Include="-:DEST %(BinplacesWithSpaces.DestinationFolder) -:REN &quot;%(BinplacesWithSpaces.DestinationFileName)&quot; &quot;%(BinplacesWithSpaces.FullPath)&quot; " Condition="'%(BinplacesWithSpaces.DestinationFolder)' != '' and '%(BinplacesWithSpaces.DestinationFileName)' != ''" />
+      <_BinplaceFiles Include="-:DEST %(BinplacesWithSpaces.DestinationFolder) &quot;%(BinplacesWithSpaces.FullPath)&quot; " Condition="'%(BinplacesWithSpaces.DestinationFolder)' != '' and '%(BinplacesWithSpaces.DestinationFileName)' == ''" />
+      <Binplace Remove="@(BinplacesWithSpaces)" />
+    </ItemGroup>
+    <ItemGroup>
+      <_BinplaceFiles Include="%(Binplace.FullPath) " Condition="'%(Binplace.DestinationFolder)' == '' and '%(Binplace.DestinationFileName)' == ''" />
+      <_BinplaceFiles Include="-:DEST %(Binplace.DestinationFolder) -:REN %(Binplace.DestinationFileName) %(Binplace.FullPath) " Condition="'%(Binplace.DestinationFolder)' != '' and '%(Binplace.DestinationFileName)' != ''" />
+      <_BinplaceFiles Include="-:DEST %(Binplace.DestinationFolder) %(Binplace.FullPath) " Condition="'%(Binplace.DestinationFolder)' != '' and '%(Binplace.DestinationFileName)' == ''" />
+    </ItemGroup>
+    <!-- Use binplace.exe because we don't want any binplace.cmd hooks processing -->
+    <!-- Write to a response file to deal with long commandlines (from windows build) -->
+    <WriteLinesToFile File="$(IntermediateOutputPath)_binplace.rsp" Lines="@(_BinplaceFiles)" Overwrite="true" />
+    <Exec Command="$(BinplaceToolDirectoryPath)\binplace.exe $(_BinplaceCmd) $(BinplaceAdditionalOptions) @$(IntermediateOutputPath)_binplace.rsp" />
+    <Delete Files="$(IntermediateOutputPath)_binplace.rsp" Condition="'$(BUILD_DEBUG)' != '1'" />
+    <ItemGroup Condition="'$(BinplaceHandleSpacesInFileName)' == 'true' and '@(BinplacesWithSpaces)' != ''">
+      <!-- Restore itemgroup in case someone needs it after this target -->
+      <Binplace Include="@(BinplacesWithSpaces)" />
+    </ItemGroup>
+  </Target>
+  
+  <!-- 
+  
+  =======================================================
+  
+  CUSTOM PACKAGE RESTORE
+  
+  =======================================================
+  
+  -->
+  
+  <Target Name="CustomConfigPackagesConfigForRestore" BeforeTargets="RestorePackagesConfig">
+    <ItemGroup>
+      <CustomPackagesConfigProjectsToRestore Include="$(EnlistmentRoot)\build\GlobalPackages" Condition="Exists('$(EnlistmentRoot)\build\GlobalPackages\packages.config')" />
+    </ItemGroup>
+   <Exec Command="&quot;$(RestoreNuGetExePath)&quot; restore &quot;packages.config&quot; -MSBuildPath &quot;$(MSBuildBinPath)&quot; $(PackagesConfigRestoreAdditionalArguments)" WorkingDirectory="%(CustomPackagesConfigProjectsToRestore.Identity)" Condition=" '@(CustomPackagesConfigProjectsToRestore)' != '' " />
+  </Target>
+
+  <!-- ApplicationHost.Product.14.9.20\ApplicationHost\Lipstick\DataSchemaCompiler.exe hardcodes a check to ensure INETROOT is set as an ENV var. 
+       On cloudbuild lab agents this is set however it is not the sandboxed root so DataSchemaCompiler.exe generates to incorrect location out of sandbox and causes build failures. -->
+  <Target Name="SetINETROOT" BeforeTargets="RuntimeDSSetup">
+    <SetEnvVariable Name="INETROOT" Value="$(EnlistmentRoot)"/>
+  </Target>
+
+  <!-- 
+  
+  =======================================================
+  
+  ASSEMBLY SEARCH PATHS
+  
+  =======================================================
+  
+  -->
+  
+  <PropertyGroup>
+    <AssemblySearchPaths>
+            {HintPathFromItem};
+            {TargetFrameworkDirectory};
+            $(OutDir);
+            $(AdditionalSearchPaths);
+            {RawFileName}
+    </AssemblySearchPaths>
+  </PropertyGroup>
+
+  <!-- 
+  
+  =======================================================
+  
+  AUTHENTICODE CODE SIGNING
+  
+  =======================================================
+  
+  -->
+  
+  <PropertyGroup>
+    <!--Authenticode Signing With Timestamping -->
+    <AssemblyCertificates Condition="'$(AssemblyCertificates)'==''">-6;-60</AssemblyCertificates>
+  </PropertyGroup>
+
+  <Import Project="$(PkgCodeSign_CloudBuild)\CodeSign.targets" Condition=" Exists('$(PkgCodeSign_CloudBuild)\CodeSign.targets') " />
+  
+  <Target Name="PostBuildAndSign" Condition="'$(ENABLE_CODESIGN)'=='1'" AfterTargets="ManagedCodeSign">
+    <Exec Command="rd /S /Q Signing" WorkingDirectory="$(ProjectDir)\$(O)" />
+    <Exec Command="rd /S /Q Unsigned" WorkingDirectory="$(ProjectDir)\$(O)" />
+  </Target>
+
+  <!-- 
+  
+  =======================================================
+  
+  NUPROJ
+  
+  =======================================================
+  
+  -->
+  
+  <Import Condition="Exists('$(NuProjPath)\NuProj.Common.targets') AND ($(MSBuildProjectExtension) == '.csproj' OR $(MSBuildProjectExtension) == '.vcxproj' OR $(MSBuildProjectExtension) == '.proj')" Project="$(NuProjPath)\NuProj.Common.targets"/>
+
+  <!-- 
+  
+  =======================================================
+  
+  VS 2017
+  
+  =======================================================
+  
+  -->
+  
+  <!-- janainag - 11/20/2017
+      Enable building C++ projects with on CoreXT in VS 2017
+      See: https://stackoverflow.microsoft.com/questions/35858/visual-studio-2017-cant-open-visual-studio-2015-created-solution-missing-insta
+   -->
+  <PropertyGroup>
+    <RequiredBundles />
+  </PropertyGroup>
+
+  <!-- 
+  
+  =======================================================
+  
+  SOURCE CODE INDEXING
+  
+  =======================================================
+  
+  -->
+  
+  <!-- Add support for source code indexing -->
+  <Import Project="$(EnlistmentRoot)\build\SourceLink\SourceLink.targets"
+          Condition="Exists('$(EnlistmentRoot)\build\SourceLink\SourceLink.targets')"/>
+  <Import Project="$(EnlistmentRoot)\build\SourceLink\Microsoft.SourceLink.Vsts.Git.targets"
+          Condition="Exists('$(EnlistmentRoot)\build\SourceLink\Microsoft.SourceLink.Vsts.Git.targets')"/>
+
+  <!-- 
+  
+  =======================================================
+  
+  CODE ANALYSIS
+  
+  =======================================================
+  
+  -->
+  
+  <Import Project="$(EnlistmentRoot)\build\CodeAnalysis\GlobalCodeAnalysis.targets"/>
+  
+  
+  <!--
+
+  =======================================================
+
+  TLOGLOCATION BUG WORKAROUND
+  
+  reference: https://stackoverflow.microsoft.com/questions/236168/236203?noredirect=1#comment217449_236203
+  reference: https://msasg.visualstudio.com/Bing_Ads/_git/AdsSnR/pullrequest/1984844?_a=files
+.. email correspondence suggested the following, as well as changes in Directory.Build.Props
+  =======================================================
+  -->
+  
+<Target Name="GetProjectInfoForReferenceWorkaround" >
+  <PropertyGroup>
+    <ComputeCompileInputsTargets />
+  </PropertyGroup>
+</Target>
+
+</Project>

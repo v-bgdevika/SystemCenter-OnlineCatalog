@@ -1,0 +1,565 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <!--
+      Enlistment root is based off of wherever this file is.  Be sure not to set this property anywhere else.
+    -->
+    <EnlistmentRoot>$(MSBuildThisFileDirectory.TrimEnd('\\'))</EnlistmentRoot>
+    <PackagesRoot>$(EnlistmentRoot)\Private\Packages</PackagesRoot>
+    <RestoreNuGetExePath>$(EnlistmentRoot)\build\nuget\nuget.exe</RestoreNuGetExePath>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+
+    <!-- native code pacman packages have amd64 specified for platform -->
+    <BuildArchitecture Condition=" '$(Platform)' == 'x64' ">amd64</BuildArchitecture>
+    <BuildArchitecture Condition=" '$(Platform)' == 'Any CPU' ">amd64</BuildArchitecture>
+    <BuildArchitecture Condition=" '$(Platform)' == 'AnyCPU' ">amd64</BuildArchitecture>
+    <BuildArchitecture Condition=" '$(Platform)' == 'x86' ">i386</BuildArchitecture>
+    <BuildType Condition=" '$(Configuration)' == 'Release' ">retail</BuildType>
+    <BuildType Condition=" '$(Configuration)' == 'Debug' ">debug</BuildType>
+    <PlatformTarget Condition="'$(PlatformSpecificAssembly)' == 'true' And '$(BuildArchitecture)' == 'i386'">x86</PlatformTarget>
+    <PlatformTarget Condition="'$(PlatformSpecificAssembly)' == 'true' And '$(BuildArchitecture)' == 'amd64'">x64</PlatformTarget>
+    <BuildTarget>$(BuildArchitecture)</BuildTarget>
+
+    <!-- Disable linking as part of copying -->
+    <UseHardLinksOnCopy>false</UseHardLinksOnCopy>
+    <UseSoftLinksOnCopy>false</UseSoftLinksOnCopy>
+
+    <!-- Don't error on CA issues -->
+    <CodeAnalysisTreatWarningsAsErrors Condition=" '$(CodeAnalysisTreatWarningsAsErrors)' == '' ">false</CodeAnalysisTreatWarningsAsErrors>
+    <!-- Add nuproj support -->
+    <NuProjPath>$(EnlistmentRoot)\build\nuproj\NuProj.OnCoreXT.0.6.4\</NuProjPath>
+
+    <!-- Corext env set these as they are used in many pacman packages. Defining them hear for defaults for this codebase if they are not already defined. -->
+    <COMPILER_VERSION Condition=" '$(COMPILER_VERSION)' == '' ">VC141</COMPILER_VERSION>
+
+    <!-- disable xap check until unified xap.sdk -->
+    <CheckXapSDK>false</CheckXapSDK>
+    <MSBuildWarningsAsMessages>CS3021;AD0001;CS2008</MSBuildWarningsAsMessages>
+
+    <BinplaceToolDirectoryPath Condition=" '$(BinplaceToolDirectoryPath)' == '' ">$(EnlistmentRoot)\build\binplace</BinplaceToolDirectoryPath>
+
+    <!-- Disable transitive project references to avoid excessive QuickBuild sandboxing in large repos -->
+    <DisableTransitiveProjectReferences>true</DisableTransitiveProjectReferences>
+
+    <EnableCentralPackageVersions Condition="!Exists('$(MSBuildProjectDirectory)\packages.config')">true</EnableCentralPackageVersions>
+
+    <!-- Disable restore of packages.config files. -->
+    <RestoreEnablePackagesConfig>false</RestoreEnablePackagesConfig>
+
+    <!-- Have Robocopy run after _PostBuild instead of AfterBuild -->
+    <RobocopyFilesAfterTargets>_PostBuild</RobocopyFilesAfterTargets>
+	
+	<!-- we build with different versions in the references on purpose -->
+	<CheckAppHostDependencyVersion>false</CheckAppHostDependencyVersion>
+
+    <!-- Require that every PackageReference has a central default version in Packages.props -->
+    <EnablePackageVersionOverrideWithoutCentralVersion>false</EnablePackageVersionOverrideWithoutCentralVersion>
+
+    <!-- Enable branch-wise genearion of SchemasUsedByPlugins.tsv file - this is used by multiple UTs -->
+    <GenerateSchemasUseFile>true</GenerateSchemasUseFile>
+  </PropertyGroup>
+
+    <!-- 
+
+  =======================================================
+
+  SYSTEM DEFAULTS
+
+  =======================================================
+
+  -->
+
+  <PropertyGroup>
+    <UseEnv Condition="'$(UseEnv)' == ''">false</UseEnv>
+    <NoLogo Condition="'$(NoLogo)' == ''">true</NoLogo>
+    <GenerateFullPaths Condition="'$(GenerateFullPaths)' == ''">true</GenerateFullPaths>
+    <!--<TreatWarningsAsErrors Condition="'$(TreatWarningsAsErrors)' == ''">true</TreatWarningsAsErrors>-->
+    <WarningLevel Condition="'$(WarningLevel)' == ''">4</WarningLevel>
+    <UseHostCompilerIfAvailable Condition=" '$(UseHostCompilerIfAvailable)' == ''">false</UseHostCompilerIfAvailable>
+    <UseDebugLibraries Condition="'$(BaseBuildType)'=='debug'">true</UseDebugLibraries>
+    <UseDebugLibraries Condition="'$(BaseBuildType)'!='debug'">false</UseDebugLibraries>
+
+    <NoTargets>$(EnlistmentRoot)\build\notarget.targets</NoTargets>
+  </PropertyGroup>
+
+  <!-- 
+
+  =======================================================
+
+  OUTPUT PATHS
+
+  =======================================================
+
+  -->
+
+  <PropertyGroup>
+  <!-- Common output path configuration -->
+    <ObjectRoot Condition="'$(ObjectRoot)' == ''">$(EnlistmentRoot)</ObjectRoot>
+    <OutputRoot Condition="'$(OutputRoot)' == ''">$(EnlistmentRoot)</OutputRoot>
+    <BUILD_ALT_DIR_SUFFIX>d</BUILD_ALT_DIR_SUFFIX>
+    <BUILD_ALT_DIR Condition="'$(BUILD_ALT_DIR)'=='' AND '$(BuildType)'=='debug'">$(BUILD_ALT_DIR_SUFFIX)</BUILD_ALT_DIR>
+    <ObjectDirectoryPrefix>obj</ObjectDirectoryPrefix>
+    <ObjectDirectory Condition="'$(ObjectDirectory)' == ''">$(ObjectDirectoryPrefix)$(BUILD_ALT_DIR)</ObjectDirectory>
+    <BaseIntermediateOutputPath>$(ObjectDirectory)\</BaseIntermediateOutputPath>
+    <O>$(BaseIntermediateOutputPath)$(BuildArchitecture)\</O>
+    <ProjectDirRelativeToBaseDir>$(MSBuildProjectDirectory.Substring($(EnlistmentRoot.Length)))</ProjectDirRelativeToBaseDir>
+    <IntermediateOutputPath>$(ObjectRoot)\$(ProjectDirRelativeToBaseDir)\$(O)</IntermediateOutputPath>
+    <!-- and outputPath too -->
+    <OutputPath Condition="'$(OutputPath)' == ''">$(ObjectRoot)$(ProjectDirRelativeToBaseDir)\$(O)</OutputPath>
+    <OutDir>$(OutputPath)</OutDir>
+    <QTestDirToDeploy>$(OutDir)</QTestDirToDeploy>
+    <!-- NuGet generates the assets file, g.props, and g.targets to MSBuildProjectExtensionsPath. -->
+    <MSBuildProjectExtensionsPath>$(MSBuildProjectDirectory)\.pkgrefgen\</MSBuildProjectExtensionsPath>
+  </PropertyGroup>
+
+  <!-- 
+
+  =======================================================
+
+  C++ CONFIGURATION
+
+  =======================================================
+
+  -->
+
+  <!--
+  Import the C++ nuget package props earlier than normal.
+
+  Because all C++ projects reference the common C++ tools from NuGet packages, all of them should have a .pkgrefgen folder (at least, once the user does a restore).
+
+  We must import these right here because:
+
+  1) If we import them after the project imports $(VCTargetsPath)\Microsoft.Cpp.Default.props (every C++ file imports this), the build will use many
+     tools from the local Visual Studio installation instead of the NuGet packages. We need the tools from the NuGet packages because CloudBuild agents
+     do not have Visual Studio installations.
+  2) If we import them before $(VCTargetsPath)\Microsoft.Cpp.Default.props (that file imports Microsoft.Common.props which in turn imports this file,
+     Directory.Build.props), Microsoft.Cpp.Default.props (as of Visual Studio 2019 Preview 2) will erase many important properties including Windows SDK paths.
+     It does so because it thinks that it's the very first file imported, so any properties set by that point come from environment variables, which is an
+     invalid assumption n XAP C++ builds due to (1).
+  3) Since we can neither import them before or after Microsoft.Cpp.Default.props in each project file, we can import them here in Directory.Build.props.
+     This file is imported after the important properties are erased but before the C++ build SDK actually uses them (i.e. before it tries to resolve
+     Windows header file locations).
+  -->
+  <Import Condition=" '$(MSBuildProjectExtension)' == '.vcxproj' " Project="$(MSBuildProjectDirectory)\.pkgrefgen\$(MSBuildProjectFile).nuget.g.props" />
+  <PropertyGroup Condition=" '$(MSBuildProjectExtension)' == '.vcxproj' ">
+    <!--
+    Disable the auto-import of .pkgrefgen
+    Note that the .pkgrefgen targets files will still be imported; that is controlled by ImportProjectExtensionTargets.
+    -->
+    <ImportProjectExtensionProps>false</ImportProjectExtensionProps>
+
+    <!--
+    Don't use registry lookup for cpp sdk's and define crt to windows sdk dir if undefined.
+    These must be defined after we import the Windows SDK ("kits" nuget package) in C++ projects.
+    -->
+    <DisableRegistryUse>true</DisableRegistryUse>
+    <UniversalCRTSdkDir>$(UCRTContentRoot)</UniversalCRTSdkDir>
+    <UniversalCRTSdkDir_10>$(UCRTContentRoot)</UniversalCRTSdkDir_10>
+  </PropertyGroup>
+
+  <ItemDefinitionGroup>
+    <QCustomInput>
+      <Private>true</Private>
+    </QCustomInput>
+    <QCustomOutput>
+      <Private>true</Private>
+    </QCustomOutput>
+    <!-- 
+         By default when using PackageReference not all project outputs are copied from project references.
+         Since much of this codebase relys on that behavior returning the behavior by setting Private to true for ProjectReference by default. 
+    -->
+    <ProjectReference>
+      <Private>true</Private>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+
+  <ItemGroup>
+    <QCustomInput Include="$(MSBuildProjectDirectory)\packages.config" Condition="Exists('$(MSBuildProjectDirectory)\packages.config')"/>
+    <QCustomInput Include="$(EnlistmentRoot)\build\Microsoft.Build.Copied.Tasks.dll" />
+    <QCustomInput Include="$(EnlistmentRoot)\build\binplace\binplace.exe" />
+  </ItemGroup>
+
+  <!-- 
+    * The following tasks are from CopiedTasks dll, which are a copy of the shipped tasks, but are copied to fix the bugs.
+    * We need to have UsingTask here before UsingTask of shipped targets, so that our definition wins
+  -->
+  <UsingTask TaskName="WriteCodeFragment" AssemblyFile="$(EnlistmentRoot)\build\Microsoft.Build.Copied.Tasks.dll" />
+
+  <!-- Standard Release PropertyGroup from VS autogen -->
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DirectorySuffix>d</DirectorySuffix>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <!-- Standard Debug PropertyGroup from VS autogen -->
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DirectorySuffix>d</DirectorySuffix>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+
+ <!-- Be coherent with NMake builds: BUILD_ENABLE_MP turns on /MP compile in vcxprojs.
+        /MP in vcxprojs is by default disabled in corext. -->
+   <ItemDefinitionGroup Condition="'$(BUILD_ENABLE_MP)'=='1'">
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild> <!-- Not compatible with /MP -->
+    </ClCompile>
+  </ItemDefinitionGroup>
+
+  <!-- 
+
+  =======================================================
+
+  ORGANIZE THIS...
+
+  =======================================================
+
+  -->
+
+
+  <Sdk Name="Pacman.Build.Sdk"/>
+  <PropertyGroup>
+    <!-- LEGACY_VARIANT is set by $(PacmanBuildSdkProps) this file is created when pacman packages are restored.
+         However in order to restore pacman packages msbuild /t:restore dirs.proj must run so the projects must be parseable.
+         The boost package does numerical comparisons to this value and therefore we are defaulting it to 0 in the restore phase so restore can parse. -->
+    <LEGACY_VARIANT Condition=" '$(LEGACY_VARIANT)' == '' ">0</LEGACY_VARIANT>
+
+    <!-- Hard-coded assembly version for all assemblies in the repo. -->
+    <AssemblyVersion>7.08.0.0</AssemblyVersion>
+    <AssemblyFileVersion>7.08.0.0</AssemblyFileVersion>
+
+    <DistribPath>$(EnlistmentRoot)\target\distrib\$(BuildType)\$(BuildArchitecture)</DistribPath>
+    <LocalLibPath>$(EnlistmentRoot)\target\$(BuildType)\$(BuildArchitecture)</LocalLibPath>
+    <BinplaceDistribPath>target\distrib\$(BuildType)\$(BuildArchitecture)</BinplaceDistribPath>
+    <BinplaceLocalLibPath>target\$(BuildType)\$(BuildArchitecture)</BinplaceLocalLibPath>
+
+    <BinplaceLocalLibPath>target\$(BuildType)\$(BuildArchitecture)</BinplaceLocalLibPath>
+    <ModulesRoot>$(EnlistmentRoot)\private\modules</ModulesRoot>
+    <PackagesRoot>$(EnlistmentRoot)\private\packages</PackagesRoot>
+    <QTestRoot>$(LocalLibPath)\qtest</QTestRoot>
+    <PackagesQTestRoot>$(LocalLibPath)\qtest\packages</PackagesQTestRoot>
+    <!--This gets fed into linker's /debugtype switch. This is the format required by Magellan for it to be able to instrument.
+    /INCREMENTAL is incompatible with /debugtype and EditAndContinue. -->
+    <LinkIncremental Condition="'$(QCodeCoverageBuild)'=='True'">false</LinkIncremental>
+    <LinkDebugType Condition="'$(QCodeCoverageBuild)'=='True'">cv,fixup</LinkDebugType>
+
+    <!-- .NET 4.5. changed the default bitness of executables to 32-bit. For 64-bit compilation we want to maintain that policy. -->
+    <!-- When migrate to Visual Studio 2013, remember to preserve this ASG specific customization. -->
+    <Prefer32Bit>false</Prefer32Bit>
+
+    <!-- .net 4.5 warns on this...we're just going to ignore, though we could set process specific (in .wrap package) instead -->
+    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+
+    <!-- FxCop-related settings deprecated in VS2019 / MSBuild16, set to false just to be safe -->
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <RunCppAnalysis>false</RunCppAnalysis>
+    <RunCodeAnalysisOnThisProject>false</RunCodeAnalysisOnThisProject>
+    <!-- Prevent warning CA0057 that warns about FxCop being used in VS2019. -->
+    <SuppressLegacyCodeAnalysisDeprecatedWarning>true</SuppressLegacyCodeAnalysisDeprecatedWarning>
+
+    <!--
+    erness 12/4/19: not sure what this is for; I think this is a leftover custom switch from our CoreXT days. It doesn't seem to do anything.
+    To be safe, I'm setting it to true globally. GlobalCodeAnalysis.targets breaks any project that tries to set it to another value
+    and currently this is the only place this property is set.
+    -->
+    <EnableCodeAnalyzers>true</EnableCodeAnalyzers>
+
+    <!-- Assume if we are not building in visual studio that we are building with msbuild.exe directly on the cmdline. -->
+    <BuildingWithBuildExe Condition="'$(BuildingInsideVisualStudio)' == 'true'">false</BuildingWithBuildExe>
+    <BuildingWithBuildExe Condition="'$(BuildingWithBuildExe)' == ''">true</BuildingWithBuildExe>
+  </PropertyGroup>
+
+  <!-- 
+
+  =======================================================
+
+  SDK PROJECTS
+
+  =======================================================
+
+  -->
+
+  <!-- Properties that only apply to newer SDK-style projects (whether or not they target .NET Framework, Standard, or Core) -->
+  <PropertyGroup Condition=" '$(UsingMicrosoftNETSdk)' == 'true' ">
+    <!-- This allows Visual Studio to find pacman package binaries correctly. -->
+    <BuildArchitecture>amd64</BuildArchitecture>
+    <!-- Must be blank; TargetFramework is used instead. -->
+    <TargetFrameworkVersion></TargetFrameworkVersion>
+    <!-- By default, we should target netstandard2.0, unless specifically overriden. -->
+    <TargetFramework Condition=" '$(UsingMicrosoftNETSdk)' == 'true' ">netstandard2.0</TargetFramework>
+    <!-- By default, we should build to AnyCPU, 64-bit preferred. -->
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <!-- This tells Visual Studio build files in the correct output directory -->
+    <Platforms>x64</Platforms>
+    <!--
+    By default, SDK-style projects will automatically glob (expand filename patterns with wildcards) MSBuild items for all files in the directory of
+    the project and its subdirectories file to avoid having to manually keep a list of files up-to-date in the project file.
+    See: https://docs.microsoft.com/en-us/dotnet/core/tools/csproj#default-compilation-includes-in-net-core-projects
+
+    However, globbing (expanding filename patterns with wildcards) <None> items like this can be bad for perf in large repos like ours so we're being
+    conservative and disabling it; projects will have to add <None> items manually like before.
+    -->
+    <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
+
+    <!--
+    SDK-style projects auto generate assembly info in a C# file; path would be something like this: objd\amd64\netcoreapp2.1\MyProjectName.AssemblyInfo.cs
+    But many projects of ours have Properties\AssemblyInfo.cs files, and the generated properties often conflict with the AssemblyInfo.cs properties.
+    If there are duplicate values for the same attribute in a project, the project will not compile.
+
+    Therefore, we are disabling auto-generation of most properties. We still need to generate AssemblyVersion and AssemblyFileVersion so we can't turn generation
+    off entirely. We can turn generation back on for an attribute if we need to have a global setting and no AssemblyInfo.cs files in the repo already set it.
+    -->
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <GenerateAssemblyFileVersionAttribute>true</GenerateAssemblyFileVersionAttribute>
+    <GenerateAssemblyVersionAttribute>true</GenerateAssemblyVersionAttribute>
+
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+    <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+    <GenerateNeutralResourcesLanguageAttribute>false</GenerateNeutralResourcesLanguageAttribute>
+    <GenerateAssemblyMetadataAttributes>false</GenerateAssemblyMetadataAttributes>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+    <GenerateInternalsVisibleToAttributes>false</GenerateInternalsVisibleToAttributes>
+
+    <!--
+    Exclude the build output directory we are not using (i.e. objd if you are doing a retail build) from autoglobbing. Those sometimes contain generated C# files
+    which should not be fed into the compiler. Note that this allows autoglobbing of generated C# files in the directory that we *are* using (i.e. objd if you
+    are doing a debug build). We may want to exclude this too if it becomes a problem.
+
+    We must do this because we still use CoreXT-style output paths.
+    -->
+    <_NotUsedOutputDir Condition=" '$(BuildType)'=='debug' ">$(ObjectDirectoryPrefix)</_NotUsedOutputDir>
+    <_NotUsedOutputDir Condition=" '$(_NotUsedOutputDir)'=='' ">$(ObjectDirectoryPrefix)$(BUILD_ALT_DIR_SUFFIX)</_NotUsedOutputDir>
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(ObjectRoot)\$(ProjectDirRelativeToBaseDir)\$(_NotUsedOutputDir)\**</DefaultItemExcludes>
+  </PropertyGroup>
+
+  <!-- 
+
+  =======================================================
+
+  FRAMEWORK (OLD) PROJECTS
+
+  =======================================================
+
+  -->
+
+  <!-- Properties that only apply to older style projects (which can only target .NET Framework) -->
+  <PropertyGroup Condition=" '$(UsingMicrosoftNETSdk)' != 'true' ">
+    <!-- The whole repo is 4.7.2 unless overridden. Keep in sync with the TargetFramework property in the "$(UsingMicrosoftNETSdk) == true" PropertyGroup. -->
+    <TargetFrameworkVersion Condition=" '$(UsingMicrosoftNETSdk)' != 'true' ">v4.7.2</TargetFrameworkVersion>
+  </PropertyGroup>
+
+  <!-- 
+
+  =======================================================
+
+  PACMAN COMPONENTS
+
+  =======================================================
+
+  -->
+
+  <PropertyGroup>
+    <SolutionProps Condition="'$(BuildingInsideVisualStudio)' == 'true'">$(SolutionPath).props</SolutionProps>
+    <PathProps>$(EnlistmentRoot)\private\components.props</PathProps>
+    <PathProps Condition="Exists('$(EnlistmentRoot)\private\packages\components.props')" >$(EnlistmentRoot)\private\packages\components.props</PathProps>
+  </PropertyGroup>
+
+  <Import Project="$(PathProps)" Condition="Exists('$(PathProps)')" />
+  <Import Project="$(SolutionProps)" Condition="'$(BuildingInsideVisualStudio)' == 'true' AND Exists('$(SolutionProps)')" />
+
+  <!-- 
+
+  =======================================================
+
+  CODE CONTRACTS
+
+  =======================================================
+
+  -->
+
+  <PropertyGroup>
+    <CodeContractsProps>$(QSourceRoot)\Common.CodeContracts.props</CodeContractsProps>
+  </PropertyGroup>
+
+  <!-- 
+
+  =======================================================
+
+  CLOUD BUILD
+
+  =======================================================
+
+  -->
+
+  <PropertyGroup>
+    <CloudBuildSourceRoot>$(EnlistmentRoot)\private\CloudBuild</CloudBuildSourceRoot>
+    <CloudBuildProps>$(CloudBuildSourceRoot)\cloudbuild.props</CloudBuildProps>
+    <CloudBuildTargets>$(CloudBuildSourceRoot)\cloudbuild.targets</CloudBuildTargets>
+  </PropertyGroup>
+
+  <!-- 
+
+  =======================================================
+
+  CODE ANALYSIS
+
+  =======================================================
+
+  -->
+
+  <PropertyGroup>
+    <GlobalCodeAnalysisPropsDir>$(EnlistmentRoot)\build\CodeAnalysis</GlobalCodeAnalysisPropsDir>
+    <GlobalCodeAnalysisPropsFileName>GlobalCodeAnalysis.props</GlobalCodeAnalysisPropsFileName>
+  </PropertyGroup>
+  <Import Project="$(GlobalCodeAnalysisPropsDir)\$(GlobalCodeAnalysisPropsFileName)" />
+
+  <!-- 
+
+  =======================================================
+
+  BINPLACE
+
+  =======================================================
+
+  -->
+
+   <!-- If $(BinplaceSymbols) is not empty, then the BinplaceFiles target won't add the ( -s ) option to place the symbols in a separate directory from the images. -->
+   <!-- We're using the -y option because it does nothing by itself.  It's only used in combination with the -s option, which we're preventing BinplaceFiles from adding. -->
+   <PropertyGroup>
+       <BinplaceSymbols>-y</BinplaceSymbols>
+   </PropertyGroup>
+
+  <!-- 
+
+  =======================================================
+
+  ROBOCOPY DEFAULTS
+
+  =======================================================
+
+  -->
+
+  <ItemDefinitionGroup>
+    <Robocopy>
+      <FileMatch>*</FileMatch>
+      <FileExclude>_generated.cs *FileListAbsolute.txt *.cache *.cov *.lastcodeanalysissucceeded .NETFramework* *.CodeAnalysisLog.xml *.versionnumber _objects.mac</FileExclude>
+      <DirExclude>Signing Unsigned</DirExclude>
+      <IsRecursive>True</IsRecursive>
+    </Robocopy>
+  </ItemDefinitionGroup>
+
+  <!-- 
+
+  =======================================================
+
+  SET ENVIRONMENT VARIABLE TASK
+
+  =======================================================
+
+  -->
+
+  <UsingTask
+    TaskName="SetEnvVariable"
+    TaskFactory="CodeTaskFactory"
+    AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+
+    <ParameterGroup>
+      <Name ParameterType="System.String" Required="true" />
+      <Value ParameterType="System.String" Required="true" />
+    </ParameterGroup>
+
+    <Task>
+      <Using Namespace="System" />
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+          Environment.SetEnvironmentVariable(Name, Value);
+        ]]>
+      </Code>
+    </Task>
+
+  </UsingTask>
+
+  <!-- 
+
+  =======================================================
+
+  SUPPORT VS 2015
+
+  =======================================================
+
+  -->
+
+  <Target Name="UpdateOacrCscVariable"
+          AfterTargets="ConfigureOacrProject"
+          BeforeTargets="CoreCompile"
+         Condition="!Exists('$(MSBuildToolsPath)\Roslyn\csc.exe') AND
+                     Exists('$(MSBuildToolsPath)\csc.exe')">
+
+    <Message Text="Set OACRCSC = '$(MSBuildToolsPath)\csc.exe'" />
+
+    <SetEnvVariable Name="OACRCSC" Value="$(MSBuildToolsPath)\csc.exe"/>
+  </Target>
+
+  <!-- 
+
+  =======================================================
+
+  SOURCE CODE INDEXING
+
+  =======================================================
+
+  -->
+
+  <!-- Add support for source code indexing -->
+  <Import Project="$(EnlistmentRoot)\build\SourceLink\Microsoft.SourceLink.Vsts.Git.props"
+          Condition="Exists('$(EnlistmentRoot)\SourceLink\Microsoft.SourceLink.Vsts.Git.props')"/>
+
+  <!-- 
+
+  =======================================================
+
+  STYLE COP
+
+  =======================================================
+
+  -->
+
+<Import Project="$(EnlistmentRoot)\build\stylecop.props" Condition="$(MSBuildProjectExtension) == '.csproj' AND $(EnableStyleCopAnalyzer) == 'true'" /> 
+
+  <!--
+    The TelemetryLoggerInstallId property defines where to deploy the MSBuild telemetry logger. This
+    must be kept in sync with Directory.Build.rsp. The install path needs to change for each version
+    to avoid file locks (logger dll will be in use while building).
+  -->
+  <PropertyGroup>
+    <TelemetryLoggerInstallId>1.0.10</TelemetryLoggerInstallId>
+  </PropertyGroup>
+  
+  <!--
+
+  =======================================================
+
+  TLOGLOCATION BUG WORKAROUND
+  
+  reference: https://stackoverflow.microsoft.com/questions/236168/236203?noredirect=1#comment217449_236203
+  reference: https://msasg.visualstudio.com/Bing_Ads/_git/AdsSnR/pullrequest/1984844?_a=files
+.. email correspondence suggested the following, as well as changes in Directory.Build.Targets
+  =======================================================
+
+  -->
+  
+  <PropertyGroup>
+    <GetProjectInfoForReferenceDependsOn>
+      GetProjectInfoForReferenceWorkaround;
+      $(GetProjectInfoForReferenceDependsOn);
+    </GetProjectInfoForReferenceDependsOn>
+  </PropertyGroup>
+
+</Project>
