@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(EnvironmentConfig)" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" /> 
   <PropertyGroup>
     <ProjectGuid>{860bb8ae-7d3e-4ed0-8278-36b4acf35a8f}</ProjectGuid>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -46,14 +46,14 @@
 	<Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
-	<ProjectReference Include="$(SRCROOT)\product\MpCatalog\admin\Classes\Classes.csproj">
+	<ProjectReference Include="..\Classes\Classes.csproj">
     <Project>{dc4952cc-1970-41f3-b808-64e23b5b6ad4}</Project>
 	  <SpecificVersion>False</SpecificVersion>
     </ProjectReference>  
-    <ProjectReference Include="$(SRCROOT)\product\MpCatalog\Access\Access.csproj">
+    <ProjectReference Include="..\..\Access\Access.csproj">
       <Project>{00687de1-c273-4d9c-b088-ce2bb8af925f}</Project>
 	    <SpecificVersion>False</SpecificVersion>
     </ProjectReference>  
   </ItemGroup>
-  <Import Project="$(ExtendedTargetsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

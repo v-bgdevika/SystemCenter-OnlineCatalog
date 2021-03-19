@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(EnvironmentConfig)" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" /> 
   <PropertyGroup>
     <ProjectGuid>{00687de1-c273-4d9c-b088-ce2bb8af925f}</ProjectGuid>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -36,10 +36,10 @@
 	<Reference Include="System.configuration" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="$(SRCROOT)\product\MpCatalog\classes\classes.csproj">
+    <ProjectReference Include="..\classes\classes.csproj">
     <Project>{b02ad18b-1011-4959-af47-39e34b4ad166}</Project>
 	  <SpecificVersion>False</SpecificVersion>
     </ProjectReference>    
   </ItemGroup>
-  <Import Project="$(ExtendedTargetsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
