@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(EnvironmentConfig)" />
+  <ItemGroup>
+    <ProjectReference Include="$(SRCROOT)\product\MpCatalog\admin\classes\classes.csproj" />
+    <ProjectReference Include="$(SRCROOT)\product\MpCatalog\admin\access\access.csproj" />
+    <ProjectReference Include="$(SRCROOT)\product\MpCatalog\admin\ui\ui.csproj" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />
+  <PropertyGroup>
+    <BuildDependsOn>ResolveReferences</BuildDependsOn>
+    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+  </PropertyGroup>
+  <Target Name="VerifyAlteredTargetsUsed" />
+</Project>

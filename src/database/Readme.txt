@@ -1,0 +1,1 @@
+This folder is use to create the Database Schema script and it will be used when you recreate the OC database schema.

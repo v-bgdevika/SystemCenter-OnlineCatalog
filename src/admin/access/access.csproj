@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(EnvironmentConfig)" />
+  <PropertyGroup>
+    <ProjectGuid>{860bb8ae-7d3e-4ed0-8278-36b4acf35a8f}</ProjectGuid>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Microsoft.ManagementPackCatalog.Admin.Access</RootNamespace>
+    <AssemblyName>Microsoft.ManagementPackCatalog.Admin.Access</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="CatalogCategoryAssignedManagementPackGetOperation.cs" />
+    <Compile Include="CatalogCategoryExtendedInfoGetOperation.cs" />
+    <Compile Include="CatalogCategoryGetOperation.cs" />
+    <Compile Include="CatalogCategoryLocGetOperation.cs" />
+    <Compile Include="CatalogCategoryLocSetOperation.cs" />
+    <Compile Include="CatalogCategorySetOperation.cs" />
+    <Compile Include="CatalogCategoryUnAssignedManagementPackGetOperation.cs" />
+    <Compile Include="CatalogItemAssociatedProductGetOperation.cs" />
+    <Compile Include="CatalogItemUnAssociatedProductGetOperation.cs" />
+    <Compile Include="CatalogManagementPackCategorySetOperation.cs" />
+    <Compile Include="CatalogManagementPackCategoryUnSetOperation.cs" />
+    <Compile Include="CatalogManagementPackDependencySetOperation.cs" />
+    <Compile Include="CatalogManagementPackExtendedInfoGetOperation.cs" />
+    <Compile Include="CatalogManagementPackGetOperation.cs" />
+    <Compile Include="CatalogManagementPackLocGetOperation.cs" />
+    <Compile Include="CatalogManagementPackLocSetOperation.cs" />
+    <Compile Include="CatalogManagementPackSetOperation.cs" />
+    <Compile Include="CatalogProductCatalogItemSetOperation.cs" />
+    <Compile Include="CatalogProductCatalogItemUnSetOperation.cs" />
+    <Compile Include="CatalogProductGetOperation.cs" />
+    <Compile Include="CatalogProductSetOperation.cs" />
+    <Compile Include="CatalogVendorGetOperation.cs" />
+    <Compile Include="CatalogVendorLocGetOperation.cs" />
+    <Compile Include="CatalogVendorLocSetOperation.cs" />
+    <Compile Include="CatalogVendorSetOperation.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="system" />
+    <Reference Include="System.Xml" />
+	<Reference Include="System.Configuration.Install"/>
+    <Reference Include="System.Data" />	
+    <Reference Include="System.Management" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+	<Reference Include="System.Web.Services" />
+  </ItemGroup>
+  <ItemGroup>
+	<ProjectReference Include="$(SRCROOT)\product\MpCatalog\admin\Classes\Classes.csproj">
+    <Project>{dc4952cc-1970-41f3-b808-64e23b5b6ad4}</Project>
+	  <SpecificVersion>False</SpecificVersion>
+    </ProjectReference>  
+    <ProjectReference Include="$(SRCROOT)\product\MpCatalog\Access\Access.csproj">
+      <Project>{00687de1-c273-4d9c-b088-ce2bb8af925f}</Project>
+	    <SpecificVersion>False</SpecificVersion>
+    </ProjectReference>  
+  </ItemGroup>
+  <Import Project="$(ExtendedTargetsPath)\Microsoft.CSharp.targets" />
+</Project>

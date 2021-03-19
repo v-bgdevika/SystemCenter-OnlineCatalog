@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(EnvironmentConfig)" />
+  <PropertyGroup>
+    <ProjectGuid>{1d26f7c8-d1b9-45f9-9258-b7c7796bc457}</ProjectGuid>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Microsoft.ManagementPackCatalog.Admin.UI</RootNamespace>
+    <AssemblyName>Microsoft.ManagementPackCatalog.Admin.UI</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="CategoryControl.cs" />
+    <Compile Include="Default.aspx.cs" />
+    <Compile Include="Default.aspx.designer.cs" />
+    <Compile Include="ManagementPackControl.cs" />
+    <Compile Include="ProductControl.cs" />
+    <Compile Include="VendorControl.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="system" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration.Install"/>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="RadComboBox.Net2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(PkgSCOM_MpCatalog_Admin_UI_Ref)\lib\net45\RadComboBox.Net2.dll</HintPath>
+    </Reference>
+    <Reference Include="RadGrid.Net2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(PkgSCOM_MpCatalog_Admin_UI_Ref)\lib\net45\RadGrid.Net2.dll</HintPath>
+    </Reference>
+    <Reference Include="RadInput.Net2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(PkgSCOM_MpCatalog_Admin_UI_Ref)\lib\net45\RadInput.Net2.dll</HintPath>
+    </Reference>
+    <Reference Include="RadTabStrip.Net2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(PkgSCOM_MpCatalog_Admin_UI_Ref)\lib\net45\RadTabStrip.Net2.dll</HintPath>
+    </Reference>
+    <Reference Include="RadTreeView.Net2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(PkgSCOM_MpCatalog_Admin_UI_Ref)\lib\net45\RadTreeView.Net2.dll</HintPath>
+    </Reference>
+    <Reference Include="RadUpload.Net2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(PkgSCOM_MpCatalog_Admin_UI_Ref)\lib\net45\RadUpload.Net2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.Core">
+      <HintPath>$(PkgSCOM_Microsoft_SystemCenter_External_SM)\lib\net45\$(BuildType)\Microsoft.EnterpriseManagement.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="$(SRCROOT)\product\MpCatalog\admin\Classes\Classes.csproj">
+      <Project>{dc4952cc-1970-41f3-b808-64e23b5b6ad4}</Project>
+      <SpecificVersion>False</SpecificVersion>
+    </ProjectReference>
+    <ProjectReference Include="$(SRCROOT)\product\MpCatalog\admin\access\Access.csproj">
+      <Project>{860bb8ae-7d3e-4ed0-8278-36b4acf35a8f}</Project>
+      <SpecificVersion>False</SpecificVersion>
+    </ProjectReference>
+    <ProjectReference Include="$(SRCROOT)\product\MpCatalog\Access\Access.csproj">
+      <Project>{00687de1-c273-4d9c-b088-ce2bb8af925f}</Project>
+      <SpecificVersion>False</SpecificVersion>
+    </ProjectReference>
+    <ProjectReference Include="$(SRCROOT)\product\sdk\client\public\om\OM.csproj">
+      <Project>{1D2E8A45-CF14-4DAB-B0B8-8905AC83C715}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(ExtendedTargetsPath)\Microsoft.CSharp.targets" />
+</Project>

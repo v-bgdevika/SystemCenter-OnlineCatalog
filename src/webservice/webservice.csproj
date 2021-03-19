@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(EnvironmentConfig)" />
+  <PropertyGroup>
+    <ProjectGuid>{71bd8693-1b51-4742-87c0-0aac14edff5f}</ProjectGuid>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Microsoft.ManagementPackCatalog.WebService</RootNamespace>
+    <AssemblyName>Microsoft.ManagementPackCatalog.WebService</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="ManagementPackCatalogWebService.asmx.cs" />
+    <Compile Include="ManagementPackCatalogXmlGenerator.cs" />
+    <Compile Include="ManagementPackCatalogEventLog.cs" />
+    <Compile Include="ManagementPackCatalogEventLogInstaller.cs" />
+    <Compile Include="TraceProvider.cs" />
+    <Compile Include="TraceScope.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="system" />
+    <Reference Include="System.Xml" />
+	<Reference Include="System.Configuration.Install"/>
+    <Reference Include="System.Data" />	
+    <Reference Include="System.Management" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+	<Reference Include="System.Web.Services" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="$(SRCROOT)\product\MpCatalog\classes\classes.csproj">
+      <Project>{b02ad18b-1011-4959-af47-39e34b4ad166}</Project>
+	    <SpecificVersion>False</SpecificVersion>
+    </ProjectReference>
+    <ProjectReference Include="$(SRCROOT)\product\MpCatalog\Access\Access.csproj">
+	    <Project>{00687de1-c273-4d9c-b088-ce2bb8af925f}</Project>
+      <SpecificVersion>False</SpecificVersion>
+    </ProjectReference>    
+  </ItemGroup>
+  <Import Project="$(ExtendedTargetsPath)\Microsoft.CSharp.targets" />
+</Project>
