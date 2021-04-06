@@ -13,8 +13,21 @@
 /**/[Dd]ebug/**
 /**/[Tt]arget/**
 
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+bld/
+[Bb]in/
+[Oo]bj/
+
 # All kinds of output and temporary files that should not be checked in.
 /**/*.exe
+/**/*.pdb
+/**/*.cache
 /**/*.dll
 /**/*.o
 /**/*.hi
