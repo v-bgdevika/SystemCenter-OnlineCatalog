@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" /> 
+  <PropertyGroup>
+    <ProjectGuid>{b02ad18b-1011-4959-af47-39e34b4ad166}</ProjectGuid>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Microsoft.ManagementPackCatalog.Classes</RootNamespace>
+    <AssemblyName>Microsoft.ManagementPackCatalog.Classes</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="CatalogCategory.cs" />
+    <Compile Include="CatalogItem.cs" />
+    <Compile Include="CatalogItemExtendedInfo.cs" />
+    <Compile Include="CatalogLink.cs" />
+    <Compile Include="CatalogManagementPack.cs" />
+    <Compile Include="CatalogManagementPackDependency.cs" />
+    <Compile Include="CatalogManagementPackExtendedInfo.cs" />
+    <Compile Include="CatalogManagementPackIdentity.cs" />
+    <Compile Include="CatalogManagementPackSearchCriteria.cs" />
+    <Compile Include="ProductInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="system" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Runtime.Serialization" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

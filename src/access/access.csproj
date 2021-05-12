@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" /> 
+  <PropertyGroup>
+    <ProjectGuid>{00687de1-c273-4d9c-b088-ce2bb8af925f}</ProjectGuid>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Microsoft.ManagementPackCatalog.Access</RootNamespace>
+    <AssemblyName>Microsoft.ManagementPackCatalog.Access</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="CatalogCategoryExtractor.cs" />
+    <Compile Include="CatalogClassExtractor.cs" />
+    <Compile Include="CatalogItemExtendedInfoExtractor.cs" />
+    <Compile Include="CatalogItemExtendedInfoGetOperation.cs" />
+    <Compile Include="CatalogManagementPackDependencyExtractor.cs" />
+    <Compile Include="CatalogManagementPackDependencyWithIdExtractor.cs" />
+    <Compile Include="CatalogManagementPackExtendedInfoExtractor.cs" />
+    <Compile Include="CatalogManagementPackExtractor.cs" />
+    <Compile Include="CatalogOperation.cs" />
+    <Compile Include="ManagementPackCategoryExtractor.cs" />
+    <Compile Include="ManagementPackDependenciesGetOperation.cs" />
+    <Compile Include="ManagementPackExtendedInfoGetOperation.cs" />
+    <Compile Include="ManagementPackGetOperation.cs" />
+    <Compile Include="ManagementPackListOperation.cs" />
+    <Compile Include="ManagementPackSearchOperation.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="system" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Runtime.Serialization" />
+	<Reference Include="System.configuration" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\classes\classes.csproj">
+    <Project>{b02ad18b-1011-4959-af47-39e34b4ad166}</Project>
+	  <SpecificVersion>False</SpecificVersion>
+    </ProjectReference>    
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
