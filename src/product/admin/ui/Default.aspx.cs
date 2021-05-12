@@ -406,10 +406,7 @@ namespace Microsoft.ManagementPackCatalog.Admin.UI
                     this.CategoryAssignMps_Assigned_ManagementPacks_Version_TextBox.Text = mp.Version.ToString();
 
                     this.CategoryAssignMps_RemoveMp_Button.Enabled = true;
-
                }
-
-
             }
             catch (Exception ex)
             {

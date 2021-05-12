@@ -3,21 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31105.61
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "webservice", "..\SystemCenter-OnlineCatalog\src\webservice\webservice.csproj", "{71BD8693-1B51-4742-87C0-0AAC14EDFF5F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "webservice", "src\webservice\webservice.csproj", "{71BD8693-1B51-4742-87C0-0AAC14EDFF5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "classes", "..\SystemCenter-OnlineCatalog\src\classes\classes.csproj", "{B02AD18B-1011-4959-AF47-39E34B4AD166}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D71A4FA6-D637-4EAB-BEF3-82F11A2F94E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "classes", "src\classes\classes.csproj", "{B02AD18B-1011-4959-AF47-39E34B4AD166}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "admin", "admin", "{8FFFE7E2-0554-4C0A-8B90-B5F80CF40343}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "access", "..\SystemCenter-OnlineCatalog\src\admin\access\access.csproj", "{860BB8AE-7D3E-4ED0-8278-36B4ACF35A8F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "access", "src\admin\access\access.csproj", "{860BB8AE-7D3E-4ED0-8278-36B4ACF35A8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "classes", "..\SystemCenter-OnlineCatalog\src\admin\classes\classes.csproj", "{DC4952CC-1970-41F3-B808-64E23B5B6AD4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "classes", "src\admin\classes\classes.csproj", "{DC4952CC-1970-41F3-B808-64E23B5B6AD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ui", "..\SystemCenter-OnlineCatalog\src\admin\ui\ui.csproj", "{1D26F7C8-D1B9-45F9-9258-B7C7796BC457}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ui", "src\admin\ui\ui.csproj", "{1D26F7C8-D1B9-45F9-9258-B7C7796BC457}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "access", "..\SystemCenter-OnlineCatalog\src\access\access.csproj", "{00687DE1-C273-4D9C-B088-CE2BB8AF925F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "access", "src\access\access.csproj", "{00687DE1-C273-4D9C-B088-CE2BB8AF925F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

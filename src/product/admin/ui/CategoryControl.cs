@@ -13,6 +13,7 @@ using System.Xml;
 using Microsoft.ManagementPackCatalog.Admin.Access;
 using Microsoft.ManagementPackCatalog.Admin.Classes;
 using Telerik.WebControls;
+using Telerik.Web.UI;
 
 namespace Microsoft.ManagementPackCatalog.Admin.UI
 {
