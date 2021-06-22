@@ -4,7 +4,7 @@
   <ItemGroup>
     <ProjectReference Include=".\classes\classes.csproj" />
     <ProjectReference Include=".\access\access.csproj" />
-    <ProjectReference Include=".\ui\ui.csproj" />
+    <!--<ProjectReference Include=".\ui\ui.csproj" />-->
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />
   <PropertyGroup>
