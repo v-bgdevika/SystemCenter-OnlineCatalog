@@ -1,3 +1,226 @@
-- task: MSBuild@1
-  inputs:
-    solution: 'src/product/dirs.proj'
+#################################################################################
+#                           Onebranch Retail Pipeline                           #
+# This pipeline was created by EasyStart from a sample located at:              #
+#   https://aka.ms/obpipelines/easystart/samples                                #
+# Documentation:  https://aka.ms/obpipelines                                    #
+# Yaml Schema:    https://aka.ms/obpipelines/yaml/schema                        #
+# Retail Tasks:   https://aka.ms/obpipelines/tasks                              #
+# Support:        https://aka.ms/onebranchsup                                   #
+#################################################################################
+
+trigger: none # https://aka.ms/obpipelines/triggers
+
+name: $(major).$(minor).$(patch).$(build)
+
+parameters: # parameters are shown up in ADO UI in a build queue time
+
+- name: 'debug'
+  displayName: 'Enable debug output'
+  type: boolean
+  default: false
+
+variables:
+  #CDP_DEFINITION_BUILD_COUNT: $[counter('', 0)] # needed for onebranch.pipeline.version task https://aka.ms/obpipelines/versioning
+  system.debug: ${{ parameters.debug }}
+  major: 1
+  minor: 0
+  patch: $[counter('counter21', 173)]
+  build: 0
+  SKIP_NPM_AUTH: 1
+
+  # CoreXT related environment variables. More information at https://aka.ms/obpipelines/corext
+  ENABLE_LBA: 1 # enable localization
+  USE_OACR: 1 # enable OACR
+  ENABLE_PRS_DELAYSIGN: 0 # enable build time signing. https://aka.ms/obpipelines/signing
+  Use_BuildTimeSign: 0 # enable autosign. https://aka.ms/obpipelines/signing
+  USE_QBUILD: 0 # enable quickbuild.exe to build
+  EnablePublish: false # enable nuget packages creation in CoreXT but not actual publish
+  NUGET_XMLDOC_MODE: none
+
+  WindowsContainerImage: 'cdpxwin1809.azurecr.io/global/corext:latest' # Docker image which is used to build the project https://aka.ms/obpipelines/containers
+
+resources:
+  repositories: 
+    - repository: templates
+      type: git
+      name: OneBranch.Pipelines/GovernedTemplates
+      ref: refs/heads/main
+
+extends:
+  template: v2/OneBranch.NonOfficial.CrossPlat.yml@templates # https://aka.ms/obpipelines/templates
+  parameters:
+    globalSdl: # https://aka.ms/obpipelines/sdl
+      # tsa:
+      #  enabled: true # SDL results of non-official builds aren't uploaded to TSA by default.
+      #credscan:
+        #suppressionsFile: $(Build.SourcesDirectory)\.config\CredScanSuppressions.json
+      binskim:
+        break: false # always break the build on binskim issues. You can disable it by setting to 'false'
+      policheck:
+        break: false # always break the build on policheck issues. You can disable it by setting to 'false'
+      roslyn:
+        break: false # Roslyn issues. You can disable it by setting to 'false'
+
+    stages:
+    - stage: build
+      jobs:
+      - job: debug_amd64
+        pool:
+          type: windows  # read more about custom job pool types at https://aka.ms/obpipelines/yaml/jobs
+        
+        variables:
+          ob_outputDirectory: '$(Build.SourcesDirectory)\out' # this directory is uploaded to pipeline artifacts, reddog and cloudvault. More info at https://aka.ms/obpipelines/artifacts
+          # https://aka.ms/obpipelines/sdl
+          
+        steps:
+          - task: NodeTool@0 
+            inputs:
+              versionSpec: '11.x'
+          
+          - task: YarnInstaller@3
+            inputs:
+              versionSpec: '1.x'
+
+          - task: PowerShell@2
+            displayName: 'Disable strong name validation'
+            inputs:
+              targetType: 'inline'
+              script: |
+                reg DELETE "HKLM\Software\Microsoft\StrongName\Verification" /f
+                reg ADD "HKLM\Software\Microsoft\StrongName\Verification\*,*" /f
+                if ($env:PROCESSOR_ARCHITECTURE -eq "AMD64") {
+                  reg DELETE "HKLM\Software\Wow6432Node\Microsoft\StrongName\Verification" /f
+                  reg ADD "HKLM\Software\Wow6432Node\Microsoft\StrongName\Verification\*,*" /f
+                }
+
+          - task: PowerShell@2
+            displayName: 'Update versions.xml'
+            inputs:
+              targetType: 'inline'
+              script: |
+                $version = @"
+                <root>
+                  <versions>
+                    <version name="filever" value="$(Build.BuildNumber)" />
+                  </versions>
+                </root>
+                "@
+                
+                Set-Content -Path "$(Build.SourcesDirectory)\.config\.inc\versions.xml" -Value $version -Force -Encoding Ascii
+                Get-Content -Path "$(Build.SourcesDirectory)\.config\.inc\versions.xml"
+
+          - task: onebranch.pipeline.launchtools@1  # https://aka.ms/obpipelines/corext
+            displayName: 'CoreXT prebuild'
+            inputs:
+              command: 'prebuild'
+              single_leg: false
+
+          - task: onebranch.pipeline.launchtools@1
+            displayName: 'CoreXT build -debug amd64'
+            inputs:
+              command: 'build'
+              build_config: 'debug' # this task can be run multiple times with other params like debug+amd64
+              build_platform: 'amd64'
+              single_leg: false
+
+          - task: onebranch.pipeline.launchtools@1
+            displayName: 'CoreXT postbuild'
+            inputs:
+              command: 'postbuild'
+              single_leg: false
+          
+          - task: securedevelopmentteam.vss-secure-development-tools.build-task-roslynanalyzers.RoslynAnalyzers@3
+            displayName: 'Run Roslyn Analyzers'
+            inputs:
+              copyLogsOnly: true
+
+      - job: retail_amd64
+        pool:
+          type: windows  # read more about custom job pool types at https://aka.ms/obpipelines/yaml/jobs
+        
+        variables:
+          ob_outputDirectory: '$(Build.SourcesDirectory)\out' # this directory is uploaded to pipeline artifacts, reddog and cloudvault. More info at https://aka.ms/obpipelines/artifacts
+          # https://aka.ms/obpipelines/sdl
+        
+        steps:
+          - task: NodeTool@0 
+            inputs:
+              versionSpec: '11.x'
+          
+          - task: YarnInstaller@3
+            inputs:
+              versionSpec: '1.x'
+
+          - task: PowerShell@2
+            displayName: 'Disable strong name validation'
+            inputs:
+              targetType: 'inline'
+              script: |
+                reg DELETE "HKLM\Software\Microsoft\StrongName\Verification" /f
+                reg ADD "HKLM\Software\Microsoft\StrongName\Verification\*,*" /f
+                if ($env:PROCESSOR_ARCHITECTURE -eq "AMD64") {
+                  reg DELETE "HKLM\Software\Wow6432Node\Microsoft\StrongName\Verification" /f
+                  reg ADD "HKLM\Software\Wow6432Node\Microsoft\StrongName\Verification\*,*" /f
+                }
+
+          - task: PowerShell@2
+            displayName: 'Update versions.xml'
+            inputs:
+              targetType: 'inline'
+              script: |
+                $version = @"
+                <root>
+                  <versions>
+                    <version name="filever" value="$(Build.BuildNumber)" />
+                  </versions>
+                </root>
+                "@
+                
+                Set-Content -Path "$(Build.SourcesDirectory)\.config\.inc\versions.xml" -Value $version -Force -Encoding Ascii
+                Get-Content -Path "$(Build.SourcesDirectory)\.config\.inc\versions.xml"
+
+          - task: onebranch.pipeline.launchtools@1  # https://aka.ms/obpipelines/corext
+            displayName: 'CoreXT prebuild'
+            inputs:
+              command: 'prebuild'
+              single_leg: false
+
+          - task: onebranch.pipeline.launchtools@1
+            displayName: 'CoreXT build -retail amd64'
+            inputs:
+              command: 'build'
+              build_config: 'retail' # this task can be run multiple times with other params like debug+amd64
+              build_platform: 'amd64'
+              single_leg: false
+
+          - task: onebranch.pipeline.launchtools@1
+            displayName: 'CoreXT postbuild'
+            inputs:
+              command: 'postbuild'
+              single_leg: false
+
+          - task: securedevelopmentteam.vss-secure-development-tools.build-task-roslynanalyzers.RoslynAnalyzers@3
+            displayName: 'Run Roslyn Analyzers'
+            inputs:
+              copyLogsOnly: true
+
+# https://aka.ms/obpipelines/cloudtest
+# uncomment this section and edit parameters to enable CloudTest
+    # - stage: cloudtest_retail_amd64
+    #   dependsOn: build_stage
+    #   jobs:
+    #   - job: cloudtestjob
+    #     type: cloudtestagentless
+    #     continueOnError: true
+    #     steps:
+    #     - task: CloudTestServerBuildTask@1
+    #       inputs:
+    #         connectedServiceName: 'CloudTest-prod'
+    #         cloudTestTenant: 'onebranchtest'
+    #         testMapLocation: '[BuildRoot]\retail-amd64-unittest\ClassLibrary.UnitTest\TestMapCdp.xml'
+    #         pipelineArtifactName: 'drop_build_retail_amd64'
+    #         pipelineArtifactBuildUrl: '$(System.TaskDefinitionsUri)$(System.TeamProject)/_build/results?buildId=$(Build.BuildId)'
+    #         buildDropArtifactName: ''
+    #         parserProperties: 'worker:VsTestVersion=V150;CodeCoverageType=Dynamic;worker:TestVar=$(RUN_PIPELINE_VARIABLE)'
+    #         cacheEnabled: false
+    #         scheduleBuildRequesterAlias: 'azbldrun'

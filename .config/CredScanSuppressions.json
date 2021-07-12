@@ -28,6 +28,14 @@
         {
             "file": "WpfBrowserApp451_TemporaryKey.pfx",
             "_justification": "Not a real cert but a sample for testing."
+        },
+        {
+            "file": "\\src\\Testcode\\OnlineCatalog.cs",
+            "_justification": "this secret used in this particular file is expected."
+        },
+        {
+            "file": "\\src\\Testcode\\DLC-OC_Automation\\DLC-OCSync\\Common.cs",
+            "_justification": "this secret used in this particular file is expected."
         }
     ]
 }
