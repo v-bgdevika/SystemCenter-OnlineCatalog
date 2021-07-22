@@ -1,0 +1,52 @@
+....    pushd ..\..\..
+...    pushd ..\..
+..    pushd ..
+addf    git add -f $*
+bcc    build -cC $*
+bcz    build -cZP $*
+bld    build debug -amd64 $*
+bldd    build debug -amd64 $*
+bldr    build retail -amd64 $*
+bz    build -Z $*
+clean    git clean -xfd -e .gen -e gen -e .packages
+conf    pushd %CONFROOT%\$*
+config    pushd %CONFROOT%\$*
+cpack    D:\CxCache\Corext.Aliases.1.0.7\content\Actions.cmd CPack $*
+ga    git add $*
+gaa    git add -A
+gaac    git add .
+gb    git branch $*
+gbd    git branch -D $*
+gcam    git commit -a -m $*
+gcco    git checkout -b $*
+gcm    git commit -m $*
+gco    git checkout $*
+gdt    git difftool $*
+gdtc    git difftool --cached
+gl    git log --graph --pretty=format:"%Cred%h%Creset - %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset"
+gm    git merge $*
+gmt    git mergetool
+gobo    PowerShell.exe -NoLogo -ExecutionPolicy Unrestricted -Command "& { start ('\\reddog\Builds\branches\git_'+([regex]::Match($(git remote -v)[0],'/(?<r>[-\w]+) ').Groups['r'].value.Replace('-','_')) + '_' + $(git rev-parse --abbrev-ref HEAD)) }"
+govso    PowerShell.exe -NoLogo -NoProfile -ExecutionPolicy Unrestricted -Command "& { start ([regex]::Match($(git remote -v),'(?<uri>https://.+) [(]fetch[)]').Groups['uri'].value + '?version=GB' + $(git rev-parse --abbrev-ref HEAD)) }"
+gowabt    PowerShell.exe -NoLogo -NoProfile -ExecutionPolicy Unrestricted -Command "& { start ('http://wabt/BuildTracker/BuildTracker/default.aspx') }"
+gp    git pull
+gprune    git remote prune origin
+gr    git rm $*
+gs    git status $*
+ignored    git status --ignored
+inetroot    pushd %INETROOT%\$*
+n    notepad $*
+one    start http://aka.ms/OneBranch
+out    pushd %REPOROOT%\out\$*
+private    pushd %INETROOT%\private\$*
+q    quickbuild $*
+qbc    quickbuild -buildcop
+qbcop    quickbuild -buildcop
+qimd    quickbuild -detectinputmismatches=BreakBuild
+reporoot    pushd %REPOROOT%\$*
+root    pushd %REPOROOT%\$*
+source    pushd %SRCROOT%\$*
+src    pushd %SRCROOT%\$*
+status    git status
+target    pushd %REPOROOT%\out\$*
+vsms    vsmsbuild /v:15.0 $*
