@@ -1,0 +1,78 @@
+<!--
+***********************************************************************************************
+Environment.props
+
+This file overrides shipped msbuild settings to work well in an isolated no-install drop
+
+Environment.Custom.props should be configured by the build environment administrators to
+  * Setup paths to local SDKs and Tools
+  * Add the necessary extensibility hooks for customization from consumers
+
+Build environment administrators must call Environment.{cmd|ps1} from this directory to
+setup the build environment properly.
+
+
+Copyright (C) Microsoft Corporation. All rights reserved.
+***********************************************************************************************
+-->
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <AssemblyCompany>Microsoft Corporation</AssemblyCompany>
+    <AssemblyDescription>Microsoft Azure%ae</AssemblyDescription>
+    <AssemblyCopyright>Copyright %a9 Microsoft Corporation. All rights reserved.</AssemblyCopyright>
+  </PropertyGroup>
+
+  <!-- Import SDK/WDK content from the Kits package -->
+  <Import Project="$(PkgKits)\build\native\Kits.props"/>
+
+  <!-- Fill in Universal C Runtime (UCRT) properties based on the Kits package -->
+  <PropertyGroup>
+    <UniversalCRTSdkDir>$(WindowsSdkDir)</UniversalCRTSdkDir>
+    <UniversalCRTSdkDir_10>$(UniversalCRTSdkDir)</UniversalCRTSdkDir_10>
+  </PropertyGroup>
+
+  <!-- Auto generate NuGet packages from projects. This is temporary stopgap solution
+    to help with migrations until we can get a permanent packaging system in place. -->
+  <PropertyGroup>
+    <InstallPkgLocal Condition="'$(InstallPkgLocal)'==''">false</InstallPkgLocal>
+  </PropertyGroup>
+
+  <!-- Turning off CLS compliance warnings/errors -->
+  <PropertyGroup>
+    <AssemblyCLSCompliant>false</AssemblyCLSCompliant>
+  </PropertyGroup>
+
+  <!-- Required for using Nuproj targets since we don't check in NuGet.exe -->
+  <PropertyGroup>
+    <NuProjToolPath>$(PkgNuGet_CommandLine)\tools</NuProjToolPath>
+  </PropertyGroup>
+
+  <!-- Add in StyleCop -->
+  <PropertyGroup>
+    <StyleCopEnabled>true</StyleCopEnabled>
+    <StyleCopVersion Condition="'$(StyleCopVersion)' == ''">4.3.0.8</StyleCopVersion>
+  </PropertyGroup>
+  
+<PropertyGroup Condition="'$(MSBuildProjectExtension)' == '.csproj'">
+    <ErrorLog>$(MSBuildProjectFullPath).$([System.Guid]::NewGuid().ToString().Substring(0,8)).sarif</ErrorLog>
+  </PropertyGroup>
+
+  <!--<ItemGroup Condition="'$(MSBuildProjectExtension)' == '.csproj'">
+    <Analyzer Include="$(PkgMicrosoft_CodeAnalysis_NetAnalyzers)\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.NetAnalyzers.dll" />
+    <Analyzer Include="$(PkgMicrosoft_CodeAnalysis_NetAnalyzers)\analyzers\dotnet\cs\Microsoft.CodeAnalysis.NetAnalyzers.dll" />
+    <Analyzer Include="$(PkgMicrosoft_Internal_Analyzers)\analyzers\dotnet\cs\Internal.Analyzers.dll" />
+    <Analyzer Include="$(PkgMicrosoft_Internal_Analyzers)\analyzers\dotnet\cs\Internal.Analyzers.Utilities.dll" />
+    <Analyzer Include="$(PkgMicrosoft_Internal_Analyzers)\analyzers\dotnet\cs\Internal.CSharp.Analyzers.dll" />
+  </ItemGroup>-->
+
+  <!-- MP Properties -->
+   <PropertyGroup>
+    
+	
+	<CreateMSI>true</CreateMSI>
+	
+  </PropertyGroup>
+
+</Project>
