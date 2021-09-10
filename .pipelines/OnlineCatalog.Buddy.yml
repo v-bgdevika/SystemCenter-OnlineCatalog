@@ -186,12 +186,17 @@ extends:
               single_leg: false
 
           - task:MSBuild@1
-            displayName: 'MSBuild -retail amd64'
+            displayName: 'Restore Nuget Packages'
             inputs:
-              command: 'build'
-              build_config: 'retail' # this task can be run multiple times with other params like debug+amd64
-              build_platform: 'amd64'
-              single_leg: false
+              solution: '$(Build.SourcesDirectory)\dirs.proj'
+              msbuildLocationMethod: 'location'
+              msbuildLocation: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
+              platform: 'x64'
+              configuration: 'release'
+              msbuildArguments: '/t:Restore /p:OnlyRestore=true /noautorsp'
+              maximumCpuCount: true
+              logProjectEvents: true
+            
 
           - task: onebranch.pipeline.launchtools@1
             displayName: 'CoreXT postbuild'
