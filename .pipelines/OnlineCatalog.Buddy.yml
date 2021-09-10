@@ -115,19 +115,19 @@ extends:
               command: 'prebuild'
               single_leg: false
 
-          - task: onebranch.pipeline.launchtools@1
-            displayName: 'CoreXT build -debug amd64'
+          - task: MSBuild@1
+            displayName: 'MSBuild -debug amd64'
             inputs:
               command: 'build'
               build_config: 'debug' # this task can be run multiple times with other params like debug+amd64
               build_platform: 'amd64'
               single_leg: false
 
-          - task: onebranch.pipeline.launchtools@1
-            displayName: 'CoreXT postbuild'
-            inputs:
-              command: 'postbuild'
-              single_leg: false
+          # - task: onebranch.pipeline.launchtools@1
+            # displayName: 'CoreXT postbuild'
+            # inputs:
+              # command: 'postbuild'
+              # single_leg: false
           
           - task: securedevelopmentteam.vss-secure-development-tools.build-task-roslynanalyzers.RoslynAnalyzers@3
             displayName: 'Run Roslyn Analyzers'
@@ -185,8 +185,8 @@ extends:
               command: 'prebuild'
               single_leg: false
 
-          - task: onebranch.pipeline.launchtools@1
-            displayName: 'CoreXT build -retail amd64'
+          - task:MSBuild@1
+            displayName: 'MSBuild -retail amd64'
             inputs:
               command: 'build'
               build_config: 'retail' # this task can be run multiple times with other params like debug+amd64
