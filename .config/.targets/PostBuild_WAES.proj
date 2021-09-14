@@ -1,5 +1,5 @@
 <Project ToolsVersion="4.0" DefaultTargets="PostBuild" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<Import Project="$(EnvironmentConfig)" />
+	<!--<Import Project="$(EnvironmentConfig)" />-->
     
     <!-- ******************************************************************************************** -->
     <!-- Import WAES targets from the WAES package --> 
