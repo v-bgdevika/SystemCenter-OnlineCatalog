@@ -57,7 +57,7 @@ extends:
           type: windows  # read more about custom job pool types at https://aka.ms/obpipelines/yaml/jobs
         
         variables:
-          ob_outputDirectory: '$(REPOROOT)\out' # this directory is uploaded to pipeline artifacts, reddog and cloudvault. More info at https://aka.ms/obpipelines/artifacts
+          ob_outputDirectory: '$(Build.SourcesDirectory)\out' # this directory is uploaded to pipeline artifacts, reddog and cloudvault. More info at https://aka.ms/obpipelines/artifacts
           # ob_sdl_binskim_break: true # https://aka.ms/obpipelines/sdl
           # ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}: # conditionally enable symbolsPublishing for master branch #only
             # ob_symbolsPublishing_enabled: true # https://aka.ms/obpipelines/symbols
@@ -65,12 +65,12 @@ extends:
           # ob_sdl_suppression_suppressionFile: $(Build.SourcesDirectory)\.gdn\job.gdnsuppress
 
         steps:
-          - task: UseDotNet@2
-            continueOnError: true
-            inputs:
-              packageType: 'sdk'
-              useGlobalJson: true
-              performMultiLevelLookup: true
+         # - task: UseDotNet@2
+           # continueOnError: true
+           # inputs:
+            # packageType: 'sdk'
+             # useGlobalJson: true
+             # performMultiLevelLookup: true
 
           # - task: onebranch.pipeline.version@1 # generates automatic version. For other versioning options check https://aka.ms/obpipelines/versioning
             # displayName: 'Setup BuildNumber'
@@ -82,7 +82,8 @@ extends:
 
           - task: MSBuild@1
             inputs:
-              solution: '**.*proj'
+              solution: '$(Build.SourcesDirectory)\src\dirs.proj'
+              logProjectEvents: true
               # msbuildLocationMethod: 'location'
               # msbuildLocation: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
               # platform: 'x64'
