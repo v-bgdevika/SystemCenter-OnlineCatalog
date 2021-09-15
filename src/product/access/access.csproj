@@ -7,10 +7,10 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Microsoft.ManagementPackCatalog.Access</RootNamespace>
     <AssemblyName>Microsoft.ManagementPackCatalog.Access</AssemblyName>
-	<OutputPath>$(OutDir)</OutputPath>
+	<OutDir>D:\OnlineCatalog\out</OutDir>  
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <PlatformTarget>x84</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
