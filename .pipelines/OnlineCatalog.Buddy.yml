@@ -95,7 +95,7 @@ extends:
 
           - task: CopyFiles@2
             inputs:
-              SourceFolder: '$(Build.SourcesDirectory)\src\product\access\'
+              SourceFolder: '$(Build.SourcesDirectory)\src\product\access\bin\Debug\'
               Contents: '**'
               TargetFolder: '$(Build.SourcesDirectory)\out\bin\Release\'
 
