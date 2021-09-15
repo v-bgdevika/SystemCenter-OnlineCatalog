@@ -82,11 +82,11 @@ extends:
 
           - task: MSBuild@1
             inputs:
-              solution: '$(Build.SourcesDirectory)\src\dirs.proj'
+              solution: '$(Build.SourcesDirectory)\src\product\access\access.csproj'
               msbuildLocationMethod: 'location'
               msbuildLocation: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
-              platform: 'x64'
-              configuration: 'release'
+              platform: 'x84'
+              configuration: 'Debug'
               msbuildArguments: '/t:Restore'
               clean: true
               maximumCpuCount: true
@@ -96,7 +96,7 @@ extends:
             inputs:
               SourceFolder: '$(Build.SourcesDirectory)\src\product\access\bin\Debug\'
               Contents: '**'
-              TargetFolder: '$(Build.SourcesDirectory)\out\bin\Release\'
+              TargetFolder: '$(Build.SourcesDirectory)\out\bin\Debug\'
 
           # - task: MSBuild@1
             # inputs:
