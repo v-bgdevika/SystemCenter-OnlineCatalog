@@ -56,8 +56,8 @@ extends:
         pool:
           type: windows  # read more about custom job pool types at https://aka.ms/obpipelines/yaml/jobs
         
-        # variables:
-          # ob_outputDirectory: '$(Build.SourcesDirectory)\out' # this directory is uploaded to pipeline artifacts, reddog and cloudvault. More info at https://aka.ms/obpipelines/artifacts
+        variables:
+           ob_outputDirectory: '$(Build.SourcesDirectory)\out' # this directory is uploaded to pipeline artifacts, reddog and cloudvault. More info at https://aka.ms/obpipelines/artifacts
           # ob_sdl_binskim_break: true # https://aka.ms/obpipelines/sdl
           # ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}: # conditionally enable symbolsPublishing for master branch #only
             # ob_symbolsPublishing_enabled: true # https://aka.ms/obpipelines/symbols
@@ -87,7 +87,7 @@ extends:
               msbuildLocation: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
               platform: 'x64'
               configuration: 'Debug'
-              msbuildArguments: '/t:Restore'
+              msbuildArguments: '/t:Restore,build'
               clean: true
               maximumCpuCount: true
               logProjectEvents: true
