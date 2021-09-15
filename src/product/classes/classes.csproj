@@ -8,7 +8,7 @@
     <RootNamespace>Microsoft.ManagementPackCatalog.Classes</RootNamespace>
     <AssemblyName>Microsoft.ManagementPackCatalog.Classes</AssemblyName>
   </PropertyGroup>
-   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x84' ">
+   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <PlatformTarget>x84</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>

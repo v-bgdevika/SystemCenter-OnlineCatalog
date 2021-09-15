@@ -9,7 +9,7 @@
     <AssemblyName>Microsoft.ManagementPackCatalog.Access</AssemblyName>
 	<OutputPath>$(OutDir)</OutputPath>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x84' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <PlatformTarget>x84</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
