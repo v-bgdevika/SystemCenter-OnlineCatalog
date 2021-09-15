@@ -7,7 +7,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Microsoft.ManagementPackCatalog.Access</RootNamespace>
     <AssemblyName>Microsoft.ManagementPackCatalog.Access</AssemblyName>
-	<OutputPath>D:/OnlineCatalog/OutFolder</OutputPath>
+	<OutputPath>$(OutDir)</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CatalogCategoryExtractor.cs" />
