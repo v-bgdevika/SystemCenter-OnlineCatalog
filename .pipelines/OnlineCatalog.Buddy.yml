@@ -82,7 +82,7 @@ extends:
 
           - task: MSBuild@1
             inputs:
-              solution: '$(Build.SourcesDirectory)\SystemCenterOnlineCatalogBuild.sln'
+              solution: '$(Build.SourcesDirectory)\src\dirs.proj'
               logProjectEvents: true
               # msbuildLocationMethod: 'location'
               # msbuildLocation: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
