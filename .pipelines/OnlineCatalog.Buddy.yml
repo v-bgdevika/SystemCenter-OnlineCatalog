@@ -57,7 +57,7 @@ extends:
           type: windows  # read more about custom job pool types at https://aka.ms/obpipelines/yaml/jobs
         
         variables:
-          ob_outputDirectory: '$(Build.SourcesDirectory)\out' # this directory is uploaded to pipeline artifacts, reddog and cloudvault. More info at https://aka.ms/obpipelines/artifacts
+          ob_outputDirectory: '$(REPOROOT)\out' # this directory is uploaded to pipeline artifacts, reddog and cloudvault. More info at https://aka.ms/obpipelines/artifacts
           # ob_sdl_binskim_break: true # https://aka.ms/obpipelines/sdl
           # ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}: # conditionally enable symbolsPublishing for master branch #only
             # ob_symbolsPublishing_enabled: true # https://aka.ms/obpipelines/symbols
@@ -82,7 +82,7 @@ extends:
 
           - task: MSBuild@1
             inputs:
-              solution: '$(Build.SourcesDirectory)\src\dirs.proj'
+              solution: '$(Build.SourcesDirectory)\SystemCenterOnlineCatalogBuild.sln'
               logProjectEvents: true
               # msbuildLocationMethod: 'location'
               # msbuildLocation: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
@@ -92,6 +92,12 @@ extends:
               # clean: true
               # maximumCpuCount: true
               # logProjectEvents: true
+
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)\src\product\access\bin\'
+              Contents: '**'
+              TargetFolder: '$(Build.SourcesDirectory)\out\bin\Release\'
 
           # - task: MSBuild@1
             # inputs:
