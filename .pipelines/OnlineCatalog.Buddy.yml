@@ -92,11 +92,11 @@ extends:
               maximumCpuCount: true
               logProjectEvents: true
 
-          # - task: CopyFiles@2
-          #   inputs:
-          #     SourceFolder: '$(Build.SourcesDirectory)\src\product\access\'
-          #     Contents: '**'
-          #     TargetFolder: '$(Build.SourcesDirectory)\out\bin\Debug\'
+          - task: CopyFiles@2
+            inputs:
+             SourceFolder: '$(Build.SourcesDirectory)\src\product\access\bin\'
+             Contents: '**'
+             TargetFolder: '$(Build.SourcesDirectory)\out\bin\Debug\'
 
           # - task: MSBuild@1
             # inputs:
