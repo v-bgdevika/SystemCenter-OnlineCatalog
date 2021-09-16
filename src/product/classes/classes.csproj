@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Microsoft.ManagementPackCatalog.Classes</RootNamespace>
     <AssemblyName>Microsoft.ManagementPackCatalog.Classes</AssemblyName>
-	<OutDir>D:\OnlineCatalog\out</OutDir> 
+	<!-- <OutDir>D:\OnlineCatalog\out</OutDir>  -->
   </PropertyGroup>
    <!-- <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU'"> -->
     <!-- <PlatformTarget>AnyCPU</PlatformTarget> -->
