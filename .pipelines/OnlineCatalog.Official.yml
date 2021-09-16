@@ -1,3 +1,3 @@
-- task: MSBuild@1
-  inputs:
-    solution: 'src/product/dirs.proj'
+# - task: MSBuild@1
+#   inputs:
+#     solution: 'src/product/dirs.proj'
