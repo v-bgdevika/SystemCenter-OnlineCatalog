@@ -40,8 +40,8 @@ extends:
   parameters:
     cloudvault: # https://aka.ms/obpipelines/cloudvault
       enabled: true
-    reddog: # https://aka.ms/obpipelines/reddog
-      enabled: true
+   # reddog: # https://aka.ms/obpipelines/reddog
+    #  enabled: true
     globalSdl: # https://aka.ms/obpipelines/sdl
        tsa:
          enabled: true # onebranch publish all sdl results to TSA. If TSA is disabled all SDL tools will forced into 'break' build mode.
