@@ -24,6 +24,7 @@ variables:
   REPOROOT: $(Build.SourcesDirectory)
   OUTPUTROOT: $(REPOROOT)\out
   NUGET_XMLDOC_MODE: none
+  ob_reddog_enabled: true
 
   WindowsContainerImage: 'cdpxwin1809.azurecr.io/global/vse2019:latest' # Docker image which is used to build the project https://aka.ms/obpipelines/containers
 
@@ -38,12 +39,14 @@ extends:
   template: v2/OneBranch.Official.CrossPlat.yml@templates # https://aka.ms/obpipelines/templates
   parameters:
     cloudvault: # https://aka.ms/obpipelines/cloudvault
-      enabled: false
-    # globalSdl: # https://aka.ms/obpipelines/sdl
-      # tsa:
-        # enabled: false # onebranch publish all sdl results to TSA. If TSA is disabled all SDL tools will forced into 'break' build mode.
-      # credscan:
-      #   suppressionsFile: $(Build.SourcesDirectory)\.config\CredScanSuppressions.json
+      enabled: true
+    reddog: # https://aka.ms/obpipelines/reddog
+      enabled: true
+    globalSdl: # https://aka.ms/obpipelines/sdl
+       tsa:
+         enabled: true # onebranch publish all sdl results to TSA. If TSA is disabled all SDL tools will forced into 'break' build mode.
+       credscan:
+         suppressionsFile: $(Build.SourcesDirectory)\.config\CredScanSuppressions.json
       #policheck:
        # break: true # always break the build on policheck issues. You can disable it by setting to 'false'
       # suppression:
