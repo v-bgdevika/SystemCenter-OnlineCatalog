@@ -4,7 +4,10 @@
     "areaPath"           :  "One\\AIM\\System Center\\Operations Manager",
     "iterationPath"      :  "One",
     "notificationAliases":  [
-         "v-rosjose@microsoft.com"
+         "v-rosjose@microsoft.com",
+         "v-tasriv@microsoft.com",
+         "v-ragv@microsoft.com",
+         "Kumar.Shivam@microsoft.com"
                                      ],
     "ppe"                :  "false",
     "template"           :  "TFSMSAzure",
