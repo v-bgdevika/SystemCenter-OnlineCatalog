@@ -70,7 +70,7 @@ namespace Mom.Test.UI.Core.Console.MP
 
     public sealed class OnlineCatalog
     {
-        private const string OC_CONNECTION_STRING = "Data Source=WWWICP04.portal.gbl;Initial Catalog=SystemCenter;Persist Security Info=True;User ID=SystemCenter_admin;Password=$ysCenter_@dmin";
+        private const string OC_CONNECTION_STRING = "Data Source=WWWICP04.portal.gbl;Initial Catalog=SystemCenter;Persist Security Info=True;User ID=;Password=";
         private const string SQL_QUERY_GetSystemName = "select cmp.SystemName from CatalogItem ci, CatalogManagementPack cmp where ci.CatalogItemId=cmp.CatalogItemId and ci.PublishedInd=1 and ci.DefaultDisplayName in ({0}) ";
         private const string SQL_GetLanguage = "select LanguageName from Language";
         private const string SQL_GetCatalogCategory = "select DefaultDisplayName from CatalogItem where publishedInd=1 and isCategory=1 and CatalogItemId in (select distinct(CategoryCatalogItemId) from CatalogManagementPackCategory)";
@@ -78,8 +78,8 @@ namespace Mom.Test.UI.Core.Console.MP
         private const string MPStatusFile = "MPStatus.txt";
         private const string MomConsoleAppFile = "MomConsoleApp.log";
         private const string BVTFolder = @"C:\BVT\UI\MP";
-        private const string CatalogCategoryFile = @"\\sccxe-scratch\scratch\rahsing\OCCategoryAutomation\Input\CatalogCategories.txt";
-        private const string SystemAndDisplayNameFile = @"\\sccxe-scratch\scratch\rahsing\OCCategoryAutomation\Input\DiplayAndSystemNames.txt";
+        private const string CatalogCategoryFile = "CatalogCategories.txt";
+        private const string SystemAndDisplayNameFile = "DiplayAndSystemNames.txt";
         private const string PowerShellScript = @"/c powershell -executionpolicy unrestricted C:\BVT\UI\MP\RemoveMP.ps1";
 
         /// <summary>
@@ -176,15 +176,20 @@ namespace Mom.Test.UI.Core.Console.MP
             categoryWithMPErrorList = new List<string>();
             categoryWithExceptionList = new List<string>();
 
-            sharedFolderLocation = @"\\sccxe-scratch\scratch\rahsing\OCCategoryAutomation\";
-            sharedFolderLocation += DateTime.Now.ToString("yyyyMMddHHmmss") +"\\";
+            sharedFolderLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            sharedFolderLocation = Path.Combine(sharedFolderLocation, "output");
+            if (!Directory.Exists(sharedFolderLocation))
+            {
+                Directory.CreateDirectory(sharedFolderLocation);
+            }
 
+            sharedFolderLocation += "\\" + DateTime.Now.ToString("yyyyMMddHHmmss") + "\\";
             File.Delete(CategoryStatusFile);
             File.Delete(MPStatusFile);
             //File.Delete(MomConsoleAppFile);
             //System.IO.File.WriteAllText(MomConsoleAppFile, string.Empty);
             GetCatalogCategoryDataFromFile();
-            dictionary = new Dictionary<string, List<string>>();   
+            dictionary = new Dictionary<string, List<string>>();
             GetSystemAndDispalyNames();
         }
 
@@ -195,10 +200,10 @@ namespace Mom.Test.UI.Core.Console.MP
         {
             string currentMethod = System.Reflection.MethodBase.GetCurrentMethod().Name;
             Utilities.LogMessage(currentMethod + "(...)");
-
+            string fullPathOfExecutingAssembly = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             try
             {
-                StreamReader fileReader = new StreamReader(File.OpenRead(SystemAndDisplayNameFile));
+                StreamReader fileReader = new StreamReader(File.OpenRead(Path.Combine(fullPathOfExecutingAssembly, SystemAndDisplayNameFile)));
 
                 while (!fileReader.EndOfStream)
                 {
@@ -256,7 +261,8 @@ namespace Mom.Test.UI.Core.Console.MP
 
             try
             {
-                StreamReader fileReader = new StreamReader(CatalogCategoryFile);
+                string FullPathForExecutingAssembly = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                StreamReader fileReader = new StreamReader(Path.Combine(FullPathForExecutingAssembly, CatalogCategoryFile));
 
                 while (!fileReader.EndOfStream)
                 {
@@ -287,7 +293,7 @@ namespace Mom.Test.UI.Core.Console.MP
             string currentMethod = System.Reflection.MethodBase.GetCurrentMethod().Name;
             Utilities.LogMessage(currentMethod + "(...)");
 
-            List<string> languages = new List<string>();            
+            List<string> languages = new List<string>();
             StreamWriter fileWriter = new StreamWriter(".\\CatalogData.txt");
 
             SqlConnection connection= null;
@@ -367,7 +373,7 @@ namespace Mom.Test.UI.Core.Console.MP
             Utilities.LogMessage(currentMethod + "(...)");
 
             // Navigate to the ManagementPacks node in the Administration tree. 
-            Maui.Core.WinControls.TreeNode mpViewNode = managementPacks.NavigateToNodeManagementPacks();            
+            Maui.Core.WinControls.TreeNode mpViewNode = managementPacks.NavigateToNodeManagementPacks();
             try
             {
                 //Install and UnIstall each and every Catagory.
@@ -476,7 +482,7 @@ namespace Mom.Test.UI.Core.Console.MP
                             categoryNotFoundList.Add(categoryName);
                             break;
                         case CatalogCategoryStatus.MPInErrorState:
-                                categoryWithMPErrorList.Add(categoryName);
+                            categoryWithMPErrorList.Add(categoryName);
                             break;
                         case CatalogCategoryStatus.ExceptionOccurred:
                             Utilities.LogMessage(currentMethod + ":: Exception occured while testing Category - " + categoryName);
@@ -538,7 +544,7 @@ namespace Mom.Test.UI.Core.Console.MP
             string currentMethod = System.Reflection.MethodBase.GetCurrentMethod().Name;
             Utilities.LogMessage(currentMethod + "(...)");
 
-            
+
             //string displaNames = GetDisplayNames(mpToBeDeleted);
             Utilities.LogMessage(currentMethod + " :: DisplayNames : " + MPsDisplaNames);
             StreamWriter deleteMPFile = null;
@@ -551,7 +557,7 @@ namespace Mom.Test.UI.Core.Console.MP
                 deleteMPFile = new StreamWriter(@".\SystemNames.txt");
                 connection = new SqlConnection(OC_CONNECTION_STRING);
                 connection.Open();
-               // string query = string.Format(SQL_QUERY_GetSystemName, categoryItemId);
+                // string query = string.Format(SQL_QUERY_GetSystemName, categoryItemId);
                 string query = string.Format(SQL_QUERY_GetSystemName, MPsDisplaNames);
                 Utilities.LogMessage(currentMethod + " :: SQL Query : "+query);
                 SqlCommand sqlCommand = new SqlCommand(query, connection);
@@ -632,7 +638,7 @@ namespace Mom.Test.UI.Core.Console.MP
                 {
                     throw new Dialog.Exceptions.WindowNotFoundException(currentMethod + ":: Unable to get the MP wizard dialog");
                 }
-                
+
                 //Open Import UI
                 mpWizardDialogSelectMPs.Controls.SelectMPsToolbar.ToolbarItems[IndexOfAddButton].ScreenElement.WaitForReady();
                 mpWizardDialogSelectMPs.Controls.SelectMPsToolbar.ToolbarItems[IndexOfAddButton].Click();
@@ -647,7 +653,7 @@ namespace Mom.Test.UI.Core.Console.MP
                 if (!managementPacks.MakeUIReadyForImport(ManagementPacks.ImportMethod.AddFromCatelog, maxRetry))
                 {
                     Utilities.LogMessage(currentMethod + ":: Import UI is not ready for import...");
-                    
+
                     mpWizardDialogSelectMPs.ClickCancel();  //Close select MP wizard
                     System.Threading.Thread.Sleep(120000);  //Wait for 2min
 
@@ -679,10 +685,10 @@ namespace Mom.Test.UI.Core.Console.MP
                     mpWizardDialogSelectMPs.SendKeys(KeyboardCodes.Enter);
 
                     if (!managementPacks.MakeUIReadyForImport(ManagementPacks.ImportMethod.AddFromCatelog, maxRetry))
-                       throw new Exception("Import UI is not ready for import after second chance..");
+                        throw new Exception("Import UI is not ready for import after second chance..");
 
                 }
-                    
+
 
                 SelectMPsFromCatalogDialog selectMPsFromCatalogDialog =
                     new SelectMPsFromCatalogDialog(CoreManager.MomConsole);
@@ -719,7 +725,7 @@ namespace Mom.Test.UI.Core.Console.MP
                     {
                         //Wait for sometime and reload the grid.
                         System.Threading.Thread.Sleep(10000);    //Wait for 10s more
-                        viewGrid = new DataGridView(selectMPsFromCatalogDialog, SelectMPsFromCatalogDialog.ControlIDs.ManagementPacksInTheCatalogPropertyGridView);                        
+                        viewGrid = new DataGridView(selectMPsFromCatalogDialog, SelectMPsFromCatalogDialog.ControlIDs.ManagementPacksInTheCatalogPropertyGridView);
                         viewGrid.Extended.SetFocus();
                         rowCount = viewGrid.Rows.Count;
 
@@ -897,7 +903,7 @@ namespace Mom.Test.UI.Core.Console.MP
                 Utilities.LogMessage(currentMethod + ":: Ex.Msg  :  " + ex.Message);
                 Utilities.LogMessage(currentMethod + ":: StackTrace  :  " + ex.StackTrace);
 
-               
+
                 System.Threading.Thread.Sleep(60000);    //Wait for 1 Min
                 Utilities.LogMessage(currentMethod + ":: Closing any Exception Dialog...Time [ " + DateTime.Now + " ]");
                 try
@@ -930,7 +936,7 @@ namespace Mom.Test.UI.Core.Console.MP
                 Maui.Core.WinControls.TreeNode mpViewNode = managementPacks.NavigateToNodeManagementPacks();
                 CoreManager.MomConsole.MainWindow.ScreenElement.WaitForReady();
                 CoreManager.MomConsole.Waiters.WaitForStatusReady(Constants.DefaultDialogTimeout);
-                
+
                 return CatalogCategoryStatus.ExceptionOccurred;
 
             }
@@ -990,8 +996,8 @@ namespace Mom.Test.UI.Core.Console.MP
                     Utilities.LogMessage(currentMethod + " :: Found Installed MP at Row# " + rowIndex);
                     CoreManager.MomConsole.SendKeys(KeyboardCodes.Del);
                     Utilities.LogMessage(currentMethod + " :: Deleted Installed MP from selected MPs");
-   //                 selectedGrid.ScreenElement.WaitForReady();
- //                   selectedGrid.WaitForRowsLoaded();
+                    //                 selectedGrid.ScreenElement.WaitForReady();
+                    //                   selectedGrid.WaitForRowsLoaded();
                     rowIndex--;
                 }
                 else
@@ -1116,10 +1122,10 @@ namespace Mom.Test.UI.Core.Console.MP
                 CopyLogsToSharedLocation();
 
                 StringBuilder bodyString = new StringBuilder();
-                List<string> attachments = new List<string>(); 
+                List<string> attachments = new List<string>();
                 attachments.Add(sharedFolderLocation +"\\"+ CategoryStatusFile);
                 attachments.Add(sharedFolderLocation + "\\" + MPStatusFile);
-            
+
                 bodyString.Append("Hi All,");
                 bodyString.Append("<br/>");
                 bodyString.Append("<br/>");
@@ -1156,7 +1162,7 @@ namespace Mom.Test.UI.Core.Console.MP
                 mail.Body = bodyString.ToString();
                 mail.IsBodyHtml = true;
                 Utilities.LogMessage(currentMethod + " :: Completed body of mail");
-                
+
                 foreach (string attachment in attachments)
                 {
                     mail.Attachments.Add(new Attachment(attachment));
