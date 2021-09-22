@@ -10,6 +10,7 @@
     <RootNamespace>Microsoft.ManagementPackCatalog.Access</RootNamespace>
     <AssemblyName>Microsoft.ManagementPackCatalog.Access</AssemblyName>
 	<BUILD_ASSEMBLY_VERSION>7.0.5070.0</BUILD_ASSEMBLY_VERSION>
+	<Version>1.2.3</Version>
     <!-- <OutDir>D:\OnlineCatalog\out</OutDir>   -->
   </PropertyGroup>
   <!-- <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU'"> -->
