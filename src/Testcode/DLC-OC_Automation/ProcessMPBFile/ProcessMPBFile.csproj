@@ -99,12 +99,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DLC-OCSync\DLC_OCSync.csproj">
-      <Project>{ea8aa2d8-faba-4a5a-8b02-39610d30a68f}</Project>
-      <Name>DLC_OCSync</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

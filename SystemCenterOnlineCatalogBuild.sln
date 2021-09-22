@@ -3,7 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31105.61
 MinimumVisualStudioVersion = 10.0.40219.1
-
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "webservice", "src\product\webservice\webservice.csproj", "{71BD8693-1B51-4742-87C0-0AAC14EDFF5F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "classes", "src\product\classes\classes.csproj", "{B02AD18B-1011-4959-AF47-39E34B4AD166}"
@@ -14,10 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "access", "src\product\admin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "classes", "src\product\admin\classes\classes.csproj", "{DC4952CC-1970-41F3-B808-64E23B5B6AD4}"
 EndProject
-<!--Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ui", "src\product\admin\ui\ui.csproj", "{1D26F7C8-D1B9-45F9-9258-B7C7796BC457}"
-EndProject-->
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "access", "src\product\access\access.csproj", "{00687DE1-C273-4D9C-B088-CE2BB8AF925F}"
-
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,7 +37,6 @@ Global
 		{DC4952CC-1970-41F3-B808-64E23B5B6AD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC4952CC-1970-41F3-B808-64E23B5B6AD4}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{DC4952CC-1970-41F3-B808-64E23B5B6AD4}.Release|Any CPU.Build.0 = Debug|Any CPU
-		
 		{00687DE1-C273-4D9C-B088-CE2BB8AF925F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{00687DE1-C273-4D9C-B088-CE2BB8AF925F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00687DE1-C273-4D9C-B088-CE2BB8AF925F}.Release|Any CPU.ActiveCfg = Debug|Any CPU
@@ -53,7 +48,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{860BB8AE-7D3E-4ED0-8278-36B4ACF35A8F} = {8FFFE7E2-0554-4C0A-8B90-B5F80CF40343}
 		{DC4952CC-1970-41F3-B808-64E23B5B6AD4} = {8FFFE7E2-0554-4C0A-8B90-B5F80CF40343}
-		
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {286C7D04-61C8-4F69-80B1-019057FCB984}

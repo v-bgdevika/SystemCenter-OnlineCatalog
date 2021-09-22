@@ -53,9 +53,10 @@
       <SpecificVersion>False</SpecificVersion>
       <Name>classes</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Access\Access.csproj">
+    <ProjectReference Include="..\access\access.csproj">
       <Project>{00687de1-c273-4d9c-b088-ce2bb8af925f}</Project>
       <SpecificVersion>False</SpecificVersion>
+      <Name>access</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
