@@ -122,9 +122,9 @@ extends:
             continueOnError: true
             displayName: 'Copying Build Errors'
             inputs:
-            SourceFolder: '$(Build.SourcesDirectory)\src'
-            Contents: '**/msbuild*.err'
-            TargetFolder: '$(Build.SourcesDirectory)\out\builddrop\Build Logs\Errors'
+             SourceFolder: '$(Build.SourcesDirectory)\src'
+             Contents: '**/msbuild*.err'
+             TargetFolder: '$(Build.SourcesDirectory)\out\builddrop\Build Logs\Errors'
        
           - task: CopyFiles@2
             inputs:
