@@ -130,6 +130,25 @@ extends:
              Contents: '**\bin\**'
              TargetFolder: '$(Build.SourcesDirectory)\out\'
 
+          - task: PowerShell@2
+            displayName: 'Update versions.xml'
+            inputs:
+              targetType: 'inline'
+              script: |
+                $version = @"
+                <root>
+                  <versions>
+                    <version name="filever" value="$(Build.BuildNumber)" />
+                  </versions>
+                </root>
+                "@
+                
+                Set-Content -Path "$(Build.SourcesDirectory)\.config\.inc\versions.xml" -Value $version -Force -Encoding Ascii
+                Get-Content -Path "$(Build.SourcesDirectory)\.config\.inc\versions.xml"
+
+         
+
+
           # - task: CopyFiles@2
           #   continueOnError: true
           #   displayName: 'Copying msbuild logs'
