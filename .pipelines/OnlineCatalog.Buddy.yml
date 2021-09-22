@@ -10,7 +10,7 @@
 
 trigger: none # https://aka.ms/obpipelines/triggers
 
-# name: $(major).$(minor).$(build).$(revision)
+name: $(major).$(minor).$(patch).$(build)
 
 parameters: # parameters are shown up in ADO UI in a build queue time
 - name: 'debug'
@@ -26,6 +26,11 @@ variables:
   REPOROOT: $(Build.SourcesDirectory)
   OUTPUTROOT: $(REPOROOT)\out
   NUGET_XMLDOC_MODE: none
+  major: 1
+  minor: 0
+  patch: $[counter('counter21', 173)]
+  build: 0
+  SKIP_NPM_AUTH: 1
 
   WindowsContainerImage: 'cdpxwin1809.azurecr.io/global/vse2019:latest' # Docker image which is used to build the project https://aka.ms/obpipelines/containers
 
@@ -83,7 +88,8 @@ extends:
           #     build: $[counter(variables['minor'], 0)]
           #     revision: '0'
           #     exclude_commit: true
-
+        
+        
           - task: MSBuild@1
             displayName: 'Build Product'
             inputs:
