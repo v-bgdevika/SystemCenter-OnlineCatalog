@@ -95,7 +95,7 @@ extends:
 
           # - task: CopyFiles@2
           #   inputs:
-          #    SourceFolder: '$(Build.SourcesDirectory)\src\'
+          #    SourceFolder: '$(Build.SourcesDirectory)\src\product'
           #    Contents: '**\bin\**'
           #    TargetFolder: '$(Build.SourcesDirectory)\out\'
               
@@ -111,7 +111,21 @@ extends:
               clean: true
               maximumCpuCount: true
               logProjectEvents: true
-
+          - task: CopyFiles@2
+            continueOnError: true
+            displayName: 'Copying msbuild logs'
+            inputs:
+             SourceFolder: '$(Build.SourcesDirectory)\src'
+             Contents: '**/msbuild*.log**'
+             TargetFolder: '$(Build.SourcesDirectory)\out\builddrop\Build Logs'
+          - task: CopyFiles@2
+            continueOnError: true
+            displayName: 'Copying Build Errors'
+            inputs:
+            SourceFolder: '$(Build.SourcesDirectory)\src'
+            Contents: '**/msbuild*.err'
+            TargetFolder: '$(Build.SourcesDirectory)\out\builddrop\Build Logs\Errors'
+       
           - task: CopyFiles@2
             inputs:
              SourceFolder: '$(Build.SourcesDirectory)\src\'
