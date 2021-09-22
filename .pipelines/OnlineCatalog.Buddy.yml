@@ -101,7 +101,7 @@ extends:
               
           - task: MSBuild@1
             displayName: 'Build Testcode'
-           # continueOnError: true
+            continueOnError: true
             inputs:
               solution: '$(Build.SourcesDirectory)\src\Testcode\SystemCenterOnlineTestCode.sln'
               msbuildLocationMethod: 'location'
