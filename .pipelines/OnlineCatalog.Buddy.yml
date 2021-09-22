@@ -115,7 +115,6 @@ extends:
 
               
           - task: CopyFiles@2
-            continueOnError: true
             inputs:
              SourceFolder: '$(Build.SourcesDirectory)\src\TestCode'
              Contents: '**\bin\**'
