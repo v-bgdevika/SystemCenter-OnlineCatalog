@@ -9,6 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Microsoft.ManagementPackCatalog.Access</RootNamespace>
     <AssemblyName>Microsoft.ManagementPackCatalog.Access</AssemblyName>
+	<BUILD_ASSEMBLY_VERSION>7.0.5070.0</BUILD_ASSEMBLY_VERSION>
     <!-- <OutDir>D:\OnlineCatalog\out</OutDir>   -->
   </PropertyGroup>
   <!-- <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU'"> -->
