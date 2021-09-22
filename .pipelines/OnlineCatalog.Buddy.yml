@@ -81,6 +81,7 @@ extends:
               # exclude_commit: true
 
           - task: MSBuild@1
+            displayName: 'Build Product'
             inputs:
               solution: '$(Build.SourcesDirectory)\SystemCenterOnlineCatalogBuild.sln'
               msbuildLocationMethod: 'location'
@@ -99,6 +100,7 @@ extends:
           #    TargetFolder: '$(Build.SourcesDirectory)\out\'
               
           - task: MSBuild@1
+            displayName: 'Build Testcode'
             inputs:
               solution: '$(Build.SourcesDirectory)\src\Testcode\SystemCenterOnlineTestCode.sln'
               msbuildLocationMethod: 'location'
