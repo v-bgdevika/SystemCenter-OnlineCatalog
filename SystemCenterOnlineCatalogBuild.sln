@@ -4,7 +4,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.31105.61
 MinimumVisualStudioVersion = 10.0.40219.1
 
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "webservice", "src\webservice\webservice.csproj", "{71BD8693-1B51-4742-87C0-0AAC14EDFF5F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "webservice","src\webservice\webservice.csproj", "{71BD8693-1B51-4742-87C0-0AAC14EDFF5F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "classes", "src\classes\classes.csproj", "{B02AD18B-1011-4959-AF47-39E34B4AD166}"
 EndProject
