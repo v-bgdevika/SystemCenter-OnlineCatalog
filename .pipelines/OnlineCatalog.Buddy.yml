@@ -13,31 +13,26 @@ trigger: none # https://aka.ms/obpipelines/triggers
 name: $(major).$(minor).$(patch).$(build)
 
 parameters: # parameters are shown up in ADO UI in a build queue time
-
 - name: 'debug'
   displayName: 'Enable debug output'
   type: boolean
   default: false
 
 variables:
-  #CDP_DEFINITION_BUILD_COUNT: $[counter('', 0)] # needed for onebranch.pipeline.version task https://aka.ms/obpipelines/versioning
+  CDP_DEFINITION_BUILD_COUNT: $[counter('', 0)] # needed for onebranch.pipeline.version task https://aka.ms/obpipelines/versioning
   system.debug: ${{ parameters.debug }}
+  ENABLE_PRS_DELAYSIGN: 1
+  ROOT: $(Build.SourcesDirectory)
+  REPOROOT: $(Build.SourcesDirectory)
+  OUTPUTROOT: $(REPOROOT)\out
+  NUGET_XMLDOC_MODE: none
   major: 1
   minor: 0
   patch: $[counter('counter21', 173)]
   build: 0
   SKIP_NPM_AUTH: 1
 
-  # CoreXT related environment variables. More information at https://aka.ms/obpipelines/corext
-  ENABLE_LBA: 1 # enable localization
-  USE_OACR: 1 # enable OACR
-  ENABLE_PRS_DELAYSIGN: 0 # enable build time signing. https://aka.ms/obpipelines/signing
-  Use_BuildTimeSign: 0 # enable autosign. https://aka.ms/obpipelines/signing
-  USE_QBUILD: 0 # enable quickbuild.exe to build
-  EnablePublish: false # enable nuget packages creation in CoreXT but not actual publish
-  NUGET_XMLDOC_MODE: none
-
-  WindowsContainerImage: 'cdpxwin1809.azurecr.io/global/corext:latest' # Docker image which is used to build the project https://aka.ms/obpipelines/containers
+  WindowsContainerImage: 'cdpxwin1809.azurecr.io/global/vse2019:latest' # Docker image which is used to build the project https://aka.ms/obpipelines/containers
 
 resources:
   repositories: 
@@ -49,49 +44,91 @@ resources:
 extends:
   template: v2/OneBranch.NonOfficial.CrossPlat.yml@templates # https://aka.ms/obpipelines/templates
   parameters:
-    globalSdl: # https://aka.ms/obpipelines/sdl
+    cloudvault: # https://aka.ms/obpipelines/cloudvault
+      enabled: false
+    # globalSdl: # https://aka.ms/obpipelines/sdl
       # tsa:
-      #  enabled: true # SDL results of non-official builds aren't uploaded to TSA by default.
-      #credscan:
-        #suppressionsFile: $(Build.SourcesDirectory)\.config\CredScanSuppressions.json
-      binskim:
-        break: false # always break the build on binskim issues. You can disable it by setting to 'false'
-      policheck:
-        break: false # always break the build on policheck issues. You can disable it by setting to 'false'
-      roslyn:
-        break: false # Roslyn issues. You can disable it by setting to 'false'
+        # enabled: false # onebranch publish all sdl results to TSA. If TSA is disabled all SDL tools will forced into 'break' build mode.
+      # credscan:
+      #   suppressionsFile: $(Build.SourcesDirectory)\.config\CredScanSuppressions.json
+      #policheck:
+       # break: true # always break the build on policheck issues. You can disable it by setting to 'false'
+      # suppression:
+      #   suppressionFile: $(Build.SourcesDirectory)\.gdn\global.gdnsuppress
 
     stages:
     - stage: build
       jobs:
-      - job: debug_amd64
+      - job: main
         pool:
           type: windows  # read more about custom job pool types at https://aka.ms/obpipelines/yaml/jobs
         
         variables:
-          ob_outputDirectory: '$(Build.SourcesDirectory)\out' # this directory is uploaded to pipeline artifacts, reddog and cloudvault. More info at https://aka.ms/obpipelines/artifacts
-          # https://aka.ms/obpipelines/sdl
+           ob_outputDirectory: '$(Build.SourcesDirectory)\out' # this directory is uploaded to pipeline artifacts, reddog and cloudvault. More info at https://aka.ms/obpipelines/artifacts
+          # ob_sdl_binskim_break: true # https://aka.ms/obpipelines/sdl
+          # ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}: # conditionally enable symbolsPublishing for master branch #only
+            # ob_symbolsPublishing_enabled: true # https://aka.ms/obpipelines/symbols
           
-        steps:
-          - task: NodeTool@0 
-            inputs:
-              versionSpec: '11.x'
-          
-          - task: YarnInstaller@3
-            inputs:
-              versionSpec: '1.x'
+          # ob_sdl_suppression_suppressionFile: $(Build.SourcesDirectory)\.gdn\job.gdnsuppress
 
-          - task: PowerShell@2
-            displayName: 'Disable strong name validation'
+        steps:
+         # - task: UseDotNet@2
+           # continueOnError: true
+           # inputs:
+            # packageType: 'sdk'
+             # useGlobalJson: true
+             # performMultiLevelLookup: true
+
+          # - task: onebranch.pipeline.version@1 # generates automatic version. For other versioning options check https://aka.ms/obpipelines/versioning
+          #   displayName: 'Setup BuildNumber'
+          #   inputs:
+          #     system: 'RevisionCounter'
+          #     major: '1'
+          #     minor: '0'
+          #     build: $[counter(variables['minor'], 0)]
+          #     revision: '0'
+          #     exclude_commit: true
+        
+        
+          # - task: MSBuild@1
+            # displayName: 'Build Product'
+            # inputs:
+              # solution: '$(Build.SourcesDirectory)\SystemCenterOnlineCatalogBuild.sln'
+              # msbuildLocationMethod: 'location'
+              # msbuildLocation: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
+              # platform: 'Any CPU'
+              # configuration: 'Debug'
+              # msbuildArguments: '/t:Restore,build'
+              # clean: true
+              # maximumCpuCount: true
+              # logProjectEvents: true
+
+          # - task: CopyFiles@2
+            # inputs:
+             # SourceFolder: '$(Build.SourcesDirectory)\src\product'
+             # Contents: '**\bin\**'
+             # TargetFolder: '$(Build.SourcesDirectory)\out\'
+              
+          - task: MSBuild@1
+            displayName: 'Build Testcode'
+            continueOnError: true
             inputs:
-              targetType: 'inline'
-              script: |
-                reg DELETE "HKLM\Software\Microsoft\StrongName\Verification" /f
-                reg ADD "HKLM\Software\Microsoft\StrongName\Verification\*,*" /f
-                if ($env:PROCESSOR_ARCHITECTURE -eq "AMD64") {
-                  reg DELETE "HKLM\Software\Wow6432Node\Microsoft\StrongName\Verification" /f
-                  reg ADD "HKLM\Software\Wow6432Node\Microsoft\StrongName\Verification\*,*" /f
-                }
+              solution: '$(Build.SourcesDirectory)\src\Testcode\SystemCenterOnlineTestCode.sln'
+              msbuildLocationMethod: 'location'
+              msbuildLocation: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
+              platform: 'Any CPU'
+              configuration: 'Debug'
+              msbuildArguments: '/t:Restore,build'
+              clean: true
+              maximumCpuCount: true
+              logProjectEvents: true
+
+              
+          - task: CopyFiles@2
+            inputs:
+             SourceFolder: '$(Build.SourcesDirectory)\src\TestCode'
+             Contents: '**\bin\**'
+             TargetFolder: '$(Build.SourcesDirectory)\out\'
 
           - task: PowerShell@2
             displayName: 'Update versions.xml'
@@ -109,118 +146,93 @@ extends:
                 Set-Content -Path "$(Build.SourcesDirectory)\.config\.inc\versions.xml" -Value $version -Force -Encoding Ascii
                 Get-Content -Path "$(Build.SourcesDirectory)\.config\.inc\versions.xml"
 
-          - task: onebranch.pipeline.launchtools@1  # https://aka.ms/obpipelines/corext
-            displayName: 'CoreXT prebuild'
-            inputs:
-              command: 'prebuild'
-              single_leg: false
+         
 
-          - task: onebranch.pipeline.launchtools@1
-            displayName: 'CoreXT build -debug amd64'
-            inputs:
-              command: 'build'
-              build_config: 'debug' # this task can be run multiple times with other params like debug+amd64
-              build_platform: 'amd64'
-              single_leg: false
 
-          - task: onebranch.pipeline.launchtools@1
-            displayName: 'CoreXT postbuild'
-            inputs:
-              command: 'postbuild'
-              single_leg: false
-          
-          - task: securedevelopmentteam.vss-secure-development-tools.build-task-roslynanalyzers.RoslynAnalyzers@3
-            displayName: 'Run Roslyn Analyzers'
-            inputs:
-              copyLogsOnly: true
+          # - task: CopyFiles@2
+          #   continueOnError: true
+          #   displayName: 'Copying msbuild logs'
+          #   inputs:
+          #    SourceFolder: '$(Build.SourcesDirectory)\src'
+          #    Contents: '**/msbuild*.log**'
+          #    TargetFolder: '$(Build.SourcesDirectory)\out\builddrop\Build Logs'
+          # - task: CopyFiles@2
+          #   continueOnError: true
+          #   displayName: 'Copying Build Errors'
+          #   inputs:
+          #    SourceFolder: '$(Build.SourcesDirectory)\src'
+          #    Contents: '**/msbuild*.err'
+          #    TargetFolder: '$(Build.SourcesDirectory)\out\builddrop\Build Logs\Errors'
+       
+          # - task: CopyFiles@2
+          #   inputs:
+          #    SourceFolder: '$(Build.SourcesDirectory)\src\Testcode'
+          #    Contents: '**\bin\**'
+          #    TargetFolder: '$(Build.SourcesDirectory)\out\'
 
-      - job: retail_amd64
-        pool:
-          type: windows  # read more about custom job pool types at https://aka.ms/obpipelines/yaml/jobs
-        
-        variables:
-          ob_outputDirectory: '$(Build.SourcesDirectory)\out' # this directory is uploaded to pipeline artifacts, reddog and cloudvault. More info at https://aka.ms/obpipelines/artifacts
-          # https://aka.ms/obpipelines/sdl
-        
-        steps:
-          - task: NodeTool@0 
-            inputs:
-              versionSpec: '11.x'
-          
-          - task: YarnInstaller@3
-            inputs:
-              versionSpec: '1.x'
+          # - task: MSBuild@1
+            # inputs:
+              # solution: '$(Build.SourcesDirectory)\dirs.proj'
+              # msbuildLocationMethod: 'location'
+              # msbuildLocation: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
+              # platform: 'x64'
+              # configuration: 'release'
+              # msbuildArguments: '/v:n /nr:false /flp1:Verbosity=d;LogFile=$(OUTPUTROOT)\logs\msbuild_x64_release.log;Encoding=UTF-8 /flp2:logfile=$(OUTPUTROOT)\logs\msbuild_x64_release.err;errorsonly /bl:$(OUTPUTROOT)\logs\msbuild_x64_release.binlog'
+              # clean: true
+              # maximumCpuCount: true
+              # logProjectEvents: true
 
-          - task: PowerShell@2
-            displayName: 'Disable strong name validation'
-            inputs:
-              targetType: 'inline'
-              script: |
-                reg DELETE "HKLM\Software\Microsoft\StrongName\Verification" /f
-                reg ADD "HKLM\Software\Microsoft\StrongName\Verification\*,*" /f
-                if ($env:PROCESSOR_ARCHITECTURE -eq "AMD64") {
-                  reg DELETE "HKLM\Software\Wow6432Node\Microsoft\StrongName\Verification" /f
-                  reg ADD "HKLM\Software\Wow6432Node\Microsoft\StrongName\Verification\*,*" /f
-                }
+          # - task: onebranch.pipeline.signing@1 # https://aka.ms/obpipelines/signing
+            # displayName: 'Sign output'
+            # inputs:
+              # command: 'sign'
+              # signing_environment: 'azure-ado'
+              # files_to_sign: '**/*.exe;**/*.dll;**/*.ps1;**/*.psm1'
+              # search_root: '$(Build.SourcesDirectory)\out'
 
-          - task: PowerShell@2
-            displayName: 'Update versions.xml'
-            inputs:
-              targetType: 'inline'
-              script: |
-                $version = @"
-                <root>
-                  <versions>
-                    <version name="filever" value="$(Build.BuildNumber)" />
-                  </versions>
-                </root>
-                "@
-                
-                Set-Content -Path "$(Build.SourcesDirectory)\.config\.inc\versions.xml" -Value $version -Force -Encoding Ascii
-                Get-Content -Path "$(Build.SourcesDirectory)\.config\.inc\versions.xml"
+          # - task: VSTest@2
+            # inputs:
+              # testSelector: 'testAssemblies'
+              # testAssemblyVer2: |
+                # **\*test*.dll
+                # !**\*TestAdapter.dll
+                # !**\obj\**
+              # searchFolder: '$(Build.SourcesDirectory)\out'
+              # resultsFolder: '$(Build.SourcesDirectory)\out\logs\TestResults'
+              # runInParallel: true
+              # codeCoverageEnabled: true
+              # testRunTitle: 'release_x64'
+              # platform: 'x64'
+              # configuration: 'release'
+              # publishRunAttachments: false
+              # failOnMinTestsNotRun: true
+              # rerunFailedTests: true
 
-          - task: onebranch.pipeline.launchtools@1  # https://aka.ms/obpipelines/corext
-            displayName: 'CoreXT prebuild'
-            inputs:
-              command: 'prebuild'
-              single_leg: false
-
-          - task: onebranch.pipeline.launchtools@1
-            displayName: 'CoreXT build -retail amd64'
-            inputs:
-              command: 'build'
-              build_config: 'retail' # this task can be run multiple times with other params like debug+amd64
-              build_platform: 'amd64'
-              single_leg: false
-
-          - task: onebranch.pipeline.launchtools@1
-            displayName: 'CoreXT postbuild'
-            inputs:
-              command: 'postbuild'
-              single_leg: false
-
-          - task: securedevelopmentteam.vss-secure-development-tools.build-task-roslynanalyzers.RoslynAnalyzers@3
-            displayName: 'Run Roslyn Analyzers'
-            inputs:
-              copyLogsOnly: true
+          # - task: PublishTestResults@2
+            # displayName: 'Publish test results'
+            # inputs:
+              # testResultsFormat: VSTest
+              # testResultsFiles: '$(Build.SourcesDirectory)\out\logs\TestResults\**\*.trx'
+              # failTaskOnFailedTests: true
 
 # https://aka.ms/obpipelines/cloudtest
 # uncomment this section and edit parameters to enable CloudTest
-    # - stage: cloudtest_retail_amd64
+    # - stage: cloudtest
     #   dependsOn: build_stage
     #   jobs:
     #   - job: cloudtestjob
-    #     type: cloudtestagentless
+    #     pool:
+    #       type: cloudtestagentless
     #     continueOnError: true
     #     steps:
     #     - task: CloudTestServerBuildTask@1
+    #       displayName: 'CloudTest'
     #       inputs:
     #         connectedServiceName: 'CloudTest-prod'
     #         cloudTestTenant: 'onebranchtest'
-    #         testMapLocation: '[BuildRoot]\retail-amd64-unittest\ClassLibrary.UnitTest\TestMapCdp.xml'
-    #         pipelineArtifactName: 'drop_build_retail_amd64'
+    #         testMapLocation: '[BuildRoot]\ClassLibrary.UnitTest\TestMapCdp.xml'
+    #         pipelineArtifactName: 'drop_build_main'
     #         pipelineArtifactBuildUrl: '$(System.TaskDefinitionsUri)$(System.TeamProject)/_build/results?buildId=$(Build.BuildId)'
-    #         buildDropArtifactName: ''
     #         parserProperties: 'worker:VsTestVersion=V150;CodeCoverageType=Dynamic;worker:TestVar=$(RUN_PIPELINE_VARIABLE)'
     #         cacheEnabled: false
     #         scheduleBuildRequesterAlias: 'azbldrun'
