@@ -141,6 +141,11 @@ extends:
              Contents: '**\bin\**'
              TargetFolder: '$(Build.SourcesDirectory)\out\'
 
+          - task: onebranch.pipeline.signing@1
+            inputs:
+              command: 'sign'
+              signing_environment: 'azure-ado'
+              search_root: '$(Build.SourcesDirectory)\out\bin\Release'
           - task: PowerShell@2
             displayName: 'Update versions.xml'
             inputs:
