@@ -89,11 +89,11 @@ extends:
           - task: MSBuild@1
             displayName: 'Build Product'
             inputs:
-              solution: '$(Build.SourcesDirectory)\SystemCenterOnlineCatalogBuild.sln'
+              solution: '$(Build.SourcesDirectory)\src\product\access\access.csproj'
               msbuildLocationMethod: 'location'
               msbuildLocation: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
-              platform: 'Any CPU'
-              configuration: 'Debug'
+              platform: 'x64'
+              configuration: 'Release'
               msbuildArguments: '/t:Restore,build'
               clean: true
               maximumCpuCount: true
@@ -125,6 +125,12 @@ extends:
              SourceFolder: '$(Build.SourcesDirectory)\src\TestCode'
              Contents: '**\bin\**'
              TargetFolder: '$(Build.SourcesDirectory)\out\'
+
+          - task: onebranch.pipeline.signing@1
+            inputs:
+              command: 'sign'
+              signing_environment: 'azure-ado'
+              search_root: '$(Build.SourcesDirectory)\out\bin\Release'
 
           # - task: MSBuild@1
             # inputs:
