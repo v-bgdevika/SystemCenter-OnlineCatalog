@@ -126,6 +126,12 @@ extends:
              Contents: '**\bin\**'
              TargetFolder: '$(Build.SourcesDirectory)\out\'
 
+          - task: onebranch.pipeline.signing@1
+            inputs:
+              command: 'sign'
+              signing_profile: 'internal_azure_service'
+              files_to_sign: '**/*.exe;**/*.dll;**/*.ps1'
+              search_root: '$(Build.SourcesDirectory)\out'
           # - task: onebranch.pipeline.signing@1
           #   inputs:
           #     command: 'sign'
