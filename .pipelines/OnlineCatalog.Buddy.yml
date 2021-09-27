@@ -94,7 +94,7 @@ extends:
           - task: MSBuild@1
             displayName: 'Build Product'
             inputs:
-              solution: '$(Build.SourcesDirectory)\src\product\webservice\webservice.csproj'
+              solution: '$(Build.SourcesDirectory)\SystemCenterOnlineCatalogBuild.sln'
               msbuildLocationMethod: 'location'
               msbuildLocation: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
               platform: 'x64'
