@@ -91,18 +91,18 @@ extends:
         
         
          
-          - task: MSBuild@1
-            displayName: 'Build Product'
-            inputs:
-              solution: '$(Build.SourcesDirectory)\SystemCenterOnlineCatalogBuild.sln'
-              msbuildLocationMethod: 'location'
-              msbuildLocation: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
-              platform: 'x64'
-              configuration: 'Release'
-              msbuildArguments: '/t:Restore,build'
-              clean: true
-              maximumCpuCount: true
-              logProjectEvents: true
+          # - task: MSBuild@1
+          #   displayName: 'Build Product'
+          #   inputs:
+          #     solution: '$(Build.SourcesDirectory)\SystemCenterOnlineCatalogBuild.sln'
+          #     msbuildLocationMethod: 'location'
+          #     msbuildLocation: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
+          #     platform: 'x64'
+          #     configuration: 'Release'
+          #     msbuildArguments: '/t:Restore,build'
+          #     clean: true
+          #     maximumCpuCount: true
+          #     logProjectEvents: true
 
           - task: MSBuild@1
             inputs:
@@ -111,7 +111,7 @@ extends:
               msbuildLocation: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
               platform: 'x64'
               configuration: 'Debug'
-              msbuildArguments: '/t:Restore'
+              msbuildArguments: '/t:Restore,build'
               clean: true
               maximumCpuCount: true
               logProjectEvents: true
