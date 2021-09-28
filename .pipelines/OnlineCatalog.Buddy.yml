@@ -109,8 +109,8 @@ extends:
               solution: $(Build.SourcesDirectory)\SystemCenterOnlineCatalogBuild.sln'
               msbuildLocationMethod: 'location'
               msbuildLocation: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
-              # platform: 'Any CPU'
-              # configuration: 'Debug'
+              platform: 'x64'
+              configuration: 'Debug'
               msbuildArguments: '/t:Restore,build'
               clean: true
               maximumCpuCount: true
