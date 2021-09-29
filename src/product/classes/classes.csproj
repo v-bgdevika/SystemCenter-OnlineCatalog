@@ -9,19 +9,8 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Microsoft.ManagementPackCatalog.Classes</RootNamespace>
     <AssemblyName>Microsoft.ManagementPackCatalog.Classes</AssemblyName>
-    <!-- <OutDir>D:\OnlineCatalog\out</OutDir>  -->
-  </PropertyGroup>
-  <!-- <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU'"> -->
-  <!-- <PlatformTarget>AnyCPU</PlatformTarget> -->
-  <!-- <DebugSymbols>true</DebugSymbols> -->
-  <!-- <DebugType>full</DebugType> -->
-  <!-- <Optimize>false</Optimize> -->
-  <!-- <OutputPath>bin\Debug\</OutputPath> -->
-  <!-- <DefineConstants>DEBUG;TRACE</DefineConstants> -->
-  <!-- <ErrorReport>prompt</ErrorReport> -->
-  <!-- <WarningLevel>4</WarningLevel> -->
-  <!-- </PropertyGroup> -->
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    </PropertyGroup>
+   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -29,8 +18,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <!-- <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet> -->
-  </PropertyGroup>
+   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
@@ -38,8 +26,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <!-- <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet> -->
-  </PropertyGroup>
+   </PropertyGroup>
  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -76,6 +63,9 @@
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Runtime.Serialization" />
+  </ItemGroup>
+   <ItemGroup>
+        <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

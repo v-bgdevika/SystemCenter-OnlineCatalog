@@ -80,6 +80,9 @@
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.Services" />
   </ItemGroup>
+ <ItemGroup>
+      <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\classes\classes.csproj">
       <Project>{dc4952cc-1970-41f3-b808-64e23b5b6ad4}</Project>
