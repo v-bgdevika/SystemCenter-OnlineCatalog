@@ -47,8 +47,10 @@ extends:
          enabled: true # onebranch publish all sdl results to TSA. If TSA is disabled all SDL tools will forced into 'break' build mode.
        credscan:
          suppressionsFile: $(Build.SourcesDirectory)\.config\CredScanSuppressions.json
-      #policheck:
-       # break: true # always break the build on policheck issues. You can disable it by setting to 'false'
+       policheck:
+         break: true # always break the build on policheck issues. You can disable it by setting to 'false'
+       binskim:
+        break: true # always break the build on binskim issues in addition to TSA upload
       # suppression:
       #   suppressionFile: $(Build.SourcesDirectory)\.gdn\global.gdnsuppress
 
@@ -62,30 +64,13 @@ extends:
         variables:
            ob_outputDirectory: '$(Build.SourcesDirectory)\out' # this directory is uploaded to pipeline artifacts, reddog and cloudvault. More info at https://aka.ms/obpipelines/artifacts
            ob_sdl_codeSignValidation_excludes:  -|**\Debug\**;
-          # ob_sdl_binskim_break: true # https://aka.ms/obpipelines/sdl
-          
-          # ob_sdl_binskim_break: true # https://aka.ms/obpipelines/sdl
-          # ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}: # conditionally enable symbolsPublishing for master branch #only
+           ob_sdl_binskim_scanOutputDirectoryOnly: true # https://aka.ms/obpipelines/sdl
+            # ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}: # conditionally enable symbolsPublishing for master branch #only
             # ob_symbolsPublishing_enabled: true # https://aka.ms/obpipelines/symbols
-          
-          # ob_sdl_suppression_suppressionFile: $(Build.SourcesDirectory)\.gdn\job.gdnsuppress
+            # ob_sdl_suppression_suppressionFile: $(Build.SourcesDirectory)\.gdn\job.gdnsuppress
 
         steps:
-         # - task: UseDotNet@2
-           # continueOnError: true
-           # inputs:
-            # packageType: 'sdk'
-             # useGlobalJson: true
-             # performMultiLevelLookup: true
-
-          # - task: onebranch.pipeline.version@1 # generates automatic version. For other versioning options check https://aka.ms/obpipelines/versioning
-            # displayName: 'Setup BuildNumber'
-            # inputs:
-              # system: 'RevisionCounter'
-              # major: '1'
-              # minor: '0'
-              # exclude_commit: true
-
+              
           - task: MSBuild@1
             displayName: 'Build Product'
             inputs:
