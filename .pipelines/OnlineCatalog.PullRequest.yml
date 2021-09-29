@@ -48,8 +48,8 @@ extends:
     # globalSdl: # https://aka.ms/obpipelines/sdl
       # tsa:
         # enabled: false # onebranch publish all sdl results to TSA. If TSA is disabled all SDL tools will forced into 'break' build mode.
-       credscan:
-         suppressionsFile: $(Build.SourcesDirectory)\.config\CredScanSuppressions.json
+      credscan:
+        suppressionsFile: $(Build.SourcesDirectory)\.config\CredScanSuppressions.json
       #policheck:
        # break: true # always break the build on policheck issues. You can disable it by setting to 'false'
       # suppression:
@@ -73,8 +73,8 @@ extends:
         steps:
          
          - task: MSBuild@1
-            displayName: 'Build Product'
-            inputs:
+           displayName: 'Build Product'
+           inputs:
               solution: '$(Build.SourcesDirectory)\SystemCenterOnlineCatalogBuild.sln'
               msbuildLocationMethod: 'location'
               msbuildLocation: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
@@ -85,8 +85,8 @@ extends:
               maximumCpuCount: true
               logProjectEvents: true
 
-          - task: CopyFiles@2
-            inputs:
+         - task: CopyFiles@2
+           inputs:
              SourceFolder: '$(Build.SourcesDirectory)\src\product\'
              Contents: '**\bin\**'
              TargetFolder: '$(Build.SourcesDirectory)\out\'
