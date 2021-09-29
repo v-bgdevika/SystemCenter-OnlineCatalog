@@ -1,0 +1,13 @@
+{
+    "instanceUrl"        :  "https://msazure.visualstudio.com",
+    "projectName"        :  "One",
+    "areaPath"           :  "One\\AIM\\System Center\\Operations Manager",
+    "iterationPath"      :  "One",
+    "notificationAliases":  [
+	     "scomoc@microsoft.com",
+         "v-rosjose@microsoft.com"
+                                     ],
+    "ppe"                :  "false",
+    "template"           :  "TFSMSAzure",
+    "repositoryName"     : "SystemCenter-OnlineCatalog"
+  } 
