@@ -76,7 +76,7 @@ extends:
          - task: PowerShell@2
            inputs:
             filePath: '$(Build.SourcesDirectory)\.config\.inc\dllversioning.ps1'
-            arguments: '1.0.0'
+            arguments: '1.0.240'
 
          - task: PowerShell@2
            displayName: 'Update versions.xml'
