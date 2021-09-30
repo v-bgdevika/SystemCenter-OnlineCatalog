@@ -52,10 +52,12 @@ extends:
          enabled: true # onebranch publish all sdl results to TSA. If TSA is disabled all SDL tools will forced into 'break' build mode.
        credscan:
          suppressionsFile: $(Build.SourcesDirectory)\.config\CredScanSuppressions.json
-      #policheck:
-       # break: true # always break the build on policheck issues. You can disable it by setting to 'false'
-      # suppression:
-      #   suppressionFile: $(Build.SourcesDirectory)\.gdn\global.gdnsuppress
+       binskim:
+         break: true # always break the build on binskim issues in addition to TSA upload
+       policheck:
+         break: true
+       roslyn:
+         break: true # Roslyn issues. You can disable it by setting to 'false'
 
     stages:
     - stage: build
@@ -67,7 +69,9 @@ extends:
         variables:
            ob_outputDirectory: '$(Build.SourcesDirectory)\out' # this directory is uploaded to pipeline artifacts, reddog and cloudvault. More info at https://aka.ms/obpipelines/artifacts
            ob_sdl_codeSignValidation_excludes:  -|**\Debug\**;
-          # ob_sdl_binskim_break: true # https://aka.ms/obpipelines/sdl
+           ob_sdl_binskim_scanOutputDirectoryOnly: true # https://aka.ms/obpipelines/sdl
+           ob_symbolsPublishing: true # https://aka.ms/obpipelines/symbols
+           ob_sdl_roslyn_break: true
          
 
         steps:
@@ -132,4 +136,19 @@ extends:
               signing_profile: 'internal_azure_service'
               files_to_sign: '**/*.exe;**/*.dll;**/*.ps1'
               search_root: '$(Build.SourcesDirectory)\out'
+              
+          - task: Semmle@1
+            displayName: 'codeql'
+            inputs:
+             sourceCodeDirectory: '$(Build.SourcesDirectory)'
+             language: 'csharp'
+             querySuite: 'Recommended'
+             timeout: '1800'
+             ram: '16384'
+             addProjectDirToScanningExclusionList: true
+             
+          - task: securedevelopmentteam.vss-secure-development-tools.build-task-roslynanalyzers.RoslynAnalyzers@3
+            displayName: 'Run Roslyn Analyzers'
+            inputs:
+              copyLogsOnly: true
          
