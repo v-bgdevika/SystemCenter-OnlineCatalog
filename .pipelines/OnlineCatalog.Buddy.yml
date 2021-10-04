@@ -81,7 +81,8 @@ extends:
          - task: PowerShell@2
            inputs:
             filePath: '$(Build.SourcesDirectory)\.config\dllversioning.ps1'
-            arguments: System.Environment.GetEnvironmentVariable("BUILD_BUILDNUMBER");
+            arguments: $(Build.BuildNumber)
+            
                        
          - task: MSBuild@1
            displayName: 'Build Product'
