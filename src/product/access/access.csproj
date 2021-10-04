@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Sdk="Microsoft.NET.Sdk" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -9,8 +9,10 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Microsoft.ManagementPackCatalog.Access</RootNamespace>
     <AssemblyName>Microsoft.ManagementPackCatalog.Access</AssemblyName>
+	<Version Condition=" '$(BUILD_BUILDNUMBER)' == '' ">3.0.0.0</Version>
+    <Version Condition=" '$(BUILD_BUILDNUMBER)' != '' ">$(BUILD_BUILDNUMBER)</Version>
+    <SourceRevisionId Condition=" '$(BUILD_SOURCEVERSION)' != '' ">$(BUILD_SOURCEVERSION)</SourceRevisionId>
    </PropertyGroup>
- 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -72,9 +74,9 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.configuration" />
   </ItemGroup>
-   <ItemGroup>
-        <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
+   <!-- <ItemGroup> -->
+        <!-- <Compile Include="Properties\AssemblyInfo.cs" /> -->
+  <!-- </ItemGroup> -->
   <ItemGroup>
     <ProjectReference Include="..\classes\classes.csproj">
       <Project>{b02ad18b-1011-4959-af47-39e34b4ad166}</Project>
