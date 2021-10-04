@@ -74,9 +74,9 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.configuration" />
   </ItemGroup>
-   <!-- <ItemGroup> -->
-        <!-- <Compile Include="Properties\AssemblyInfo.cs" /> -->
-  <!-- </ItemGroup> -->
+   <ItemGroup>
+        <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\classes\classes.csproj">
       <Project>{b02ad18b-1011-4959-af47-39e34b4ad166}</Project>
