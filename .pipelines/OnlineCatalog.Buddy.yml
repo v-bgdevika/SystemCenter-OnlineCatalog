@@ -57,7 +57,7 @@ extends:
         break: true # always break the build on policheck issues. You can disable it by setting to 'false'
       roslyn:
         break: true # Roslyn issues. You can disable it by setting to 'false'
-        
+
     stages:
     - stage: build
       jobs:
@@ -67,9 +67,12 @@ extends:
         
         variables:
            ob_outputDirectory: '$(Build.SourcesDirectory)\out' # this directory is uploaded to pipeline artifacts, reddog and cloudvault. More info at https://aka.ms/obpipelines/artifacts
+           ob_sdl_binskim_enabled: true
+           ob_sdl_roslyn_break: true
+           ob_sdl_binskim_scanOutputDirectoryOnly: true
          
         steps:
-         
+                    
          - task: MSBuild@1
            displayName: 'Build Product'
            inputs:
@@ -98,17 +101,27 @@ extends:
               logProjectEvents: true
               createLogFile: true
 
-         
+        
          - task: CopyFiles@2
            inputs:
              SourceFolder: '$(Build.SourcesDirectory)\src\product\'
              Contents: '**\bin\**'
              TargetFolder: '$(Build.SourcesDirectory)\out\'
              
+         - task: Semmle@1
+           displayName: 'codeql'
+           inputs:
+             sourceCodeDirectory: '$(Build.SourcesDirectory)'
+             language: 'csharp'
+             querySuite: 'Recommended'
+             timeout: '1800'
+             ram: '16384'
+             addProjectDirToScanningExclusionList: true
+             
          - task: securedevelopmentteam.vss-secure-development-tools.build-task-roslynanalyzers.RoslynAnalyzers@3
-            displayName: 'Run Roslyn Analyzers'
-            inputs:
-              copyLogsOnly: true
+           displayName: 'Run Roslyn Analyzers'
+           inputs:
+             copyLogsOnly: true
               
           # - task: MSBuild@1
             # displayName: 'Build Testcode'

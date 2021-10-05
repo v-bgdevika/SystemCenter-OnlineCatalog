@@ -55,7 +55,7 @@ extends:
       policheck:
         break: true # always break the build on policheck issues. You can disable it by setting to 'false'
       roslyn:
-        break: false # Roslyn issues. You can disable it by setting to 'false'
+        break: true # Roslyn issues. You can disable it by setting to 'false'
 
     stages:
     - stage: build
@@ -66,6 +66,9 @@ extends:
         
         variables:
            ob_outputDirectory: '$(Build.SourcesDirectory)\out' # this directory is uploaded to pipeline artifacts, reddog and cloudvault. More info at https://aka.ms/obpipelines/artifacts
+           ob_sdl_binskim_enabled: true
+           ob_sdl_binskim_scanOutputDirectoryOnly: true
+           ob_sdl_roslyn_break: true
           # ob_sdl_binskim_break: true # https://aka.ms/obpipelines/sdl
           # ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}: # conditionally enable symbolsPublishing for master branch #only
             # ob_symbolsPublishing_enabled: true # https://aka.ms/obpipelines/symbols
@@ -93,9 +96,19 @@ extends:
              Contents: '**\bin\**'
              TargetFolder: '$(Build.SourcesDirectory)\out\'
              
-          - task: securedevelopmentteam.vss-secure-development-tools.build-task-roslynanalyzers.RoslynAnalyzers@3
-            displayName: 'Run Roslyn Analyzers'
-            inputs:
+         - task: Semmle@1
+           displayName: 'codeql'
+           inputs:
+             sourceCodeDirectory: '$(Build.SourcesDirectory)'
+             language: 'csharp'
+             querySuite: 'Recommended'
+             timeout: '1800'
+             ram: '16384'
+             addProjectDirToScanningExclusionList: true
+             
+         - task: securedevelopmentteam.vss-secure-development-tools.build-task-roslynanalyzers.RoslynAnalyzers@3
+           displayName: 'Run Roslyn Analyzers'
+           inputs:
               copyLogsOnly: true
 
           # - task: MSBuild@1
