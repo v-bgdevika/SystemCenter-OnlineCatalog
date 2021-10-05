@@ -10,6 +10,9 @@
 
 trigger: none # https://aka.ms/obpipelines/triggers
 
+# name: $(major).$(minor).$(patch).$(build)
+name: $(MAJOR).$(MINOR).$(BUILD).$(REVISION)
+
 parameters: # parameters are shown up in ADO UI in a build queue time
 - name: 'debug'
   displayName: 'Enable debug output'
@@ -24,6 +27,10 @@ variables:
   REPOROOT: $(Build.SourcesDirectory)
   OUTPUTROOT: $(REPOROOT)\out
   NUGET_XMLDOC_MODE: none
+  MAJOR: 1
+  MINOR: 0
+  BUILD: $[counter(variables['MINOR'], 0)]
+  REVISION: 0
  # ob_reddog_enabled: true
 
   WindowsContainerImage: 'cdpxwin1809.azurecr.io/global/vse2019:latest' # Docker image which is used to build the project https://aka.ms/obpipelines/containers
@@ -40,19 +47,19 @@ extends:
   parameters:
     cloudvault: # https://aka.ms/obpipelines/cloudvault
       enabled: true
-   # reddog: # https://aka.ms/obpipelines/reddog
-    #  enabled: true
+    reddog: # https://aka.ms/obpipelines/reddog
+      enabled: true
     globalSdl: # https://aka.ms/obpipelines/sdl
        tsa:
          enabled: true # onebranch publish all sdl results to TSA. If TSA is disabled all SDL tools will forced into 'break' build mode.
        credscan:
          suppressionsFile: $(Build.SourcesDirectory)\.config\CredScanSuppressions.json
-       policheck:
-         break: true # always break the build on policheck issues. You can disable it by setting to 'false'
        binskim:
-        break: true # always break the build on binskim issues in addition to TSA upload
-      # suppression:
-      #   suppressionFile: $(Build.SourcesDirectory)\.gdn\global.gdnsuppress
+         break: true # always break the build on binskim issues in addition to TSA upload
+       policheck:
+         break: true
+       roslyn:
+         break: true # Roslyn issues. You can disable it by setting to 'false'
 
     stages:
     - stage: build
@@ -65,11 +72,30 @@ extends:
            ob_outputDirectory: '$(Build.SourcesDirectory)\out' # this directory is uploaded to pipeline artifacts, reddog and cloudvault. More info at https://aka.ms/obpipelines/artifacts
            ob_sdl_codeSignValidation_excludes:  -|**\Debug\**;
            ob_sdl_binskim_scanOutputDirectoryOnly: true # https://aka.ms/obpipelines/sdl
-            # ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}: # conditionally enable symbolsPublishing for master branch #only
-            # ob_symbolsPublishing_enabled: true # https://aka.ms/obpipelines/symbols
-            # ob_sdl_suppression_suppressionFile: $(Build.SourcesDirectory)\.gdn\job.gdnsuppress
+           ob_symbolsPublishing: true # https://aka.ms/obpipelines/symbols
+           ob_sdl_roslyn_break: true
+         
 
         steps:
+        
+          - task: PowerShell@2
+             inputs:
+               filePath: '$(Build.SourcesDirectory)\.config\dllversioning.ps1'
+               arguments: $(Build.BuildNumber)
+            
+          - task: MSBuild@1
+            displayName: 'Build Product'
+            inputs:
+              solution: '$(Build.SourcesDirectory)\SystemCenterOnlineCatalogBuild.sln'
+              msbuildLocationMethod: 'location'
+              msbuildLocation: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
+              platform: 'x64'
+              configuration: 'Debug'
+              msbuildArguments: '/t:Restore,build'
+              clean: true
+              maximumCpuCount: true
+              logProjectEvents: true
+              createLogFile: true
               
           - task: MSBuild@1
             displayName: 'Build Product'
@@ -117,6 +143,7 @@ extends:
               signing_profile: 'internal_azure_service'
               files_to_sign: '**/*.exe;**/*.dll;**/*.ps1'
               search_root: '$(Build.SourcesDirectory)\out'
+              
           - task: Semmle@1
             displayName: 'codeql'
             inputs:
@@ -126,70 +153,9 @@ extends:
              timeout: '1800'
              ram: '16384'
              addProjectDirToScanningExclusionList: true
-
-          # - task: MSBuild@1
-            # inputs:
-              # solution: '$(Build.SourcesDirectory)\dirs.proj'
-              # msbuildLocationMethod: 'location'
-              # msbuildLocation: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
-              # platform: 'x64'
-              # configuration: 'release'
-              # msbuildArguments: '/v:n /nr:false /flp1:Verbosity=d;LogFile=$(OUTPUTROOT)\logs\msbuild_x64_release.log;Encoding=UTF-8 /flp2:logfile=$(OUTPUTROOT)\logs\msbuild_x64_release.err;errorsonly /bl:$(OUTPUTROOT)\logs\msbuild_x64_release.binlog'
-              # clean: true
-              # maximumCpuCount: true
-              # logProjectEvents: true
-
-          # - task: onebranch.pipeline.signing@1 # https://aka.ms/obpipelines/signing
-            # displayName: 'Sign output'
-            # inputs:
-              # command: 'sign'
-              # signing_environment: 'azure-ado'
-              # files_to_sign: '**/*.exe;**/*.dll;**/*.ps1;**/*.psm1'
-              # search_root: '$(Build.SourcesDirectory)\out'
-
-          # - task: VSTest@2
-            # inputs:
-              # testSelector: 'testAssemblies'
-              # testAssemblyVer2: |
-                # **\*test*.dll
-                # !**\*TestAdapter.dll
-                # !**\obj\**
-              # searchFolder: '$(Build.SourcesDirectory)\out'
-              # resultsFolder: '$(Build.SourcesDirectory)\out\logs\TestResults'
-              # runInParallel: true
-              # codeCoverageEnabled: true
-              # testRunTitle: 'release_x64'
-              # platform: 'x64'
-              # configuration: 'release'
-              # publishRunAttachments: false
-              # failOnMinTestsNotRun: true
-              # rerunFailedTests: true
-
-          # - task: PublishTestResults@2
-            # displayName: 'Publish test results'
-            # inputs:
-              # testResultsFormat: VSTest
-              # testResultsFiles: '$(Build.SourcesDirectory)\out\logs\TestResults\**\*.trx'
-              # failTaskOnFailedTests: true
-
-# https://aka.ms/obpipelines/cloudtest
-# uncomment this section and edit parameters to enable CloudTest
-    # - stage: cloudtest
-    #   dependsOn: build_stage
-    #   jobs:
-    #   - job: cloudtestjob
-    #     pool:
-    #       type: cloudtestagentless
-    #     continueOnError: true
-    #     steps:
-    #     - task: CloudTestServerBuildTask@1
-    #       displayName: 'CloudTest'
-    #       inputs:
-    #         connectedServiceName: 'CloudTest-prod'
-    #         cloudTestTenant: 'onebranchtest'
-    #         testMapLocation: '[BuildRoot]\ClassLibrary.UnitTest\TestMapCdp.xml'
-    #         pipelineArtifactName: 'drop_build_main'
-    #         pipelineArtifactBuildUrl: '$(System.TaskDefinitionsUri)$(System.TeamProject)/_build/results?buildId=$(Build.BuildId)'
-    #         parserProperties: 'worker:VsTestVersion=V150;CodeCoverageType=Dynamic;worker:TestVar=$(RUN_PIPELINE_VARIABLE)'
-    #         cacheEnabled: false
-    #         scheduleBuildRequesterAlias: 'azbldrun'
+             
+          - task: securedevelopmentteam.vss-secure-development-tools.build-task-roslynanalyzers.RoslynAnalyzers@3
+            displayName: 'Run Roslyn Analyzers'
+            inputs:
+              copyLogsOnly: true
+         
