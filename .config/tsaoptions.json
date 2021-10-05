@@ -1,10 +1,10 @@
 {
     "instanceUrl"        :  "https://msazure.visualstudio.com",
     "projectName"        :  "One",
-    "areaPath"           :  "One\\AIM\\System Center\\Operations Manager",
+    "areaPath"           :  "One/SystemCenter/SCOMOnlineCatalog",
     "iterationPath"      :  "One",
     "notificationAliases":  [
-          "scomoc@microsoft.com",
+	     "scomoc@microsoft.com",
          "v-rosjose@microsoft.com"
                                      ],
     "ppe"                :  "false",
