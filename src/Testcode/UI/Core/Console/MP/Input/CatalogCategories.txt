@@ -1,0 +1,88 @@
+Active Directory Certification Services 2012/2012 R2
+Active Directory Domain Services 2016
+Active Directory Federation Services
+Active Directory Federation Services 2012 R2
+Active Directory Federation Services 2016
+Active Directory Lightweight Directory Services
+Active Directory Rights Management Services 2012/2012 R2
+Active Directory Rights Management Services 2016 and above
+BizTalk 2010
+BizTalk 2013
+BizTalk 2013 R2
+Cluster Services 2008
+Core OS
+Core OS 2016 and above
+Data Protection Manager - Dedup Reporter
+Data Protection Manager 2012
+Defender 2016
+DHCP Server
+DHCP Server 2016+
+Distributed File System Namespaces
+Distributed Transaction Coordinator 2012 R2
+Distributed Transaction Coordinator 2016
+Domain Naming Service 2012/2012R2
+Domain Naming Service 2016+
+Dynamics AX 2012
+Dynamics CRM 2013
+Dynamics CRM 2015
+Essentials
+Essentials 2016
+Exchange 2013
+File Services 2012 R2
+File Services 2016
+Host Integration Server 2013
+Host Integration Server 2016
+Hyper-V 2012
+Hyper-V 2012 R2
+IIS 2012
+IIS 2016+
+Management Packs - Updates and Recommendations
+Message Queuing 2012
+Message Queuing 2012 R2
+Microsoft Azure
+Microsoft Azure SQL Database
+Network Load Balancing 2016+
+Print Server 2008/2008 R2
+Print Server 2016+
+Remote Access 2012/2012 R2
+Remote Desktop Services 2012
+Remote Desktop Services 2012 R2
+SDN Monitoring
+Service Bus
+Service Provider Foundation
+ServiceManagementAutomation
+ServiceReporting
+SharePoint 2010 Products
+SharePoint Foundation 2013
+SharePoint Server 2013
+Sql Server (for 2012 and up)
+SQL Server Replication (for 2012 and up)
+SQL Server Reporting Services (for 2012 and up)
+SQL Server Analysis Services (for 2012 and up)
+System Center 2012 - Configuration Manager
+System Center Service Manager 2010
+Team Foundation Server 2010
+Team Foundation Server 2012
+Web Application Proxy 2012 R2
+Windows 10
+Windows 8
+Microsoft Azure
+Windows Deployment Services 2012 R2
+Windows Server Cluster
+Windows Server Cluster 2016+
+Advanced Threat Analytics
+JBoss 4
+JBoss 5
+JBoss 6
+JBoss 7
+Tomcat 5
+Tomcat 6
+Tomcat 7
+Tomcat 8+
+WebLogic 10
+WebLogic 11
+WebLogic 12+
+Websphere 6
+Websphere 7
+Websphere 8+
+WildFly 8+

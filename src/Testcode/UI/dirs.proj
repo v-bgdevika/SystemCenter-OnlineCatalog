@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" 
+  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <!-- Exclude project from generated solution files -->
+    <IncludeInSolutionFile>false</IncludeInSolutionFile >
+  </PropertyGroup>
+   <ItemGroup>
+      <ProjectReference Include="D:\OC\UI\Core\dirs.proj" />
+      <!--<ProjectReference Include="D:\OC\UI\Tools\dirs.proj" />-->
+      <!--<ProjectReference Include="D:\OC\UI\TestWebSite\TestWebSite.csproj" />-->
+      <!--<ProjectReference Include="D:\OC\UI\TestWebService\dirs.proj" />-->
+      <ProjectReference Include="D:\OC\UI\Tests\dirs.proj" />
+      <!--<ProjectReference Include="D:\OC\UI\ManagementPacks\dirs.proj" />-->
+     </ItemGroup>
+   <!--<Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />-->
+    <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+    <!--<Import Project="$(ExtendedTargetsPath)\Traversal.targets" />-->
+   <PropertyGroup>
+      <BuildDependsOn>ResolveReferences</BuildDependsOn>
+      <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+   </PropertyGroup>
+   <Target Name="VerifyAlteredTargetsUsed" />
+</Project>

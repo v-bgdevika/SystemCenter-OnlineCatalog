@@ -1,0 +1,2689 @@
+﻿<?xml version="1.0" encoding="utf-8"?><ManagementPack ContentReadable="true" SchemaVersion="2.0" OriginalSchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <Manifest>
+    <Identity>
+      <ID>Microsoft.SystemCenter.ManagementPack.Recommendations</ID>
+      <Version>7.2.11710.32</Version>
+    </Identity>
+    <Name>Microsoft.SystemCenter.ManagementPack.Recommendations</Name>
+    <References>
+      <Reference Alias="Windows">
+        <ID>Microsoft.Windows.Library</ID>
+        <Version>7.5.8501.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="System">
+        <ID>System.Library</ID>
+        <Version>7.5.8501.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+    </References>
+  </Manifest>
+  <TypeDefinitions>
+    <EntityTypes>
+      <ClassTypes>
+        <ClassType ID="LW.Base.Microsoft.Windows.ComputerRole.Category" Accessibility="Public" Abstract="true" Base="Windows!Microsoft.Windows.ComputerRole" Hosted="true" Singleton="false" Extension="false">
+          <Property ID="CategoryName" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+        </ClassType>
+        <ClassType ID="LW.Base.Microsoft.Windows.Server.BaseOS.Category" Accessibility="Public" Abstract="false" Base="Windows!Microsoft.Windows.Server.Computer" Hosted="false" Singleton="false" Extension="false">
+          <Property ID="CategoryName" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+        </ClassType>
+        <ClassType ID="LW.Microsoft.Core.OS" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.BaseOS.2016" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.Server.BaseOS.Category" Hosted="false" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.BaseOS.2012R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.Server.BaseOS.Category" Hosted="false" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.BaseOS.2012" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.Server.BaseOS.Category" Hosted="false" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.BaseOS.2008R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.Server.BaseOS.Category" Hosted="false" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.6.4.Computer" Accessibility="Public" Abstract="false" Base="Windows!Microsoft.Windows.Server.Computer" Hosted="false" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.6.4.PrintServerRole" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.ActiveDirectoryFederationServices.10.0.FederationServerSeed" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.ADRMS.6.4.Server" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.DHCPServer.6.4.Server" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.10.0.AD.GlobalCatalogServerRole" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.6.4.Cluster.Node" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.FileServices.Service.iSCSITarget.6.3" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.NetworkLoadBalancing.6.4.ServerRole" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.InternetInformationServices.6.4.ServerRole" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.DNSServer.2016.Server" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.CertificateServices.CARole.6.4" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Defender.Role.2016" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Essentials.2016" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.Branch.Cache.2016" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.AD.Certificate.2012R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.AD.Federation.2012R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.AD.Rights.Management.2012R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.DHCP.2012R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.DNS.2012R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.File.Services.2012R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.Remote.Access.2012R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.NLB.2012R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.Remote.Desktop.Services.2012R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Deployment.Services.2012R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Essentials.2012R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Update.Services.2012R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.Queuing.2012R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.Print.Services.2012R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.HyperV.2012R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.AD.Lightweight.Directory.2012R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.Branch.Cache.2012R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.Cluster.2012R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.ActiveDirectory.2012R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.WebApplicationProxy.2012R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.AD.Certificate.2012" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.AD.Federation.2012" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.AD.Rights.Management.2012" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.DHCP.2012" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.DNS.2012" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.File.Services.2012" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.Remote.Access.2012" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.NLB.2012" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.Remote.Desktop.Services.2012" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Deployment.Services.2012" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Update.Services.2012" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.Queuing.2012" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.Print.Services.2012" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.HyperV.2012" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.Branch.Cache.2012" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.Cluster.2012" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.Backup.2012" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.IIS.2012" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.ActiveDirectory.2012" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.AD.Certificate.2008R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.AD.Federation.2008R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.AD.Rights.Management.2008R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.DHCP.2008R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.DNS.2008R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.File.Services.2008R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.NLB.2008R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.Remote.Desktop.Services.2008R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.Queuing.2008R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.Print.Services.2008R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.HyperV.2008R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.Branch.Cache.2008R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.IIS.2008R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.AD.Lightweight.Directory.2008R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.ActiveDirectory.2008R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Routing.Remote.Service.2008R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.SQL.Server.2005" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.SQL.Server.2008" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.SQL.Server.2012" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.SQL.Server.2014" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.SQL.Server.2016" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.SQL.Server.2016.ReportingServices.NativeMode" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.SQL.Server.2014.ReportingServices.NativeMode" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.SQL.Server.2012.ReportingServices.NativeMode" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.SQL.Server.2016.AnalysisServices" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.SQL.Server.2014.AnalysisServices" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.SQL.Server.2012.AnalysisServices" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.SQL.Server.2016.Replication" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.SQL.Server.2014.Replication" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.SQL.Server.2012.Replication" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Server.Backup" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Biztalk.2013" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Biztalk.2013R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Biztalk.2010" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Biztalk.2009" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Biztalk.2006" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.CRM.2011" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.CRM.2013" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.CRM.2015" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.NAV.2013" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.NAV.2013R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Exchange.Server.2013" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.SharePoint.Server.2013" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.SharePoint.Server.2010" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.SharePoint.Foundation.Server.2013" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.SharePoint.Foundation.Server.2010" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.SPF.2012R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Host.Integration.Server.2013" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Host.Integration.Server.2010" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Orchestrator.2012" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.SMA.2012R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Dynamics.AX.2009" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Dynamics.AX.2012" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.Dynamics.AX.Retail.2012R3" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.ServiceManager.2012" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.TFS.2010" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.TFS.2012" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.TFS.2013" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.TFS.2015" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.SCCM.2012" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.MSDTC.2016" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.MSDTC.2012R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.AppController.2012R2" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.AdvancedThreatAnalytics" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Windows.DHAS.2016" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.SDNMonitoring" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+        <ClassType ID="LW.Microsoft.Sample.Test1" Accessibility="Public" Abstract="false" Base="LW.Base.Microsoft.Windows.ComputerRole.Category" Hosted="true" Singleton="false" Extension="false" />
+      </ClassTypes>
+    </EntityTypes>
+    <ModuleTypes>
+      <DataSourceModuleType ID="LW.Microsoft.Windows.Server.Generic.Discovery.DataSource" Accessibility="Public" RunAs="System!System.PrivilegedMonitoringAccount" Batching="false">
+        <Configuration>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:unsignedInt" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="1" name="ComputerPrincipalName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="1" name="TimeoutSeconds" type="xsd:unsignedInt" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int" />
+          <OverrideableParameter ID="TimeoutSeconds" Selector="$Config/TimeoutSeconds$" ParameterType="int" />
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Scheduler" TypeID="System!System.Discovery.Scheduler">
+                <Scheduler>
+                  <SimpleReccuringSchedule>
+                    <Interval Unit="Seconds">$Config/IntervalSeconds$</Interval>
+                  </SimpleReccuringSchedule>
+                  <ExcludeDates />
+                </Scheduler>
+              </DataSource>
+              <ProbeAction ID="PowerShellDiscoveryProbe" TypeID="Windows!Microsoft.Windows.PowerShellDiscoveryProbe">
+                <ScriptName>"Lightweight generic discovery script"</ScriptName>
+                <ScriptBody>
+                  param ([String] $sourceID, [String] $managedEntityID, [String] $computerName)
+                                    #Copyright (c) Microsoft Corporation. All rights reserved.
+                  #*************************************************************************
+                  #Author - Arpit Mittal
+                  #ScriptName: "Server2016Roles.ps1"$
+                  #Purpose: This script along with ServerOSVersions.ps1 will discover installed server roles
+                  # on the Windowse Server 2016.
+                  #*************************************************************************
+
+                  $windowsFeatureTable = @{}
+                  $classMPElementTable = @{}
+                  $classCategoryTable = @{}
+
+                  #Get-WindowsFeature Discoveries
+                  #IIS
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.InternetInformationServices.6.4.ServerRole","Web-Server")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.InternetInformationServices.6.4.ServerRole","`$MPElement[Name='LW.Microsoft.Windows.InternetInformationServices.6.4.ServerRole']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.InternetInformationServices.6.4.ServerRole","IIS 2016")
+
+                  #Print Services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.6.4.PrintServerRole","Print-Services")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.6.4.PrintServerRole","`$MPElement[Name='LW.Microsoft.Windows.Server.6.4.PrintServerRole']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.6.4.PrintServerRole","Print Server 2016")
+
+                  #ADFS
+                  $windowsFeatureTable.Add("LW.Microsoft.ActiveDirectoryFederationServices.10.0.FederationServerSeed","ADFS-Federation")
+                  $classMPElementTable.Add("LW.Microsoft.ActiveDirectoryFederationServices.10.0.FederationServerSeed","`$MPElement[Name='LW.Microsoft.ActiveDirectoryFederationServices.10.0.FederationServerSeed']$")
+                  $classCategoryTable.Add("LW.Microsoft.ActiveDirectoryFederationServices.10.0.FederationServerSeed","Active Directory Federation Services 2016")
+
+                  #ADRMS
+                  $windowsFeatureTable.Add("LW.Microsoft.ADRMS.6.4.Server","ADRMS")
+                  $classMPElementTable.Add("LW.Microsoft.ADRMS.6.4.Server","`$MPElement[Name='LW.Microsoft.ADRMS.6.4.Server']$")
+                  $classCategoryTable.Add("LW.Microsoft.ADRMS.6.4.Server","Active Directory Rights Management Services 2016")
+
+                  #DHCP
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.DHCPServer.6.4.Server","DHCP")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.DHCPServer.6.4.Server","`$MPElement[Name='LW.Microsoft.Windows.DHCPServer.6.4.Server']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.DHCPServer.6.4.Server","DHCP Server 2016")
+
+                  #ADDS
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.10.0.AD.GlobalCatalogServerRole","AD-Domain-Services")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.10.0.AD.GlobalCatalogServerRole","`$MPElement[Name='LW.Microsoft.Windows.Server.10.0.AD.GlobalCatalogServerRole']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.10.0.AD.GlobalCatalogServerRole","Active Directory Domain Services 2016")
+
+                  #Failover Clustering
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.6.4.Cluster.Node","Failover-Clustering")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.6.4.Cluster.Node","`$MPElement[Name='LW.Microsoft.Windows.6.4.Cluster.Node']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.6.4.Cluster.Node","Windows Server Cluster 2016")
+
+                  #File and iSCSI services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.FileServices.Service.iSCSITarget.6.3","File-Services")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.FileServices.Service.iSCSITarget.6.3","`$MPElement[Name='LW.Microsoft.Windows.FileServices.Service.iSCSITarget.6.3']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.FileServices.Service.iSCSITarget.6.3","File Services 2016")
+
+                  #NLB
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.NetworkLoadBalancing.6.4.ServerRole","NLB")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.NetworkLoadBalancing.6.4.ServerRole","`$MPElement[Name='LW.Microsoft.Windows.NetworkLoadBalancing.6.4.ServerRole']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.NetworkLoadBalancing.6.4.ServerRole","Network Load Balancing 2016")
+
+                  #DNS
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.DNSServer.2016.Server","DNS")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.DNSServer.2016.Server","`$MPElement[Name='LW.Microsoft.Windows.DNSServer.2016.Server']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.DNSServer.2016.Server","Domain Naming Service 2016")
+
+                  #ADCS
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.CertificateServices.CARole.6.4","AD-Certificate")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.CertificateServices.CARole.6.4","`$MPElement[Name='LW.Microsoft.Windows.CertificateServices.CARole.6.4']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.CertificateServices.CARole.6.4","Active Directory Certificate Services 2016")
+
+                  #Defender
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Defender.Role.2016","Windows-Defender")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Defender.Role.2016","`$MPElement[Name='LW.Microsoft.Windows.Defender.Role.2016']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Defender.Role.2016","Defender 2016")
+
+                  #Windows Essentials Role
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Essentials.2016","ServerEssentialsRole")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Essentials.2016","`$MPElement[Name='LW.Microsoft.Windows.Essentials.2016']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Essentials.2016","Essentials 2016")
+
+  			      #Branch Cache 2016
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.Branch.Cache.2016","BranchCache")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.Branch.Cache.2016","`$MPElement[Name='LW.Microsoft.Windows.Server.Branch.Cache.2016']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.Branch.Cache.2016","Branch Cache 2016")
+
+				  #Device Health Attestation 2016
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.DHAS.2016","DeviceHealthAttestationService")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.DHAS.2016","`$MPElement[Name='LW.Microsoft.Windows.DHAS.2016']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.DHAS.2016","Device Health Attestation")
+
+
+                  function LogWrite
+                  {
+                  Param([string]$logString)
+                  $script:logMessage += $logString
+                  }
+
+                  #scriptStartTime will help in calculating script run time
+                  $scriptStartTime = Get-Date
+                  $script:logMessage = ''
+
+                  LogWrite "`nServer2016Roles::Starting Server2016Roles script."
+
+                  if(($SourceId -eq $null) -or ($ManagedEntityId -eq $null) -or ($computerName -eq $null))
+                  {
+                  LogWrite "`nServer2016Roles::SourceId, ManagedEntityId or Computer name is null. Exiting script."
+                  Exit -1
+                  }
+
+                  #Create discovery property bag only once as we can't return multiple property bags
+                  $api = new-object -comObject 'MOM.ScriptAPI'
+                  $discoveryData = $api.CreateDiscoveryData(0, $SourceId, $ManagedEntityId)
+
+                  #get all server roles information in single shot
+                  $allInstalledFeatures = get-windowsfeature | ?{$_.InstallState -eq "Installed"}
+
+                  #Iterate through discovery method table
+                  if($windowsFeatureTable -eq $null)
+                  {
+                  #Code shouldn't come here
+                  LogWrite "`nServer2016Roles::Windows feature table is empty. Exiting the script."
+                  Exit -1
+                  }
+
+                  foreach ($classDetails in $windowsFeatureTable.GetEnumerator())
+                  {
+                  $className = $classDetails.Name
+                  $serverRoleName = $classDetails.Value
+
+                  if($serverRoleName -eq $null)
+                  {
+                  continue
+                  }
+
+                  $getFeatureDetails = $allInstalledFeatures | ?{$_.Name -eq $serverRoleName}
+
+                  #getfeaturedetails will be null if supported role in NOT present in installed list
+                  if(($getFeatureDetails -ne $null) -and ($classMPElementTable.Item($className) -ne $null))
+                  {
+                  LogWrite "`nCreating class instance for class $className"
+                  $instance = $discoveryData.CreateClassInstance($classMPElementTable.Item($className))
+                  $instance.AddProperty("$MPElement[Name='Windows!Microsoft.Windows.Computer']/PrincipalName$", $computerName)
+                  $instance.AddProperty("$MPElement[Name='System!System.Entity']/DisplayName$", $computerName)
+                  $instance.AddProperty("$MPElement[Name='LW.Base.Microsoft.Windows.ComputerRole.Category']/CategoryName$", $classCategoryTable.Item($className))
+                  $discoveryData.AddInstance($instance)
+                  }
+                  }
+
+                  $scriptEndTime = Get-Date
+                  $totalScriptRunTime = ($scriptEndTime - $scriptStartTime) | select-object TotalSeconds
+                  $totalScriptRunTime = $totalScriptRunTime.TotalSeconds
+                  LogWrite "`n Total time taken to run the script $totalScriptRunTime"
+
+                  #Log an event after running the script
+                  $api.LogScriptEvent("Server2016Roles.ps1", 5001, 0, $script:logMessage)
+
+                  #Return discovery property bag
+                  $discoveryData</ScriptBody>
+                <Parameters>
+                  <Parameter>
+                    <Name>sourceID</Name>
+                    <Value>$MPElement$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>managedEntityID</Name>
+                    <Value>$Target/Id$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>computerName</Name>
+                    <Value>$Config/ComputerPrincipalName$</Value>
+                  </Parameter>
+                </Parameters>
+                <TimeoutSeconds>$Config/TimeoutSeconds$</TimeoutSeconds>
+                <StrictErrorHandling>false</StrictErrorHandling>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="PowerShellDiscoveryProbe">
+                <Node ID="Scheduler" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.Discovery.Data</OutputType>
+      </DataSourceModuleType>
+      <DataSourceModuleType ID="LW.Microsoft.Windows.Server.BaseOS.Discovery.DataSource" Accessibility="Public" RunAs="System!System.PrivilegedMonitoringAccount" Batching="false">
+        <Configuration>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:unsignedInt" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="1" name="ComputerPrincipalName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="1" name="TimeoutSeconds" type="xsd:unsignedInt" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int" />
+          <OverrideableParameter ID="TimeoutSeconds" Selector="$Config/TimeoutSeconds$" ParameterType="int" />
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Scheduler" TypeID="System!System.Discovery.Scheduler">
+                <Scheduler>
+                  <SimpleReccuringSchedule>
+                    <Interval Unit="Seconds">$Config/IntervalSeconds$</Interval>
+                  </SimpleReccuringSchedule>
+                  <ExcludeDates />
+                </Scheduler>
+              </DataSource>
+              <ProbeAction ID="PowerShellDiscoveryProbe" TypeID="Windows!Microsoft.Windows.PowerShellDiscoveryProbe">
+                <ScriptName>"Lightweight generic server OS discovery script"</ScriptName>
+                <ScriptBody>
+                  param ([String] $sourceID, [String] $managedEntityID, [String] $computerName)
+                  				  #Copyright (c) Microsoft Corporation. All rights reserved.
+                  #*************************************************************************
+                  #Author - Arpit Mittal
+                  #ScriptName: "ServerOSVersions.ps1"$
+                  #Purpose: This script will discover all OS versions from 2008R2 to 2016.
+                  #*************************************************************************
+
+                  $versionTable = @{}
+                  $classMPElementTable = @{}
+                  $classCategoryTable = @{}
+
+                  #Get-WindowsFeature Discoveries
+                  #2016
+                  $versionTable.Add("10.0","LW.Microsoft.BaseOS.2016")
+                  $classMPElementTable.Add("LW.Microsoft.BaseOS.2016","`$MPElement[Name='LW.Microsoft.BaseOS.2016']$")
+                  $classCategoryTable.Add("LW.Microsoft.BaseOS.2016","Core OS 2016")
+
+                  #Core OS
+                  $classMPElementTable.Add("LW.Microsoft.Core.OS","`$MPElement[Name='LW.Microsoft.Core.OS']$")
+                  $classCategoryTable.Add("LW.Microsoft.Core.OS","Core OS")
+
+                  #2012R2
+                  $versionTable.Add("6.3","LW.Microsoft.BaseOS.2012R2")
+                  $classMPElementTable.Add("LW.Microsoft.BaseOS.2012R2","`$MPElement[Name='LW.Microsoft.BaseOS.2012R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.BaseOS.2012R2","Base OS 2012R2")
+
+                  #2012
+                  $versionTable.Add("6.2","LW.Microsoft.BaseOS.2012")
+                  $classMPElementTable.Add("LW.Microsoft.BaseOS.2012","`$MPElement[Name='LW.Microsoft.BaseOS.2012']$")
+                  $classCategoryTable.Add("LW.Microsoft.BaseOS.2012","Base OS 2012")
+
+                  #2008R2
+                  $versionTable.Add("6.1","LW.Microsoft.BaseOS.2008R2")
+                  $classMPElementTable.Add("LW.Microsoft.BaseOS.2008R2","`$MPElement[Name='LW.Microsoft.BaseOS.2008R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.BaseOS.2008R2","Base OS 2008R2")
+
+                  function LogWrite
+                  {
+                  Param([string]$logString)
+                  $script:logMessage += $logString
+                  }
+
+                  function createInstances
+                  {
+                  Param($className, $computerName, $classMPElementTable, $classCategoryTable, $discoveryData)
+
+                  LogWrite "`nCreating class instance for class $className"
+
+                  $instance = $discoveryData.CreateClassInstance($classMPElementTable.Item($className))
+                  $instance.AddProperty("$MPElement[Name='Windows!Microsoft.Windows.Computer']/PrincipalName$", $computerName)
+                  $instance.AddProperty("$MPElement[Name='System!System.Entity']/DisplayName$", $computerName)
+
+                  if($className -eq 'LW.Microsoft.Core.OS')
+                  {
+                  $instance.AddProperty("$MPElement[Name='LW.Base.Microsoft.Windows.ComputerRole.Category']/CategoryName$", $classCategoryTable.Item($className))
+                  }
+                  else
+                  {
+                  $instance.AddProperty("$MPElement[Name='LW.Base.Microsoft.Windows.Server.BaseOS.Category']/CategoryName$", $classCategoryTable.Item($className))
+                  }
+
+                  $discoveryData.AddInstance($instance)
+                  $discoveryData
+                  }
+
+                  #scriptStartTime will help in calculating script run time
+                  $scriptStartTime = Get-Date
+                  $script:logMessage = ''
+
+                  LogWrite "`nServerOSVersions::Starting ServerOSVersions script."
+
+                  if(($SourceId -eq $null) -or ($ManagedEntityId -eq $null) -or ($computerName -eq $null))
+                  {
+                  LogWrite "`nServerOSVersions::SourceId, ManagedEntityId or Computer name is null. Exiting script."
+                  Exit -1
+                  }
+
+                  #Create discovery property bag only once as we can't return multiple property bags
+                  $api = new-object -comObject 'MOM.ScriptAPI'
+                  $discoveryData = $api.CreateDiscoveryData(0, $SourceId, $ManagedEntityId)
+
+                  $a = gwmi -Class win32_operatingsystem
+
+                  if($a.Version -match '10.0')
+                  {
+                  $className = $versionTable.Item('10.0')
+                  $discoveryData = createInstances $className $computerName $classMPElementTable $classCategoryTable $discoveryData
+                  }
+                  elseif($a.Version -match '6.3')
+                  {
+                  $className = $versionTable.Item('6.3')
+                  $discoveryData = createInstances $className $computerName $classMPElementTable $classCategoryTable $discoveryData
+                  }
+                  elseif($a.Version -match '6.2')
+                  {
+                  $className = $versionTable.Item('6.2')
+                  $discoveryData = createInstances $className $computerName $classMPElementTable $classCategoryTable $discoveryData
+                  }
+                  elseif($a.Version -match '6.1')
+                  {
+                  $className = $versionTable.Item('6.1')
+                  $discoveryData = createInstances $className $computerName $classMPElementTable $classCategoryTable $discoveryData
+                  }
+
+                  if(($a.Version -match '6.1') -or ($a.Version -match '6.2') -or ($a.Version -match '6.3'))
+                  {
+                  $className = "LW.Microsoft.Core.OS"
+                  $discoveryData = createInstances $className $computerName $classMPElementTable $classCategoryTable $discoveryData
+                  }
+
+                  $scriptEndTime = Get-Date
+                  $totalScriptRunTime = ($scriptEndTime - $scriptStartTime) | select-object TotalSeconds
+                  $totalScriptRunTime = $totalScriptRunTime.TotalSeconds
+                  LogWrite "`n Total time taken to run the script $totalScriptRunTime"
+
+                  #Log an event after running the script
+                  $api.LogScriptEvent("ServerOSVersions.ps1", 5000, 0, $script:logMessage)
+
+                  #Return discovery property bag
+                  $discoveryData</ScriptBody>
+                <Parameters>
+                  <Parameter>
+                    <Name>sourceID</Name>
+                    <Value>$MPElement$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>managedEntityID</Name>
+                    <Value>$Target/Id$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>computerName</Name>
+                    <Value>$Config/ComputerPrincipalName$</Value>
+                  </Parameter>
+                </Parameters>
+                <TimeoutSeconds>$Config/TimeoutSeconds$</TimeoutSeconds>
+                <StrictErrorHandling>false</StrictErrorHandling>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="PowerShellDiscoveryProbe">
+                <Node ID="Scheduler" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.Discovery.Data</OutputType>
+      </DataSourceModuleType>
+      <DataSourceModuleType ID="LW.Microsoft.Windows.Server.2012R2.Role.Discovery.DataSource" Accessibility="Public" RunAs="System!System.PrivilegedMonitoringAccount" Batching="false">
+        <Configuration>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:unsignedInt" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="1" name="ComputerPrincipalName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="1" name="TimeoutSeconds" type="xsd:unsignedInt" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int" />
+          <OverrideableParameter ID="TimeoutSeconds" Selector="$Config/TimeoutSeconds$" ParameterType="int" />
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Scheduler" TypeID="System!System.Discovery.Scheduler">
+                <Scheduler>
+                  <SimpleReccuringSchedule>
+                    <Interval Unit="Seconds">$Config/IntervalSeconds$</Interval>
+                  </SimpleReccuringSchedule>
+                  <ExcludeDates />
+                </Scheduler>
+              </DataSource>
+              <ProbeAction ID="PowerShellDiscoveryProbe" TypeID="Windows!Microsoft.Windows.PowerShellDiscoveryProbe">
+                <ScriptName>"Lightweight 2012R2 server roles discovery script"</ScriptName>
+                <ScriptBody>
+                  param ([String] $sourceID, [String] $managedEntityID, [String] $computerName)
+                                    #Copyright (c) Microsoft Corporation. All rights reserved.
+                  #*************************************************************************
+                  #Author - Arpit Mittal
+                  #ScriptName: "Server2012R2Roles.ps1"$
+                  #Purpose: This script along with ServerOSVersions.ps1 will discover installed server roles
+                  # on the Windows Server 2012R2.
+                  #*************************************************************************
+
+                  $windowsFeatureTable = @{}
+                  $classMPElementTable = @{}
+                  $classCategoryTable = @{}
+
+                  #Get-WindowsFeature Discoveries
+                  #AD Certificate Services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.AD.Certificate.2012R2","AD-Certificate")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.AD.Certificate.2012R2","`$MPElement[Name='LW.Microsoft.Windows.Server.AD.Certificate.2012R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.AD.Certificate.2012R2","Active Directory Certification Services 2012/2012 R2")
+
+                  #AD Federation Services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.AD.Federation.2012R2","ADFS-Federation")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.AD.Federation.2012R2","`$MPElement[Name='LW.Microsoft.Windows.Server.AD.Federation.2012R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.AD.Federation.2012R2","Active Directory Federation Services 2012 R2")
+
+                  #AD Right Management Services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.AD.Rights.Management.2012R2","ADRMS")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.AD.Rights.Management.2012R2","`$MPElement[Name='LW.Microsoft.Windows.Server.AD.Rights.Management.2012R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.AD.Rights.Management.2012R2","Active Directory Rights Management Services 2012/2012 R2")
+
+                  #DHCP
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.DHCP.2012R2","DHCP")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.DHCP.2012R2","`$MPElement[Name='LW.Microsoft.Windows.Server.DHCP.2012R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.DHCP.2012R2","DHCP Server")
+
+                  #DNS
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.DNS.2012R2","DNS")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.DNS.2012R2","`$MPElement[Name='LW.Microsoft.Windows.Server.DNS.2012R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.DNS.2012R2","Domain Naming Service 2012/2012R2")
+
+                  #File Services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.File.Services.2012R2","File-Services")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.File.Services.2012R2","`$MPElement[Name='LW.Microsoft.Windows.Server.File.Services.2012R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.File.Services.2012R2","File Services 2012 R2")
+
+                  #Multi Tenant Remote Access
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.Remote.Access.2012R2","RemoteAccess")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.Remote.Access.2012R2","`$MPElement[Name='LW.Microsoft.Windows.Server.Remote.Access.2012R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.Remote.Access.2012R2","Remote Access 2012/2012 R2")
+
+                  #Network Load Balancing
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.NLB.2012R2","NLB")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.NLB.2012R2","`$MPElement[Name='LW.Microsoft.Windows.Server.NLB.2012R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.NLB.2012R2","Network Load Balancing")
+
+                  #Remote Desktop Services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.Remote.Desktop.Services.2012R2","Remote-Desktop-Services")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.Remote.Desktop.Services.2012R2","`$MPElement[Name='LW.Microsoft.Windows.Server.Remote.Desktop.Services.2012R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.Remote.Desktop.Services.2012R2","Remote Desktop Services 2012 R2")
+
+                  #Windows Deployment Services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Deployment.Services.2012R2","WDS")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Deployment.Services.2012R2","`$MPElement[Name='LW.Microsoft.Windows.Deployment.Services.2012R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Deployment.Services.2012R2","Windows Deployment Services 2012 R2")
+
+                  #Windows Essentials Role
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Essentials.2012R2","ServerEssentialsRole")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Essentials.2012R2","`$MPElement[Name='LW.Microsoft.Windows.Essentials.2012R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Essentials.2012R2","Essentials")
+
+                  #Windows Update Services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Update.Services.2012R2","UpdateServices")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Update.Services.2012R2","`$MPElement[Name='LW.Microsoft.Windows.Update.Services.2012R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Update.Services.2012R2","Windows Server Update Services 2012/2012 R2")
+
+                  #Message Queuing Services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.Queuing.2012R2","MSMQ")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.Queuing.2012R2","`$MPElement[Name='LW.Microsoft.Windows.Server.Queuing.2012R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.Queuing.2012R2","Message Queuing 2012 R2")
+
+                  #Print Services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.Print.Services.2012R2","Print-Server")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.Print.Services.2012R2","`$MPElement[Name='LW.Microsoft.Windows.Server.Print.Services.2012R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.Print.Services.2012R2","Print Server 2012/2012 R2")
+
+                  #Hyper-V Services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.HyperV.2012R2","Hyper-V")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.HyperV.2012R2","`$MPElement[Name='LW.Microsoft.Windows.Server.HyperV.2012R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.HyperV.2012R2","Hyper-V 2012 R2")
+
+                  #Active Directory Lightweight Directory Services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.AD.Lightweight.Directory.2012R2","ADLDS")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.AD.Lightweight.Directory.2012R2","`$MPElement[Name='LW.Microsoft.Windows.Server.AD.Lightweight.Directory.2012R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.AD.Lightweight.Directory.2012R2","Active Directory Lightweight Directory Services")
+
+                  #Branch Cache
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.Branch.Cache.2012R2","BranchCache")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.Branch.Cache.2012R2","`$MPElement[Name='LW.Microsoft.Windows.Server.Branch.Cache.2012R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.Branch.Cache.2012R2","Branch Cache")
+
+                  #Cluster
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.Cluster.2012R2","Failover-Clustering")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.Cluster.2012R2","`$MPElement[Name='LW.Microsoft.Windows.Server.Cluster.2012R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.Cluster.2012R2","Windows Server Cluster")
+
+                  #Active Directory
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.ActiveDirectory.2012R2","AD-Domain-Services")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.ActiveDirectory.2012R2","`$MPElement[Name='LW.Microsoft.Windows.Server.ActiveDirectory.2012R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.ActiveDirectory.2012R2","Active Directory Domain Services 2008/2008R2/2012/2012R2")
+
+                  #Web Application Proxy
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.WebApplicationProxy.2012R2","Web-Application-Proxy")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.WebApplicationProxy.2012R2","`$MPElement[Name='LW.Microsoft.Windows.Server.WebApplicationProxy.2012R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.WebApplicationProxy.2012R2","Web Application Proxy 2012 R2")
+
+                  function LogWrite
+                  {
+                  Param([string]$logString)
+                  $script:logMessage += $logString
+                  }
+
+                  #scriptStartTime will help in calculating script run time
+                  $scriptStartTime = Get-Date
+                  $script:logMessage = ''
+
+                  LogWrite "`nServer2012R2Roles::Starting Server2012R2Roles script."
+
+                  if(($SourceId -eq $null) -or ($ManagedEntityId -eq $null) -or ($computerName -eq $null))
+                  {
+                  LogWrite "`nServer2012R2Roles::SourceId, ManagedEntityId or Computer name is null. Exiting script."
+                  Exit -1
+                  }
+
+                  #Create discovery property bag only once as we can't return multiple property bags
+                  $api = new-object -comObject 'MOM.ScriptAPI'
+                  $discoveryData = $api.CreateDiscoveryData(0, $SourceId, $ManagedEntityId)
+
+                  #get all server roles information in single shot
+                  $allInstalledFeatures = get-windowsfeature | ?{$_.InstallState -eq "Installed"}
+
+                  #Iterate through discovery method table
+                  if($windowsFeatureTable -eq $null)
+                  {
+                  #Code shouldn't come here
+                  LogWrite "`nServer2012R2Roles::Windows feature table is empty. Exiting the script."
+                  Exit -1
+                  }
+
+                  foreach ($classDetails in $windowsFeatureTable.GetEnumerator())
+                  {
+                  $className = $classDetails.Name
+                  $serverRoleName = $classDetails.Value
+
+                  if($serverRoleName -eq $null)
+                  {
+                  continue
+                  }
+
+                  $getFeatureDetails = $allInstalledFeatures | ?{$_.Name -eq $serverRoleName}
+
+                  #getfeaturedetails will be null if server role is not installed or we are not supporting the installed role
+                  if(($getFeatureDetails -ne $null) -and ($classMPElementTable.Item($className) -ne $null))
+                  {
+                  LogWrite "`nCreating class instance for class $className"
+                  $instance = $discoveryData.CreateClassInstance($classMPElementTable.Item($className))
+                  $instance.AddProperty("$MPElement[Name='Windows!Microsoft.Windows.Computer']/PrincipalName$", $computerName)
+                  $instance.AddProperty("$MPElement[Name='System!System.Entity']/DisplayName$", $computerName)
+                  $instance.AddProperty("$MPElement[Name='LW.Base.Microsoft.Windows.ComputerRole.Category']/CategoryName$", $classCategoryTable.Item($className))
+                  $discoveryData.AddInstance($instance)
+                  }
+                  }
+
+                  $scriptEndTime = Get-Date
+                  $totalScriptRunTime = ($scriptEndTime - $scriptStartTime) | select-object TotalSeconds
+                  $totalScriptRunTime = $totalScriptRunTime.TotalSeconds
+                  LogWrite "`n Total time taken to run the script $totalScriptRunTime"
+
+                  #Log an event after running the script
+                  $api.LogScriptEvent("Server2012R2Roles.ps1", 5001, 0, $script:logMessage)
+
+                  #Return discovery property bag
+                  $discoveryData</ScriptBody>
+                <Parameters>
+                  <Parameter>
+                    <Name>sourceID</Name>
+                    <Value>$MPElement$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>managedEntityID</Name>
+                    <Value>$Target/Id$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>computerName</Name>
+                    <Value>$Config/ComputerPrincipalName$</Value>
+                  </Parameter>
+                </Parameters>
+                <TimeoutSeconds>$Config/TimeoutSeconds$</TimeoutSeconds>
+                <StrictErrorHandling>false</StrictErrorHandling>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="PowerShellDiscoveryProbe">
+                <Node ID="Scheduler" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.Discovery.Data</OutputType>
+      </DataSourceModuleType>
+      <DataSourceModuleType ID="LW.Microsoft.Windows.Server.2012.Role.Discovery.DataSource" Accessibility="Public" RunAs="System!System.PrivilegedMonitoringAccount" Batching="false">
+        <Configuration>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:unsignedInt" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="1" name="ComputerPrincipalName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="1" name="TimeoutSeconds" type="xsd:unsignedInt" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int" />
+          <OverrideableParameter ID="TimeoutSeconds" Selector="$Config/TimeoutSeconds$" ParameterType="int" />
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Scheduler" TypeID="System!System.Discovery.Scheduler">
+                <Scheduler>
+                  <SimpleReccuringSchedule>
+                    <Interval Unit="Seconds">$Config/IntervalSeconds$</Interval>
+                  </SimpleReccuringSchedule>
+                  <ExcludeDates />
+                </Scheduler>
+              </DataSource>
+              <ProbeAction ID="PowerShellDiscoveryProbe" TypeID="Windows!Microsoft.Windows.PowerShellDiscoveryProbe">
+                <ScriptName>"Lightweight 2012 server roles discovery script"</ScriptName>
+                <ScriptBody>
+                  param ([String] $sourceID, [String] $managedEntityID, [String] $computerName)
+                  				  #Copyright (c) Microsoft Corporation. All rights reserved.
+                  #*************************************************************************
+                  #Author - Arpit Mittal
+                  #ScriptName: "Server2012Roles.ps1"$
+                  #Purpose: This script along with ServerOSVersions.ps1 will discover installed server roles
+                  # on the Windows Server 2012.
+                  #*************************************************************************
+
+                  $windowsFeatureTable = @{}
+                  $classMPElementTable = @{}
+                  $classCategoryTable = @{}
+
+                  #Get-WindowsFeature Discoveries
+                  #AD Certificate Services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.AD.Certificate.2012","AD-Certificate")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.AD.Certificate.2012","`$MPElement[Name='LW.Microsoft.Windows.Server.AD.Certificate.2012']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.AD.Certificate.2012","Active Directory Certification Services 2012/2012 R2")
+
+                  #AD Federation Services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.AD.Federation.2012","ADFS-Federation")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.AD.Federation.2012","`$MPElement[Name='LW.Microsoft.Windows.Server.AD.Federation.2012']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.AD.Federation.2012","Active Directory Federation Services")
+
+                  #AD Right Management Services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.AD.Rights.Management.2012","ADRMS")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.AD.Rights.Management.2012","`$MPElement[Name='LW.Microsoft.Windows.Server.AD.Rights.Management.2012']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.AD.Rights.Management.2012","Active Directory Rights Management Services 2012/2012 R2")
+
+                  #DHCP
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.DHCP.2012","DHCP")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.DHCP.2012","`$MPElement[Name='LW.Microsoft.Windows.Server.DHCP.2012']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.DHCP.2012","DHCP Server")
+
+                  #DNS
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.DNS.2012","DNS")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.DNS.2012","`$MPElement[Name='LW.Microsoft.Windows.Server.DNS.2012']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.DNS.2012","Domain Naming Service 2012/2012R2")
+
+                  #File Services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.File.Services.2012","File-Services")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.File.Services.2012","`$MPElement[Name='LW.Microsoft.Windows.Server.File.Services.2012']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.File.Services.2012","File Services 2012")
+
+                  #Multi Tenant Remote Access
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.Remote.Access.2012","RemoteAccess")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.Remote.Access.2012","`$MPElement[Name='LW.Microsoft.Windows.Server.Remote.Access.2012']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.Remote.Access.2012","Remote Access 2012/2012 R2")
+
+                  #Network Load Balancing
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.NLB.2012","NLB")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.NLB.2012","`$MPElement[Name='LW.Microsoft.Windows.Server.NLB.2012']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.NLB.2012","Network Load Balancing")
+
+                  #Remote Desktop Services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.Remote.Desktop.Services.2012","Remote-Desktop-Services")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.Remote.Desktop.Services.2012","`$MPElement[Name='LW.Microsoft.Windows.Server.Remote.Desktop.Services.2012']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.Remote.Desktop.Services.2012","Remote Desktop Services 2012")
+
+                  #Windows Deployment Services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Deployment.Services.2012","WDS")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Deployment.Services.2012","`$MPElement[Name='LW.Microsoft.Windows.Deployment.Services.2012']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Deployment.Services.2012","Windows Deployment Services 2012")
+
+                  #Windows Update Services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Update.Services.2012","UpdateServices")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Update.Services.2012","`$MPElement[Name='LW.Microsoft.Windows.Update.Services.2012']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Update.Services.2012","Windows Server Update Services 2012/2012 R2")
+
+                  #Message Queuing Services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.Queuing.2012","MSMQ")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.Queuing.2012","`$MPElement[Name='LW.Microsoft.Windows.Server.Queuing.2012']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.Queuing.2012","Message Queuing 2012")
+
+                  #Print Services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.Print.Services.2012","Print-Server")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.Print.Services.2012","`$MPElement[Name='LW.Microsoft.Windows.Server.Print.Services.2012']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.Print.Services.2012","Print Server 2012/2012 R2")
+
+                  #Hyper-V Services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.HyperV.2012","Hyper-V")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.HyperV.2012","`$MPElement[Name='LW.Microsoft.Windows.Server.HyperV.2012']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.HyperV.2012","Hyper-V 2012")
+
+                  #Branch Cache
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.Branch.Cache.2012","BranchCache")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.Branch.Cache.2012","`$MPElement[Name='LW.Microsoft.Windows.Server.Branch.Cache.2012']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.Branch.Cache.2012","Branch Cache")
+
+                  #Cluster
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.Cluster.2012","Failover-Clustering")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.Cluster.2012","`$MPElement[Name='LW.Microsoft.Windows.Server.Cluster.2012']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.Cluster.2012","Windows Server Cluster")
+
+                  #Windows Server Backup
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.Backup.2012","Windows-Server-Backup")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.Backup.2012","`$MPElement[Name='LW.Microsoft.Windows.Server.Backup.2012']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.Backup.2012","Windows Server Backup")
+
+                  #IIS
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.IIS.2012","Web-Server")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.IIS.2012","`$MPElement[Name='LW.Microsoft.Windows.Server.IIS.2012']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.IIS.2012","IIS 2012")
+
+                  #Active Directory
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.ActiveDirectory.2012","AD-Domain-Services")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.ActiveDirectory.2012","`$MPElement[Name='LW.Microsoft.Windows.Server.ActiveDirectory.2012']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.ActiveDirectory.2012","Active Directory Domain Services 2008/2008R2/2012/2012R2")
+
+                  function LogWrite
+                  {
+                  Param([string]$logString)
+                  $script:logMessage += $logString
+                  }
+
+                  #scriptStartTime will help in calculating script run time
+                  $scriptStartTime = Get-Date
+                  $script:logMessage = ''
+
+                  LogWrite "`nServer2012Roles::Starting nServer2012Roles script."
+
+                  if(($SourceId -eq $null) -or ($ManagedEntityId -eq $null) -or ($computerName -eq $null))
+                  {
+                  LogWrite "`nServer2012Roles::SourceId, ManagedEntityId or Computer name is null. Exiting script."
+                  Exit -1
+                  }
+
+                  #Create discovery property bag only once as we can't return multiple property bags
+                  $api = new-object -comObject 'MOM.ScriptAPI'
+                  $discoveryData = $api.CreateDiscoveryData(0, $SourceId, $ManagedEntityId)
+
+                  #get all server roles information in single shot
+                  $allInstalledFeatures = get-windowsfeature | ?{$_.InstallState -eq "Installed"}
+
+                  #Iterate through discovery method table
+                  if($windowsFeatureTable -eq $null)
+                  {
+                  #Code shouldn't come here
+                  LogWrite "`nServer2012Roles::Windows feature table is empty. Exiting the script."
+                  Exit -1
+                  }
+
+                  foreach ($classDetails in $windowsFeatureTable.GetEnumerator())
+                  {
+                  $className = $classDetails.Name
+                  $serverRoleName = $classDetails.Value
+
+                  if($serverRoleName -eq $null)
+                  {
+                  continue
+                  }
+
+                  $getFeatureDetails = $allInstalledFeatures | ?{$_.Name -eq $serverRoleName}
+
+                  #getfeaturedetails will be null if server role is not installed or we are not supporting the installed role
+                  if(($getFeatureDetails -ne $null) -and ($classMPElementTable.Item($className) -ne $null))
+                  {
+                  LogWrite "`nCreating class instance for class $className"
+                  $instance = $discoveryData.CreateClassInstance($classMPElementTable.Item($className))
+                  $instance.AddProperty("$MPElement[Name='Windows!Microsoft.Windows.Computer']/PrincipalName$", $computerName)
+                  $instance.AddProperty("$MPElement[Name='System!System.Entity']/DisplayName$", $computerName)
+                  $instance.AddProperty("$MPElement[Name='LW.Base.Microsoft.Windows.ComputerRole.Category']/CategoryName$", $classCategoryTable.Item($className))
+                  $discoveryData.AddInstance($instance)
+                  }
+                  }
+
+                  $scriptEndTime = Get-Date
+                  $totalScriptRunTime = ($scriptEndTime - $scriptStartTime) | select-object TotalSeconds
+                  $totalScriptRunTime = $totalScriptRunTime.TotalSeconds
+                  LogWrite "`n Total time taken to run the script $totalScriptRunTime"
+
+                  #Log an event after running the script
+                  $api.LogScriptEvent("Server2012Roles.ps1", 5001, 0, $script:logMessage)
+
+                  #Return discovery property bag
+                  $discoveryData</ScriptBody>
+                <Parameters>
+                  <Parameter>
+                    <Name>sourceID</Name>
+                    <Value>$MPElement$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>managedEntityID</Name>
+                    <Value>$Target/Id$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>computerName</Name>
+                    <Value>$Config/ComputerPrincipalName$</Value>
+                  </Parameter>
+                </Parameters>
+                <TimeoutSeconds>$Config/TimeoutSeconds$</TimeoutSeconds>
+                <StrictErrorHandling>false</StrictErrorHandling>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="PowerShellDiscoveryProbe">
+                <Node ID="Scheduler" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.Discovery.Data</OutputType>
+      </DataSourceModuleType>
+      <DataSourceModuleType ID="LW.Microsoft.Windows.Server.2008R2.Role.Discovery.DataSource" Accessibility="Public" RunAs="System!System.PrivilegedMonitoringAccount" Batching="false">
+        <Configuration>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:unsignedInt" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="1" name="ComputerPrincipalName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="1" name="TimeoutSeconds" type="xsd:unsignedInt" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int" />
+          <OverrideableParameter ID="TimeoutSeconds" Selector="$Config/TimeoutSeconds$" ParameterType="int" />
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Scheduler" TypeID="System!System.Discovery.Scheduler">
+                <Scheduler>
+                  <SimpleReccuringSchedule>
+                    <Interval Unit="Seconds">$Config/IntervalSeconds$</Interval>
+                  </SimpleReccuringSchedule>
+                  <ExcludeDates />
+                </Scheduler>
+              </DataSource>
+              <ProbeAction ID="PowerShellDiscoveryProbe" TypeID="Windows!Microsoft.Windows.PowerShellDiscoveryProbe">
+                <ScriptName>"Lightweight 2008R2 server roles discovery script"</ScriptName>
+                <ScriptBody>
+                  param ([String] $sourceID, [String] $managedEntityID, [String] $computerName)
+                  				  #Copyright (c) Microsoft Corporation. All rights reserved.
+                  #*************************************************************************
+                  #Author - Arpit Mittal
+                  #ScriptName: "Server2008R2Roles.ps1"$
+                  #Purpose: This script along with ServerOSVersions.ps1 will discover installed server roles
+                  # on the Windows Server 2008R2.
+                  #*************************************************************************
+
+                  $windowsFeatureTable = @{}
+                  $classMPElementTable = @{}
+                  $classCategoryTable = @{}
+
+                  #Get-WindowsFeature Discoveries
+                  #AD Certificate Services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.AD.Certificate.2008R2","AD-Certificate")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.AD.Certificate.2008R2","`$MPElement[Name='LW.Microsoft.Windows.Server.AD.Certificate.2008R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.AD.Certificate.2008R2","Active Directory Certification Services")
+
+                  #AD Federation Services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.AD.Federation.2008R2","ADFS-Federation")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.AD.Federation.2008R2","`$MPElement[Name='LW.Microsoft.Windows.Server.AD.Federation.2008R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.AD.Federation.2008R2","Active Directory Federation Services")
+
+                  #AD Right Management Services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.AD.Rights.Management.2008R2","ADRMS")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.AD.Rights.Management.2008R2","`$MPElement[Name='LW.Microsoft.Windows.Server.AD.Rights.Management.2008R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.AD.Rights.Management.2008R2","Active Directory Rights Management Services")
+
+                  #DHCP
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.DHCP.2008R2","DHCP")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.DHCP.2008R2","`$MPElement[Name='LW.Microsoft.Windows.Server.DHCP.2008R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.DHCP.2008R2","DHCP Server")
+
+                  #DNS
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.DNS.2008R2","DNS")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.DNS.2008R2","`$MPElement[Name='LW.Microsoft.Windows.Server.DNS.2008R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.DNS.2008R2","Domain Naming Service 2008")
+
+                  #File Services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.File.Services.2008R2","File-Services")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.File.Services.2008R2","`$MPElement[Name='LW.Microsoft.Windows.Server.File.Services.2008R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.File.Services.2008R2","File Services")
+
+                  #Network Load Balancing
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.NLB.2008R2","NLB")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.NLB.2008R2","`$MPElement[Name='LW.Microsoft.Windows.Server.NLB.2008R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.NLB.2008R2","Network Load Balancing")
+
+                  #Remote Desktop Services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.Remote.Desktop.Services.2008R2","Remote-Desktop-Services")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.Remote.Desktop.Services.2008R2","`$MPElement[Name='LW.Microsoft.Windows.Server.Remote.Desktop.Services.2008R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.Remote.Desktop.Services.2008R2","Remote Desktop Services")
+
+                  #Message Queuing Services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.Queuing.2008R2","MSMQ")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.Queuing.2008R2","`$MPElement[Name='LW.Microsoft.Windows.Server.Queuing.2008R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.Queuing.2008R2","Message Queuing 5.0")
+
+                  #Print Services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.Print.Services.2008R2","Print-Server")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.Print.Services.2008R2","`$MPElement[Name='LW.Microsoft.Windows.Server.Print.Services.2008R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.Print.Services.2008R2","Print Server 2008/2008 R2")
+
+                  #Hyper-V Services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.HyperV.2008R2","Hyper-V")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.HyperV.2008R2","`$MPElement[Name='LW.Microsoft.Windows.Server.HyperV.2008R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.HyperV.2008R2","Hyper-V 2008")
+
+                  #Branch Cache
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.Branch.Cache.2008R2","BranchCache")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.Branch.Cache.2008R2","`$MPElement[Name='LW.Microsoft.Windows.Server.Branch.Cache.2008R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.Branch.Cache.2008R2","Branch Cache")
+
+                  #IIS
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.IIS.2008R2","Web-Server")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.IIS.2008R2","`$MPElement[Name='LW.Microsoft.Windows.Server.IIS.2008R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.IIS.2008R2","IIS 2008")
+
+                  #Active Directory Lightweight Directory Services
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.AD.Lightweight.Directory.2008R2","ADLDS")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.AD.Lightweight.Directory.2008R2","`$MPElement[Name='LW.Microsoft.Windows.Server.AD.Lightweight.Directory.2008R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.AD.Lightweight.Directory.2008R2","Active Directory Lightweight Directory Services")
+
+                  #Active Directory
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Server.ActiveDirectory.2008R2","AD-Domain-Services")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.ActiveDirectory.2008R2","`$MPElement[Name='LW.Microsoft.Windows.Server.ActiveDirectory.2008R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.ActiveDirectory.2008R2","Active Directory Domain Services 2008/2008R2/2012/2012R2")
+
+                  #Routing and Remote Access Service
+                  $windowsFeatureTable.Add("LW.Microsoft.Windows.Routing.Remote.Service.2008R2","NPAS-RRAS-Services")
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Routing.Remote.Service.2008R2","`$MPElement[Name='LW.Microsoft.Windows.Routing.Remote.Service.2008R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Routing.Remote.Service.2008R2","Routing and Remote Access Service 2008")
+
+                  function LogWrite
+                  {
+                  Param([string]$logString)
+                  $script:logMessage += $logString
+                  }
+
+                  #scriptStartTime will help in calculating script run time
+                  $scriptStartTime = Get-Date
+                  $script:logMessage = ''
+
+                  LogWrite "`nServer2008R2Roles::Starting Server2008R2Roles script."
+
+                  if(($SourceId -eq $null) -or ($ManagedEntityId -eq $null) -or ($computerName -eq $null))
+                  {
+                  LogWrite "`nServer2008R2Roles::SourceId, ManagedEntityId or Computer name is null. Exiting script."
+                  Exit -1
+                  }
+
+                  #Create discovery property bag only once as we can't return multiple property bags
+                  $api = new-object -comObject 'MOM.ScriptAPI'
+                  $discoveryData = $api.CreateDiscoveryData(0, $SourceId, $ManagedEntityId)
+
+                  #get all server roles information in single shot
+                  Import-Module servermanager
+                  $allInstalledFeatures = get-windowsfeature | ?{$_.Installed -eq "True"}
+
+                  #Iterate through discovery method table
+                  if($windowsFeatureTable -eq $null)
+                  {
+                  #Code shouldn't come here
+                  LogWrite "`nServer2008R2Roles::Windows feature table is empty. Exiting the script."
+                  Exit -1
+                  }
+
+                  foreach ($classDetails in $windowsFeatureTable.GetEnumerator())
+                  {
+                  $className = $classDetails.Name
+                  $serverRoleName = $classDetails.Value
+
+                  if($serverRoleName -eq $null)
+                  {
+                  continue
+                  }
+
+                  $getFeatureDetails = $allInstalledFeatures | ?{$_.Name -eq $serverRoleName}
+
+                  #getfeaturedetails will be null if server role is not installed or we are not supporting the installed role
+                  if(($getFeatureDetails -ne $null) -and ($classMPElementTable.Item($className) -ne $null))
+                  {
+                  LogWrite "`nCreating class instance for class $className"
+                  $instance = $discoveryData.CreateClassInstance($classMPElementTable.Item($className))
+                  $instance.AddProperty("$MPElement[Name='Windows!Microsoft.Windows.Computer']/PrincipalName$", $computerName)
+                  $instance.AddProperty("$MPElement[Name='System!System.Entity']/DisplayName$", $computerName)
+                  $instance.AddProperty("$MPElement[Name='LW.Base.Microsoft.Windows.ComputerRole.Category']/CategoryName$", $classCategoryTable.Item($className))
+                  $discoveryData.AddInstance($instance)
+                  }
+                  }
+
+                  $scriptEndTime = Get-Date
+                  $totalScriptRunTime = ($scriptEndTime - $scriptStartTime) | select-object TotalSeconds
+                  $totalScriptRunTime = $totalScriptRunTime.TotalSeconds
+                  LogWrite "`n Total time taken to run the script $totalScriptRunTime"
+
+                  #Log an event after running the script
+                  $api.LogScriptEvent("Server2008R2Roles.ps1", 5001, 0, $script:logMessage)
+
+                  #Return discovery property bag
+                  $discoveryData</ScriptBody>
+                <Parameters>
+                  <Parameter>
+                    <Name>sourceID</Name>
+                    <Value>$MPElement$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>managedEntityID</Name>
+                    <Value>$Target/Id$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>computerName</Name>
+                    <Value>$Config/ComputerPrincipalName$</Value>
+                  </Parameter>
+                </Parameters>
+                <TimeoutSeconds>$Config/TimeoutSeconds$</TimeoutSeconds>
+                <StrictErrorHandling>false</StrictErrorHandling>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="PowerShellDiscoveryProbe">
+                <Node ID="Scheduler" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.Discovery.Data</OutputType>
+      </DataSourceModuleType>
+      <DataSourceModuleType ID="LW.Microsoft.Windows.NonServerRoles.Registry.Discovery.DataSource" Accessibility="Public" RunAs="System!System.PrivilegedMonitoringAccount" Batching="false">
+        <Configuration>
+          <xsd:element minOccurs="1" name="IntervalSeconds" type="xsd:unsignedInt" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="1" name="ComputerPrincipalName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="1" name="TimeoutSeconds" type="xsd:unsignedInt" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int" />
+          <OverrideableParameter ID="TimeoutSeconds" Selector="$Config/TimeoutSeconds$" ParameterType="int" />
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Scheduler" TypeID="System!System.Discovery.Scheduler">
+                <Scheduler>
+                  <SimpleReccuringSchedule>
+                    <Interval Unit="Seconds">$Config/IntervalSeconds$</Interval>
+                  </SimpleReccuringSchedule>
+                  <ExcludeDates />
+                </Scheduler>
+              </DataSource>
+              <ProbeAction ID="PowerShellDiscoveryProbe" TypeID="Windows!Microsoft.Windows.PowerShellDiscoveryProbe">
+                <ScriptName>"Lightweight non server roles discovery script"</ScriptName>
+                <ScriptBody>
+                  param ([String] $sourceID, [String] $managedEntityID, [String] $computerName)
+                  				  #Copyright (c) Microsoft Corporation. All rights reserved.
+                  #*************************************************************************
+                  #Author - Arpit Mittal
+                  #ScriptName: "NonServerRoles.ps1"$
+                  #Purpose: This script will discover installed non-server roles on the Windows computers
+                  #by searching the registries
+                  #*************************************************************************
+				 
+				  #Table containing class name with multiple registry paths
+                  $registryPathTable = @{}
+                  #Table containing key value pairs for each registry path
+                  $regKeyValuePairs = @{}
+                  #Mapping of class names with their class instance names
+                  $classMPElementTable = @{}
+                  #Mapping of class name with category names
+                  $classCategoryTable = @{}
+
+                  #Get-WindowsFeature Discoveries
+                  #SQL Server 2005
+                  $registryPathTable.Add("LW.Microsoft.Windows.SQL.Server.2005",@("HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\90\Machines"))
+                  $classMPElementTable.Add("LW.Microsoft.Windows.SQL.Server.2005","`$MPElement[Name='LW.Microsoft.Windows.SQL.Server.2005']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.SQL.Server.2005","SQL Server 2005")
+
+                  #SQL Server 2008
+                  $registryPathTable.Add("LW.Microsoft.Windows.SQL.Server.2008",@("HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\100\Machines"))
+                  $classMPElementTable.Add("LW.Microsoft.Windows.SQL.Server.2008","`$MPElement[Name='LW.Microsoft.Windows.SQL.Server.2008']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.SQL.Server.2008","SQL Server 2008")
+
+                  #SQL Server 2012
+                  $registryPathTable.Add("LW.Microsoft.Windows.SQL.Server.2012",@("HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\110\Machines"))
+                  $classMPElementTable.Add("LW.Microsoft.Windows.SQL.Server.2012","`$MPElement[Name='LW.Microsoft.Windows.SQL.Server.2012']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.SQL.Server.2012","SQL Server 2012")
+
+                  #SQL Server 2014
+                  $registryPathTable.Add("LW.Microsoft.Windows.SQL.Server.2014",@("HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\120\Machines"))
+                  $classMPElementTable.Add("LW.Microsoft.Windows.SQL.Server.2014","`$MPElement[Name='LW.Microsoft.Windows.SQL.Server.2014']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.SQL.Server.2014","SQL Server 2014")
+
+                  #Windows Server Backup
+                  $registryPathTable.Add("LW.Microsoft.Windows.Server.Backup",("HKLM:\SYSTEM\CurrentControlSet\Services\wbengine"))
+                  $regKeyValuePairs.Add("HKLM:\SYSTEM\CurrentControlSet\Services\wbengine\LW.Microsoft.Windows.Server.Backup",@{"ImagePath"="%systemroot%\system32\wbengine.exe"})
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Server.Backup","`$MPElement[Name='LW.Microsoft.Windows.Server.Backup']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Server.Backup","Windows Server Backup")
+
+                  #BizTalk server 2013
+                  $registryPathTable.Add("LW.Microsoft.Windows.Biztalk.2013",("HKLM:\SOFTWARE\Microsoft\BizTalk Server\3.0"))
+                  $regKeyValuePairs.Add("HKLM:\SOFTWARE\Microsoft\BizTalk Server\3.0\LW.Microsoft.Windows.Biztalk.2013",@{"ProductVersion"="3.10.229.0"})
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Biztalk.2013","`$MPElement[Name='LW.Microsoft.Windows.Biztalk.2013']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Biztalk.2013","BizTalk 2013")
+
+                  #BizTalk server 2013R2
+                  $registryPathTable.Add("LW.Microsoft.Windows.Biztalk.2013R2",("HKLM:\SOFTWARE\Microsoft\BizTalk Server\3.0"))
+                  $regKeyValuePairs.Add("HKLM:\SOFTWARE\Microsoft\BizTalk Server\3.0\LW.Microsoft.Windows.Biztalk.2013R2",@{"ProductVersion"="3.11"})
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Biztalk.2013R2","`$MPElement[Name='LW.Microsoft.Windows.Biztalk.2013R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Biztalk.2013R2","BizTalk 2013 R2")
+
+                  #CRM 2011
+                  $registryPathTable.Add("LW.Microsoft.Windows.CRM.2011",("HKLM:\SOFTWARE\Microsoft\MSCRM"))
+                  $regKeyValuePairs.Add("HKLM:\SOFTWARE\Microsoft\MSCRM\LW.Microsoft.Windows.CRM.2011",@{"CRM_Server_Version"="^5.*"})
+                  $classMPElementTable.Add("LW.Microsoft.Windows.CRM.2011","`$MPElement[Name='LW.Microsoft.Windows.CRM.2011']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.CRM.2011","Dynamics CRM 2011")
+
+                  #CRM 2013
+                  $registryPathTable.Add("LW.Microsoft.Windows.CRM.2013",("HKLM:\SOFTWARE\Microsoft\MSCRM"))
+                  $regKeyValuePairs.Add("HKLM:\SOFTWARE\Microsoft\MSCRM\LW.Microsoft.Windows.CRM.2013",@{"CRM_Server_Version"="^6.*"})
+                  $classMPElementTable.Add("LW.Microsoft.Windows.CRM.2013","`$MPElement[Name='LW.Microsoft.Windows.CRM.2013']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.CRM.2013","Dynamics CRM 2013")
+
+                  #CRM 2015
+                  $registryPathTable.Add("LW.Microsoft.Windows.CRM.2015",("HKLM:\SOFTWARE\Microsoft\MSCRM"))
+                  $regKeyValuePairs.Add("HKLM:\SOFTWARE\Microsoft\MSCRM\LW.Microsoft.Windows.CRM.2015",@{"CRM_Server_Version"="^7.*"})
+                  $classMPElementTable.Add("LW.Microsoft.Windows.CRM.2015","`$MPElement[Name='LW.Microsoft.Windows.CRM.2015']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.CRM.2015","Dynamics CRM 2015")
+
+                  #NAV 2013
+                  $registryPathTable.Add("LW.Microsoft.Windows.NAV.2013",("HKLM:\SOFTWARE\Microsoft\Microsoft Dynamics NAV\70\Service"))
+                  $classMPElementTable.Add("LW.Microsoft.Windows.NAV.2013","`$MPElement[Name='LW.Microsoft.Windows.NAV.2013']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.NAV.2013","Dynamics NAV 2013")
+
+                  #NAV 2013R2
+                  $registryPathTable.Add("LW.Microsoft.Windows.NAV.2013R2",("HKLM:\SOFTWARE\Microsoft\Microsoft Dynamics NAV\71\Service"))
+                  $classMPElementTable.Add("LW.Microsoft.Windows.NAV.2013R2","`$MPElement[Name='LW.Microsoft.Windows.NAV.2013R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.NAV.2013R2","Dynamics NAV 2013")
+
+
+                  #Exchange Server 2013
+                  $registryPathTable.Add("LW.Microsoft.Windows.Exchange.Server.2013",("HKLM:\SOFTWARE\Microsoft\ExchangeServer\v15\Setup"))
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Exchange.Server.2013","`$MPElement[Name='LW.Microsoft.Windows.Exchange.Server.2013']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Exchange.Server.2013","Exchange 2013")
+
+                  #SharePoint Server 2013
+                  $registryPathTable.Add("LW.Microsoft.Windows.SharePoint.Server.2013",("HKLM:\SOFTWARE\Microsoft\Office Server\15.0"))
+                  $classMPElementTable.Add("LW.Microsoft.Windows.SharePoint.Server.2013","`$MPElement[Name='LW.Microsoft.Windows.SharePoint.Server.2013']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.SharePoint.Server.2013","SharePoint Server 2013")
+
+                  #SharePoint Foundation Server 2013
+                  $registryPathTable.Add("LW.Microsoft.Windows.SharePoint.Foundation.Server.2013",("HKLM:\SOFTWARE\Microsoft\Shared Tools\Web Server Extensions\15.0\WSS"))
+                  $classMPElementTable.Add("LW.Microsoft.Windows.SharePoint.Foundation.Server.2013","`$MPElement[Name='LW.Microsoft.Windows.SharePoint.Foundation.Server.2013']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.SharePoint.Foundation.Server.2013","SharePoint Foundation 2013")
+
+                  #SPF 2012R2
+                  $registryPathTable.Add("LW.Microsoft.Windows.SPF.2012R2",("HKLM:\SOFTWARE\Microsoft\Service Provider Foundation"))
+                  $regKeyValuePairs.Add("HKLM:\SOFTWARE\Microsoft\Service Provider Foundation\LW.Microsoft.Windows.SPF.2012R2",@{"Version"="^7.2*"})
+                  $classMPElementTable.Add("LW.Microsoft.Windows.SPF.2012R2","`$MPElement[Name='LW.Microsoft.Windows.SPF.2012R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.SPF.2012R2","Service Provider Foundation")
+
+                  #Host Integration Server 2013
+                  $registryPathTable.Add("LW.Microsoft.Windows.Host.Integration.Server.2013",@("HKLM:\SOFTWARE\Microsoft\Host Integration Server\9.0"))
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Host.Integration.Server.2013","`$MPElement[Name='LW.Microsoft.Windows.Host.Integration.Server.2013']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Host.Integration.Server.2013","Host Integration Server 2013")
+
+                  #Orchestrator 2012R2
+                  $registryPathTable.Add("LW.Microsoft.Windows.Orchestrator.2012",@("HKLM:\SYSTEM\CurrentControlSet\Services\omanagement"))
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Orchestrator.2012","`$MPElement[Name='LW.Microsoft.Windows.Orchestrator.2012']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Orchestrator.2012","System Center 2012 - Orchestrator")
+
+                  #SMA 2012R2
+                  $registryPathTable.Add("LW.Microsoft.Windows.SMA.2012R2",@("HKLM:\SOFTWARE\Microsoft\ServiceManagementAutomation"))
+                  $classMPElementTable.Add("LW.Microsoft.Windows.SMA.2012R2","`$MPElement[Name='LW.Microsoft.Windows.SMA.2012R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.SMA.2012R2","ServiceManagementAutomation")
+
+                  #Dynamics AX 2012
+                  $registryPathTable.Add("LW.Microsoft.Windows.Dynamics.AX.2012",@("HKLM:\SYSTEM\CurrentControlSet\Services\Dynamics Server\6.0\01"))
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Dynamics.AX.2012","`$MPElement[Name='LW.Microsoft.Windows.Dynamics.AX.2012']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Dynamics.AX.2012","Dynamics AX 2012")
+
+                  #Service Manager 2012 (RTM, SP1, R2)
+                  $registryPathTable.Add("LW.Microsoft.Windows.ServiceManager.2012",@("HKLM:\SOFTWARE\Microsoft\System Center\2010\Service Manager\Setup"))
+                  $regKeyValuePairs.Add("HKLM:\SOFTWARE\Microsoft\System Center\2010\Service Manager\Setup\LW.Microsoft.Windows.ServiceManager.2012",@{"CurrentVersion"="^7.5*"})
+                  $classMPElementTable.Add("LW.Microsoft.Windows.ServiceManager.2012","`$MPElement[Name='LW.Microsoft.Windows.ServiceManager.2012']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.ServiceManager.2012","System Center 2012 - Service Manager")
+
+                  #TFS 2010
+                  $registryPathTable.Add("LW.Microsoft.Windows.TFS.2010",@("HKLM:\SOFTWARE\Microsoft\TeamFoundationServer\10.0\InstalledComponents\ApplicationTier"))
+                  $regKeyValuePairs.Add("HKLM:\SOFTWARE\Microsoft\TeamFoundationServer\10.0\InstalledComponents\ApplicationTier\LW.Microsoft.Windows.TFS.2010",@{"IsConfigured"="^1"})
+                  $classMPElementTable.Add("LW.Microsoft.Windows.TFS.2010","`$MPElement[Name='LW.Microsoft.Windows.TFS.2010']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.TFS.2010","Team Foundation Server 2010")
+
+                  #TFS 2012
+                  $registryPathTable.Add("LW.Microsoft.Windows.TFS.2012",@("HKLM:\SOFTWARE\Microsoft\TeamFoundationServer\11.0\InstalledComponents\ApplicationTier"))
+                  $regKeyValuePairs.Add("HKLM:\SOFTWARE\Microsoft\TeamFoundationServer\11.0\InstalledComponents\ApplicationTier\LW.Microsoft.Windows.TFS.2012",@{"IsConfigured"="^1"})
+                  $classMPElementTable.Add("LW.Microsoft.Windows.TFS.2012","`$MPElement[Name='LW.Microsoft.Windows.TFS.2012']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.TFS.2012","Team Foundation Server 2012")
+
+                  #TFS 2013
+                  $registryPathTable.Add("LW.Microsoft.Windows.TFS.2013",@("HKLM:\SOFTWARE\Microsoft\TeamFoundationServer\12.0\InstalledComponents\ApplicationTier"))
+                  $regKeyValuePairs.Add("HKLM:\SOFTWARE\Microsoft\TeamFoundationServer\12.0\InstalledComponents\ApplicationTier\LW.Microsoft.Windows.TFS.2013",@{"IsConfigured"="^1"})
+                  $classMPElementTable.Add("LW.Microsoft.Windows.TFS.2013","`$MPElement[Name='LW.Microsoft.Windows.TFS.2013']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.TFS.2013","Team Foundation Server 2013")
+
+                  #TFS 2015
+                  $registryPathTable.Add("LW.Microsoft.Windows.TFS.2015",@("HKLM:\SOFTWARE\Microsoft\TeamFoundationServer\14.0\InstalledComponents\ApplicationTier"))
+                  $regKeyValuePairs.Add("HKLM:\SOFTWARE\Microsoft\TeamFoundationServer\14.0\InstalledComponents\ApplicationTier\LW.Microsoft.Windows.TFS.2015",@{"IsConfigured"="^1"})
+                  $classMPElementTable.Add("LW.Microsoft.Windows.TFS.2015","`$MPElement[Name='LW.Microsoft.Windows.TFS.2015']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.TFS.2015","Team Foundation Server 2015")
+
+				  #SCCM 2012
+                  $registryPathTable.Add("LW.Microsoft.Windows.SCCM.2012",("HKLM:\SOFTWARE\Microsoft\SMS\Operations Management"))
+                  $regKeyValuePairs.Add("HKLM:\SOFTWARE\Microsoft\SMS\Operations Management\LW.Microsoft.Windows.SCCM.2012",@{"Version"="^5.0*"})
+                  $classMPElementTable.Add("LW.Microsoft.Windows.SCCM.2012","`$MPElement[Name='LW.Microsoft.Windows.SCCM.2012']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.SCCM.2012","System Center 2012 - Configuration Manager")
+
+				  #MSDTC 2016
+                  $registryPathTable.Add("LW.Microsoft.Windows.MSDTC.2016",("HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\"))
+                  $regKeyValuePairs.Add("HKLM:\SOFTWARE\Microsoft\SMS\Operations Management\LW.Microsoft.Windows.MSDTC.2016",@{"CurrentVersion"="6.3"})
+                  $classMPElementTable.Add("LW.Microsoft.Windows.MSDTC.2016","`$MPElement[Name='LW.Microsoft.Windows.MSDTC.2016']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.MSDTC.2016","Distributed Transaction Coordinator 2016")
+
+				  #MSDTC 2012 R2
+                  $registryPathTable.Add("LW.Microsoft.Windows.MSDTC.2012R2",("HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\"))
+                  $regKeyValuePairs.Add("HKLM:\SOFTWARE\Microsoft\SMS\Operations Management\LW.Microsoft.Windows.MSDTC.2012R2",@{"CurrentVersion"="6.3"})
+                  $classMPElementTable.Add("LW.Microsoft.Windows.MSDTC.2012R2","`$MPElement[Name='LW.Microsoft.Windows.MSDTC.2012R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.MSDTC.2012R2","Distributed Transaction Coordinator 2012 R2")
+
+				  #SQL Server 2016
+                  $registryPathTable.Add("LW.Microsoft.Windows.SQL.Server.2016",@("HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\130\Machines"))
+                  $classMPElementTable.Add("LW.Microsoft.Windows.SQL.Server.2016","`$MPElement[Name='LW.Microsoft.Windows.SQL.Server.2016']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.SQL.Server.2016","SQL Server 2016")
+
+				  #Dynamics AX 2009
+                  $registryPathTable.Add("LW.Microsoft.Windows.Dynamics.AX.2009",@("HKLM:\SYSTEM\CurrentControlSet\Services\Dynamics Server\5.0"))
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Dynamics.AX.2009","`$MPElement[Name='LW.Microsoft.Windows.Dynamics.AX.2009']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Dynamics.AX.2009","Dynamics AX 2009")
+
+				  #Dynamics AX Retail 2012 R3
+                  $registryPathTable.Add("LW.Microsoft.Windows.Dynamics.AX.Retail.2012R3",@("HKLM:\SOFTWARE\Microsoft\Dynamics\6.0"))
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Dynamics.AX.Retail.2012R3","`$MPElement[Name='LW.Microsoft.Windows.Dynamics.AX.Retail.2012R3']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Dynamics.AX.Retail.2012R3","Dynamics AX Retail 2012 R3")
+
+				  #Host Integration Server 2010
+                  $registryPathTable.Add("LW.Microsoft.Windows.Host.Integration.Server.2010",("HKLM:\SOFTWARE\Microsoft\SNA Server\CurrentVersion"))
+                  $regKeyValuePairs.Add("HKLM:\SOFTWARE\Microsoft\SNA Server\CurrentVersion\LW.Microsoft.Windows.Host.Integration.Server.2010",@{"SNAVersion"="^8.5*"})
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Host.Integration.Server.2010","`$MPElement[Name='LW.Microsoft.Windows.Host.Integration.Server.2010']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Host.Integration.Server.2010","Host Integration Server 2010")
+
+				  #SharePoint Foundation Server 2010
+                  $registryPathTable.Add("LW.Microsoft.Windows.SharePoint.Foundation.Server.2010",("HKLM:\SOFTWARE\Microsoft\Shared Tools\Web Server Extensions\14.0\WSS"))
+                  $classMPElementTable.Add("LW.Microsoft.Windows.SharePoint.Foundation.Server.2010","`$MPElement[Name='LW.Microsoft.Windows.SharePoint.Foundation.Server.2010']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.SharePoint.Foundation.Server.2010","Office SharePoint Foundation 2010")
+
+				  #SharePoint 2010 Products
+                  $registryPathTable.Add("LW.Microsoft.Windows.SharePoint.Server.2010",("HKLM:\SOFTWARE\Microsoft\Shared Tools\Web Server Extensions\14.0"))
+                  $classMPElementTable.Add("LW.Microsoft.Windows.SharePoint.Server.2010","`$MPElement[Name='LW.Microsoft.Windows.SharePoint.Server.2010']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.SharePoint.Server.2010","SharePoint 2010 Products")
+
+				  #BizTalk server 2010
+                  $registryPathTable.Add("LW.Microsoft.Windows.Biztalk.2010",("HKLM:\SOFTWARE\Microsoft\BizTalk Server\3.0"))
+                  $regKeyValuePairs.Add("HKLM:\SOFTWARE\Microsoft\BizTalk Server\3.0\LW.Microsoft.Windows.Biztalk.2010",@{"ProductVersion"="3.9.469.0"})
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Biztalk.2010","`$MPElement[Name='LW.Microsoft.Windows.Biztalk.2010']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Biztalk.2010","BizTalk 2010")
+
+				  #BizTalk server 2009
+                  $registryPathTable.Add("LW.Microsoft.Windows.Biztalk.2009",("HKLM:\SOFTWARE\Microsoft\BizTalk Server\3.0"))
+                  $regKeyValuePairs.Add("HKLM:\SOFTWARE\Microsoft\BizTalk Server\3.0\LW.Microsoft.Windows.Biztalk.2009",@{"ProductVersion"="3.8.368.0"})
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Biztalk.2009","`$MPElement[Name='LW.Microsoft.Windows.Biztalk.2009']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Biztalk.2009","BizTalk 2009")
+
+				  #BizTalk server 2006
+                  $registryPathTable.Add("LW.Microsoft.Windows.Biztalk.2006",("HKLM:\SOFTWARE\Microsoft\BizTalk Server\3.0"))
+                  $regKeyValuePairs.Add("HKLM:\SOFTWARE\Microsoft\BizTalk Server\3.0\LW.Microsoft.Windows.Biztalk.2006",@{"ProductVersion"="3.5.1602.0"})
+                  $classMPElementTable.Add("LW.Microsoft.Windows.Biztalk.2006","`$MPElement[Name='LW.Microsoft.Windows.Biztalk.2006']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.Biztalk.2006","BizTalk 2006")
+
+				  #SQL Server 2016 Reporting Services (Native Mode)
+                  $registryPathTable.Add("LW.Microsoft.Windows.SQL.Server.2016.ReportingServices.NativeMode",("HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\130\Machines"))
+                  $classMPElementTable.Add("LW.Microsoft.Windows.SQL.Server.2016.ReportingServices.NativeMode","`$MPElement[Name='LW.Microsoft.Windows.SQL.Server.2016.ReportingServices.NativeMode']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.SQL.Server.2016.ReportingServices.NativeMode","SQL Server 2016 Reporting Services (Native Mode)")
+
+				  #SQL Server 2014 Reporting Services (Native Mode)
+                  $registryPathTable.Add("LW.Microsoft.Windows.SQL.Server.2014.ReportingServices.NativeMode",("HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\120\Machines"))
+                  $classMPElementTable.Add("LW.Microsoft.Windows.SQL.Server.2014.ReportingServices.NativeMode","`$MPElement[Name='LW.Microsoft.Windows.SQL.Server.2014.ReportingServices.NativeMode']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.SQL.Server.2014.ReportingServices.NativeMode","SQL Server 2014 Reporting Services (Native Mode)")
+
+				  #SQL Server 2012 Reporting Services (Native Mode)
+                  $registryPathTable.Add("LW.Microsoft.Windows.SQL.Server.2012.ReportingServices.NativeMode",("HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\110\Machines"))
+                  $classMPElementTable.Add("LW.Microsoft.Windows.SQL.Server.2012.ReportingServices.NativeMode","`$MPElement[Name='LW.Microsoft.Windows.SQL.Server.2012.ReportingServices.NativeMode']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.SQL.Server.2012.ReportingServices.NativeMode","SQL Server 2012 Reporting Services (Native Mode)")
+
+				  #SQL Server 2016 Analysis Services
+                  $registryPathTable.Add("LW.Microsoft.Windows.SQL.Server.2016.AnalysisServices",("HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\130\Machines"))
+                  $classMPElementTable.Add("LW.Microsoft.Windows.SQL.Server.2016.AnalysisServices","`$MPElement[Name='LW.Microsoft.Windows.SQL.Server.2016.AnalysisServices']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.SQL.Server.2016.AnalysisServices","SQL Server 2016 Analysis Services")
+
+				  #SQL Server 2014 Analysis Services
+                  $registryPathTable.Add("LW.Microsoft.Windows.SQL.Server.2014.AnalysisServices",("HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\120\Machines"))
+                  $classMPElementTable.Add("LW.Microsoft.Windows.SQL.Server.2014.AnalysisServices","`$MPElement[Name='LW.Microsoft.Windows.SQL.Server.2014.AnalysisServices']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.SQL.Server.2014.AnalysisServices","SQL Server 2014 Analysis Services")
+
+				  #SQL Server 2012 Analysis Services
+                  $registryPathTable.Add("LW.Microsoft.Windows.SQL.Server.2012.AnalysisServices",("HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\110\Machines"))
+                  $classMPElementTable.Add("LW.Microsoft.Windows.SQL.Server.2012.AnalysisServices","`$MPElement[Name='LW.Microsoft.Windows.SQL.Server.2012.AnalysisServices']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.SQL.Server.2012.AnalysisServices","SQL Server 2012 Analysis Services")
+
+				  #SQL Server 2016 Replication
+                  $registryPathTable.Add("LW.Microsoft.Windows.SQL.Server.2016.Replication",("HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\130\Machines"))
+                  $classMPElementTable.Add("LW.Microsoft.Windows.SQL.Server.2016.Replication","`$MPElement[Name='LW.Microsoft.Windows.SQL.Server.2016.Replication']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.SQL.Server.2016.Replication","SQL Server 2016 Replication")
+
+				  #SQL Server 2014 Replication
+                  $registryPathTable.Add("LW.Microsoft.Windows.SQL.Server.2014.Replication",("HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\120\Machines"))
+                  $classMPElementTable.Add("LW.Microsoft.Windows.SQL.Server.2014.Replication","`$MPElement[Name='LW.Microsoft.Windows.SQL.Server.2014.Replication']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.SQL.Server.2014.Replication","SQL Server 2014 Replication")
+
+				  #SQL Server 2012 Replication
+                  $registryPathTable.Add("LW.Microsoft.Windows.SQL.Server.2012.Replication",("HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\110\Machines"))
+                  $classMPElementTable.Add("LW.Microsoft.Windows.SQL.Server.2012.Replication","`$MPElement[Name='LW.Microsoft.Windows.SQL.Server.2012.Replication']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.SQL.Server.2012.Replication","SQL Server 2012 Replication")
+
+				  #App Controler 2012
+                  $registryPathTable.Add("LW.Microsoft.Windows.AppController.2012R2",@("HKLM:\SOFTWARE\Microsoft\Microsoft System Center App Controller"))
+                  $classMPElementTable.Add("LW.Microsoft.Windows.AppController.2012R2","`$MPElement[Name='LW.Microsoft.Windows.AppController.2012R2']$")
+                  $classCategoryTable.Add("LW.Microsoft.Windows.AppController.2012R2","System Center 2012 - App Controller")
+
+				  #Advanced Threat Analytics
+                  $registryPathTable.Add("LW.Microsoft.AdvancedThreatAnalytics",@("HKLM:\SOFTWARE\Microsoft\Microsoft Advanced Threat Analytics"))
+                  $classMPElementTable.Add("LW.Microsoft.AdvancedThreatAnalytics","`$MPElement[Name='LW.Microsoft.AdvancedThreatAnalytics']$")
+                  $classCategoryTable.Add("LW.Microsoft.AdvancedThreatAnalytics","Advanced Threat Analytics")
+
+				  #SDN Monitoring
+                  $registryPathTable.Add("LW.Microsoft.SDNMonitoring",@("HKLM:\SOFTWARE\MICROSOFT\SDNMonitoringMP\"))
+                  $classMPElementTable.Add("LW.Microsoft.SDNMonitoring","`$MPElement[Name='LW.Microsoft.SDNMonitoring']$")
+                  $classCategoryTable.Add("LW.Microsoft.SDNMonitoring","SDN Monitoring")
+
+				  #Sample Test1
+                  $registryPathTable.Add("LW.Microsoft.Sample.Test1",@("HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\"))
+                  $classMPElementTable.Add("LW.Microsoft.Sample.Test1","`$MPElement[Name='LW.Microsoft.Sample.Test1']$")
+                  $classCategoryTable.Add("LW.Microsoft.Sample.Test1","Sample Test1")
+
+				 
+
+				  function LogWrite
+                  {
+                  Param([string]$logString)
+                  $script:logMessage += $logString
+                  }
+
+				  function Test-AllRegistryValue ($RegKeys)
+				  {
+				   $checkKeyExists = $true
+					foreach ($RegKey in $RegKeys)
+					{
+					  $result = Test-RegistryValue $RegKey
+					  if ( $result -eq $false )
+					  {
+					   $checkKeyExists = $false
+					  }
+					  
+					}
+					 return $checkKeyExists
+				  }
+
+				  function Test-AnyRegistryValue ($RegKeys)
+				  {
+				   $checkKeyExists = $false
+					ForEach ($RegKey in $RegKeys)
+					{
+					  $result = Test-RegistryValue $RegKey
+					  if ( $result -eq $true )
+					  {
+					   $checkKeyExists = $true
+					   break
+					  }
+					  
+					}
+					 return $checkKeyExists
+				  }
+
+
+                  #This function will check the existence of registry path
+                  #Providing path is mandatory, key value is optional
+                  function Test-RegistryValue {
+                  param (
+                  [parameter(Mandatory=$true)]
+                  [ValidateNotNullOrEmpty()]$Path,
+                  [parameter(Mandatory=$false)]
+                  [ValidateNotNullOrEmpty()]$Key,
+                  [parameter(Mandatory=$false)]
+                  [ValidateNotNullOrEmpty()]$Value
+                  )
+
+                  $checkRegistryKeyExists = $false
+
+                  #Check if path exists
+                  $isPathPresent = Test-Path $Path
+
+					  #If only path argument was passed in function and path is present, then return true
+					  if($isPathPresent -and ($Key -eq $null) -and ($Value -eq $null))
+					  {
+					  $checkRegistryKeyExists = $true
+					  }
+					  #handle other scenarios where key or value or both were passed in function arguments
+					  elseif($isPathPresent)
+					  {
+					  #retrieve all keys present on that path
+					  $allKeys = Get-ItemProperty $Path
+
+					  #check if key parameter passed to the function is present in the retrieved keys list
+						  if($allKeys.($Key))
+						  {
+						  #check if value is not null then match it with key or if value is null then return true
+							  if((($Value -ne $null) -and $allKeys.($Key) -match $Value) -or ($Value -eq $null))
+							  {
+							  $checkRegistryKeyExists = $true
+							  }
+						  }
+					  }
+
+                  return $checkRegistryKeyExists
+                  }
+
+                  #scriptStartTime will help in calculating script run time
+                  $scriptStartTime = Get-Date
+                  $script:logMessage = ''
+
+                  LogWrite "`nNonServerRoles::Starting NonServerRoles script."
+
+                  if(($SourceId -eq $null) -or ($ManagedEntityId -eq $null) -or ($computerName -eq $null))
+                  {
+                  LogWrite "`nNonServerRoles::SourceId, ManagedEntityId or Computer name is null. Exiting script."
+                  Exit -1
+                  }
+
+                  #Create discovery property bag only once as we can't return multiple property bags
+                  $api = new-object -comObject 'MOM.ScriptAPI'
+                  $discoveryData = $api.CreateDiscoveryData(0, $SourceId, $ManagedEntityId)
+
+                  #Iterate through discovery method table
+                  if($registryPathTable -eq $null)
+                  {
+                  #Code shouldn't come here
+                  LogWrite "`nNonServerRoles::Registry path table is empty. Exiting the script."
+                  Exit -1
+                  }
+
+                  #Iterate through non-server roles list with their registry paths
+                  foreach ($classDetails in $registryPathTable.GetEnumerator())
+                  {
+                  $className = $classDetails.Name
+                  $regPaths = $classDetails.Value
+                  #Let's set the bool to true for each non-server roles in the list and set to false if non-server role is not installed
+                  $IsValidProperties = $true
+
+					  #Only proceed if non-server role has some paths to test else continue to second entry in registryPathTable
+					  if($regPaths.length -ne 0)
+					  {
+						  foreach($path in $regPaths)
+						  {
+						  $pathWithClass = "$path\$className"
+						  #Check if we need to validate key value pairs for the given path else just test the existence of path
+								if($regKeyValuePairs.Item($pathWithClass) -ne $null)
+								{
+								$pairs = $regKeyValuePairs.Item($pathWithClass)
+								#As a precaution check - if somebody creates a false entry of path in the table with empty key value pairs
+									if($pairs.Count -ne 0)
+									{
+										foreach($keypair in $pairs.GetEnumerator())
+										{
+										#Test the path with key values
+										$valid = Test-RegistryValue -Path $path -Key $keyPair.Key -Value $keyPair.Value
+
+											if($valid -eq $false)
+											{
+											#Set the bool to false so that we don't create instance for this role
+											$IsValidProperties = $false
+											break
+											}
+										}
+									}
+									else
+									{
+									$IsValidProperties = $false
+									break
+									}
+								}
+								else
+								{
+									#Test the existence of the path which has no key value pairs and set bool to false if not found
+									$valid = Test-RegistryValue -Path $path
+
+									if($valid -eq $false)
+									{
+									$IsValidProperties = $false
+									break
+									}
+
+									if($className -eq "LW.Microsoft.Windows.MSDTC.2016")
+									{
+										$IsValidProperties =$false
+										$MSDTCobject = $null
+										$MSDTCobject = Get-WmiObject win32_service -filter "name='MSDTC'"
+										if($MSDTCobject)
+										{
+											$OSObject = Get-WMIObject  Win32_OperatingSystem 
+
+											if($OSObject.ProductType -ne "1" -and $OSObject.Version.Contains("10.0."))
+											{
+											$IsValidProperties =$true
+											}
+
+										}
+									}
+									elseif($className -eq "LW.Microsoft.Windows.MSDTC.2012R2")
+									{
+										$IsValidProperties =$false
+										$MSDTCobject = $null
+										$MSDTCobject = Get-WmiObject win32_service -filter "name='MSDTC'"
+										if($MSDTCobject)
+										{
+											$OSObject = Get-WMIObject  Win32_OperatingSystem 
+
+											if($OSObject.ProductType -ne "1" -and $OSObject.Version.Contains("6.3."))
+											{
+											$IsValidProperties =$true
+											}
+										}
+									}
+									elseif($className -eq "LW.Microsoft.Windows.SharePoint.Server.2010")
+									{
+										$IsValidProperties =$false
+										$Regkeys = @(
+										"HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\Office14.WCSERVER"
+										"HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\Office14.SSERVERX"
+										"HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\Office14.SSERVER"
+										"HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\Office14.OSERVER"
+											)
+										$Allvalid = Test-AnyRegistryValue $Regkeys
+										if($Allvalid -eq $true)
+										{  
+											$IsValidProperties =$true
+										}
+									}
+									elseif($className -eq "LW.Microsoft.Windows.SQL.Server.2016.ReportingServices.NativeMode")
+									{
+										$IsValidProperties =$false
+										$regkeys1 = @(
+											"HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\130\Machines"
+											"HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\Instance Names\RS"
+												)
+										$regkeys2 = @(
+										"HKLM:\SOFTWARE\Wow6432Node\Microsoft\Microsoft SQL Server\130\Machines"
+										"HKLM:\SOFTWARE\Wow6432Node\Microsoft\Microsoft SQL Server\Instance Names\RS"
+											)
+
+										$allvalid1 = Test-AllRegistryValue $regkeys1
+										$allvalid2 = Test-AllRegistryValue $regkeys2
+
+										if($allvalid1 -eq $true -Or $allvalid2 -eq $true )
+										{  
+											$IsValidProperties =$true
+										}
+									}
+									elseif($className -eq "LW.Microsoft.Windows.SQL.Server.2014.ReportingServices.NativeMode")
+									{
+										$IsValidProperties =$false
+										$regkeys1 = @(
+										"HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\120\Machines"
+										"HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\Instance Names\RS"
+											)
+
+										$regkeys2 = @(
+										"HKLM:\SOFTWARE\Wow6432Node\Microsoft\Microsoft SQL Server\120\Machines"
+										"HKLM:\SOFTWARE\Wow6432Node\Microsoft\Microsoft SQL Server\Instance Names\RS"
+											)
+
+										$allvalid1 = Test-AllRegistryValue $regkeys1
+										$allvalid2 = Test-AllRegistryValue $regkeys2
+
+										if($allvalid1 -eq $true -Or $allvalid2 -eq $true )
+										{  
+											$IsValidProperties =$true
+										}
+									}
+									elseif($className -eq "LW.Microsoft.Windows.SQL.Server.2012.ReportingServices.NativeMode")
+									{
+										$IsValidProperties =$false
+										$regkeys1 = @(
+										"HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\110\Machines"
+										"HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\Instance Names\RS"
+											)
+
+										$regkeys2 = @(
+										"HKLM:\SOFTWARE\Wow6432Node\Microsoft\Microsoft SQL Server\110\Machines"
+										"HKLM:\SOFTWARE\Wow6432Node\Microsoft\Microsoft SQL Server\Instance Names\RS"
+											)
+
+										$allvalid1 = Test-AllRegistryValue $regkeys1
+										$allvalid2 = Test-AllRegistryValue $regkeys2
+
+										if($allvalid1 -eq $true -Or $allvalid2 -eq $true )
+										{  
+											$IsValidProperties =$true
+										}
+									}
+									elseif($className -eq "LW.Microsoft.Windows.SQL.Server.2016.AnalysisServices")
+									{
+										$IsValidProperties =$false
+										$Regkeys = @(
+										"HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\130\Machines"
+										"HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\Microsoft Analysis Services"
+											)
+
+										$Regkeys = @(
+										"HKLM:\SOFTWARE\Wow6432Node\Microsoft\Microsoft SQL Server\130\Machines"
+										"HKLM:\SOFTWARE\Wow6432Node\Microsoft\Microsoft SQL Server\Microsoft Analysis Services"
+											)
+
+										$allvalid1 = Test-AllRegistryValue $regkeys1
+										$allvalid2 = Test-AllRegistryValue $regkeys2
+
+										if($allvalid1 -eq $true -Or $allvalid2 -eq $true )
+										{  
+											$IsValidProperties =$true
+										}
+									}
+									elseif($className -eq "LW.Microsoft.Windows.SQL.Server.2014.AnalysisServices")
+									{
+										$IsValidProperties =$false
+										$regkeys1 = @(
+										"HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\120\Machines"
+										"HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\Microsoft Analysis Services"
+											)
+
+										$regkeys2 = @(
+										"HKLM:\SOFTWARE\Wow6432Node\Microsoft\Microsoft SQL Server\120\Machines"
+										"HKLM:\SOFTWARE\Wow6432Node\Microsoft\Microsoft SQL Server\Microsoft Analysis Services"
+											)
+
+										$allvalid1 = Test-AllRegistryValue $regkeys1
+										$allvalid2 = Test-AllRegistryValue $regkeys2
+									   
+										if($allvalid1 -eq $true -Or $allvalid2 -eq $true )
+										{  
+											$IsValidProperties =$true
+										}
+									}
+									elseif($className -eq "LW.Microsoft.Windows.SQL.Server.2012.AnalysisServices")
+									{
+										$IsValidProperties =$false
+										$regkeys1 = @(
+										"HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\110\Machines"
+										"HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\Microsoft Analysis Services"
+											)
+
+										$regkeys2 = @(
+										"HKLM:\SOFTWARE\Wow6432Node\Microsoft\Microsoft SQL Server\110\Machines"
+										"HKLM:\SOFTWARE\Wow6432Node\Microsoft\Microsoft SQL Server\Microsoft Analysis Services"
+											)
+
+										$allvalid1 = Test-AllRegistryValue $regkeys1
+										$allvalid2 = Test-AllRegistryValue $regkeys2
+												
+										if($allvalid1 -eq $true -Or $allvalid2 -eq $true )
+										{  
+											$IsValidProperties =$true
+										}
+									}
+									elseif(($className -eq "LW.Microsoft.Windows.SQL.Server.2016.Replication") -Or ($className -eq "LW.Microsoft.Windows.SQL.Server.2014.Replication") -Or ($className -eq "LW.Microsoft.Windows.SQL.Server.2012.Replication"))
+									{
+									    $IsValidProperties =$false
+										try
+										{
+											# Make Connecting string to the SQL Server Instance and the Database
+											$con = New-Object System.Data.SqlClient.SqlConnection("Data Source=.; Initial Catalog=Master; Integrated Security=SSPI")
+											$stmt_select = "SELECT COUNT(*) FROM sys.databases WHERE is_distributor = 1"
+											# Create command to execute to SQL connection
+											$cmd = $con.CreateCommand()
+											$cmd.CommandText = $stmt_select
+											$con.Open()
+											# Invoke the Insert statement
+											if($cmd.ExecuteScalar() -gt 0)
+											{
+												$IsValidProperties =$true
+											}
+										}
+										catch
+										{
+											$con.Close()
+											$cmd.Dispose()
+											$IsValidProperties =$false
+										}
+										finally
+										{
+											$con.Close()
+											$cmd.Dispose()
+										}  
+									}
+									elseif($className -eq "LW.Microsoft.SDNMonitoring")
+									{
+										$NCURLRegKeyName = "RestUrl"
+										#Get the Rest URL from the registry
+										$NCRegistry  = Get-ItemProperty -Path $key -Name $NCURLRegKeyName -ErrorAction SilentlyContinue
+											if($NCRegistry -eq $null)
+											{
+											    $IsValidProperties =$false
+											}
+											$NCURL = $NCRegistry.$NCURLRegKeyName
+											if($NCURL -eq $null)
+											{
+												$IsValidProperties =$false
+											}
+											$IsValidProperties =$true
+									}
+								}
+						  }
+						 #getfeaturedetails will be null if supported role in NOT present in installed list
+						  if($IsValidProperties -eq $true -and $classMPElementTable.Item($className) -ne $null)
+						  {
+						  LogWrite "`nCreating class instance for class $className"
+						  $instance = $discoveryData.CreateClassInstance($classMPElementTable.Item($className))
+						  $instance.AddProperty("$MPElement[Name='Windows!Microsoft.Windows.Computer']/PrincipalName$", $computerName)
+						  $instance.AddProperty("$MPElement[Name='System!System.Entity']/DisplayName$", $computerName)
+						  $instance.AddProperty("$MPElement[Name='LW.Base.Microsoft.Windows.ComputerRole.Category']/CategoryName$", $classCategoryTable.Item($className))
+						  $discoveryData.AddInstance($instance)
+						  }
+					  }
+                  }
+
+                  $scriptEndTime = Get-Date
+                  $totalScriptRunTime = ($scriptEndTime - $scriptStartTime) | select-object TotalSeconds
+                  $totalScriptRunTime = $totalScriptRunTime.TotalSeconds
+                  LogWrite "`n Total time taken to run the script $totalScriptRunTime"
+
+                  #Log an event after running the script
+                  $api.LogScriptEvent("NonServerRoles.ps1", 5002, 0, $script:logMessage)
+
+                  #Return discovery property bag
+                  $discoveryData</ScriptBody>
+                <Parameters>
+                  <Parameter>
+                    <Name>sourceID</Name>
+                    <Value>$MPElement$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>managedEntityID</Name>
+                    <Value>$Target/Id$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>computerName</Name>
+                    <Value>$Config/ComputerPrincipalName$</Value>
+                  </Parameter>
+                </Parameters>
+                <TimeoutSeconds>$Config/TimeoutSeconds$</TimeoutSeconds>
+                <StrictErrorHandling>false</StrictErrorHandling>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="PowerShellDiscoveryProbe">
+                <Node ID="Scheduler" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.Discovery.Data</OutputType>
+      </DataSourceModuleType>
+    </ModuleTypes>
+  </TypeDefinitions>
+  <Monitoring>
+    <Discoveries>
+      <Discovery ID="LW.Microsoft.Windows.Server.GenericServerRoles.Discovery" Enabled="true" Target="LW.Microsoft.BaseOS.2016" ConfirmDelivery="false" Remotable="false" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryClass TypeID="LW.Microsoft.ADRMS.6.4.Server" />
+          <DiscoveryClass TypeID="LW.Microsoft.Windows.DHCPServer.6.4.Server" />
+          <DiscoveryClass TypeID="LW.Microsoft.Windows.Server.10.0.AD.GlobalCatalogServerRole" />
+          <DiscoveryClass TypeID="LW.Microsoft.Windows.6.4.Cluster.Node" />
+          <DiscoveryClass TypeID="LW.Microsoft.Windows.NetworkLoadBalancing.6.4.ServerRole" />
+          <DiscoveryClass TypeID="LW.Microsoft.Windows.InternetInformationServices.6.4.ServerRole" />
+          <DiscoveryClass TypeID="LW.Microsoft.Windows.DNSServer.2016.Server" />
+          <DiscoveryClass TypeID="LW.Microsoft.Windows.CertificateServices.CARole.6.4" />
+          <DiscoveryClass TypeID="LW.Microsoft.Windows.FileServices.Service.iSCSITarget.6.3" />
+          <DiscoveryClass TypeID="LW.Microsoft.Windows.Server.6.4.PrintServerRole" />
+          <DiscoveryClass TypeID="LW.Microsoft.ActiveDirectoryFederationServices.10.0.FederationServerSeed" />
+        </DiscoveryTypes>
+        <DataSource ID="DiscoveryDS" TypeID="LW.Microsoft.Windows.Server.Generic.Discovery.DataSource">
+          <IntervalSeconds>86400</IntervalSeconds>
+          <ComputerPrincipalName>$Target/Property[Type='Windows!Microsoft.Windows.Computer']/PrincipalName$</ComputerPrincipalName>
+          <TimeoutSeconds>360</TimeoutSeconds>
+        </DataSource>
+      </Discovery>
+      <Discovery ID="LW.Microsoft.Windows.Server.2012R2.Roles.Discovery" Enabled="true" Target="LW.Microsoft.BaseOS.2012R2" ConfirmDelivery="false" Remotable="false" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryClass TypeID="LW.Microsoft.Windows.Server.AD.Certificate.2012R2" />
+          <DiscoveryClass TypeID="LW.Microsoft.Windows.Server.AD.Federation.2012R2" />
+        </DiscoveryTypes>
+        <DataSource ID="DiscoveryDS" TypeID="LW.Microsoft.Windows.Server.2012R2.Role.Discovery.DataSource">
+          <IntervalSeconds>86400</IntervalSeconds>
+          <ComputerPrincipalName>$Target/Property[Type='Windows!Microsoft.Windows.Computer']/PrincipalName$</ComputerPrincipalName>
+          <TimeoutSeconds>360</TimeoutSeconds>
+        </DataSource>
+      </Discovery>
+      <Discovery ID="LW.Microsoft.Windows.Server.BaseOS.Discovery" Enabled="true" Target="Windows!Microsoft.Windows.Server.Computer" ConfirmDelivery="false" Remotable="false" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryClass TypeID="LW.Microsoft.BaseOS.2016" />
+          <DiscoveryClass TypeID="LW.Microsoft.BaseOS.2012R2" />
+          <DiscoveryClass TypeID="LW.Microsoft.BaseOS.2012" />
+          <DiscoveryClass TypeID="LW.Microsoft.BaseOS.2008R2" />
+          <DiscoveryClass TypeID="LW.Microsoft.Core.OS" />
+        </DiscoveryTypes>
+        <DataSource ID="DS" TypeID="LW.Microsoft.Windows.Server.BaseOS.Discovery.DataSource">
+          <IntervalSeconds>86400</IntervalSeconds>
+          <ComputerPrincipalName>$Target/Property[Type='Windows!Microsoft.Windows.Computer']/PrincipalName$</ComputerPrincipalName>
+          <TimeoutSeconds>360</TimeoutSeconds>
+        </DataSource>
+      </Discovery>
+      <Discovery ID="LW.Microsoft.Windows.Server.2012.Roles.Discovery" Enabled="true" Target="LW.Microsoft.BaseOS.2012" ConfirmDelivery="false" Remotable="false" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryClass TypeID="LW.Microsoft.Windows.Server.AD.Certificate.2012" />
+          <DiscoveryClass TypeID="LW.Microsoft.Windows.Server.AD.Federation.2012" />
+        </DiscoveryTypes>
+        <DataSource ID="DiscoveryDS" TypeID="LW.Microsoft.Windows.Server.2012.Role.Discovery.DataSource">
+          <IntervalSeconds>86400</IntervalSeconds>
+          <ComputerPrincipalName>$Target/Property[Type='Windows!Microsoft.Windows.Computer']/PrincipalName$</ComputerPrincipalName>
+          <TimeoutSeconds>360</TimeoutSeconds>
+        </DataSource>
+      </Discovery>
+      <Discovery ID="LW.Microsoft.Windows.Server.2008R2.Roles.Discovery" Enabled="true" Target="LW.Microsoft.BaseOS.2008R2" ConfirmDelivery="false" Remotable="false" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryClass TypeID="LW.Microsoft.Windows.Server.AD.Certificate.2008R2" />
+          <DiscoveryClass TypeID="LW.Microsoft.Windows.Server.AD.Federation.2008R2" />
+        </DiscoveryTypes>
+        <DataSource ID="DiscoveryDS" TypeID="LW.Microsoft.Windows.Server.2008R2.Role.Discovery.DataSource">
+          <IntervalSeconds>86400</IntervalSeconds>
+          <ComputerPrincipalName>$Target/Property[Type='Windows!Microsoft.Windows.Computer']/PrincipalName$</ComputerPrincipalName>
+          <TimeoutSeconds>360</TimeoutSeconds>
+        </DataSource>
+      </Discovery>
+      <Discovery ID="LW.Microsoft.Windows.NonServerRoles.Registry.Discovery" Enabled="true" Target="Windows!Microsoft.Windows.Computer" ConfirmDelivery="false" Remotable="false" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryClass TypeID="LW.Microsoft.Windows.SQL.Server.2005" />
+          <DiscoveryClass TypeID="LW.Microsoft.Windows.SQL.Server.2008" />
+          <DiscoveryClass TypeID="LW.Microsoft.Windows.SQL.Server.2012" />
+        </DiscoveryTypes>
+        <DataSource ID="DiscoveryDS" TypeID="LW.Microsoft.Windows.NonServerRoles.Registry.Discovery.DataSource">
+          <IntervalSeconds>86400</IntervalSeconds>
+          <ComputerPrincipalName>$Target/Property[Type='Windows!Microsoft.Windows.Computer']/PrincipalName$</ComputerPrincipalName>
+          <TimeoutSeconds>360</TimeoutSeconds>
+        </DataSource>
+      </Discovery>
+    </Discoveries>
+  </Monitoring>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="Microsoft.SystemCenter.ManagementPack.Recommendations">
+          <Name>Management Pack Recommendations</Name>
+          <Description>This management pack recommends the MPs for the various Windows server roles for which the management pack is not installed.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.BaseOS.Discovery">
+          <Name>Lightweight Windows Server Discovery</Name>
+          <Description>This rule runs against every Windows Server computer and discovers Windows server from 2008R2 to 2016.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.Generic.Discovery.DataSource">
+          <Name>Generic Discovery Data Source</Name>
+          <Description>This data source runs against every Windows Server(2008R2 to 2016) computer and checks for different server roles.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.Generic.Discovery.DataSource" SubElementID="IntervalSeconds">
+          <Name>Interval(sec)</Name>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.Generic.Discovery.DataSource" SubElementID="TimeoutSeconds">
+          <Name>Timeout Seconds</Name>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.GenericServerRoles.Discovery">
+          <Name>Lightweight generic Server Roles Discovery</Name>
+          <Description>This rule runs against every Windows Server(2008R2 to 2016) computer and checks whether server roles are installed.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.6.4.PrintServerRole">
+          <Name>Lightweight Print Server Role 2016</Name>
+          <Description>Installation of print server role on Windows Server 2016.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.ActiveDirectoryFederationServices.10.0.FederationServerSeed">
+          <Name>Lightweight ADFS Server Role 2016</Name>
+          <Description>Installation of ADFS server role on Windows Server 2016.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.ADRMS.6.4.Server">
+          <Name>Lightweight ADRMS Server Role 2016</Name>
+          <Description>Installation of ADRMS server role on Windows Server 2016.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.DHCPServer.6.4.Server">
+          <Name>Lightweight DHCP Server Role 2016</Name>
+          <Description>Installation of DHCP server role on Windows Server 2016.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.10.0.AD.GlobalCatalogServerRole">
+          <Name>Lightweight ADDS Server Role 2016</Name>
+          <Description>Installation of ADDS server role on Windows Server 2016.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.6.4.Cluster.Node">
+          <Name>Lightweight Failover Clustering Server Role 2016</Name>
+          <Description>Installation of Failover Clustering server role on Windows Server 2016.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.FileServices.Service.iSCSITarget.6.3">
+          <Name>Lightweight File and iSCSI services Server Role 2016</Name>
+          <Description>Installation of File and iSCSI services server role on Windows Server 2016.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.NetworkLoadBalancing.6.4.ServerRole">
+          <Name>Lightweight NLB Server Role 2016</Name>
+          <Description>Installation of NLB server role on Windows Server 2016.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.InternetInformationServices.6.4.ServerRole">
+          <Name>Lightweight IIS Server Role 2016</Name>
+          <Description>Installation of IIS server role on Windows Server 2016.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.BaseOS.2016">
+          <Name>Lightweight Windows 2016 Server Computer</Name>
+          <Description>Installation of Windows Server 2016.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.6.4.Computer">
+          <Name>Lightweight Windows 2016 Server Computer</Name>
+          <Description>Installation of Windows Server 2016.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.DNSServer.2016.Server">
+          <Name>Lightweight DNS Server role 2016</Name>
+          <Description>Installation of DNS server role on Windows Server 2016.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.CertificateServices.CARole.6.4">
+          <Name>Lightweight ADCS Server role 2016</Name>
+          <Description>Installation of ADCS server role on Windows Server 2016.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Essentials.2016">
+          <Name>Lightweight Essentials Services role 2016</Name>
+          <Description>Installation of Essentials Services role on Windows Server 2016.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Defender.Role.2016">
+          <Name>Lightweight Windows Defender Services role 2016</Name>
+          <Description>Installation of Windows Defender Services role on Windows Server 2016.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Base.Microsoft.Windows.ComputerRole.Category">
+          <Name>Computer role category</Name>
+          <Description>Base class for windows server roles</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Base.Microsoft.Windows.ComputerRole.Category" SubElementID="CategoryName">
+          <Name>Category Name</Name>
+        </DisplayString>
+        <DisplayString ElementID="LW.Base.Microsoft.Windows.Server.BaseOS.Category">
+          <Name>Server BaseOS category</Name>
+          <Description>Base class for Windows Server.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Base.Microsoft.Windows.Server.BaseOS.Category" SubElementID="CategoryName">
+          <Name>Category Name</Name>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Core.OS">
+          <Name>Lightweight Windows Core OS Server Computer</Name>
+          <Description>Installation of Windows Server from 2008R2-2012R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.BaseOS.2012R2">
+          <Name>Lightweight Windows 2012R2 Server Computer</Name>
+          <Description>Installation of Windows Server 2012R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.BaseOS.2012">
+          <Name>Lightweight Windows 2012 Server Computer</Name>
+          <Description>Installation of Windows Server 2012.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.BaseOS.2008R2">
+          <Name>Lightweight Windows 2008R2 Server Computer</Name>
+          <Description>Installation of Windows Server 2008R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.AD.Certificate.2012R2">
+          <Name>Lightweight ADCS Server role 2012R2</Name>
+          <Description>Installation of ADCS server role on Windows Server 2012R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.AD.Federation.2012R2">
+          <Name>Lightweight ADFS Server role 2012R2</Name>
+          <Description>Installation of ADFS server role on Windows Server 2012R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.AD.Rights.Management.2012R2">
+          <Name>Lightweight ADRMS Server role 2012R2</Name>
+          <Description>Installation of ADRMS server role on Windows Server 2012R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.DHCP.2012R2">
+          <Name>Lightweight DHCP Server role 2012R2</Name>
+          <Description>Installation of DHCP server role on Windows Server 2012R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.DNS.2012R2">
+          <Name>Lightweight DNS Server role 2012R2</Name>
+          <Description>Installation of DNS server role on Windows Server 2012R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.File.Services.2012R2">
+          <Name>Lightweight File Services role 2012R2</Name>
+          <Description>Installation of File Services role on Windows Server 2012R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.Remote.Access.2012R2">
+          <Name>Lightweight Remote Access role 2012R2</Name>
+          <Description>Installation of Remote Access role on Windows Server 2012R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.NLB.2012R2">
+          <Name>Lightweight Network Load Balancer role 2012R2</Name>
+          <Description>Installation of Network Load Balancer role on Windows Server 2012R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.Remote.Desktop.Services.2012R2">
+          <Name>Lightweight Remote Desktop Services role 2012R2</Name>
+          <Description>Installation of Remote Desktop Services role on Windows Server 2012R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Deployment.Services.2012R2">
+          <Name>Lightweight Deployment Services role 2012R2</Name>
+          <Description>Installation of Deployment Services role on Windows Server 2012R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Essentials.2012R2">
+          <Name>Lightweight Essentials Services role 2012R2</Name>
+          <Description>Installation of Essentials Services role on Windows Server 2012R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Update.Services.2012R2">
+          <Name>Lightweight Update Services role 2012R2</Name>
+          <Description>Installation of Update Services role on Windows Server 2012R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.Queuing.2012R2">
+          <Name>Lightweight Message Queuing role 2012R2</Name>
+          <Description>Installation of Message Queuing role on Windows Server 2012R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.Print.Services.2012R2">
+          <Name>Lightweight Print Services role 2012R2</Name>
+          <Description>Installation of Print Services role on Windows Server 2012R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.HyperV.2012R2">
+          <Name>Lightweight Hyper-V role 2012R2</Name>
+          <Description>Installation of Hyper-V role on Windows Server 2012R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.AD.Lightweight.Directory.2012R2">
+          <Name>Lightweight AD Lightweight Directory role 2012R2</Name>
+          <Description>Installation of AD Lightweight Directory on Windows Server 2012R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.Branch.Cache.2012R2">
+          <Name>Lightweight Branch Cache role 2012R2</Name>
+          <Description>Installation of Branch Cache on Windows Server 2012R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.Cluster.2012R2">
+          <Name>Lightweight Server Cluster role 2012R2</Name>
+          <Description>Installation of Windows Server Cluster on Windows Server 2012R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.ActiveDirectory.2012R2">
+          <Name>Lightweight Active Directory Server role 2012R2</Name>
+          <Description>Installation of Active Directory server role on Windows Server 2012R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.WebApplicationProxy.2012R2">
+          <Name>Lightweight Web Application Proxy Server role 2012R2</Name>
+          <Description>Installation of Web Application Proxy server role on Windows Server 2012R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.2012R2.Roles.Discovery">
+          <Name>Lightweight generic Server 2012R2 Roles Discovery</Name>
+          <Description>This rule runs against every Windows Server 2012R2 computer and checks whether server roles are installed.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.2012R2.Role.Discovery.DataSource">
+          <Name>Generic Discovery Data Source</Name>
+          <Description>This data source runs against every Windows Server 2016 computer and checks for different server 2012 R2 roles.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.2012R2.Role.Discovery.DataSource" SubElementID="IntervalSeconds">
+          <Name>Interval(sec)</Name>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.2012R2.Role.Discovery.DataSource" SubElementID="TimeoutSeconds">
+          <Name>Timeout Seconds</Name>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.AD.Certificate.2012">
+          <Name>Lightweight ADCS Server role 2012</Name>
+          <Description>Installation of ADCS server role on Windows Server 2012.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.AD.Federation.2012">
+          <Name>Lightweight ADFS Server role 2012</Name>
+          <Description>Installation of ADFS server role on Windows Server 2012.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.AD.Rights.Management.2012">
+          <Name>Lightweight ADRMS Server role 2012</Name>
+          <Description>Installation of ADRMS server role on Windows Server 2012.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.DHCP.2012">
+          <Name>Lightweight DHCP Server role 2012</Name>
+          <Description>Installation of DHCP server role on Windows Server 2012.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.DNS.2012">
+          <Name>Lightweight DNS Server role 2012</Name>
+          <Description>Installation of DNS server role on Windows Server 2012.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.File.Services.2012">
+          <Name>Lightweight File Services role 2012</Name>
+          <Description>Installation of File Services role on Windows Server 2012.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.Remote.Access.2012">
+          <Name>Lightweight Remote Access role 2012</Name>
+          <Description>Installation of Remote Access role on Windows Server 2012.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.NLB.2012">
+          <Name>Lightweight Network Load Balancer role 2012</Name>
+          <Description>Installation of Network Load Balancer role on Windows Server 2012.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.Remote.Desktop.Services.2012">
+          <Name>Lightweight Remote Desktop Services role 2012</Name>
+          <Description>Installation of Remote Desktop Services role on Windows Server 2012.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Deployment.Services.2012">
+          <Name>Lightweight Deployment Services role 2012</Name>
+          <Description>Installation of Deployment Services role on Windows Server 2012.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Update.Services.2012">
+          <Name>Lightweight Update Services role 2012</Name>
+          <Description>Installation of Update Services role on Windows Server 2012.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.Queuing.2012">
+          <Name>Lightweight Message Queuing role 2012</Name>
+          <Description>Installation of Message Queuing role on Windows Server 2012.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.Print.Services.2012">
+          <Name>Lightweight Print Services role 2012</Name>
+          <Description>Installation of Print Services role on Windows Server 2012.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.HyperV.2012">
+          <Name>Lightweight Hyper-V role 2012</Name>
+          <Description>Installation of Hyper-V role on Windows Server 2012.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.Branch.Cache.2012">
+          <Name>Lightweight Branch Cache role 2012</Name>
+          <Description>Installation of Branch Cache on Windows Server 2012.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.Cluster.2012">
+          <Name>Lightweight Server Cluster role 2012</Name>
+          <Description>Installation of Windows Server Cluster on Windows Server 2012.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.Backup.2012">
+          <Name>Lightweight Server Backup role 2012</Name>
+          <Description>Installation of Windows Server Backup on Windows Server 2012.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.IIS.2012">
+          <Name>Lightweight Server IIS role 2012</Name>
+          <Description>Installation of Windows Server IIS on Windows Server 2012.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.ActiveDirectory.2012">
+          <Name>Lightweight Active Directory Server role 2012</Name>
+          <Description>Installation of Active Directory server role on Windows Server 2012.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.2012.Roles.Discovery">
+          <Name>Lightweight generic Server 2012 Roles Discovery</Name>
+          <Description>This rule runs against every Windows Server 2012 computer and checks whether server roles are installed.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.2012.Role.Discovery.DataSource">
+          <Name>Generic Discovery Data Source</Name>
+          <Description>This data source runs against every Windows Server 2012 computer and checks for different server 2012 roles.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.2012.Role.Discovery.DataSource" SubElementID="IntervalSeconds">
+          <Name>Interval(sec)</Name>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.2012.Role.Discovery.DataSource" SubElementID="TimeoutSeconds">
+          <Name>Timeout Seconds</Name>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.AD.Certificate.2008R2">
+          <Name>Lightweight ADCS Server role 2008R2</Name>
+          <Description>Installation of ADCS server role on Windows Server 2008R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.AD.Federation.2008R2">
+          <Name>Lightweight ADFS Server role 2008R2</Name>
+          <Description>Installation of ADFS server role on Windows Server 2008R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.AD.Rights.Management.2008R2">
+          <Name>Lightweight ADRMS Server role 2008R2</Name>
+          <Description>Installation of ADRMS server role on Windows Server 2008R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.DHCP.2008R2">
+          <Name>Lightweight DHCP Server role 2008R2</Name>
+          <Description>Installation of DHCP server role on Windows Server 2008R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.DNS.2008R2">
+          <Name>Lightweight DNS Server role 2008R2</Name>
+          <Description>Installation of DNS server role on Windows Server 2008R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.File.Services.2008R2">
+          <Name>Lightweight File Services role 2008R2</Name>
+          <Description>Installation of File Services role on Windows Server 2008R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.NLB.2008R2">
+          <Name>Lightweight Network Load Balancer role 2008R2</Name>
+          <Description>Installation of Network Load Balancer role on Windows Server 2008R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.Remote.Desktop.Services.2008R2">
+          <Name>Lightweight Remote Desktop Services role 2008R2</Name>
+          <Description>Installation of Remote Desktop Services role on Windows Server 2008R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.Queuing.2008R2">
+          <Name>Lightweight Message Queuing role 2008R2</Name>
+          <Description>Installation of Message Queuing role on Windows Server 2008R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.Print.Services.2008R2">
+          <Name>Lightweight Print Services role 2008R2</Name>
+          <Description>Installation of Print Services role on Windows Server 2008R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.HyperV.2008R2">
+          <Name>Lightweight Hyper-V role 2008R2</Name>
+          <Description>Installation of Hyper-V role on Windows Server 2008R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.Branch.Cache.2008R2">
+          <Name>Lightweight Branch Cache role 2008R2</Name>
+          <Description>Installation of Branch Cache on Windows Server 2008R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.IIS.2008R2">
+          <Name>Lightweight Server IIS role 2008R2</Name>
+          <Description>Installation of Windows Server IIS on Windows Server 2008R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.AD.Lightweight.Directory.2008R2">
+          <Name>Lightweight AD Lightweight Directory role 2008R2</Name>
+          <Description>Installation of AD Lightweight Directory on Windows Server 2008R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.ActiveDirectory.2008R2">
+          <Name>Lightweight Active Directory Server role 2008R2</Name>
+          <Description>Installation of Active Directory server role on Windows Server 2008R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Routing.Remote.Service.2008R2">
+          <Name>Lightweight remote access role 2008R2</Name>
+          <Description>Installation of remote access server role on Windows Server 2008R2.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.2008R2.Roles.Discovery">
+          <Name>Lightweight generic Server 2008R2 Roles Discovery</Name>
+          <Description>This rule runs against every Windows Server 2008R2 computer and checks whether server roles are installed.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.2008R2.Role.Discovery.DataSource">
+          <Name>Generic Discovery Data Source</Name>
+          <Description>This data source runs against every Windows Server 2008R2 computer and checks for different server 2008R2 roles.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.2008R2.Role.Discovery.DataSource" SubElementID="IntervalSeconds">
+          <Name>Interval(sec)</Name>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.2008R2.Role.Discovery.DataSource" SubElementID="TimeoutSeconds">
+          <Name>Timeout Seconds</Name>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.NonServerRoles.Registry.Discovery">
+          <Name>Lightweight generic Non-Server Roles Discovery</Name>
+          <Description>This rule runs against every Windows computer and checks whether various non-server roles are installed.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.NonServerRoles.Registry.Discovery.DataSource">
+          <Name>Generic Discovery Data Source</Name>
+          <Description>This data source runs against every Windows computer and checks for different non-server roles.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.NonServerRoles.Registry.Discovery.DataSource" SubElementID="IntervalSeconds">
+          <Name>Interval(sec)</Name>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.NonServerRoles.Registry.Discovery.DataSource" SubElementID="TimeoutSeconds">
+          <Name>Timeout Seconds</Name>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.SQL.Server.2005">
+          <Name>Lightweight SQL Server 2005</Name>
+          <Description>Installation of SQL server 2005 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.SQL.Server.2008">
+          <Name>Lightweight SQL Server role 2008</Name>
+          <Description>Installation of SQL server 2008 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.SQL.Server.2012">
+          <Name>Lightweight SQL Server role 2012</Name>
+          <Description>Installation of SQL server 2012 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.SQL.Server.2014">
+          <Name>Lightweight SQL Server role 2014</Name>
+          <Description>Installation of SQL server 2014 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.Backup">
+          <Name>Lightweight Windows Server Backup</Name>
+          <Description>Installation of Windows server Backup on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Biztalk.2013">
+          <Name>Lightweight BizTalk server 2013</Name>
+          <Description>Installation of BizTalk server 2013 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Biztalk.2013R2">
+          <Name>Lightweight BizTalk server 2013R2</Name>
+          <Description>Installation of BizTalk server 2013R2 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.CRM.2011">
+          <Name>Lightweight CRM 2011</Name>
+          <Description>Installation of CRM 2011 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.CRM.2013">
+          <Name>Lightweight CRM 2013</Name>
+          <Description>Installation of CRM 2013 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.CRM.2015">
+          <Name>Lightweight CRM 2015</Name>
+          <Description>Installation of CRM 2015 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.NAV.2013">
+          <Name>Lightweight NAV 2013</Name>
+          <Description>Installation of NAV 2013 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.NAV.2013R2">
+          <Name>Lightweight NAV 2013 R2</Name>
+          <Description>Installation of NAV 2013 R2 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Exchange.Server.2013">
+          <Name>Lightweight Exchange Server 2013</Name>
+          <Description>Installation of Exchange Server 2013 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.SharePoint.Server.2013">
+          <Name>Lightweight SharePoint Server 2013</Name>
+          <Description>Installation of SharePoint Server 2013 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.SharePoint.Foundation.Server.2013">
+          <Name>Lightweight SharePoint Foundation Server 2013</Name>
+          <Description>Installation of SharePoint Foundation Server 2013 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.SPF.2012R2">
+          <Name>Lightweight Service Provider Foundation (SPF) 2012R2</Name>
+          <Description>Installation of System Center 2012 R2 Service Provider Foundation (SPF) on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Host.Integration.Server.2013">
+          <Name>Lightweight Host Integration Server 2013</Name>
+          <Description>Installation of Host Integration Server 2013 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Orchestrator.2012">
+          <Name>Lightweight Orchestrator 2012 R2</Name>
+          <Description>Installation of Orchestrator 2012 R2 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.SMA.2012R2">
+          <Name>Lightweight Service Management Automation 2012 R2</Name>
+          <Description>Installation of Service Management Automation 2012 R2 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Dynamics.AX.2009">
+          <Name>Lightweight Dynamics AX 2009</Name>
+          <Description>Installation of Dynamics AX 2009 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Dynamics.AX.2012">
+          <Name>Lightweight Dynamics AX 2012</Name>
+          <Description>Installation of Dynamics AX 2012 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.ServiceManager.2012">
+          <Name>Lightweight Service Manager 2012</Name>
+          <Description>Installation of Service Manager 2012 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.TFS.2010">
+          <Name>Lightweight Team Foundation Server 2010</Name>
+          <Description>Installation of Team Foundation Server 2010 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.TFS.2012">
+          <Name>Lightweight Team Foundation Server 2012</Name>
+          <Description>Installation of Team Foundation Server 2012 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.TFS.2013">
+          <Name>Lightweight Team Foundation Server 2013</Name>
+          <Description>Installation of Team Foundation Server 2013 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.TFS.2015">
+          <Name>Lightweight Team Foundation Server 2015</Name>
+          <Description>Installation of Team Foundation Server 2015 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.SCCM.2012">
+          <Name>Lightweight System Center Configuration Manager 2012</Name>
+          <Description>Installation of System Center Configuration Manager 2012 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.MSDTC.2016">
+          <Name>Lightweight Distributed Transaction Coordinator 2016 </Name>
+          <Description>Installation of Distributed Transaction Coordinator 2016  on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.MSDTC.2012R2">
+          <Name>Lightweight Distributed Transaction Coordinator 2012 R2 </Name>
+          <Description>Installation of Distributed Transaction Coordinator 2012 R2  on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.SQL.Server.2016">
+          <Name>Lightweight SQL Server role 2016</Name>
+          <Description>Installation of SQL server 2016 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Server.Branch.Cache.2016">
+          <Name>Lightweight Branch Cache role 2016</Name>
+          <Description>Installation of Branch Cache on Windows Server 2016.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.AppController.2012R2">
+          <Name>Lightweight System Center App Controler 2012 R2</Name>
+          <Description>Installation of System Center App Controler 2012 R2 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Dynamics.AX.Retail.2012R3">
+          <Name>Lightweight Dynamics AX Retail 2012 R3</Name>
+          <Description>Installation of Dynamics  AX Retail 2012 R3 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Host.Integration.Server.2010">
+          <Name>Lightweight Host Integration Server 2010</Name>
+          <Description>Installation of Host Integration Server 2010 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.SharePoint.Foundation.Server.2010">
+          <Name>Lightweight SharePoint Foundation Server 2010</Name>
+          <Description>Installation of SharePoint Foundation Server 2010 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.SharePoint.Server.2010">
+          <Name>Lightweight SharePoint 2010 Products</Name>
+          <Description>Installation of SharePoint 2010 Products on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Biztalk.2010">
+          <Name>Lightweight BizTalk Server 2010</Name>
+          <Description>Installation of BizTalk Server 2010 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Biztalk.2009">
+          <Name>Lightweight BizTalk Server 2009</Name>
+          <Description>Installation of BizTalk Server 2009 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.Biztalk.2006">
+          <Name>Lightweight BizTalk Server 2006</Name>
+          <Description>Installation of BizTalk Server 2006 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.SQL.Server.2016.ReportingServices.NativeMode">
+          <Name>Lightweight SQL Server 2016 Reporting Services (Native Mode)</Name>
+          <Description>Installation of SQL Server 2016 Reporting Services (Native Mode) on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.SQL.Server.2014.ReportingServices.NativeMode">
+          <Name>Lightweight SQL Server 2014 Reporting Services (Native Mode)</Name>
+          <Description>Installation of SQL Server 2014 Reporting Services (Native Mode) on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.SQL.Server.2012.ReportingServices.NativeMode">
+          <Name>Lightweight SQL Server 2012 Reporting Services (Native Mode)</Name>
+          <Description>Installation of SQL Server 2012 Reporting Services (Native Mode) on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.SQL.Server.2016.AnalysisServices">
+          <Name>Lightweight SQL Server 2016 Analysis Services</Name>
+          <Description>Installation of SQL Server 2016 Analysis Services on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.SQL.Server.2014.AnalysisServices">
+          <Name>Lightweight SQL Server 2014 Analysis Services</Name>
+          <Description>Installation of SQL Server 2014 Analysis Services on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.SQL.Server.2012.AnalysisServices">
+          <Name>Lightweight SQL Server 2012 Analysis Services</Name>
+          <Description>Installation of SQL Server 2012 Analysis Services on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.SQL.Server.2016.Replication">
+          <Name>Lightweight SQL Server 2016 Replication Services</Name>
+          <Description>Installation of SQL Server 2016 Replication Services on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.SQL.Server.2014.Replication">
+          <Name>Lightweight SQL Server 2014 Replication Services</Name>
+          <Description>Installation of SQL Server 2014 Replication Services on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.SQL.Server.2012.Replication">
+          <Name>Lightweight SQL Server 2012 Replication Services</Name>
+          <Description>Installation of SQL Server 2012 Replication Services on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.AdvancedThreatAnalytics">
+          <Name>Lightweight Advanced Threat Analytics</Name>
+          <Description>Installation of Advanced Threat Analytics on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Windows.DHAS.2016">
+          <Name>Lightweight Device Health Attestation</Name>
+          <Description>Installation of Device Health Attestationon 2016 on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.SDNMonitoring">
+          <Name>Lightweight SDN Monitoring</Name>
+          <Description>Installation of SDN Monitoring on Windows Computer.</Description>
+        </DisplayString>
+        <DisplayString ElementID="LW.Microsoft.Sample.Test1">
+          <Name>Lightweight Sample Test1</Name>
+          <Description>Installation of Lightweight Sample Test1 on Windows Computer.</Description>
+        </DisplayString>
+      </DisplayStrings>
+      <KnowledgeArticles>
+        <KnowledgeArticle ElementID="LW.Microsoft.Windows.Server.BaseOS.Discovery" Visible="true">
+          <MamlContent>
+            <maml:section xmlns:maml="http://schemas.microsoft.com/maml/2004/10">
+              <maml:title>Summary</maml:title>
+              <maml:para>This discovery is used to discover the installation of Windows Server 2008R2-2016 by the updates and recommendations feature.</maml:para>
+              <maml:para>These are the parameters that can be overridden:</maml:para>
+              <maml:list>
+                <maml:listItem>
+                  <maml:para>Interval Seconds: Amount of Seconds for each execution</maml:para>
+                </maml:listItem>
+              </maml:list>
+            </maml:section>
+          </MamlContent>
+        </KnowledgeArticle>
+        <KnowledgeArticle ElementID="LW.Microsoft.Windows.Server.GenericServerRoles.Discovery" Visible="true">
+          <MamlContent>
+            <maml:section xmlns:maml="http://schemas.microsoft.com/maml/2004/10">
+              <maml:title>Summary</maml:title>
+              <maml:para>This discovery is used to discover the installation of specific Windows Server roles by the updates and recommendations feature.</maml:para>
+              <maml:para>These are the parameters that can be overridden:</maml:para>
+              <maml:list>
+                <maml:listItem>
+                  <maml:para>Interval Seconds: Amount of Seconds for each execution</maml:para>
+                </maml:listItem>
+                <maml:listItem>
+                  <maml:para>Timeout Seconds: Amount of seconds to wait until cancel execution for "timeout reasons."</maml:para>
+                </maml:listItem>
+              </maml:list>
+            </maml:section>
+          </MamlContent>
+        </KnowledgeArticle>
+        <KnowledgeArticle ElementID="LW.Microsoft.Windows.Server.Generic.Discovery.DataSource" Visible="true">
+          <MamlContent>
+            <maml:section xmlns:maml="http://schemas.microsoft.com/maml/2004/10">
+              <maml:title>Summary</maml:title>
+              <maml:para>This data source is used to determine the installation of specific windows server roles by the updates and recommendations feature.</maml:para>
+            </maml:section>
+            <maml:section xmlns:maml="http://schemas.microsoft.com/maml/2004/10">
+              <maml:title>Configuration</maml:title>
+              <maml:para>Interval Seconds: How frequently (in seconds) the value should be checked.</maml:para>
+              <maml:para>Timeout Seconds: How much time (in seconds) to wait for the module to finish execution.</maml:para>
+            </maml:section>
+          </MamlContent>
+        </KnowledgeArticle>
+      </KnowledgeArticles>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPack>

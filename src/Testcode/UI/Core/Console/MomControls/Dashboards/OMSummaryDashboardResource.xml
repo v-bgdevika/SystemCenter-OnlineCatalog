@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Resources>
+  <Section Name="MainDashboard">
+    <Resource Name="Title"  Type="MPExtensionDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!MainDashboard</Item>
+    </Resource>
+    <!-- Not able to get the display name of this element, not sure why but probably mp needs to be updated. temporarily use MainDashboard since it has same display name
+    <Resource Name="TreeNode"  Type="MPExtensionDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!Microsoft.SystemCenter.OperationsManager.ViewFolder.Root.SCOMDashboard</Item>
+    </Resource>
+    -->
+    <Resource Name="TreeNode"  Type="MPExtensionDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!MainDashboard</Item>
+    </Resource>
+  </Section>
+  <Section Name="ManagementGroupFunctions">
+    <Resource Name="Title"  Type="MPExtensionDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!ManagementGroupFunctionsStateView</Item>
+    </Resource>
+    <Resource Name="DisplayNameColumnHeader"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!FunctionStateViewLegendDisplayName</Item>
+    </Resource>
+    <Resource Name="HealthColumnHeader"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!FunctionStateViewLegendHealth</Item>
+    </Resource>
+  </Section>
+  <Section Name="ManagementGroupInfrastructure">
+    <Resource Name="Title"  Type="MPExtensionDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!ManagementGroupInfrastructureStateView</Item>
+    </Resource>
+    <Resource Name="DisplayNameColumnHeader"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!InfrastructureStateViewLegendDisplayName</Item>
+    </Resource>
+    <Resource Name="HealthColumnHeader"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!InfrastructureStateViewLegendHealth</Item>
+    </Resource>
+  </Section>
+  <Section Name="AgentHealthState">
+    <Resource Name="Title"  Type="MPExtensionDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!HealthStateOverTime</Item>
+    </Resource>
+    <Resource Name="HealthStateColumnHeader"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!LegendHeaderInstance</Item>
+    </Resource>
+    <Resource Name="CountOfAgentsColumnHeader"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!LegendHeaderValue</Item>
+    </Resource>
+    <Resource Name="Total"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!HeathStateTotal</Item>
+    </Resource>
+    <Resource Name="Unavailable"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!HeathStateUninitialized</Item>
+    </Resource>
+    <Resource Name="Unmonitored"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!HeathStateUnmonitored</Item>
+    </Resource>
+    <Resource Name="Healthy"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!HeathStateSuccess</Item>
+    </Resource>
+    <Resource Name="Critical"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!HeathStateError</Item>
+    </Resource>
+    <Resource Name="Warning"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!HeathStateWarning</Item>
+    </Resource>
+  </Section>
+  <Section Name="AgentConfiguration">
+    <Resource Name="Title"  Type="MPExtensionDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!AgentConfigurationStateView</Item>
+    </Resource>
+    <Resource Name="ConfigurationColumnHeader"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!ConfigurationStateViewName</Item>
+    </Resource>
+    <Resource Name="CountOfAgentsColumnHeader"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!ConfigurationStateViewCount</Item>
+    </Resource>
+    <Resource Name="ManualApproval"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!ManualApproval</Item>
+    </Resource>
+    <Resource Name="PushInstall"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!PushInstall</Item>
+    </Resource>
+    <Resource Name="UpdateAgent"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!UpdateAgent</Item>
+    </Resource>
+    <Resource Name="RepairAgent"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!RepairAgent</Item>
+    </Resource>
+    <Resource Name="LicenseUpgrade"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!LicenseUpgrade</Item>
+    </Resource>
+    <Resource Name="PushInstallFailed"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!PushInstallFailed</Item>
+    </Resource>
+    <Resource Name="UpdateFailed"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!UpdateFailed</Item>
+    </Resource>
+    <Resource Name="RepairFailed"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!RepairFailed</Item>
+    </Resource>
+    <Resource Name="NoConfigurationData"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!NoConfigurationData</Item>
+    </Resource>
+  </Section>
+  <Section Name="AgentVersions">
+    <Resource Name="Title"  Type="MPExtensionDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!AgentVersionsStateView</Item>
+    </Resource>
+    <Resource Name="VersionColumnHeader"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!VersionStateViewName</Item>
+    </Resource>
+    <Resource Name="CumulativeUpdateColumnHeader"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!VersionStateViewCulmativeUpdate</Item>
+    </Resource>
+    <Resource Name="CountOfAgentsColumnHeader"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!VersionStateViewCount</Item>
+    </Resource>
+    <Resource Name="NoVersionData"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!NoVersionData</Item>
+    </Resource>
+    <Resource Name="NoAgentsFound"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.OperationsManager.SummaryDashboard!NoAgentsFound</Item>
+    </Resource>
+  </Section>
+</Resources>

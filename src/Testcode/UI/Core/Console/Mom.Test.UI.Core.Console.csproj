@@ -1,0 +1,1137 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="14.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <!-- <Import Project="$(EnvironmentConfig)" /> -->
+  <!-- <Import Project="$(SRCROOT)\Testcode\UI\Core\common.targets" /> -->
+  <!-- <Import Project="$(SRCROOT)\Build\test.external.prism.settings" /> -->
+  <!-- <Import Project="$(SRCROOT)\Build\test.external.unity.settings" /> -->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <RootNamespace>Mom.Test.UI.Core.Console</RootNamespace>
+    <ProjectGuid>{3973BE93-0FD7-4F4D-8B0A-9D6723E0A44D}</ProjectGuid>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AssemblyName>Mom.Test.UI.Core.Console</AssemblyName>
+    <OutputType>Library</OutputType>
+    <WarningsNotAsErrors>108,109,114,162,168,169,219,414,472,612,618,649,1750,8002</WarningsNotAsErrors>
+    <NoWarn>108,109,114,162,168,169,219,414,472,612,618,649,1750,8002</NoWarn>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.SharePoint.Client">
+      <HintPath>D:\CxCache\SCOM.Test.External.1.0.1\lib\net45\Microsoft.SharePoint.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Runtime">
+      <HintPath>D:\CxCache\SCOM.Test.External.1.0.1\lib\net45\Microsoft.SharePoint.Client.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="ResourceManagerBasic">
+      <HintPath>D:\CxCache\SCOM.Test.Tools.1.0.2\lib\net45\MAUI\drop\ResourceManagerBasic.dll</HintPath>
+    </Reference>
+    <Reference Include="Maui.Core">
+      <HintPath>D:\CxCache\SCOM.Test.Tools.1.0.2\lib\net45\MAUI\drop\Maui.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Maui.InternetExplorer">
+      <HintPath>D:\CxCache\SCOM.Test.Tools.1.0.2\lib\net4\MAUI\drop\Maui.InternetExplorer.dll</HintPath>
+    </Reference>
+    <Reference Include="Maui.TestLog">
+      <HintPath>D:\CxCache\SCOM.Test.Tools.1.0.2\lib\net45\MAUI\drop\Maui.TestLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.Core">
+      <HintPath>D:\CxCache\SCOM.Microsoft.SystemCenter.External.SM.retail.10.22.1019\lib\net45\retail\Microsoft.EnterpriseManagement.Core.dll</HintPath>
+    </Reference>
+    <!--New ref-->
+    <Reference Include="PasswordManager">
+      <HintPath>D:\CxCache\SCOM.Test.Tools.1.0.2\lib\net45\MiscTools\x86\PasswordManager.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word">
+      <HintPath>D:\CxCache\SCOM.Microsoft.SystemCenter.External.VSTO.1.0.1\lib\net45\i386\Microsoft.Office.Interop.Word.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism">
+      <!--<HintPath>$(PkgSCOM_Microsoft_SystemCenter_External_Prism)\lib\net45\Net\Bin\Microsoft.Practices.Prism.dll</HintPath>-->
+      <HintPath>D:\CxCache\MPMainPrism.1.0.0.2\lib\net45\Net\Bin\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.UnityExtensions">
+      <!--<HintPath>$(PkgSCOM_Microsoft_SystemCenter_External_Prism)\lib\net45\Net\Bin\Microsoft.Practices.Prism.UnityExtensions.dll</HintPath>-->
+      <HintPath>D:\CxCache\MPMainPrism.1.0.0.2\lib\net45\Net\Bin\Microsoft.Practices.Prism.UnityExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Interactivity">
+      <!--<HintPath>$(PkgSCOM_Microsoft_SystemCenter_External_Prism)\lib\net45\Net\Bin\Microsoft.Practices.Prism.UnityExtensions.dll</HintPath>-->
+      <HintPath>D:\CxCache\MPMainPrism.1.0.0.2\lib\net45\Net\Bin\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions">
+      <!--<HintPath>$(PkgSCOM_Microsoft_SystemCenter_External_Prism)\lib\net45\Net\Bin\Microsoft.Practices.Prism.UnityExtensions.dll</HintPath>-->
+      <HintPath>D:\CxCache\MPMainPrism.1.0.0.2\lib\net45\Net\Bin\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>D:\CxCache\MPMainPrism.1.0.0.2\lib\net45\Net\Bin\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity">
+      <SpecificVersion>False</SpecificVersion>
+      <!--<HintPath>$(PkgSCOM_Microsoft_SystemCenter_External_Unity)\lib\net45\Net\Bin\Microsoft.Practices.Unity.dll</HintPath>-->
+      <HintPath>D:\CxCache\MPMainPrism.1.0.0.2\lib\net45\Net\Bin\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.mshtml">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\SCOM.Test.Tools.1.0.2\lib\net45\MAUI\drop\Microsoft.mshtml.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Mom.Modules.DataTypes">
+      <HintPath>D:\CxCache\MPMainOM2012.1.0.0.2\lib\net45\retail\Microsoft.Mom.Modules.DataTypes.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Mom.Common">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\New folder\Microsoft.Mom.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.Administration">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012R2UR2.1.0.0.2\lib\net45\retail\Microsoft.EnterpriseManagement.UI.Administration.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Mom.BuildConstants">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012R2UR2.1.0.0.2\lib\net45\retail\Microsoft.Mom.BuildConstants.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.Extensibility">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012R2.1.0.0.2\lib\net45\retail\Microsoft.EnterpriseManagement.UI.Extensibility.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.Presentation.Core">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012R2UR1.1.0.0.2\lib\net45\retail\Microsoft.EnterpriseManagement.Presentation.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Interactivity">
+      <HintPath>D:\CxCache\MPMainPrism.1.0.0.2\lib\net45\Net\Bin\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions">
+      <HintPath>D:\CxCache\MPMainPrism.1.0.0.2\lib\net45\Net\Bin\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>D:\CxCache\MPMainPrism.1.0.0.2\lib\net45\Net\Bin\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity">
+      <SpecificVersion>False</SpecificVersion>
+
+      <HintPath>D:\CxCache\MPMainPrism.1.0.0.2\lib\net45\Net\Bin\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.Monitoring.DataProviders">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012SP1.1.0.0.4\lib\net45\retail\Microsoft.EnterpriseManagement.Monitoring.DataProviders.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Mom.UI.Common">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\New folder\Microsoft.Mom.UI.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.CompositionEngine">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012R2UR1.1.0.0.2\lib\net45\retail\Microsoft.EnterpriseManagement.CompositionEngine.dll</HintPath>
+    </Reference>
+    <!--<Reference Include="Microsoft.EnterpriseManagement.CompositionEngine">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012R2UR1.1.0.0.2\lib\net45\retail\Microsoft.EnterpriseManagement.CompositionEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Permissions">
+      <HintPath>D:\CxCache\SlnGen.Corext.6.0.1\tools\net461\System.Security.Permissions.dll</HintPath>
+    </Reference>-->
+    <Reference Include="Microsoft.EnterpriseManagement.UI.Administration">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012R2UR2.1.0.0.2\lib\net45\retail\Microsoft.EnterpriseManagement.UI.Administration.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    
+    <!--New ref end-->
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UIAutomationClient" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="System.ComponentModel" />
+    <Reference Include="System" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <!--<Reference Include="System.Drawing.Design" />-->
+    <Reference Include="System.Text.RegularExpressions" />
+    <Reference Include="System.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.ServiceModel" /> 
+    <Reference Include="System.Collections" />
+    <Reference Include="Accessibility" />
+</ItemGroup>
+  <ItemGroup>
+    <!-- <ProjectReference Include="$(SRCROOT)\Testcode\momcommon\src\ScCommon.csproj"> -->
+    <!-- <Project>{6EE53C47-97F9-455A-B99F-84FFBD85EF7B}</Project> -->
+    <!-- <Name>Microsoft.EnterpriseManagement.Test.ScCommon</Name> -->
+    <!-- </ProjectReference> -->
+    <Reference Include="Microsoft.EnterpriseManagement.Test.ScCommon">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainBaseOSTestAutomation.1.0.0.2\lib\net45\retail\Microsoft.EnterpriseManagement.Test.ScCommon.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <!-- <ProjectReference Include="$(SRCROOT)\product\Presentation\Core\CompositionEngineExtensibility\CompositionEngineExtensibility.csproj"> -->
+    <!-- <Project>{B2AB563D-932C-4F7F-8040-6BC0C4D53BF0}</Project> -->
+    <!-- <Name>Microsoft.EnterpriseManagement.CompositionEngine.Extensibility</Name> -->
+    <!-- </ProjectReference> -->
+    <Reference Include="Microsoft.EnterpriseManagement.CompositionEngine.Extensibility">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012SP1.1.0.0.4\lib\net45\retail\Microsoft.EnterpriseManagement.CompositionEngine.Extensibility.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <!-- <ProjectReference Include="$(SRCROOT)\product\Presentation\UnitComponents\Net\UnitComponents.csproj"> -->
+    <!-- <Project>{33ece778-1e18-49d8-bf28-b7245f891e31}</Project> -->
+    <!-- <Name>Microsoft.EnterpriseManagement.Monitoring.UnitComponents</Name> -->
+    <!-- </ProjectReference> -->
+    <Reference Include="Microsoft.EnterpriseManagement.Monitoring.UnitComponents">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012SP1.1.0.0.4\lib\net45\retail\Microsoft.EnterpriseManagement.Monitoring.UnitComponents.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <!-- <ProjectReference Include="$(SRCROOT)\product\sdk\client\public\om\OM.csproj"> -->
+    <!-- <Project>{1D2E8A45-CF14-4DAB-B0B8-8905AC83C715}</Project> -->
+    <!-- <Name>Microsoft.EnterpriseManagement.OperationsManager</Name> -->
+    <!-- </ProjectReference> -->
+    <Reference Include="Microsoft.EnterpriseManagement.OperationsManager">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2019.1.0.0.2\lib\net45\retail\Microsoft.EnterpriseManagement.OperationsManager.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <!-- <ProjectReference Include="$(SRCROOT)\product\Presentation\DataProviders.Management\DataProviders.Management.csproj"> -->
+    <!-- <Project>{1B6F51E4-4FF5-488E-A45B-6A6F1A96FC15}</Project> -->
+    <!-- <Name>Microsoft.EnterpriseManagement.Management.DataProviders</Name> -->
+    <!-- </ProjectReference> -->
+    <Reference Include="Microsoft.EnterpriseManagement.Management.DataProviders">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012SP1.1.0.0.4\lib\net45\retail\Microsoft.EnterpriseManagement.Management.DataProviders.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <!-- <ProjectReference Include="$(SRCROOT)\product\Presentation\Controls\Controls\WPF\Microsoft.SystemCenter.OperationsManager.Controls.WPF.csproj"> -->
+    <!-- <Project>{8512B667-1F9D-4C54-A1EA-6B92AE956328}</Project> -->
+    <!-- <Name>Microsoft.EnterpriseManagement.Presentation.Controls</Name> -->
+    <!-- </ProjectReference> -->
+    <Reference Include="Microsoft.EnterpriseManagement.Presentation.VisualMicrosoft.EnterpriseManagement.Presentation.Controls">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012SP1.1.0.0.4\lib\net45\retail\Microsoft.EnterpriseManagement.Presentation.Controls.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <!-- <ProjectReference Include="$(SRCROOT)\product\Presentation\Core\Core\Core.csproj"> -->
+    <!-- <Project>{DE96C179-CD68-400A-ACC7-21CA6F8C30E2}</Project> -->
+    <!-- <Name>Microsoft.EnterpriseManagement.Presentation.Core</Name> -->
+    <!-- </ProjectReference> -->
+    <Reference Include="Microsoft.EnterpriseManagement.Presentation.Core">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012SP1.1.0.0.4\lib\net45\retail\Microsoft.EnterpriseManagement.Presentation.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <!-- <ProjectReference Include="$(SRCROOT)\product\Presentation\Core\DataAccess\DataAccess.csproj"> -->
+    <!-- <Project>{DC6FAB63-638F-42A5-AD5A-8368258EF397}</Project> -->
+    <!-- <Name>Microsoft.EnterpriseManagement.Presentation.DataAccess</Name> -->
+    <!-- </ProjectReference> -->
+    <Reference Include="Microsoft.EnterpriseManagement.Presentation.DataAccess">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012SP1.1.0.0.4\lib\net45\retail\Microsoft.EnterpriseManagement.Presentation.DataAccess.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <!-- <ProjectReference Include="$(SRCROOT)\product\Presentation\DataProviders.Library\DataProviders.Library.csproj"> -->
+    <!-- <Project>{C9141959-382A-430C-B12C-DFB55ECA26DD}</Project> -->
+    <!-- <Name>Microsoft.EnterpriseManagement.Presentation.DataProviders.Library</Name> -->
+    <!-- </ProjectReference> -->
+    <Reference Include="Microsoft.EnterpriseManagement.Presentation.DataProviders.Library">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012SP1.1.0.0.4\lib\net45\retail\Microsoft.EnterpriseManagement.Presentation.DataProviders.Library.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <!-- <ProjectReference Include="$(SRCROOT)\product\Presentation\Core\Security\Desktop\Security.csproj"> -->
+    <!-- <Project>{02256C16-BC67-460E-979B-785BE7F453F0}</Project> -->
+    <!-- <Name>Microsoft.EnterpriseManagement.Presentation.Security</Name> -->
+    <!-- </ProjectReference> -->
+    <Reference Include="Microsoft.EnterpriseManagement.Presentation.Security">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012SP1.1.0.0.4\lib\net45\retail\Microsoft.EnterpriseManagement.Presentation.Security.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <!-- <ProjectReference Include="$(SRCROOT)\product\Presentation\Visual\Visual.csproj"> -->
+    <!-- <Project>{3047E728-D86A-45E9-BD2D-A032B959DF69}</Project> -->
+    <!-- <Name>Microsoft.EnterpriseManagement.Presentation.Visual</Name> -->
+    <!-- </ProjectReference> -->
+    <Reference Include="Microsoft.EnterpriseManagement.Presentation.Visual">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012SP1.1.0.0.4\lib\net45\retail\Microsoft.EnterpriseManagement.Presentation.Visual.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <!-- <ProjectReference Include="$(SRCROOT)\product\Common\Managed\MOMCommonUtils\Microsoft.Mom.Common.csproj"> -->
+    <!-- <Project>{DA69B55B-E56A-4192-B001-5EF05BBF3CAA}</Project> -->
+    <!-- <Name>Microsoft.Mom.Common</Name> -->
+    <!-- </ProjectReference> -->
+    <Reference Include="Microsoft.Mom.Common">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012SP1.1.0.0.4\lib\net45\retail\Microsoft.Mom.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <ProjectReference Include="D:\OC\UI\Core\Common\Mom.Test.UI.Core.Common.csproj">
+      <Project>{915D3D10-2959-45E2-96B2-7D02CE3CD4CF}</Project>
+      <Name>MOM.Test.UI.Core.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\OC\UI\Core\DashboardHarness\DashboardHarness.csproj">
+      <Project>{911A9D6E-3FD0-4F58-BEC1-286457237142}</Project>
+      <Name>DashboardHarness</Name>
+    </ProjectReference>
+    <!-- <ProjectReference Include="$(SRCROOT)\Testcode\common\src\BaseCommon.csproj"> -->
+    <!-- <Project>{FE25D6CB-C786-4DA0-BDB4-47638978CF73}</Project> -->
+    <!-- <Name>Microsoft.EnterpriseManagement.Test.BaseCommon</Name> -->
+    <!-- </ProjectReference> -->
+    <Reference Include="Microsoft.EnterpriseManagement.Test.BaseCommon">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainBaseOSTestAutomation.1.0.0.2\lib\net45\retail\Microsoft.EnterpriseManagement.Test.BaseCommon.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <!--New Ref START-->
+    <Reference Include="Microsoft.EnterpriseManagement.Monitoring.Components">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainSolutionItems.1.0.0.2\lib\net45\Replication\Libraries\OM2012SP1\Microsoft.EnterpriseManagement.Monitoring.Components.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MCF.Infra.FrmwrkEE">
+      <HintPath>D:\CxCache\SCOM.Test.Tools.1.0.2\lib\net45\MCF\drop\MCF.Infra.FrmwrkEE.dll</HintPath>
+    </Reference>
+    <Reference Include="MCF.Infra.Logger">
+      <HintPath>D:\CxCache\SCOM.Test.Tools.1.0.2\lib\net45\MCF\drop\MCF.Infra.Logger.dll</HintPath>
+    </Reference>
+    <Reference Include="MCF.Infra.Types">
+      <HintPath>D:\CxCache\SCOM.Test.Tools.1.0.2\lib\net4\MCF\drop\MCF.Infra.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.Test.FrmwrkCommon">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainBaseOSTestAutomation.1.0.0.2\lib\net45\retail\Microsoft.EnterpriseManagement.Test.FrmwrkCommon.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <!--<Reference Include="Microsoft.Mom.Common">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012R2UR1.1.0.0.2\lib\net45\retail\Microsoft.Mom.Common.dll</HintPath>
+    </Reference>-->
+    <Reference Include="Microsoft.EnterpriseManagement.Packaging">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\SCOM.Microsoft.SystemCenter.External.SM.retail.10.22.1019\lib\net45\retail\Microsoft.EnterpriseManagement.Packaging.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <!--New Ref END-->
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Administration\ConsoleWizardBase.cs" />
+    <Compile Include="Administration\Notifications\Channels\CommandChannelParams.cs" />
+    <Compile Include="Administration\Notifications\Channels\CommonChannel.cs" />
+    <Compile Include="Administration\Notifications\Channels\EmailChannelParams.cs" />
+    <Compile Include="Administration\Notifications\Channels\InstantMessageChannelParams.cs" />
+    <Compile Include="Administration\Notifications\Channels\NotificationServer.cs" />
+    <Compile Include="Administration\Notifications\Channels\ShortMessageServiceChannelParams.cs" />
+    <Compile Include="Administration\Notifications\Channels\Wizards\AddSmtpServerDialog.cs" />
+    <Compile Include="Administration\Notifications\Channels\Wizards\CommandSettingsWindow.cs" />
+    <Compile Include="Administration\Notifications\Channels\Wizards\EmailFormatWindow.cs" />
+    <Compile Include="Administration\Notifications\Channels\Wizards\EmailSettingsWindow.cs" />
+    <Compile Include="Administration\Notifications\Channels\Wizards\InstantMessageFormatWindow.cs" />
+    <Compile Include="Administration\Notifications\Channels\Wizards\InstantMessageSettingsWindow.cs" />
+    <Compile Include="Administration\Notifications\Channels\Wizards\NameAndDescriptionWindow.cs" />
+    <Compile Include="Administration\Notifications\Channels\Wizards\ShortMessageFormatWindow.cs" />
+    <Compile Include="Administration\Notifications\Channels\Wizards\SummaryWindow.cs" />
+    <Compile Include="Administration\Notifications\Subscribers\CommonSubscriber.cs" />
+    <Compile Include="Administration\Notifications\Subscribers\ScheduleData.cs" />
+    <Compile Include="Administration\Notifications\Subscribers\SubscriberAddressParams.cs" />
+    <Compile Include="Administration\Notifications\Subscribers\SubscriberParams.cs" />
+    <Compile Include="Administration\Notifications\Subscribers\Wizards\NameAndDescriptionWindow.cs" />
+    <Compile Include="Administration\Notifications\Subscribers\Wizards\NotificationCalendarWindow.cs" />
+    <Compile Include="Administration\Notifications\Subscribers\Wizards\SpecifySchedulePeriodDialog.cs" />
+    <Compile Include="Administration\Notifications\Subscribers\Wizards\SubscriberAddressChannelWindow.cs" />
+    <Compile Include="Administration\Notifications\Subscribers\Wizards\SubscriberAddressesWindow.cs" />
+    <Compile Include="Administration\Notifications\Subscribers\Wizards\SubscriberAddressNameWindow.cs" />
+    <Compile Include="Administration\Notifications\Subscribers\Wizards\SubscriberAddressScheduleWindow.cs" />
+    <Compile Include="Administration\Notifications\Subscribers\Wizards\SummaryWindow.cs" />
+    <Compile Include="Administration\Notifications\Subscriptions\CommonSubscription.cs" />
+    <Compile Include="Administration\Notifications\Subscriptions\SubscriptionParameters.cs" />
+    <Compile Include="Administration\Notifications\Subscriptions\Wizards\AddNotificationRecipientWindow.cs" />
+    <Compile Include="Administration\Notifications\Subscriptions\Wizards\AlertCriteria\AlertPriorityDialog.cs" />
+    <Compile Include="Administration\Notifications\Subscriptions\Wizards\AlertCriteria\AlertSeverityTypeDialog.cs" />
+    <Compile Include="Administration\Notifications\Subscriptions\Wizards\AlertCriteria\ChannelSearchDialog.cs" />
+    <Compile Include="Administration\Notifications\Subscriptions\Wizards\AlertCriteria\ClassSearchDialog.cs" />
+    <Compile Include="Administration\Notifications\Subscriptions\Wizards\AlertCriteria\DateandTimeRangeDialog.cs" />
+    <Compile Include="Administration\Notifications\Subscriptions\Wizards\AlertCriteria\GroupSearchDialog.cs" />
+    <Compile Include="Administration\Notifications\Subscriptions\Wizards\AlertCriteria\ObjectOrInstanceSearchDialog.cs" />
+    <Compile Include="Administration\Notifications\Subscriptions\Wizards\AlertCriteria\ResolutionStateDialog.cs" />
+    <Compile Include="Administration\Notifications\Subscriptions\Wizards\AlertCriteria\RulesAndMonitorsSearchDialog.cs" />
+    <Compile Include="Administration\Notifications\Subscriptions\Wizards\AlertCriteria\SubscriberSearchDialog.cs" />
+    <Compile Include="Administration\Notifications\Subscriptions\Wizards\AlertCriteria\TextCriteriaDialog.cs" />
+    <Compile Include="Administration\Notifications\Subscriptions\Wizards\ChannelsWindow.cs" />
+    <Compile Include="Administration\Notifications\Subscriptions\Wizards\ModifySubscriptionWizardWindow.cs" />
+    <Compile Include="Administration\Notifications\Subscriptions\Wizards\NameAndDescriptionWindow.cs" />
+    <Compile Include="Administration\Notifications\Subscriptions\Wizards\NotificationSubscriptionsDialog.cs" />
+    <Compile Include="Administration\Notifications\Subscriptions\Wizards\SubscribersWindow.cs" />
+    <Compile Include="Administration\Notifications\Subscriptions\Wizards\SubscriptionCriteriaWindow.cs" />
+    <Compile Include="Administration\Notifications\Subscriptions\Wizards\SubscriptionSummaryWindow.cs" />
+    <Compile Include="Administration\Notifications\Subscriptions\Wizards\SummaryWindow.cs" />
+    <Compile Include="Administration\Notifications\Subscriptions\Wizards\SubscriptionNewCriteriaWindow.cs" />
+    <Compile Include="Administration\Notifications\Utilities.cs" />
+    <Compile Include="Administration\PickerDialogBase.cs" />
+    <Compile Include="Administration\Tiering\CommonConnectedManagement.cs" />
+    <Compile Include="Administration\Tiering\CommonProductConnector.cs" />
+    <Compile Include="Administration\Tiering\TieringTopologyResolution.cs" />
+    <Compile Include="Administration\Tiering\Dialogs\AddManagementGroupDialog.cs" />
+    <Compile Include="Browser.cs" />
+    <Compile Include="ConsoleApp.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ConsoleAppParameters.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <!--<Compile Include="WorkflowAnalyzer\IDataTypeProperty.cs" />-->
+    <Compile Include="Constants.cs" />
+    <Compile Include="DeviceDiscovery\Wizards\AutoAgentAssignment\AgentFailoverWindow.cs" />
+    <Compile Include="DeviceDiscovery\Wizards\AutoAgentAssignment\ExclusionCriteriaWindow.cs" />
+    <Compile Include="DeviceDiscovery\Wizards\AutoAgentAssignment\InclusionCriteriaWindow.cs" />
+    <Compile Include="DeviceDiscovery\Wizards\AutoAgentAssignment\SelectDomainWindow.cs" />
+    <Compile Include="DeviceDiscovery\Wizards\AutoAgentAssignment\WizardWelcomeWindow.cs" />
+    <Compile Include="DeviceDiscovery\Wizards\ComputerAndDeviceType.cs" />
+    <Compile Include="DeviceDiscovery\Wizards\NetworkDeviceWizard\Dialogs\AddaDeviceDialog.cs" />
+    <Compile Include="DeviceDiscovery\Wizards\NetworkDeviceWizard\Dialogs\AddFilterDialog.cs" />
+    <Compile Include="DeviceDiscovery\Wizards\NetworkDeviceWizard\Dialogs\AdvancedDiscoverySettingsDialog.cs" />
+    <Compile Include="DeviceDiscovery\Wizards\NetworkDeviceWizard\Dialogs\CompletionDialog.cs" />
+    <Compile Include="DeviceDiscovery\Wizards\NetworkDeviceWizard\Dialogs\FilterDialog.cs" />
+    <Compile Include="DeviceDiscovery\Wizards\NetworkDeviceWizard\Dialogs\GeneralDialog.cs" />
+    <Compile Include="DeviceDiscovery\Wizards\NetworkDeviceWizard\Dialogs\DefaultAccountsDialog.cs" />
+    <Compile Include="DeviceDiscovery\Wizards\NetworkDeviceWizard\Dialogs\DevicesDialog.cs" />
+    <Compile Include="DeviceDiscovery\Wizards\NetworkDeviceWizard\Dialogs\DiscoveryMethodDialog.cs" />
+    <Compile Include="DeviceDiscovery\Wizards\NetworkDeviceWizard\Dialogs\ScheduleDiscoveryDialog.cs" />
+    <Compile Include="DeviceDiscovery\Wizards\NetworkDeviceWizard\Dialogs\SummaryDialog.cs" />
+    <Compile Include="DeviceDiscovery\Wizards\NetworkDeviceWizard\Dialogs\WarningDeleteDialog.cs" />
+    <Compile Include="DeviceDiscovery\Wizards\NetworkDeviceWizard\Dialogs\WarningDialog.cs" />
+    <Compile Include="DeviceDiscovery\Wizards\NetworkDeviceWizard\NetworkWizardUtilities.cs" />
+    <Compile Include="Dialogs\AssertDialog.cs" />
+    <Compile Include="Dialogs\ClassSearchDialog.cs" />
+    <Compile Include="Dialogs\EnterCredentialsDialog.cs" />
+    <Compile Include="Dialogs\LoginDialog.cs" />
+    <Compile Include="Dialogs\ObjectSearchDialog.cs" />
+    <Compile Include="Favorites\Dialogs\ConfirmShortcutDeleteDialog.cs" />
+    <Compile Include="GlobalSettings\InstantMessageParameters.cs" />
+    <Compile Include="GlobalSettings\ShortMessageServiceParameters.cs" />
+    <Compile Include="MomControls\DashboardControls\FilterControl.cs" />
+    <Compile Include="MomControls\DashboardControls\ListViewHost.cs" />
+    <Compile Include="MomControls\DashboardControls\SpeedometerGauge.cs" />
+    <Compile Include="MomControls\DashboardGadgets\NodeWithMostAlert.cs" />
+    <Compile Include="MomControls\DashboardGadgets\AlertComponent\AlertsView.cs" />
+    <Compile Include="MomControls\DashboardControls\DetailsPaneReader.cs" />
+    <Compile Include="MomControls\DashboardGadgets\AlertComponent\InlineDetailPane.cs" />
+    <Compile Include="MomControls\DashboardGadgets\AlertComponent\Personalization\Dialogs\AlertPersonalizationDialog.cs" />
+    <Compile Include="MomControls\DashboardGadgets\AlertComponent\Personalization\Personalization.cs" />
+    <Compile Include="MomControls\DashboardGadgets\AlertComponent\Configuration\Dialogs\AlertCriteriaPage.cs" />
+    <Compile Include="MomControls\DashboardGadgets\AlertComponent\Configuration\Dialogs\AlertObjectPickerScopePage.cs" />
+    <Compile Include="MomControls\Dashboards\NetworkSummaryDashboard.cs" />
+    <Compile Include="MomControls\Dashboards\NodeDashboard.cs" />
+    <Compile Include="MomControls\Dashboards\GridLayoutDashboard.cs" />
+    <Compile Include="MomControls\Dashboards\FlowLayoutDashboard.cs" />
+    <Compile Include="MomControls\Dashboards\MapWidget.cs" />
+    <Compile Include="MomControls\Dashboards\SlaDashboard.cs" />
+    <Compile Include="MomControls\Dashboards\OMSummaryDashboard.cs" />
+    <Compile Include="MomControls\Dashboards\App360Dashboard\AllAlertsWidget.cs" />
+    <Compile Include="MomControls\Dashboards\App360Dashboard\AllApplicationsDashboard.cs" />
+    <Compile Include="MomControls\Dashboards\App360Dashboard\AllApplicationsSLAWidget.cs" />
+    <Compile Include="MomControls\Dashboards\App360Dashboard\AllApplicationsStateWidget.cs" />
+    <Compile Include="MomControls\Dashboards\App360Dashboard\ApplicationOverviewDashboard.cs" />
+    <Compile Include="MomControls\Dashboards\App360Dashboard\ComponentsWidget.cs" />
+    <Compile Include="MomControls\Dashboards\App360Dashboard\DistributedApplicationWidget.cs" />
+    <Compile Include="MomControls\Dashboards\App360Dashboard\PerfChartWidget1.cs" />
+    <Compile Include="MomControls\Dashboards\App360Dashboard\PerfChartWidget2.cs" />
+    <Compile Include="MomControls\Dashboards\App360Dashboard\PerfChartWidget3.cs" />
+    <Compile Include="MomControls\Dashboards\App360Dashboard\PerfChartWidgetCommon.cs" />
+    <Compile Include="MomControls\Dashboards\Dialogs\LayoutDialog.cs" />
+    <Compile Include="MomControls\Dashboards\Dialogs\ColumnCountDialog.cs" />
+    <Compile Include="MomControls\DataGridControl.cs" />
+    <Compile Include="MomControls\GridReader.cs" />
+    <Compile Include="MomControls\GenericPane.cs" />
+    <Compile Include="MomControls\MpResources.cs" />
+    <Compile Include="MomControls\RuleControl.cs" />
+    <Compile Include="MomControls\TreeView.cs" />
+    <Compile Include="MomControls\WunderBarItem.cs" />
+    <Compile Include="MonitoringConfiguration\Aggregate\Dialogs\HealthRollupPolicyProperties.cs" />
+    <Compile Include="MonitoringConfiguration\Dependency\Dialogs\HealthRollupPolicyProperties.cs" />
+    <Compile Include="MonitoringConfiguration\DiagnosticAndRecovery\DiagnosticAndRecovery.cs" />
+    <Compile Include="MonitoringConfiguration\DiagnosticAndRecovery\Dialogs\DiagnosticAndRecoveryDialog.cs" />
+    <Compile Include="MonitoringConfiguration\DiagnosticAndRecovery\Dialogs\DiagnosticAndRecoveryTaskCommandLineDialog.cs" />
+    <Compile Include="MonitoringConfiguration\DiagnosticAndRecovery\Dialogs\DiagnosticAndRecoveryTaskGeneralDialog.cs" />
+    <Compile Include="MonitoringConfiguration\DiagnosticAndRecovery\Dialogs\DiagnosticAndRecoveryTaskScriptDialog.cs" />
+    <Compile Include="MonitoringConfiguration\DiagnosticAndRecovery\Dialogs\DiagnosticAndRecoveryTaskTypeDialog.cs" />
+    <Compile Include="MonitoringConfiguration\DiagnosticAndRecovery\Dialogs\MonitorPropertiesDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Dialogs\AlertDescriptionDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Dialogs\AlertPropertiesRuleDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Dialogs\AlertSettingsProperties.cs" />
+    <Compile Include="MonitoringConfiguration\Dialogs\ConfigurationTabRulePropertiesDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Dialogs\ConfigureAlertRuleDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Dialogs\GenericLogDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Dialogs\RulePropertiesDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Dialogs\ScriptScheduleDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Dialogs\SNMPSettingsProperties.cs" />
+    <Compile Include="MonitoringConfiguration\Dialogs\SNMPDSPropertiesDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Dialogs\TimedScriptCommandScheduleDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Dialogs\WMIConfigurationDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Events\Dialogs\ConsolidationSettingsDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Events\Dialogs\CorrelatedEventsConfigurationDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Dialogs\TemplateGeneralPropertiesDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Dialogs\WatcherNodePropertiesDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Events\Dialogs\EventMapperDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Events\Dialogs\SelectTimeRangeDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Knowledge\KnowledgeHelper.cs" />
+    <Compile Include="MonitoringConfiguration\Knowledge\WordDocument.cs" />
+    <Compile Include="MonitoringConfiguration\Knowledge\Dialogs\FailedLaunchWordErrorDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Knowledge\Dialogs\KnowledgePropertiesDialog.cs" />
+    <Compile Include="MonitoringConfiguration\OleDb\Dialogs\BuildConnectionStringDialog.cs" />
+    <Compile Include="MonitoringConfiguration\OleDb\Dialogs\ConnectionStringPropertiesDialog.cs" />
+    <Compile Include="MonitoringConfiguration\OleDb\Dialogs\SetQueryPerformanceThresholdsDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Performance\Dialogs\PerformanceMapperDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Performance\Dialogs\ThresholdSettingsDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Port\Dialogs\EnterAndTestPortSettingsDialog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MonitoringConfiguration\Port\Dialogs\TargetAndPortPropertiesDialog.cs" />
+    <Compile Include="MonitoringConfiguration\ProcessMonitor\Dialogs\ProcessToMonitorTabDialog.cs" />
+    <Compile Include="MonitoringConfiguration\ProcessMonitor\Dialogs\RunningProcessesTabDialog.cs" />
+    <Compile Include="MonitoringConfiguration\slaslo\dialogs\RuleSLOSelectaClasstoTargetDialog.cs" />
+    <Compile Include="MonitoringConfiguration\slaslo\dialogs\SelectanObjectDialog.cs" />
+    <Compile Include="MonitoringConfiguration\slaslo\dialogs\SelectaRuleDialog.cs" />
+    <Compile Include="MonitoringConfiguration\slaslo\dialogs\SelectaTargetClassDialog.cs" />
+    <Compile Include="MonitoringConfiguration\slaslo\dialogs\ServiceLevelObjectiveCollectionRuleDialog.cs" />
+    <Compile Include="MonitoringConfiguration\slaslo\dialogs\ServiceLevelObjectiveMonitorStateDialog.cs" />
+    <Compile Include="MonitoringConfiguration\slaslo\dialogs\ServiceLevelTrackingCompletionDialog.cs" />
+    <Compile Include="MonitoringConfiguration\slaslo\dialogs\ServiceLevelTrackingGeneralDialog.cs" />
+    <Compile Include="MonitoringConfiguration\slaslo\dialogs\ServiceLevelTrackingObjectsDialog.cs" />
+    <Compile Include="MonitoringConfiguration\slaslo\dialogs\ServiceLevelTrackingSLOsDialog.cs" />
+    <Compile Include="MonitoringConfiguration\slaslo\dialogs\ServiceLevelTrackingSummaryDialog.cs" />
+    <Compile Include="MonitoringConfiguration\slaslo\dialogs\SLOSelectaTargetTypeDialog.cs" />
+    <Compile Include="MonitoringConfiguration\slaslo\SLADetailPane.cs" />
+    <Compile Include="MonitoringConfiguration\slaslo\SLASLO.cs" />
+    <Compile Include="MonitoringConfiguration\SNMPMonitor\Dialog\SnmpBuildExpressionDialog.cs" />
+    <Compile Include="MonitoringConfiguration\SNMPMonitor\Dialog\SNMPMonitorPropertiesDialog.cs" />
+    <Compile Include="MonitoringConfiguration\SNMPMonitor\Dialog\SnmpProviderDialog.cs" />
+    <Compile Include="MonitoringConfiguration\SNMPMonitor\SNMPMonitor.cs" />
+    <Compile Include="MonitoringConfiguration\URL\Dialogs\ChangeConfigurationDialog.cs" />
+    <Compile Include="MonitoringConfiguration\URL\Dialogs\SummaryDialog.cs" />
+    <Compile Include="MonitoringConfiguration\URL\Dialogs\TestResultsDetailsTab.cs" />
+    <Compile Include="MonitoringConfiguration\URL\Dialogs\TestResultsDialog.cs" />
+    <Compile Include="MonitoringConfiguration\URL\Dialogs\TestResultsHTTPRequestTab.cs" />
+    <Compile Include="MonitoringConfiguration\URL\Dialogs\TestResultsHTTPResponseTab.cs" />
+    <Compile Include="MonitoringConfiguration\URL\Dialogs\TestResultsSummaryTab.cs" />
+    <Compile Include="MonitoringConfiguration\URL\Dialogs\ViewAndValidateTestDialog.cs" />
+    <Compile Include="MonitoringConfiguration\URL\Dialogs\WhatToMonitorDialog.cs" />
+    <Compile Include="MonitoringConfiguration\URL\Dialogs\WhereToMonitorFromDialog.cs" />
+    <Compile Include="MonitoringConfiguration\URL\WebApplicationMultiURL.cs" />
+    <Compile Include="MonitoringConfiguration\WindowsService\Dialogs\PerformanceDataPageDialog.cs" />
+    <Compile Include="MonitoringConfiguration\WindowsService\Dialogs\ServiceDetailPageDialog.cs" />
+    <Compile Include="MonitoringConfiguration\URL\Dialogs\AddExtractionRuleDialog.cs" />
+    <Compile Include="MonitoringConfiguration\URL\Dialogs\CreateNewRequestDialogHeaderTab.cs" />
+    <Compile Include="MonitoringConfiguration\URL\Dialogs\HTTPHeaderPropertiesDialog.cs" />
+    <Compile Include="MonitoringConfiguration\URL\Dialogs\InsertParameterDialog.cs" />
+    <Compile Include="MonitoringConfiguration\URL\Dialogs\RequestPropertiesDialogExtraRuleTab.cs" />
+    <Compile Include="MonitoringConfiguration\URL\Dialogs\RequestPropertiesDialogGeneralTab.cs" />
+    <Compile Include="MonitoringConfiguration\URL\Dialogs\RequestPropertiesDialogMonitoringTab.cs" />
+    <Compile Include="MonitoringConfiguration\URL\Dialogs\RunNowResultsDialog.cs" />
+    <Compile Include="MonitoringConfiguration\URL\Dialogs\WebApplicationEditorActionPane.cs" />
+    <Compile Include="MP\Dialogs\CannotConnectMPWebServiceDialog.cs" />
+    <Compile Include="MP\Dialogs\MoreInformationDialog.cs" />
+    <Compile Include="MP\Dialogs\TuneManagementPackFilterDataDialog.cs" />
+    <Compile Include="MP\Dialogs\TuneAlertsView.cs" />
+    <Compile Include="MP\Dialogs\TuneAlertsViewSourcesDialog.cs" />
+    <Compile Include="MP\Dialogs\MPErrorDialog.cs" />
+    <Compile Include="MP\Dialogs\MPGeneralPropertyDialog.cs" />
+    <Compile Include="MP\Dialogs\MPWarningDialog.cs" />
+    <Compile Include="MP\Dialogs\SecurityCertificateProblemDialog.cs" />
+    <Compile Include="MP\Dialogs\SelectMPsFromCatalogDialog.cs" />
+    <Compile Include="MP\Dialogs\WizardDialogImportMPs.cs" />
+    <Compile Include="MP\Dialogs\WizardDialogSelectMPs.cs" />
+    <Compile Include="MP\OnlineCatalog.cs" />
+    <Compile Include="MsaaResources.cs" />
+    <Compile Include="AEM\AEMDeployment.cs" />
+    <Compile Include="AEM\Dialogs\CEIPDialog.cs" />
+    <Compile Include="AEM\Dialogs\ConfigureErrorCollectionDialog.cs" />
+    <Compile Include="AEM\Dialogs\ConfigureErrorForwardingDialog.cs" />
+    <Compile Include="AEM\Dialogs\CreateFileShareDialog.cs" />
+    <Compile Include="AEM\Dialogs\DeployConfigurationSettingsDialog.cs" />
+    <Compile Include="AEM\Dialogs\IntroDialog.cs" />
+    <Compile Include="AEM\Dialogs\TaskStatusDialog.cs" />
+    <Compile Include="DeviceDiscovery\AgentPropertiesWindow.cs" />
+    <Compile Include="DeviceDiscovery\ManagementServerPropertiesWindow.cs" />
+    <Compile Include="DeviceDiscovery\NetworkDevicePropertiesWindow.cs" />
+    <Compile Include="DeviceDiscovery\PendingActionsViewHelper.cs" />
+    <Compile Include="DeviceDiscovery\RemoteAgentPropertiesWindow.cs" />
+    <Compile Include="DeviceDiscovery\Utilities.cs" />
+    <Compile Include="DeviceDiscovery\Wizards\AgentManagementTaskStatusWindow.cs" />
+    <Compile Include="DeviceDiscovery\Wizards\AgentUninstallWizardWindow.cs" />
+    <Compile Include="DeviceDiscovery\Wizards\IpAddressRangeWindow.cs" />
+    <Compile Include="Dialogs\RevertToDefaultsDialog.cs" />
+    <Compile Include="Dialogs\AddRemoveColumnDialog.cs" />
+    <Compile Include="Dialogs\BrowseForFolderDialog.cs" />
+    <Compile Include="Dialogs\ConnectToServerDialog.cs" />
+    <Compile Include="Dialogs\ExceptionErrorDialog.cs" />
+    <Compile Include="Dialogs\ObjectPickerDialog.cs" />
+    <Compile Include="Dialogs\SingleObjectSearchDialog.cs" />
+    <Compile Include="Dialogs\ScopeMPObjectsDialog.cs" />
+    <Compile Include="Dialogs\SelectComputersDialog.cs" />
+    <Compile Include="Dialogs\SelectObjectDialog.cs" />
+    <Compile Include="Dialogs\SelectTasksDialog.cs" />
+    <Compile Include="Dialogs\ShowHideViewsDialog.cs" />
+    <Compile Include="Dialogs\ViewPropertiesDialog.cs" />
+    <Compile Include="Dialogs\GroupSearchDialog.cs" />
+    <Compile Include="MonitoringConfiguration\ProcessMonitor\ProcessMonitor.cs" />
+    <Compile Include="MonitoringConfiguration\ProcessMonitor\Dialogs\RunningProcessesDialog.cs" />
+    <Compile Include="MonitoringConfiguration\ProcessMonitor\Dialogs\TargetGroupAndProcessDialog.cs" />
+    <Compile Include="Favorites\Dialogs\AddFavoriteDialog.cs" />
+    <Compile Include="Favorites\Dialogs\CreateNewFavoriteFolderDialog.cs" />
+    <Compile Include="Favorites\Favorites.cs" />
+    <Compile Include="GlobalSettings\AddSmtpServerDialog.cs" />
+    <Compile Include="GlobalSettings\AlertsGlobalSettingsAlertResolutionDialog.cs" />
+    <Compile Include="GlobalSettings\AlertsGlobalSettingsAutoResolveDialog.cs" />
+    <Compile Include="GlobalSettings\AlertsGlobalSettingsCustomFieldsDialog.cs" />
+    <Compile Include="GlobalSettings\AlertsGlobalSettingsNewResolutionDialog.cs" />
+    <Compile Include="GlobalSettings\EmailNotificationDialog.cs" />
+    <Compile Include="GlobalSettings\GlobalSettingsView.cs" />
+    <Compile Include="GlobalSettings\InstantMessageNotificationDialog.cs" />
+    <Compile Include="GlobalSettings\ServerSecurityDialog.cs" />
+    <Compile Include="GlobalSettings\ShortMessageServiceNotificationDialog.cs" />
+    <Compile Include="MomControls\Diagram.cs" />
+    <Compile Include="MomControls\DiagramControl.cs" />
+    <Compile Include="MomControls\FindBar.cs" />
+    <Compile Include="MomControls\GridControl.cs" />
+    <Compile Include="MomControls\TaskStrip.cs" />
+    <Compile Include="MomControls\ViewToolbar.cs" />
+    <Compile Include="MomControls\WunderBar.cs" />
+    <Compile Include="MomControls\MultiPickerComponent.cs" />
+    <Compile Include="MomControls\MultiPickerControl.cs" />
+    <Compile Include="MomControls\PickerControlModalDialog.cs" />
+    <Compile Include="MomControls\SinglePickerComponent.cs" />
+    <Compile Include="MomControls\SinglePickerControl.cs" />
+    <Compile Include="MomControls\GroupandObjectFilterControl.cs" />
+    <Compile Include="MomControls\SingleObjectPicker.cs" />
+    <Compile Include="DetailPane.cs" />
+    <Compile Include="DeviceDiscovery\Wizards\AgentInstallSummaryWindow.cs" />
+    <Compile Include="DeviceDiscovery\Wizards\DiscoveryMethodWindow.cs" />
+    <Compile Include="DeviceDiscovery\Wizards\DiscoveryResultsWindow.cs" />
+    <Compile Include="DeviceDiscovery\Wizards\DiscoveryTaskProgressWindow.cs" />
+    <Compile Include="DeviceDiscovery\Wizards\QueryCriteriaWindow.cs" />
+    <Compile Include="DeviceDiscovery\Wizards\WelcomeWindow.cs" />
+    <Compile Include="DeviceDiscovery\Wizards\WindowsCredentialsWindow.cs" />
+    <Compile Include="Dialogs\FindComputersAdvancedDialog.cs" />
+    <Compile Include="Dialogs\FindComputersDialog.cs" />
+    <Compile Include="Dialogs\UnhandledExceptionsDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Aggregate\Aggregate.cs" />
+    <Compile Include="MonitoringConfiguration\Aggregate\Dialogs\HealthRollupPolicyDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Attributes\Attributes.cs" />
+    <Compile Include="MonitoringConfiguration\Attributes\Wizards\AttributeTargetSelectclassDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Attributes\Wizards\CreateAttributeWizardDiscoveryMethod.cs" />
+    <Compile Include="MonitoringConfiguration\Attributes\Wizards\CreateAttributeWizardGeneralProperties.cs" />
+    <Compile Include="MonitoringConfiguration\Attributes\Wizards\CreateAttributeWizardRegProbeConfig.cs" />
+    <Compile Include="MonitoringConfiguration\Attributes\Wizards\CreateAttributeWizardWMIConfig.cs" />
+    <Compile Include="MonitoringConfiguration\Dependency\Dependency.cs" />
+    <Compile Include="MonitoringConfiguration\Dependency\Dialogs\HealthRollupPolicyDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Dependency\Dialogs\MonitorDependencyDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Dialogs\ChooseWatcherNodesDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Dialogs\ConfigureAlertsDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Dialogs\ConfigureHealthDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Dialogs\GeneralProperties.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MonitoringConfiguration\Dialogs\GeneralPropertiesDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Dialogs\HealthProperties.cs" />
+    <Compile Include="MonitoringConfiguration\Dialogs\KnowledgeArticleDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Dialogs\KnowledgeProperties.cs" />
+    <Compile Include="MonitoringConfiguration\Dialogs\MonitorGeneralPropertiesDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Dialogs\MonitorTypeDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Dialogs\PerformanceDataDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Dialogs\RollupMonitorGeneralPropertiesDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Dialogs\RuleGeneralPropertiesDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Dialogs\RuleTypeDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Dialogs\SelectComponentTypeDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Dialogs\SelectTargetTypeDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Dialogs\SettingsSummaryDialog.cs" />
+    <Compile Include="MonitoringConfiguration\DotNETMonitor\Dialogs\AddNewDialog.cs" />
+    <Compile Include="MonitoringConfiguration\DotNETMonitor\Dialogs\DiscoveryMethodDialog.cs" />
+    <Compile Include="MonitoringConfiguration\DotNETMonitor\Dialogs\ExceptionsCriteriaDialog.cs" />
+    <Compile Include="MonitoringConfiguration\DotNETMonitor\Dialogs\PerformanceCriteriaDialog.cs" />
+    <Compile Include="MonitoringConfiguration\DotNETMonitor\Dialogs\SelectDiscoveredDialog.cs" />
+    <Compile Include="MonitoringConfiguration\DotNETMonitor\Dialogs\SettingsSummaryDialog.cs" />
+    <Compile Include="MonitoringConfiguration\DotNETMonitor\DotNETMonitor.cs" />
+    <Compile Include="MonitoringConfiguration\Events\Dialogs\AutoResetTimerDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Events\Dialogs\BuildExpressionProperties.cs" />
+    <Compile Include="MonitoringConfiguration\Events\Dialogs\IncorrectFormulaWindow.cs" />
+    <Compile Include="MonitoringConfiguration\Events\Dialogs\LogNameProperties.cs" />
+    <Compile Include="MonitoringConfiguration\Events\Dialogs\SelectEventLogDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Groups\Dialogs\CreateGroupQueryBuilderDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Groups\Dialogs\DeleteGroupConfirmationDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Groups\Dialogs\GroupWizDynamicMembersPage.cs" />
+    <Compile Include="MonitoringConfiguration\Groups\Dialogs\GroupWizExcludedMembersPage.cs" />
+    <Compile Include="MonitoringConfiguration\Groups\Dialogs\GroupWizExplicitMembersPage.cs" />
+    <Compile Include="MonitoringConfiguration\Groups\Dialogs\GroupWizGeneralPropertiesPage.cs" />
+    <Compile Include="MonitoringConfiguration\Groups\Dialogs\GroupWizSubgroupsPage.cs" />
+    <Compile Include="MonitoringConfiguration\Groups\Groups.cs" />
+    <Compile Include="MonitoringConfiguration\Knowledge\Dialogs\KnowledgeWordDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Events\Dialogs\LogNameDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Events\Dialogs\BuildExpressionDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Events\Dialogs\EventPropertyCellEditorFormDialog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MonitoringConfiguration\Events\Events.cs" />
+    <Compile Include="MonitoringConfiguration\Knowledge\Knowledge.cs" />
+    <Compile Include="MonitoringConfiguration\MonitoringConfiguration.cs" />
+    <Compile Include="MonitoringConfiguration\Monitors.cs" />
+    <Compile Include="MonitoringConfiguration\Performance\Dialogs\BaseliningAdvancedDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Performance\Dialogs\BaseliningConfigurationDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Performance\Dialogs\OptimizedCollectionDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Performance\Dialogs\PerformanceCounterDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Performance\Dialogs\ScheduleDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Performance\Dialogs\SelectPerformanceCounterDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Performance\Dialogs\WindowsPerformanceDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Performance\Dialogs\WMIPerformanceDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Port\Port.cs" />
+    <Compile Include="MonitoringConfiguration\PowerMgmt\PowerMgmt.cs" />
+    <Compile Include="MonitoringConfiguration\PowerMgmt\Dialogs\DevicesDialog.cs" />
+    <Compile Include="MonitoringConfiguration\PowerMgmt\Dialogs\GeneralPropertiesWizardDialog.cs" />
+    <Compile Include="MonitoringConfiguration\PowerMgmt\Dialogs\PowerDomainSettingsDialog.cs" />
+    <Compile Include="MonitoringConfiguration\PowerMgmt\Dialogs\SummaryDialog.cs" />
+    <Compile Include="MonitoringConfiguration\Rules.cs" />
+    <Compile Include="MonitoringConfiguration\Templates.cs" />
+    <Compile Include="MonitoringConfiguration\URL\Dialogs\EnterAndTestWebAddressDialog.cs" />
+    <Compile Include="MonitoringConfiguration\URL\Dialogs\RequestResultDetailsDialogDetailsTab.cs" />
+    <Compile Include="MonitoringConfiguration\URL\Dialogs\RequestResultDetailsDialogHttpRequestTab.cs" />
+    <Compile Include="MonitoringConfiguration\URL\Dialogs\RequestResultDetailsDialogHttpResponseTab.cs" />
+    <Compile Include="MonitoringConfiguration\URL\Dialogs\WebApplicationEditorDialog.cs" />
+    <Compile Include="MonitoringConfiguration\URL\WebApplication.cs" />
+    <Compile Include="MonitoringConfiguration\WindowsService\Dialogs\SelectWindowsServiceDialog.cs" />
+    <Compile Include="MonitoringConfiguration\WindowsService\Dialogs\ServiceNameDialog.cs" />
+    <Compile Include="MonitoringConfiguration\WindowsService\Dialogs\ServiceNameProperties.cs" />
+    <Compile Include="MonitoringConfiguration\WindowsService\Dialogs\TargetGroupAndServiceDialog.cs" />
+    <Compile Include="MonitoringConfiguration\WindowsService\WindowsService.cs" />
+    <Compile Include="MP\Dialogs\CreateManagementPackGenPropDialog.cs" />
+    <Compile Include="MP\Dialogs\CreateManagementPackKnowledgeDialog.cs" />
+    <Compile Include="MP\Dialogs\ImportManagementPacksCloseDialog.cs" />
+    <Compile Include="MP\Dialogs\ImportManagementPacksDialog.cs" />
+    <Compile Include="MP\ManagementPacks.cs" />
+    <Compile Include="MonitoringConfiguration\OleDb\Dialogs\EnterAndTestOleDbSettingsDialog.cs" />
+    <Compile Include="MonitoringConfiguration\OleDb\OleDb.cs" />
+    <Compile Include="Notifications\Recipients\CreateNotificationDeviceWizardChannelWindow.cs" />
+    <Compile Include="Notifications\Recipients\CreateNotificationDeviceWizardNameWindow.cs" />
+    <Compile Include="Notifications\Recipients\CreateNotificationDeviceWizardScheduleWindow.cs" />
+    <Compile Include="Notifications\Recipients\CreateNotificationDeviceWizardWelcomeWindow.cs" />
+    <Compile Include="Notifications\Recipients\NotificationRecipientDevicePropertiesDialog.cs" />
+    <Compile Include="Notifications\Recipients\NotificationRecipientPropertiesDialog.cs" />
+    <Compile Include="Notifications\Recipients\SpecifySchedulePeriodDialog.cs" />
+    <Compile Include="Notifications\Subscriptions\AddNotificationRecipientWindow.cs" />
+    <Compile Include="Notifications\Subscriptions\CreateNotificationSubscriptionWizardAlertAgingWindow.cs" />
+    <Compile Include="Notifications\Subscriptions\CreateNotificationSubscriptionWizardAlertCriteriaWindow.cs" />
+    <Compile Include="Notifications\Subscriptions\CreateNotificationSubscriptionWizardClassesWindow.cs" />
+    <Compile Include="Notifications\Subscriptions\CreateNotificationSubscriptionWizardConsoleFilterWindow.cs" />
+    <Compile Include="Notifications\Subscriptions\CreateNotificationSubscriptionWizardFormatsWindow.cs" />
+    <Compile Include="Notifications\Subscriptions\CreateNotificationSubscriptionWizardGroupsWindow.cs" />
+    <Compile Include="Notifications\Subscriptions\CreateNotificationSubscriptionWizardNameWindow.cs" />
+    <Compile Include="Notifications\Subscriptions\CreateNotificationSubscriptionWizardWelcomeWindow.cs" />
+    <Compile Include="Overrides\Dialogs\OverrideProperties.cs" />
+    <Compile Include="Overrides\Overrides.cs" />
+    <Compile Include="Reporting\Dialogs\AddGroupDialog.cs" />
+    <Compile Include="Reporting\Dialogs\AddObjectDialog.cs" />
+    <Compile Include="Reporting\Dialogs\AddSLAObjectDialog.cs" />
+    <Compile Include="Reporting\Dialogs\AddTypeDialog.cs" />
+    <Compile Include="Reporting\Dialogs\AlertLoggingLatencyDialog.cs" />
+    <Compile Include="Reporting\Dialogs\AlertsDialog.cs" />
+    <Compile Include="Reporting\Dialogs\AvailabilityDialog.cs" />
+    <Compile Include="Reporting\Dialogs\ConfigurationChangesDialog.cs" />
+    <Compile Include="Reporting\Dialogs\CustomConfigurationDialog.cs" />
+    <Compile Include="Reporting\Dialogs\CustomEventDialog.cs" />
+    <Compile Include="Reporting\Dialogs\EventAnalysisDialog.cs" />
+    <Compile Include="Reporting\Dialogs\HealthDialog.cs" />
+    <Compile Include="Reporting\Dialogs\LicensesDialog.cs" />
+    <Compile Include="Reporting\Dialogs\MostCommonAlertsDialog.cs" />
+    <Compile Include="Reporting\Dialogs\MostCommonEventsDialog.cs" />
+    <Compile Include="Reporting\Dialogs\OptionsInAddGroupDialog.cs" />
+    <Compile Include="Reporting\Dialogs\OptionsInAddObjectDialog.cs" />
+    <Compile Include="Reporting\Dialogs\OptionsInSlaAddObjectDialog.cs" />
+    <Compile Include="Reporting\Dialogs\OverridesDialog.cs" />
+    <Compile Include="Reporting\Dialogs\PerformanceDetailDialog.cs" />
+    <Compile Include="Reporting\Dialogs\PerformanceDialog.cs" />
+    <Compile Include="Reporting\Dialogs\PerformanceReportSelectruleDialog.cs" />
+    <Compile Include="Reporting\Dialogs\PerformanceReportSettingsDialog.cs" />
+    <Compile Include="Reporting\Dialogs\PerformanceScheduleDialog.cs" />
+    <Compile Include="Reporting\Dialogs\PerformanceTopInstancesDialog.cs" />
+    <Compile Include="Reporting\Dialogs\PerformanceTopObjectsDialog.cs" />
+    <Compile Include="Reporting\Dialogs\ReportingUITestLinkedAlertsDialog.cs" />
+    <Compile Include="Reporting\Dialogs\SaveReportToManagementPackWizardCompletionDialog.cs" />
+    <Compile Include="Reporting\Dialogs\SaveReportToManagementPackWizardGeneralDialog.cs" />
+    <Compile Include="Reporting\Dialogs\SaveToFavoritesDialog.cs" />
+    <Compile Include="Reporting\Dialogs\SlmReportParameterControlDialog.cs" />
+    <Compile Include="Reporting\Reporting.cs" />
+    <Compile Include="RunAsAccount\Dialogs\AccountProperties.cs" />
+    <Compile Include="RunAsAccount\Dialogs\AccountUsageDialog.cs" />
+    <Compile Include="RunAsAccount\Dialogs\BinaryAccountDialog.cs" />
+    <Compile Include="RunAsAccount\Dialogs\BinaryAccountProperties.cs" />
+    <Compile Include="RunAsAccount\Dialogs\CommunityAccountDialog.cs" />
+    <Compile Include="RunAsAccount\Dialogs\CommunityAccountProperties.cs" />
+    <Compile Include="RunAsAccount\Dialogs\CompletionDialog.cs" />
+    <Compile Include="RunAsAccount\Dialogs\ComputerPickerDialog.cs" />
+    <Compile Include="RunAsAccount\Dialogs\DistributionProperties.cs" />
+    <Compile Include="RunAsAccount\Dialogs\GeneralDialog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RunAsAccount\Dialogs\GeneralProperties.cs" />
+    <Compile Include="RunAsAccount\Dialogs\IntroductionDialog.cs" />
+    <Compile Include="RunAsAccount\Dialogs\RunAsAccountWizardDistributionPage.cs" />
+    <Compile Include="RunAsAccount\Dialogs\SNMPv3AccountDialog.cs" />
+    <Compile Include="RunAsAccount\Dialogs\SNMPv3AccountProperties.cs" />
+    <Compile Include="RunAsAccount\Dialogs\WindowsAccountDialog.cs" />
+    <Compile Include="RunAsAccount\RunAsAccount.cs" />
+    <Compile Include="RunAsProfile\Dialogs\AddAlternateRunAsAccount.cs" />
+    <Compile Include="RunAsProfile\Dialogs\AddARunAsAccountDialog.cs" />
+    <Compile Include="RunAsProfile\Dialogs\AssociationsProperties.cs" />
+    <Compile Include="RunAsProfile\Dialogs\ClassPickerDialog.cs" />
+    <Compile Include="RunAsProfile\Dialogs\GroupPickerDialog.cs" />
+    <Compile Include="RunAsProfile\Dialogs\GeneralDialog.cs" />
+    <Compile Include="RunAsProfile\Dialogs\GeneralProperties.cs" />
+    <Compile Include="RunAsProfile\Dialogs\IntroductionDialog.cs" />
+    <Compile Include="RunAsProfile\Dialogs\ObjectPickerDialog.cs" />
+    <Compile Include="RunAsProfile\Dialogs\RunasAccountsDialog.cs" />
+    <Compile Include="RunAsProfile\Dialogs\RunAsAccountsProperties.cs" />
+    <Compile Include="RunAsProfile\Dialogs\RunAsProfileWizardCompletionPage.cs" />
+    <Compile Include="RunAsProfile\Dialogs\RunAsProfileWizardIntroductionPage.cs" />
+    <Compile Include="RunAsProfile\Dialogs\SelectClassDialog.cs" />
+    <Compile Include="RunAsProfile\RunAsProfile.cs" />
+    <Compile Include="Search\AdvancedSearch.cs" />
+    <Compile Include="Search\Dialogs\AdvancedSearchDialog.cs" />
+    <Compile Include="Search\Dialogs\AlertPriorityDialog.cs" />
+    <Compile Include="Search\Dialogs\AdvancedSearchWildcardDialog.cs" />
+    <Compile Include="Search\Dialogs\SavedSearchNameDialog.cs" />
+    <Compile Include="Search\Dialogs\SearchWindowDialog.cs" />
+    <Compile Include="Search\Search.cs" />
+    <Compile Include="ServiceDesigner\dialogs\CreateDistributedApplicationDialog.cs" />
+    <Compile Include="ServiceDesigner\dialogs\CreateNewServiceComponentGroupDialog.cs" />
+    <Compile Include="ServiceDesigner\dialogs\DistributedApplicationPropertiesDialog.cs" />
+    <Compile Include="ServiceDesigner\dialogs\ReplaceVisibleObjectTypeDialog.cs" />
+    <Compile Include="ServiceDesigner\dialogs\ServiceComponentGroupPropertiesDialog.cs" />
+    <Compile Include="ServiceDesigner\dialogs\ServiceDesignerConfirmationDialog.cs" />
+    <Compile Include="ServiceDesigner\dialogs\ServiceDesignerDesignSurface.cs" />
+    <Compile Include="ServiceDesigner\dialogs\SaveasTemplateDialog.cs" />
+    <Compile Include="ServiceDesigner\DistributedAppCollection.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ServiceDesigner\DistributedAppCollection.Designer.cs">
+      <DependentUpon>DistributedAppCollection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceDesigner\DistributedAppComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ServiceDesigner\DistributedAppComponent.Designer.cs">
+      <DependentUpon>DistributedAppComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceDesigner\DistributedApplicationHelper.cs" />
+    <Compile Include="ServiceDesigner\Strings.cs" />
+    <Compile Include="ServiceDesigner\Utility.cs" />
+    <Compile Include="ServiceDiagram\CreateDiagramViewDialog.cs" />
+    <Compile Include="ServiceDiagram\ExportConfigurationDialog.cs" />
+    <Compile Include="ServiceDiagram\ExportToImageDialog.cs" />
+    <Compile Include="ServiceDiagram\FindNodeDialog.cs" />
+    <Compile Include="ServiceDiagram\ServiceDiagramLegendWindow.cs" />
+    <Compile Include="ActionsPane.cs" />
+    <Compile Include="Command.cs" />
+    <Compile Include="Commands.cs" />
+    <Compile Include="MomControls\ConsoleStatusBar.cs" />
+    <Compile Include="MomControls\MainToolbar.cs" />
+    <Compile Include="MomControls\NitroDiagramControl.cs" />
+    <Compile Include="MomControls\DashboardControls\ChartHostControlViewHost.cs" />
+    <Compile Include="MomControls\DashboardControls\ChartWithLegendViewHost.cs" />
+    <Compile Include="MomControls\DashboardControls\ControlExtensions.cs" />
+    <Compile Include="MomControls\DashboardControls\Dashboard.cs" />
+    <Compile Include="MomControls\DashboardControls\DataGridInChartHostControlViewHost.cs" />
+    <Compile Include="MomControls\DashboardControls\DataGridViewHost.cs" />
+    <Compile Include="MomControls\DashboardControls\DetailsPaneViewHost.cs" />
+    <Compile Include="MomControls\DashboardControls\NitroDiagramControlViewHost.cs" />
+    <Compile Include="MomControls\DashboardControls\ViewHost.cs" />
+    <Compile Include="MomControls\DashboardControls\WidgetViewHost.cs" />
+    <Compile Include="CoreManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AboutDialog.cs" />
+    <Compile Include="Dialogs\ProductKeyDialog.cs" />
+    <Compile Include="Dialogs\LicenseEULADialog.cs" />
+    <Compile Include="Dialogs\GettingStartedDialog.cs" />
+    <Compile Include="Dialogs\HelpDialog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dialogs\OpenDialog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dialogs\PrintDialog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SaveAsDialog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MomConsoleApp.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NavigationPane.cs" />
+    <Compile Include="ProductSku.cs" />
+    <Compile Include="SharePoint\WebPart.cs" />
+    <Compile Include="SharePoint\WebPartConfigurationParameters.cs" />
+    <Compile Include="Tasks\OverrideTaskParametersDialog.cs" />
+    <Compile Include="Tasks\RunConsoleTaskDialog.cs" />
+    <Compile Include="Tasks\RunTaskDialog.cs" />
+    <Compile Include="Tasks\TaskPropertiesDialog.cs" />
+    <Compile Include="Tasks\Tasks.cs" />
+    <Compile Include="Tasks\TaskStatusDialog.cs" />
+    <Compile Include="Tasks\Wizards\CommandTaskConfiguration.cs" />
+    <Compile Include="Tasks\Wizards\ConsoleTaskConfiguration.cs" />
+    <Compile Include="Tasks\Wizards\ScriptParameters.cs" />
+    <Compile Include="Tasks\Wizards\ScriptTaskConfiguration.cs" />
+    <Compile Include="Tasks\Wizards\ScriptTaskEditor.cs" />
+    <Compile Include="Tasks\Wizards\SelectTargetType.cs" />
+    <Compile Include="Tasks\Wizards\SelectTaskType.cs" />
+    <Compile Include="Tasks\Wizards\TaskNameDialog.cs" />
+    <Compile Include="UIASupport.cs" />
+    <Compile Include="UIUtilities.cs" />
+    <Compile Include="UserRole\Dialogs\AuthorScopeDialog.cs" />
+    <Compile Include="UserRole\Dialogs\AuthorScopeProperties.cs" />
+    <Compile Include="UserRole\Dialogs\ConfirmPropertiesSaveDialog.cs" />
+    <Compile Include="UserRole\Dialogs\ConfirmUserRoleDeleteDialog.cs" />
+    <Compile Include="UserRole\Dialogs\GeneralDialog.cs" />
+    <Compile Include="UserRole\Dialogs\GeneralProperties.cs" />
+    <Compile Include="UserRole\Dialogs\GroupScopeDialog.cs" />
+    <Compile Include="UserRole\Dialogs\GroupScopeProperties.cs" />
+    <Compile Include="UserRole\Dialogs\SelectUsersOrGroups.cs" />
+    <Compile Include="UserRole\Dialogs\SummaryDialog.cs" />
+    <Compile Include="UserRole\Dialogs\TasksDialog.cs" />
+    <Compile Include="UserRole\Dialogs\TasksProperties.cs" />
+    <Compile Include="UserRole\Dialogs\ViewsDialog.cs" />
+    <Compile Include="UserRole\Dialogs\ViewsProperties.cs" />
+    <Compile Include="UserRole\UserRoles.cs" />
+    <Compile Include="ViewPane.cs" />
+    <Compile Include="Views\Alerts\AlertDateAndTimeInputViewCriteria.cs" />
+    <Compile Include="Views\Alerts\AlertPriorityViewCriteria.cs" />
+    <Compile Include="Views\Alerts\AlertPropertiesAlertContextDialog.cs" />
+    <Compile Include="Views\Alerts\AlertPropertiesCompanyKnowledgeDialog.cs" />
+    <Compile Include="Views\Alerts\AlertPropertiesCustomFieldsDialog.cs" />
+    <Compile Include="Views\Alerts\AlertPropertiesGeneralDialog.cs" />
+    <Compile Include="Views\Alerts\AlertPropertiesHistoryDialog.cs" />
+    <Compile Include="Views\Alerts\AlertPropertiesProductKnowledgeDialog.cs" />
+    <Compile Include="Views\Alerts\AlertResolutionStateViewCriteria.cs" />
+    <Compile Include="Views\Alerts\AlertSourceViewCriteria.cs" />
+    <Compile Include="Views\Alerts\AlertsView.cs" />
+    <Compile Include="Views\Alerts\AlertTextInputViewCriteria.cs" />
+    <Compile Include="Views\Alerts\AlertTypeViewCriteria.cs" />
+    <Compile Include="Views\Alerts\MultipleAlertsPropertiesDialog.cs" />
+    <Compile Include="Views\Dashboard\Wizard\AlertConfiguration.cs" />
+    <Compile Include="Views\Dashboard\Wizard\AllApplicationWidget.cs" />
+    <Compile Include="Views\Dashboard\Wizard\DashboardWizards.cs" />
+    <Compile Include="Views\Dashboard\Wizard\DashboardPersonalizationWizard.cs" />
+    <Compile Include="Views\Dashboard\Wizard\DashboardConfigurationWizard.cs" />
+    <Compile Include="Views\Dashboard\Wizard\DashboardCreationWizard.cs" />
+    <Compile Include="Views\Dashboard\Wizard\Template.cs" />
+    <Compile Include="Views\Dashboard\Wizard\TemplateA.cs" />
+    <Compile Include="Views\Dashboard\Wizard\TemplateB.cs" />
+    <Compile Include="Views\Dashboard\Wizard\TemplateGridLayoutDashboard.cs" />
+    <Compile Include="Views\Dashboard\Wizard\TemplateFlowLayoutDashboard.cs" />
+    <Compile Include="Views\Dashboard\Wizard\TemplatePerformanceChart.cs" />
+    <Compile Include="Views\StateWidget\Dialog\ClassPickerDialog.cs" />
+    <Compile Include="Views\StateWidget\Dialog\MultiObjectsPickerControl.cs" />
+    <Compile Include="Views\StateWidget\Dialog\ObjectPropertiesDialog.cs" />
+    <Compile Include="Views\StateWidget\Dialog\StateWidgetCritriaPage.cs" />
+    <Compile Include="Views\StateWidget\Dialog\StateWidgetScopePage.cs" />
+    <Compile Include="Views\StateWidget\StateWidget.cs" />
+    <Compile Include="Views\Dashboard\Wizard\TemplateStateWidget.cs" />
+    <Compile Include="Views\Dashboard\Wizard\GTMTemplate.cs" />
+    <Compile Include="Views\Dashboard\Wizard\Dialogs\App360DashboardPersonalizePage.cs" />
+    <Compile Include="Views\Dashboard\Wizard\Dialogs\CompletionPage.cs" />
+    <Compile Include="Views\Dashboard\Wizard\Dialogs\GeneralPropertiesPage.cs" />
+    <Compile Include="Views\Dashboard\Wizard\Dialogs\ScopingPage.cs" />
+    <Compile Include="Views\Dashboard\Wizard\Dialogs\SummaryPage.cs" />
+    <Compile Include="Views\Dashboard\Wizard\Dialogs\TemplatePage.cs" />
+    <Compile Include="Views\Dashboard\Wizard\TemplateTopNAlertWidget.cs" />
+    <Compile Include="Views\TopNAlertWidget\TopNAlertWidget.cs" />
+    <Compile Include="Views\TopNAlertWidget\Dialog\TopNAlertScopePage.cs" />
+    <Compile Include="Views\TopNAlertWidget\Dialog\TopNAlertDisplayPage.cs" />
+    <Compile Include="Views\Dashboard\Wizard\TemplateTopNPerformanceWidget.cs" />
+    <Compile Include="Views\TopNPerformanceWidget\TopNPerformanceWidget.cs" />
+    <Compile Include="Views\TopNPerformanceWidget\Dialog\TopNPerformanceScopeAndCountersPage.cs" />
+    <Compile Include="Views\TopNPerformanceWidget\Dialog\TopNPerformanceTimeRangeAndResultsPage.cs" />
+    <Compile Include="Views\DashView\AddToMyWorkspaceDialog.cs" />
+    <Compile Include="Views\DashView\CreateDashViewDialog.cs" />
+    <Compile Include="Views\DashView\DashView.cs" />
+    <Compile Include="Views\DashView\SelectViewDialog.cs" />
+    <Compile Include="Views\Diagram\CreateDiagramViewDialog.cs" />
+    <Compile Include="Views\Diagram\DiagramView.cs" />
+    <Compile Include="Views\Diagram\DiagramViewDialog.cs" />
+    <Compile Include="Views\Diagram\SelectObjectDialog.cs" />
+    <Compile Include="Views\Dialogs\AlertViewPropertiesDialog.cs" />
+    <Compile Include="Views\Dialogs\ConfirmChoiceMaintenanceMode.cs" />
+    <Compile Include="Views\Dialogs\EventViewPropertiesDialog.cs" />
+    <Compile Include="Views\Dialogs\MaintenanceModeDialog.cs" />
+    <Compile Include="Views\Dialogs\OverridesSummaryViewPropertiesDialog.cs" />
+    <Compile Include="Views\Dialogs\PersonalizeViewDialog.cs" />
+    <Compile Include="Views\Dialogs\StateViewPropertiesDialog.cs" />
+    <Compile Include="Views\Dialogs\WebPagePropertiesDialog.cs" />
+    <Compile Include="Views\Events\EventDateTimeViewCriteriaDialog.cs" />
+    <Compile Include="Views\Events\EventSelectRulesViewCriteriaDialog.cs" />
+    <Compile Include="Views\Events\EventSeverityLevelViewCriteriaDialog.cs" />
+    <Compile Include="Views\Events\EventsView.cs" />
+    <Compile Include="Views\Events\EventTextInputViewCriteriaDialog.cs" />
+    <Compile Include="Views\Events\OpenNewWindowEventsViewDialog.cs" />
+    <Compile Include="Views\HealthConfiguration\HealthConfigurationView.cs" />
+    <Compile Include="Views\PerformanceChart\Dialog\UpdateInstanceConfigurationScopeAndCounterPage.cs" />
+    <Compile Include="Views\PerformanceChart\Dialog\UpdateInstanceConfigurationTimeRangePage.cs" />
+    <Compile Include="Views\Performance\Dialogs\ChoosescaleDialog.cs" />
+    <Compile Include="Views\Performance\Dialogs\PerfViewPropertiesDialog.cs" />
+    <Compile Include="Views\Performance\Dialogs\PersonalizeViewChartAreaDialog.cs" />
+    <Compile Include="Views\Performance\Dialogs\PersonalizeViewDisplayDialog.cs" />
+    <Compile Include="Views\Performance\Dialogs\TimeRangeDialog.cs" />
+    <Compile Include="Views\PerformanceChart\Dialog\PerformanceChartPage.cs" />
+    <Compile Include="Views\PerformanceChart\Dialog\PerformanceCountersPage.cs" />
+    <Compile Include="Views\PerformanceChart\PerformanceChart.cs" />
+    <Compile Include="Views\Rules\RulesView.cs" />
+    <Compile Include="Views\State\HealthExplorerDialog.cs" />
+    <Compile Include="Views\State\StateDialog.cs" />
+    <Compile Include="Views\TaskStatus\Dialogs\CombinedTaskOutputDialog.cs" />
+    <Compile Include="Views\TaskStatus\Dialogs\TaskSelectionWithSpecificStatusDialog.cs" />
+    <Compile Include="Views\TaskStatus\Dialogs\TaskStatusViewPropertiesDialog.cs" />
+    <Compile Include="Views\TaskStatus\TaskStatusView.cs" />
+    <Compile Include="Views\Views.cs" />
+    <Compile Include="Views\Performance\PerformanceView.cs" />
+    <Compile Include="Views\State\StateView.cs" />
+    <Compile Include="Views\Tasks\TasksView.cs" />
+    <Compile Include="Waiters.cs" />
+    <Compile Include="ResourcePool\ResourcePool.cs" />
+    <Compile Include="ResourcePool\Wizards\GeneralProperties.cs" />
+    <Compile Include="ResourcePool\Wizards\PoolMembership.cs" />
+    <Compile Include="ResourcePool\Wizards\MemberSelectionDialog.cs" />
+    <Compile Include="ResourcePool\Wizards\Summary.cs" />
+    <Compile Include="ResourcePool\Wizards\Completion.cs" />
+    <None Include="MomConsoleDiagram.cd" />
+    <None Include="placefile" />
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+   <ItemGroup>
+    <EmbeddedResource Include="MomControls\DashboardGadgets\AlertComponent\AlertComponentResource.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MomControls\DashboardGadgets\ServiceLevelDashboard\ServiceLevelDBResources.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MomControls\Dashboards\App360Dashboard\360DashboardResource.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MomControls\Dashboards\OMSummaryDashboardResource.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MomControls\ObjectPickerResource.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Dashboard\Wizard\DashboardWizardResource.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Dashboard\Wizard\PerformanceChartResource.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\StateWidget\StateWidgetResource.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MP\Input\CatalogCategories.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MP\Input\CatalogCategories_2016.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MP\Input\CatalogCategories_2019.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MP\Input\CatalogCategories_delete.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MP\Input\CatalogCategories-delete.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MP\Input\DiplayAndSystemNames.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MP\Input\OCAutomation.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MP\Input\Mom.Test.UI.Tests.MP.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MP\Input\RemoveMP.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Content Include="Dialogs\LoginDialog.resources.xml" />
+    <Content Include="MomControls\Dashboards\NetworkNodeDashboardResources.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <MyResourceFiles Include="D:\OC\UI\Core\Console\**\*.resources.xml*" />
+  </ItemGroup>
+  <!-- <Import Project="$(ExtendedTargetsPath)\Microsoft.CSharp.targets" /> -->
+  <ItemGroup>
+    <Robocopy Include="$(OutDir)\$(AssemblyName).dll">
+      <DestinationFolder>$(TestDrop)\UI\Common</DestinationFolder>
+    </Robocopy>
+    <Robocopy Include="$(IntermediateOutputPath)UI.Rules.Test.MP.xml">
+      <DestinationFolder>$(TestDrop)\UI\Common</DestinationFolder>
+    </Robocopy>
+    <Robocopy Include="Dialogs\LoginDialog.resources.xml">
+      <DestinationFolder>$(TestDrop)\UI\Common\Resources</DestinationFolder>
+    </Robocopy>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!--<Target Name="ReplaceAssemblyVersions" DependsOnTargets="_GetVersionInfo" BeforeTargets="Build">
+    <Message Text="Replace Assembly Versions" />
+    <PropertyGroup>
+      <SUBSTITUTION_STRINGS>MOM_MANAGEMENTPACK_PUBLIC_KEY_TOKEN=$(MomKeyToken),SM_COMMON_MP_VERSION=$(SM_COMMON_MP_VERSION)</SUBSTITUTION_STRINGS>
+    </PropertyGroup>
+    --><!--<Exec command="$(PkgSCOM_Microsoft_SystemCenter_OperationsManager_Build_Tools)\bin\net20\MPPreProcessor.exe /input $(SRCROOT)\Testcode\UI\Core\Common\UI.Test.MP.xml /output $(IntermediateOutputPath)UI.Test.MP.xml /substitute $(SUBSTITUTION_STRINGS)" />--><!--
+    --><!--<Exec command="$(PkgSCOM_Microsoft_SystemCenter_OperationsManager_Build_Tools)\bin\net20\MPPreProcessor.exe /input $(SRCROOT)\Testcode\UIManagementPacks\UI.Rules.Test.MP.xml /output $(IntermediateOutputPath)UI.Rules.Test.MP.xml /substitute $(SUBSTITUTION_STRINGS)" />--><!--
+  </Target>-->
+  <!--<PropertyGroup>
+    <BuildDependsOn>
+      ReplaceAssemblyVersions;
+      $(BuildDependsOn)
+    </BuildDependsOn>
+  </PropertyGroup>-->
+</Project>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Resources>
+  <Section Name="TemplateComponent">
+    <Resource Name="Microsoft.SystemCenter.Visualization.GridLayout" Type="MPExtensionDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.GridLayout</Item>
+    </Resource>
+    <Resource Name="FlowLayout" Type="MPExtensionDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ColumnLayout</Item>
+    </Resource>
+  </Section>
+  <Section Name="WizardComponent">
+    <Resource Name="NewInstanceWizardTitle" Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Configuration.Library!Microsoft.SystemCenter.CreateTemplateInstanceWizard.Title</Item>
+    </Resource>
+    <Resource Name="UpdateInstanceWizardTitle" Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Configuration.Library!Microsoft.SystemCenter.WizardDialogWithCustomPages.Title</Item>
+    </Resource>
+    <Resource Name="PersonalizeWizardTitle" Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Configuration.Library!Microsoft.SystemCenter.AddUpdatePersonalizationWizard.Title</Item>
+    </Resource>
+    <Resource Name="TemplateColumn" Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Configuration.Library!Microsoft.SystemCenter.TemplateSelectionPage.TemplateColumn</Item>
+    </Resource>
+    <Resource Name="FolderColumn" Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Configuration.Library!Microsoft.SystemCenter.TemplateSelectionPage.FolderColumn</Item>
+    </Resource>
+  </Section>
+</Resources>

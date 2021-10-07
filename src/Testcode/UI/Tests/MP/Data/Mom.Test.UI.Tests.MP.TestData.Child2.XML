@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+This is a test data MP to verify the import, export and uninstall of MPs.
+
+-->
+<ManagementPack xsi:noNamespaceSchemaLocation="..\..\sdk\server\MPInfrastructure\schema\mpschema.xsd"  xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:maml="http://schemas.microsoft.com/maml/2004/10">
+  <Manifest>
+    <Identity>
+      <ID>Mom.Test.UI.Tests.MP.TestData.Child2</ID>
+      <Version>1.2.3.4</Version>
+      <!-- the key: MOMv3\enlistment\MSPublicKey35.snk is used -->
+    </Identity>
+    <Name>Test Data MP Child 2</Name>
+    <References>
+      <Reference Alias="System">
+        <ID>System.MP</ID>
+        <Version>6.0.0.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="Windows">
+        <ID>System.Windows.MP</ID>
+        <Version>6.0.0.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="Mom">
+        <ID>System.Mom.MP</ID>
+        <Version>6.0.0.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="Grandchild1">
+        <ID>Mom.Test.UI.Tests.MP.TestData.Grandchild2</ID>
+        <Version>1.2.3.4</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+    </References>
+  </Manifest>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <!--Management Pack-->
+        <DisplayString ElementID="Mom.Test.UI.Tests.MP.TestData.Child2">
+          <Name>Test Data Child 2 Management Pack</Name>
+          <Description>This management pack is used by the UI test team for BVT.</Description>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPack>

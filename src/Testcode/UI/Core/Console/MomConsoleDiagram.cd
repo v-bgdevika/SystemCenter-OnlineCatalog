@@ -1,0 +1,1416 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Tahoma" Size="8.25" />
+  <Class Name="Mom.Test.UI.Core.Console.Commands" Collapsed="true">
+    <Position X="11.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Commands.cs</FileName>
+      <HashCode>EBAAABQAAAABBAQYAAAgQAEAAQAAgAMJIgAAAAAAAQA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.CoreManager" Collapsed="true">
+    <Position X="13.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>CoreManager.cs</FileName>
+      <HashCode>AAACAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.MomConsoleApp" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MomConsoleApp.cs</FileName>
+      <HashCode>AAAAAACAIAAAAAAAAAAIAEAAgAAAAAAAEAACAAkAAAQ=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Dialogs.OpenDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Dialogs\OpenDialog.cs</FileName>
+      <HashCode>EEAgAAMAQQAFYUAAABAAAAAAJAEMChIBAQIygAIBAFE=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Dialogs.PrintDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Dialogs\PrintDialog.cs</FileName>
+      <HashCode>QkgkQAoCSBAT6QB0AGADKAEBIAABRIsNhBQ6AIBFQAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Dialogs.SaveAsDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Dialogs\SaveAsDialog.cs</FileName>
+      <HashCode>EACqAAMQIEQAIgAIAAAAAAAAIQAMAgIAgQYjgQAAABE=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Views.Alerts.AlertsView" Collapsed="true">
+    <Position X="17" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Views\Alerts\AlertsView.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Views.Diagram.DiagramView" Collapsed="true">
+    <Position X="18.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Views\Diagram\DiagramView.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Views.Performance.PerformanceView" Collapsed="true">
+    <Position X="3" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Views\Performance\PerformanceView.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Views.State.StateView" Collapsed="true">
+    <Position X="6.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Views\State\StateView.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Views.Tasks.TasksView" Collapsed="true">
+    <Position X="11.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Views\Tasks\TasksView.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Rules.CollectionRules" Collapsed="true">
+    <Position X="8.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>CollectionRules\CollectionRules.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Rules.Dialog.CreateRuleWizardEventsFilterDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>CollectionRules\Dialogs\CreateRuleWizardEventsFilterDialog.cs</FileName>
+      <HashCode>AAgAAQIgAhAAoAEEJAAABAILAAgAEGIAAAEyRAABABA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Rules.Dialog.CreateRuleWizardEventsLogDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>CollectionRules\Dialogs\CreateRuleWizardEventsLogDialog.cs</FileName>
+      <HashCode>AAuIASIgAAABIAUEBEEAAwACAQAACAIAAQAiBAAwABA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Rules.Dialog.CreateRuleWizardNameDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>CollectionRules\Dialogs\CreateRuleWizardNameDialog.cs</FileName>
+      <HashCode>EAkAEwIgAAAAYggERAEAAQAKCIAAAQKAMIEiBAAAAjE=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Rules.Dialog.CreateRuleWizardTypeDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>CollectionRules\Dialogs\CreateRuleWizardTypeDialog.cs</FileName>
+      <HashCode>ACwAAQIgQAAAIAMGBAAQEAACAACgAQJBAAAiBIAEABA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Rules.Dialog.CreateRuleWizardWindowsPerformanceDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>CollectionRules\Dialogs\CreateRuleWizardWindowsPerformanceDialog.cs</FileName>
+      <HashCode>iEqAMQIgiBAAIEEFBBABBgACEQGoAEMBIAAiBAgACjM=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Rules.Dialog.CreateRuleWizardWMIPerformanceDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>CollectionRules\Dialogs\CreateRuleWizardWMIPerformanceDialog.cs</FileName>
+      <HashCode>QGsAEQIgAAggKAFWBAAABQACAIAQAAMFAAgiFQAAAhg=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Rules.Views.CollectionRulesView" Collapsed="true">
+    <Position X="10" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>CollectionRules\Views\CollectionRulesView.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.ConsoleApp" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ConsoleApp.cs</FileName>
+      <HashCode>gAgGABCEAAREECMMMQQBQAABgCAAEBqEIAQ+QgAKAQA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.ConsoleAppParameters" Collapsed="true">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ConsoleAppParameters.cs</FileName>
+      <HashCode>AQAAAAAAAOBIAAAAAAAAAMAgAAQAAAAAAIAAAAAAAQA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.DetailPane" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DetailPane.cs</FileName>
+      <HashCode>AAAAQgAAAAAAEEAAkAAAAAAAAAAEAAAAAAAgAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.NavigationPane" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>NavigationPane.cs</FileName>
+      <HashCode>AQAUAASEAIAQEGAIkAAQAAgCAAAEAEkAICQgEAAAAAE=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.ProductSku" Collapsed="true">
+    <Position X="6.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ProductSku.cs</FileName>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.ActionsPane" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ActionsPane.cs</FileName>
+      <HashCode>AAAAAAAAAAAAEAAAkAAAAAABAAAEAAAAAACIAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.ViewPane" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ViewPane.cs</FileName>
+      <HashCode>AAAAAgAAAAAAEEAAgAAAAAAAAAAAEAAAAAAgAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.ConfigurationGroups.ConfigurationGroups" Collapsed="true">
+    <Position X="15.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ConfigurationGroups\ConfigurationGroups.cs</FileName>
+      <HashCode>AAAABAAAAAAAAACAAAwAAAAAAAAAAAAAAIAFABAAgAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.ConfigurationGroups.Dialogs.CreateGroupWizardFinishDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ConfigurationGroups\Dialogs\CreateGroupWizardFinishDialog.cs</FileName>
+      <HashCode>AAwAAQIgAEAAYEAEBAAAAAACAAAAAgIQAJQiBAAAABA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.ConfigurationGroups.Dialogs.CreateGroupWizardMembersDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ConfigurationGroups\Dialogs\CreateGroupWizardMembersDialog.cs</FileName>
+      <HashCode>AAgiAQIgAAEAIgDUBAAJAACGAACAAAIAAAIiRAAAABA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.ConfigurationGroups.Dialogs.CreateGroupWizardNameDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ConfigurationGroups\Dialogs\CreateGroupWizardNameDialog.cs</FileName>
+      <HashCode>AggQUYIgIEAGYAAEBAAQAAACQAAAARIBAgIiBAgAQBA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.ConfigurationGroups.Dialogs.CreateGroupWizardRulesDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ConfigurationGroups\Dialogs\CreateGroupWizardRulesDialog.cs</FileName>
+      <HashCode>AAgAAQogAEBAISAMBAAAAAACAAoAAgIAAAIyBAAAAFA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.ConfigurationGroups.Dialogs.CreateGroupWizardWelcomeDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ConfigurationGroups\Dialogs\CreateGroupWizardWelcomeDialog.cs</FileName>
+      <HashCode>AAgAAwIgAEAQIAAEBAAAAQACQAAgAAIAAQAiBAAAABQ=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.ConfigurationGroups.Views.ConfigurationGroupsView" Collapsed="true">
+    <Position X="17" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ConfigurationGroups\Views\ConfigurationGroupsView.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.AgentActionAccountWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\AgentActionAccountWindow.cs</FileName>
+      <HashCode>gIgAQScwgAAAoAIGRBIAEIAKAAIgRAMCAIEyBAIIADA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.AgentInstallDirectoryWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\AgentInstallDirectoryWindow.cs</FileName>
+      <HashCode>AAgAAUIgClIAIAAEhAAEIABGAAEAAEIAAAAzBMADABA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.AgentInstallSummaryWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\AgentInstallSummaryWindow.cs</FileName>
+      <HashCode>AYgAAQIgQAQBIAIGBAAAAIQCAIIABIIAABAyBAAAEhA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.AgentManagementTaskStatusWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\AgentManagementTaskStatusWindow.cs</FileName>
+      <HashCode>ACAAAEEAEAAQAAAASAAIAAQAQAAAAAIAAAMyAUAAAEA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.AgentUninstallWizardAdminAccountWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\AgentUninstallWizardAdminAccountWindow.cs</FileName>
+      <HashCode>AAgVSUcgAIAAJAInbEgALCACAAAAgAJAAAAyBYABgBA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.AgentUninstallWizardSummaryWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\AgentUninstallWizardSummaryWindow.cs</FileName>
+      <HashCode>AAgAQQIgAAEAIIAEBAAIAAQGACAEAAIAAAgyhAAAAhA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.AgentUninstallWizardWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\AgentUninstallWizardWindow.cs</FileName>
+      <HashCode>AAgBAQIgAACBIEAUBAAAEBACEAAABAIAAACyBAAAABA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.ConfirmClosingAgentManagementStatusDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\ConfirmClosingAgentManagementStatusDialog.cs</FileName>
+      <HashCode>AACAAAAIAAAAAAAAAAIAAAQAAAAEEAJAIAAiAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.DiscoveryMethodWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\DiscoveryMethodWindow.cs</FileName>
+      <HashCode>ACuAgwIiFoIAIAAEhCQkgAADAAAIAIsAQAAyDAAAABA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.DiscoveryResultsWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\DiscoveryResultsWindow.cs</FileName>
+      <HashCode>AQoAASM2BAEAIBAEBAEQDBICAAAAEAJQAAEyBAChEBg=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.DiscoveryTaskProgressWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\DiscoveryTaskProgressWindow.cs</FileName>
+      <HashCode>AAgQAQIgAAEQIIAERAAAAAACAAAgCAIhQBAyBAAAABI=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.QueryCriteriaWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\QueryCriteriaWindow.cs</FileName>
+      <HashCode>AgogQQMwAAggsAKGFACQQAACEQMIgAIACgEyhAAgABw=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.SelectProxyAgentWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\SelectProxyAgentWindow.cs</FileName>
+      <HashCode>QQgggRIgAAAyIAAFBAAARCBCgAAQQAIABACyBwAAABA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.SnmpCredentialsWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\SnmpCredentialsWindow.cs</FileName>
+      <HashCode>BAiAAQIgAAIIIwAEBABCICACIAQAABIEEAYyBAABEBg=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.WelcomeWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\WelcomeWindow.cs</FileName>
+      <HashCode>AAgAAQIgACYAIAQUBAAAEAACAAAABAIIAAAyBCAAABA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.WindowsCredentialsWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\WindowsCredentialsWindow.cs</FileName>
+      <HashCode>IAgBCQYgAoAQKAIWVAACCCgKAAgAgVJAAAAyBoQAAFA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Dialogs.AboutDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Dialogs\AboutDialog.cs</FileName>
+      <HashCode>AACAwBAAAECiQZAAIAEEIEAhIAAAAAIAmEAiACKAAAI=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Dialogs.ConnectToServerDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Dialogs\ConnectToServerDialog.cs</FileName>
+      <HashCode>AAAAAAIIAEAAICAAAAAQAACAAiBCAAIAAIAiAAAACAI=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Dialogs.FindComputersAdvancedDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Dialogs\FindComputersAdvancedDialog.cs</FileName>
+      <HashCode>EQAACAIBIEAAMAiAERAACAIBIAQQEAKAAAEqAgwggEA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Dialogs.FindComputersDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Dialogs\FindComputersDialog.cs</FileName>
+      <HashCode>AAQEACIAAEAAKAAQAAABAoAFMACAAAIBAAAiAARgEQA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Dialogs.GettingStartedDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Dialogs\GettingStartedDialog.cs</FileName>
+      <HashCode>AAAoAADBAABCACMGACAIAAGgAQAAQAoAAAgiBAUAAkE=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Dialogs.HelpDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Dialogs\HelpDialog.cs</FileName>
+      <HashCode>EAAAAAABAAAAAgREAACAAAAAAAEAAAAAAAAiAACAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Dialogs.UnhandledExceptionsDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Dialogs\UnhandledExceptionsDialog.cs</FileName>
+      <HashCode>AAAAAAAApAigACAQAAAAAgAAAAACAAIAABIiAABAAQA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.MomControls.ConsoleStatusBar" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MomControls\ConsoleStatusBar.cs</FileName>
+      <HashCode>AAAAAAAAAAAAEAAAEABAAAEAAAAEEAAAAAAiAIAgAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.MomControls.GridControl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MomControls\GridControl.cs</FileName>
+      <HashCode>AAAAAAEAAIAAAAAEAAAAIAAAAABAAQAAAAAoAAkCAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.MomControls.MainToolbar" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MomControls\MainToolbar.cs</FileName>
+      <HashCode>ACAgAAAAAAAACIAACAAAAAACAAAQcAABAAAgAAAgAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.MomControls.TaskStrip" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MomControls\TaskStrip.cs</FileName>
+      <HashCode>AQACgQAAAAAAACAAAAAAAAAAAAAAAgAAAAIAAAAACAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.MomControls.WunderBar" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MomControls\WunderBar.cs</FileName>
+      <HashCode>AAACAAAIAAEAAAACAAAAAAQAJBAAAAAIEACiAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Monitors.EventMonitor.Dialogs.BuildExpressionDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Monitors\EventMonitor\Dialogs\BuildExpressionDialog.cs</FileName>
+      <HashCode>CAlAAUIgAAAAYAEEJAAAAEECAAwBAAIAAAEyBAIAABA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Monitors.EventMonitor.Dialogs.ConfigureHealthDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Monitors\EventMonitor\Dialogs\ConfigureHealthDialog.cs</FileName>
+      <HashCode>AAgQIQIiAIQAIARUBAAAAAAHAAAAAAIBCAAiBAAIABA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Monitors.EventMonitor.Dialogs.IncorrectFormulaWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Monitors\EventMonitor\Dialogs\IncorrectFormulaWindow.cs</FileName>
+      <HashCode>AABAABAAAAAAAAAAAAAAAAABIAAAAAIAAAAyAAAAAgA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Monitors.EventMonitor.Dialogs.MonitorWizardLogNameDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Monitors\EventMonitor\Dialogs\MonitorWizardLogNameDialog.cs</FileName>
+      <HashCode>AAqJAQKgAAEAIAAEBAEBAAlCAQAIiAIQAAAiBAACABg=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Monitors.EventMonitor.Dialogs.SelectEventLogWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Monitors\EventMonitor\Dialogs\SelectEventLogWindow.cs</FileName>
+      <HashCode>QEIAgAKFAAAAcAAAAICAAAABYAAAhAIAgAAyAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Monitors.MonitorWizardCompletingDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Monitors\MonitorWizardCompletingDialog.cs</FileName>
+      <HashCode>AAwAAQIgAAAD4AAEBAAABIgCUIIAIAYAAAGipAAAABg=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Monitors.MonitorWizardMonitorTypeDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Monitors\MonitorWizardMonitorTypeDialog.cs</FileName>
+      <HashCode>CAgAAQImAAAAIEAUBAggABACAAAABAIEAEAiFAQAABA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.MP.Dialogs.InstallManagementPacksDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MP\Dialogs\InstallManagementPacksDialog.cs</FileName>
+      <HashCode>AAAAEAoCAAgAIAAEIAAAACAAAACAgCIBAAAiBAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.MP.Dialogs.ManagementPackInstallationStatusDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MP\Dialogs\ManagementPackInstallationStatusDialog.cs</FileName>
+      <HashCode>CAIAAAAAAAAAAAAAAABIAAIAAAAAgAIAAAAiAAAAAEA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.MP.ManagementPacks" Collapsed="true">
+    <Position X="8.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MP\ManagementPacks.cs</FileName>
+      <HashCode>AACIAAAAAAAAAAAAgAAAAAAAAAIAAAAAACAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.MP.Views.ManagementPacksView" Collapsed="true">
+    <Position X="10" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MP\Views\ManagementPacksView.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Templates.ChooseMonitoringTemplate" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Templates\ChooseMonitoringTemplate.cs</FileName>
+      <HashCode>AohACQIgAKAQIBBEBAAAAQACACAAAAIAAAAjhAAgABA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Templates.CompleteMonitoringTemplate" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Templates\CompleteMonitoringTemplate.cs</FileName>
+      <HashCode>AgkAAQIggIAAYAAEFCAIBQILBBACAAIAAAAiBAAAABQ=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Templates.URLMonitoring.Dialogs.URLDiscoveryInterval" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Templates\URLMonitoring\Dialogs\URLDiscoveryInterval.cs</FileName>
+      <HashCode>AKkAAQIoIQAAoAEGBAAAgAACAAAAEAIBAAAiBACQAFA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Templates.URLMonitoring.Dialogs.URLInfoDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Templates\URLMonitoring\Dialogs\URLInfoDialog.cs</FileName>
+      <HashCode>CAgAAQYgAYBEIAAERCAAAABCgAgAAAIAgAAiBABAQJA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Templates.URLMonitoring.Dialogs.WatcherNodes" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Templates\URLMonitoring\Dialogs\WatcherNodes.cs</FileName>
+      <HashCode>AAgAAQIgAgAAIAAFBCQAAAAiAAAEACYDAgAiBAAAABA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Templates.URLMonitoring.Dialogs.WebPageInformation" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Templates\URLMonitoring\Dialogs\WebPageInformation.cs</FileName>
+      <HashCode>BAkAAQMgAQAAoAFEBgQIEQIHAgQBBAJEAAAiBAMgIFI=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Templates.WindowsService.Dialogs.BrowseServiceWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Templates\WindowsService\Dialogs\BrowseServiceWindow.cs</FileName>
+      <HashCode>DAIAAgIAAAAAKAIAAECAAAABIAAABAJBEAAyAIAAgAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Templates.WindowsService.Dialogs.SelectServiceNameDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Templates\WindowsService\Dialogs\SelectServiceNameDialog.cs</FileName>
+      <HashCode>ABqAwQImQAAEIAAEBIAEACBCABAQAAMABAAiRABAABA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Templates.WindowsService.Dialogs.ServiceDiscoveryInterval" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Templates\WindowsService\Dialogs\ServiceDiscoveryInterval.cs</FileName>
+      <HashCode>AIgQAQMgAAAQIAkERAAAgkACAAAAAEIAAgAyBABABBA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.ConfirmPropertiesSaveDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\ConfirmPropertiesSaveDialog.cs</FileName>
+      <HashCode>AAAAABAIAAAAAAAAAAIAEAAAAAAEEAIAAQAiAEAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.ConfirmUserRoleDeleteDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\ConfirmUserRoleDeleteDialog.cs</FileName>
+      <HashCode>AAAAgAAIgAAAAAACAAIAAAAAAAAEEBIAAAAiAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.SelectUsersOrGroups" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\SelectUsersOrGroups.cs</FileName>
+      <HashCode>EhMEAAIAQAAQIAAWAAgAAQgJKEAAAAIACQQyEgQAAgA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.UserRolesPropertiesConfigTasksnViewsScreen" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\UserRolesPropertiesConfigTasksnViewsScreen.cs</FileName>
+      <HashCode>ACAAAAICEAKAIACEAAAAAAABMIQAAAIAIIIyhAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.UserRolesPropertiesGeneralScreen" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\UserRolesPropertiesGeneralScreen.cs</FileName>
+      <HashCode>AgEBwEEAAAAQAIACFBAAAYLAAAiDEBoAMNEiABAiEQA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.UserRolesPropertiesMonitoringConfigScreen" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\UserRolesPropertiesMonitoringConfigScreen.cs</FileName>
+      <HashCode>AAAAAAAIAAAAAAQAAAACAAABIACAgAIKAAAiIAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.UserRolesPropertiesMonitoringPolicyScreen" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\UserRolesPropertiesMonitoringPolicyScreen.cs</FileName>
+      <HashCode>AAAAAAAAgAAAAAAggADIAAEAAACggEIACAAiAAIAAAo=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.UserRolesPropertiesMonitoringScreen" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\UserRolesPropertiesMonitoringScreen.cs</FileName>
+      <HashCode>AAAAAABCAEAAAAAEAAAQgCABCACAgAIAEAArAAABAAI=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.UserRoleWizardFinishScreen" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\UserRoleWizardFinishScreen.cs</FileName>
+      <HashCode>AAgAARIgEAAAIAAEBAAEgAACAAAAAAIAAAQiBAACQhA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.UserRoleWizardScreen1" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\UserRoleWizardScreen1.cs</FileName>
+      <HashCode>AAgAiQMgAIAAJAEEBAAAEAADAAAAAAIAgAAjBAAAABA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.UserRoleWizardScreen2" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\UserRoleWizardScreen2.cs</FileName>
+      <HashCode>AwmAwQMgQAQQIACGFCAgIYuCAAgREZIhAEEnJgAgAhA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.UserRoleWizardScreen3" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\UserRoleWizardScreen3.cs</FileName>
+      <HashCode>EAgAQQMyICAAIABEBEAAgAQDCAAEgAIQAAAiBAADQBo=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.UserRoleWizardScreen4" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\UserRoleWizardScreen4.cs</FileName>
+      <HashCode>AAgEAYMgoAIgIAAELAAICAEiMAAEgAYAAAgiBAAEABg=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.UserRoleWizardScreen5" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\UserRoleWizardScreen5.cs</FileName>
+      <HashCode>AAgAARIgAAQEIAAERAAIAAETAAEAgCICABQiBAAAABA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Views.Alerts.SelectColumnsDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Views\Alerts\AlertSelectColumnsDialog.cs</FileName>
+      <HashCode>AIIACAAAAoAAAAAhADEIAAIAhAGAEIIBCAEiAAEgAgU=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Views.Alerts.AlertViewPropertiesDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Views\Alerts\AlertViewPropertiesDialog.cs</FileName>
+      <HashCode>RgEAiAx4JTKqgKCDJAAKAUKSADDFAMICIIgjAUGhEIE=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Console.Views.Events.EventsView" Collapsed="true">
+    <Position X="8.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Views\Events\EventsView.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Mom.Test.UI.Core.Console.IMomConsoleAppControls" Collapsed="true">
+    <Position X="10" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MomConsoleApp.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Dialogs.IHelpDialogControls" Collapsed="true">
+    <Position X="18.75" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Dialogs\HelpDialog.cs</FileName>
+      <HashCode>AAAAAAIAAAAgAAAAAAAAAAAAAAAAAAAAAAAQAAAAIAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Dialogs.IOpenDialogControls" Collapsed="true">
+    <Position X="18.75" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Dialogs\OpenDialog.cs</FileName>
+      <HashCode>EAAIAAAAAAAAAAIAAAAEAAQAAAAAgAiAACAABAAgAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Dialogs.IPrintDialogControls" Collapsed="true">
+    <Position X="3" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Dialogs\PrintDialog.cs</FileName>
+      <HashCode>CAAAAiAAoAgAAgEAAADEQAAAqBwQAAAAAAAIBgAQBBA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Dialogs.ISaveAsDialogControls" Collapsed="true">
+    <Position X="6.5" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Dialogs\SaveAsDialog.cs</FileName>
+      <HashCode>EAAAAAAAAAAAAAIAAAAFAAwAAAAAAAiAACAABAIAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Rules.Dialog.ICreateRuleWizardEventsFilterDialogControls" Collapsed="true">
+    <Position X="11.75" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>CollectionRules\Dialogs\CreateRuleWizardEventsFilterDialog.cs</FileName>
+      <HashCode>AAAAAAAAAAAAIAAAEAEBAAAgAAAAAAAIIAgABIAIBAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Rules.Dialog.ICreateRuleWizardEventsLogDialogControls" Collapsed="true">
+    <Position X="13.5" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>CollectionRules\Dialogs\CreateRuleWizardEventsLogDialog.cs</FileName>
+      <HashCode>AAAAAAAAAAACAAAAAAABACAgEAAAAAAIAAgAFAAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Rules.Dialog.ICreateRuleWizardNameDialogControls" Collapsed="true">
+    <Position X="15.25" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>CollectionRules\Dialogs\CreateRuleWizardNameDialog.cs</FileName>
+      <HashCode>ACAAAAAAAAAAIAAAAAAhAAAgAAwAAAAAAAgABAAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Rules.Dialog.ICreateRuleWizardTypeDialogControls" Collapsed="true">
+    <Position X="17" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>CollectionRules\Dialogs\CreateRuleWizardTypeDialog.cs</FileName>
+      <HashCode>AIAAAAAAAAAAAAAAAAABAAAgAEAAAAAAABgIBAAIAIA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Rules.Dialog.ICreateRuleWizardWindowsPerformanceDialogControls" Collapsed="true">
+    <Position X="18.75" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>CollectionRules\Dialogs\CreateRuleWizardWindowsPerformanceDialog.cs</FileName>
+      <HashCode>AAAAIAIASAAAIAAAAEABgAAgwAAAAAAACggABAAIAII=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Rules.Dialog.ICreateRuleWizardWMIPerformanceDialogControls" Collapsed="true">
+    <Position X="3" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>CollectionRules\Dialogs\CreateRuleWizardWMIPerformanceDialog.cs</FileName>
+      <HashCode>FAAAAAIhgAAAIAAAAAABAAAgAAAgAAAICAgABAAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.IConsoleAppControls" Collapsed="true">
+    <Position X="17" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ConsoleApp.cs</FileName>
+      <HashCode>gAAAECAQAAAAAAAAAgAAAAACADAAAAJAACACAIAiEAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.IDetailPane" Collapsed="true">
+    <Position X="4.75" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DetailPane.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.INavigationPane" Collapsed="true">
+    <Position X="17" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>NavigationPane.cs</FileName>
+      <HashCode>AAAAEAAAAAAAAAAAAgAAAAAAABAAAABAAAAQAYAAEAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.IActionsPane" Collapsed="true">
+    <Position X="3" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ActionsPane.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.IViewPane" Collapsed="true">
+    <Position X="13.5" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ViewPane.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.ConfigurationGroups.Dialogs.ICreateGroupWizardFinishDialogControls" Collapsed="true">
+    <Position X="3" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ConfigurationGroups\Dialogs\CreateGroupWizardFinishDialog.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAgAAAAAAAAAAoABAAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.ConfigurationGroups.Dialogs.ICreateGroupWizardMembersDialogControls" Collapsed="true">
+    <Position X="4.75" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ConfigurationGroups\Dialogs\CreateGroupWizardMembersDialog.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAIoAAABgAAAAEgABAAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.ConfigurationGroups.Dialogs.ICreateGroupWizardNameDialogControls" Collapsed="true">
+    <Position X="6.5" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ConfigurationGroups\Dialogs\CreateGroupWizardNameDialog.cs</FileName>
+      <HashCode>AEAAAAAAAAAAAAAAAAABAAAgACgAAAAAIBgABAAIAIA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.ConfigurationGroups.Dialogs.ICreateGroupWizardRulesDialogControls" Collapsed="true">
+    <Position X="8.25" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ConfigurationGroups\Dialogs\CreateGroupWizardRulesDialog.cs</FileName>
+      <HashCode>AAAAAAAAAAAACAAAAAABAAAgAAgBAAAAAAgABEAIBAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.ConfigurationGroups.Dialogs.ICreateGroupWizardWelcomeDialogControls" Collapsed="true">
+    <Position X="10" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ConfigurationGroups\Dialogs\CreateGroupWizardWelcomeDialog.cs</FileName>
+      <HashCode>AAAAAAAAAIAAAAAAAAEBAAAgAAAAAAAAAAgABAAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.IAgentActionAccountWindowControls" Collapsed="true">
+    <Position X="4.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\AgentActionAccountWindow.cs</FileName>
+      <HashCode>AAAAACAAAwAAAAAAAQABABggAAAAAAAAAAgABQBJABA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.IAgentInstallDirectoryWindowControls" Collapsed="true">
+    <Position X="6.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\AgentInstallDirectoryWindow.cs</FileName>
+      <HashCode>BAACAAAAAAAAAAAAAAABBIAgAAACAAAQIAgABAAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.IAgentInstallSummaryWindowControls" Collapsed="true">
+    <Position X="8.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\AgentInstallSummaryWindow.cs</FileName>
+      <HashCode>AAAAQAAAAAAAAEAAAAABAAAkEAIAAAAAAAgABAAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.IAgentManagementTaskStatusWindowControls" Collapsed="true">
+    <Position X="10" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\AgentManagementTaskStatusWindow.cs</FileName>
+      <HashCode>AICAIAAAAAAAAAAAAAAAAQAAAAAIAAACBAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.IAgentUninstallWizardAdminAccountWindowControls" Collapsed="true">
+    <Position X="11.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\AgentUninstallWizardAdminAccountWindow.cs</FileName>
+      <HashCode>AAAAACAgARAAACAAAEAhAAggAAAAAAAEBAgARQAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.IAgentUninstallWizardSummaryWindowControls" Collapsed="true">
+    <Position X="13.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\AgentUninstallWizardSummaryWindow.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAEAAgAABAAAgAAAAAAAAAAgAJAAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.IAgentUninstallWizardWindowControls" Collapsed="true">
+    <Position X="15.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\AgentUninstallWizardWindow.cs</FileName>
+      <HashCode>AAAAAAAAAIAAAAAAAAABAAAgAAAAAAAAAAgABAAIgAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.IConfirmClosingAgentManagementStatusDialogControls" Collapsed="true">
+    <Position X="10" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\ConfirmClosingAgentManagementStatusDialog.cs</FileName>
+      <HashCode>CAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.IDiscoveryMethodWindowControls" Collapsed="true">
+    <Position X="6.5" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\DiscoveryMethodWindow.cs</FileName>
+      <HashCode>AAAIAAAEAAIAABAAAAABAAEgAACAABAAAAgABEAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.IDiscoveryResultsWindowControls" Collapsed="true">
+    <Position X="8.25" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\DiscoveryResultsWindow.cs</FileName>
+      <HashCode>AABAAgAAAAAAAAAAAAABAAAgIIAAEAAAAAghBJCIQAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.IDiscoveryTaskProgressWindowControls" Collapsed="true">
+    <Position X="10" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\DiscoveryTaskProgressWindow.cs</FileName>
+      <HashCode>AAAAEAAAAAAQAAAAAAABAAAgAAAAAAAgAAkABAAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.IQueryCriteriaWindowControls" Collapsed="true">
+    <Position X="4.75" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\QueryCriteriaWindow.cs</FileName>
+      <HashCode>ASAAAAAAQAAAAAAAAAAJAEAkACAAACAAAAhAFAAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.ISelectProxyAgentWindowControls" Collapsed="true">
+    <Position X="11.75" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\SelectProxyAgentWindow.cs</FileName>
+      <HashCode>AAACAAAAAAAAAACAAAABAAAgAAAACAADAAgBBAEIAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.ISnmpCredentialsWindowControls" Collapsed="true">
+    <Position X="18.75" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\SnmpCredentialsWindow.cs</FileName>
+      <HashCode>AEAAAAAAAAAAAAAAEACBAAAgCCQAAAAAAEgABAAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.IWelcomeWindowControls" Collapsed="true">
+    <Position X="18.75" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\WelcomeWindow.cs</FileName>
+      <HashCode>AAAAAAAAAIAAAAAAAAABAAAgAAAAAAAAAAgABAAIgAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.IWindowsCredentialsWindowControls" Collapsed="true">
+    <Position X="3" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\WindowsCredentialsWindow.cs</FileName>
+      <HashCode>AAABACAAARAAABAAAEAhAAggAAAAAAAEBAgARQAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Dialogs.IAboutDialogControls" Collapsed="true">
+    <Position X="3" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Dialogs\AboutDialog.cs</FileName>
+      <HashCode>wAAAAAQEQAAgAAAAgAAAAAAAACAAAAEgABIAAAAQAEA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Dialogs.IConnectToServerDialogControls" Collapsed="true">
+    <Position X="15.25" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Dialogs\ConnectToServerDialog.cs</FileName>
+      <HashCode>AAAAAAABAAAAAAAEAAAAAAAAAAAAAAAACQAABAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Dialogs.IFindComputersAdvancedDialogControls" Collapsed="true">
+    <Position X="11.75" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Dialogs\FindComputersAdvancedDialog.cs</FileName>
+      <HashCode>ACAAAAAACAAAEAEAAAAAAAAAAAAAAAAIAAIABMCQQgA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Dialogs.IFindComputersDialogControls" Collapsed="true">
+    <Position X="13.5" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Dialogs\FindComputersDialog.cs</FileName>
+      <HashCode>gAAAAACAAAAAAAAAAAAAAABAAEACAAAIAAAABAAQCAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Dialogs.IGettingStartedDialogControls" Collapsed="true">
+    <Position X="15.25" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Dialogs\GettingStartedDialog.cs</FileName>
+      <HashCode>gwCAIAAAAQoAAAAAAAAIAEAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Dialogs.IUnhandledExceptionsDialogControls" Collapsed="true">
+    <Position X="6.5" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Dialogs\UnhandledExceptionsDialog.cs</FileName>
+      <HashCode>AAAAAQAAgAAAAAAABAAAABAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.MomControls.IConsoleStatusBar" Collapsed="true">
+    <Position X="18.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MomControls\ConsoleStatusBar.cs</FileName>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.MomControls.IGridControlControls" Collapsed="true">
+    <Position X="17" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MomControls\GridControl.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.MomControls.IMainToolbar" Collapsed="true">
+    <Position X="6.5" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MomControls\MainToolbar.cs</FileName>
+      <HashCode>AAAAAAAAIAAAAAAAACAAEAACAEAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.MomControls.ITaskStrip" Collapsed="true">
+    <Position X="4.75" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MomControls\TaskStrip.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.MomControls.IWunderBar" Collapsed="true">
+    <Position X="4.75" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MomControls\WunderBar.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAACAAAAAAAAIAAAAAAAEACAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Monitors.EventMonitor.Dialogs.IBuildExpressionDialogControls" Collapsed="true">
+    <Position X="3" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Monitors\EventMonitor\Dialogs\BuildExpressionDialog.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAEBAAAgAAIAAAAIIAgABAAIBAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Monitors.EventMonitor.Dialogs.IConfigureHealthDialogControls" Collapsed="true">
+    <Position X="8.25" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Monitors\EventMonitor\Dialogs\ConfigureHealthDialog.cs</FileName>
+      <HashCode>AAAAQAAgAAAAAAAAAAABAAAgAAAAAEAIAAgABAAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Monitors.EventMonitor.Dialogs.IIncorrectFormulaWindowControls" Collapsed="true">
+    <Position X="3" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Monitors\EventMonitor\Dialogs\IncorrectFormulaWindow.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAQAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Monitors.EventMonitor.Dialogs.IMonitorWizardLogNameDialogControls" Collapsed="true">
+    <Position X="13.5" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Monitors\EventMonitor\Dialogs\MonitorWizardLogNameDialog.cs</FileName>
+      <HashCode>AAAAAAAQAAACAAAAAAABAAggEAAAAAAIAAgAFAAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Monitors.EventMonitor.Dialogs.ISelectEventLogWindowControls" Collapsed="true">
+    <Position X="10" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Monitors\EventMonitor\Dialogs\SelectEventLogWindow.cs</FileName>
+      <HashCode>AAAAAAAQAAAAAAAAAACAABAAAAIAAEAAACAABAAQAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Monitors.IMonitorWizardCompletingDialogControls" Collapsed="true">
+    <Position X="11.75" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Monitors\MonitorWizardCompletingDialog.cs</FileName>
+      <HashCode>ACAQAAAAAAABIAAAAAAJAAAgAAoAAAAAAAgABAAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Monitors.IMonitorWizardMonitorTypeDialogControls" Collapsed="true">
+    <Position X="15.25" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Monitors\MonitorWizardMonitorTypeDialog.cs</FileName>
+      <HashCode>AAAAAAAAAAAgAAAAAAABAACgAAAAAAAIAAggBAAIgAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.MP.Dialogs.IInstallManagementPacksDialogControls" Collapsed="true">
+    <Position X="4.75" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MP\Dialogs\InstallManagementPacksDialog.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAEgABEAAAEA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.MP.Dialogs.IManagementPackInstallationStatusDialogControls" Collapsed="true">
+    <Position X="8.25" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MP\Dialogs\ManagementPackInstallationStatusDialog.cs</FileName>
+      <HashCode>AAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAEA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Templates.IChooseMonitoringTemplateControls" Collapsed="true">
+    <Position X="4.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Templates\ChooseMonitoringTemplate.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAACEABCAAgAAAAAAAAAAgABCAIAEA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Templates.ICompleteMonitoringTemplateControls" Collapsed="true">
+    <Position X="6.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Templates\CompleteMonitoringTemplate.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAgAAgAQAAIABgAFAAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Templates.URLMonitoring.Dialogs.IURLDiscoveryIntervalControls" Collapsed="true">
+    <Position X="8.25" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Templates\URLMonitoring\Dialogs\URLDiscoveryInterval.cs</FileName>
+      <HashCode>ABAAAAAAAACAAAEAAAABAAAgAAAAAAIBCAgABAAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Templates.URLMonitoring.Dialogs.IURLInfoDialogControls" Collapsed="true">
+    <Position X="10" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Templates\URLMonitoring\Dialogs\URLInfoDialog.cs</FileName>
+      <HashCode>AAAAAAAAAEAAAAAAAAABAgAgBAAAQAAAAAgABAAIAAg=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Templates.URLMonitoring.Dialogs.IWatcherNodesControls" Collapsed="true">
+    <Position X="15.25" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Templates\URLMonitoring\Dialogs\WatcherNodes.cs</FileName>
+      <HashCode>AAAAAAAEAAAAABAAAAABAAAgAAABAAAABAgABAAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Templates.URLMonitoring.Dialogs.IWebPageInformationControls" Collapsed="true">
+    <Position X="17" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Templates\URLMonitoring\Dialogs\WebPageInformation.cs</FileName>
+      <HashCode>EAAAAUAAAAAAAAAAAAABAgAgAAAACACIAAgABIAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Templates.WindowsService.Dialogs.IBrowseServiceWindowControls" Collapsed="true">
+    <Position X="18.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Templates\WindowsService\Dialogs\BrowseServiceWindow.cs</FileName>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAACABAAIAAAIAAAAABAAQAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Templates.WindowsService.Dialogs.ISelectServiceNameDialogControls" Collapsed="true">
+    <Position X="13.5" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Templates\WindowsService\Dialogs\SelectServiceNameDialog.cs</FileName>
+      <HashCode>ACAAACAAAAAAAAAAAACBABAgAAAAAAAAAggAhAAIBAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Templates.WindowsService.Dialogs.IServiceDiscoveryIntervalControls" Collapsed="true">
+    <Position X="17" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Templates\WindowsService\Dialogs\ServiceDiscoveryInterval.cs</FileName>
+      <HashCode>ABAAAAAAAAAAAAEAAAEBAAAgAAAIAAAACAgABAAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.IConfirmPropertiesSaveDialogControls" Collapsed="true">
+    <Position X="11.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\ConfirmPropertiesSaveDialog.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAgAAAAAAAAAAAgAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.IConfirmUserRoleDeleteDialogControls" Collapsed="true">
+    <Position X="13.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\ConfirmUserRoleDeleteDialog.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAgCAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.ISelectUsersOrGroupsControls" Collapsed="true">
+    <Position X="15.25" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\SelectUsersOrGroups.cs</FileName>
+      <HashCode>AAADAAQAAAAIAAACAIAAAQAAAAAAQAAAAAAABAAYAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.IUserRolesPropertiesConfigTasksnViewsScreenControls" Collapsed="true">
+    <Position X="11.75" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\UserRolesPropertiesConfigTasksnViewsScreen.cs</FileName>
+      <HashCode>BAAAAAAAAAAAAAAAAAABAAQAAgAAAAAABAgABAAQAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.IUserRolesPropertiesGeneralScreenControls" Collapsed="true">
+    <Position X="13.5" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\UserRolesPropertiesGeneralScreen.cs</FileName>
+      <HashCode>gAAABCABAAAAIIAABAAAgAAAAAAAQAIAAFAAAIAIQAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.IUserRolesPropertiesMonitoringConfigScreenControls" Collapsed="true">
+    <Position X="15.25" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\UserRolesPropertiesMonitoringConfigScreen.cs</FileName>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAIAQAAEEAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.IUserRolesPropertiesMonitoringPolicyScreenControls" Collapsed="true">
+    <Position X="17" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\UserRolesPropertiesMonitoringPolicyScreen.cs</FileName>
+      <HashCode>AAAABAAAAAAAAAAAEEAAAAAAAAAAAAQAAEIAAQAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.IUserRolesPropertiesMonitoringScreenControls" Collapsed="true">
+    <Position X="18.75" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\UserRolesPropertiesMonitoringScreen.cs</FileName>
+      <HashCode>AAAABAAAAAIAAAABAEAAAAAAAAAAAAABAEAAAEAAEAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.IUserRoleWizardFinishScreenControls" Collapsed="true">
+    <Position X="3" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\UserRoleWizardFinishScreen.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAEAAAAABAAAggAAAAAAAAAgABAAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.IUserRoleWizardScreen1Controls" Collapsed="true">
+    <Position X="4.75" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\UserRoleWizardScreen1.cs</FileName>
+      <HashCode>AAAAAAAAAIAAAAAAAEABAAAgAAAAAAAAAAgABAAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.IUserRoleWizardScreen2Controls" Collapsed="true">
+    <Position X="6.5" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\UserRoleWizardScreen2.cs</FileName>
+      <HashCode>ACAABCABAAAAIIAAFAABgAAgAAAAQAIAABgABIAIQAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.IUserRoleWizardScreen3Controls" Collapsed="true">
+    <Position X="8.25" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\UserRoleWizardScreen3.cs</FileName>
+      <HashCode>AAAABAAAAAIAAAABAEgBAAAgAAAAAAABEAgABAAIEAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.IUserRoleWizardScreen4Controls" Collapsed="true">
+    <Position X="10" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\UserRoleWizardScreen4.cs</FileName>
+      <HashCode>AAAABAAAAAAAAAAAEEgBAAAgAAAAAAQAEEgABQAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.IUserRoleWizardScreen5Controls" Collapsed="true">
+    <Position X="11.75" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\UserRoleWizardScreen5.cs</FileName>
+      <HashCode>AAAABAAAAAAAAAAAAABBAAAgAAAKAAAAEAgABAAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Views.Alerts.ISelectColumnsDialogControls" Collapsed="true">
+    <Position X="8.25" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Views\Alerts\AlertSelectColumnsDialog.cs</FileName>
+      <HashCode>AAAAAAAAAAAAACAAAAAAwAAAAAAAgAAIQEBAAIAAQAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mom.Test.UI.Core.Console.Views.Alerts.IAlertViewPropertiesDialogControls" Collapsed="true">
+    <Position X="17" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Views\Alerts\AlertViewPropertiesDialog.cs</FileName>
+      <HashCode>gCAAgAAAIAAAQgQCBGAQBACAgAAAABACAFQAgGIKAAI=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Mom.Test.UI.Core.Console.Dialogs.PrintRange" Collapsed="true">
+    <Position X="6.5" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Dialogs\PrintDialog.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAIAAAAAAQAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Mom.Test.UI.Core.Console.ProductSkuLevel" Collapsed="true">
+    <Position X="8.25" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ProductSku.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAQAAAAAAAAAAAAAABA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.AgentActionAccount" Collapsed="true">
+    <Position X="3" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\AgentActionAccountWindow.cs</FileName>
+      <HashCode>BAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.RadioGroup0" Collapsed="true">
+    <Position X="10" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\AgentUninstallWizardAdminAccountWindow.cs</FileName>
+      <HashCode>BAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.DiscoveryMethod" Collapsed="true">
+    <Position X="4.75" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\DiscoveryMethodWindow.cs</FileName>
+      <HashCode>AAAAAAAAAAAIAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Mom.Test.UI.Core.Console.DeviceDiscovery.Wizards.ServerActionAccount" Collapsed="true">
+    <Position X="15.25" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DeviceDiscovery\Wizards\WindowsCredentialsWindow.cs</FileName>
+      <HashCode>BAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.Tab2" Collapsed="true">
+    <Position X="18.75" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\UserRolesPropertiesMonitoringPolicyScreen.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAABAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.Tab1" Collapsed="true">
+    <Position X="17" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\UserRolesPropertiesMonitoringScreen.cs</FileName>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.RadioGroup0" Collapsed="true">
+    <Position X="11.75" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\UserRoleWizardScreen3.cs</FileName>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Mom.Test.UI.Core.Console.UserRole.Dialogs.RadioGroup1" Collapsed="true">
+    <Position X="13.5" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserRole\Dialogs\UserRoleWizardScreen4.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAABAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+</ClassDiagram>

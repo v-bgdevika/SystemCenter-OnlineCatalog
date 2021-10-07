@@ -1,0 +1,503 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Monitors>
+  
+  <!--30-->
+  <Monitor TypeID="Microsoft.Windows.MissingCorrelatedEventLogSingleEventLog2StateMonitorType">
+    <DataTypes>
+      <DataType type="EventDataType"/>
+      <Property name="Item0Count"/>
+      <Property name="Item0Context" type="GenericDataItemType" subtype="EventDataType"/>
+      <Property name="Item1Count"/>
+      <Property name="Item1Context" type="GenericDataItemType" subtype="EventDataType"/>
+    </DataTypes>
+  </Monitor>
+  
+  <Monitor TypeID="System.Performance.TwoStateAboveBaseliningMonitorWithoutCompression">
+    <DataTypes>
+      <DataType type="PropertyBagDataType"/>
+    </DataTypes>
+  </Monitor>
+  <Monitor TypeID="System.Performance.TwoStateBaseliningMonitorWithoutCompression">
+    <DataTypes>
+      <DataType type="PropertyBagDataType"/>
+    </DataTypes>
+  </Monitor>
+  <Monitor TypeID="System.Performance.TwoStateBelowBaseliningMonitorWithoutCompression">
+    <DataTypes>
+      <DataType type="PropertyBagDataType"/>
+    </DataTypes>
+  </Monitor>
+  <Monitor TypeID="System.Performance.ThreeStateBaseliningMonitorWithoutCompression">
+    <DataTypes>
+      <DataType type="PropertyBagDataType"/>
+    </DataTypes>
+  </Monitor>
+
+  <!-- -->
+  <Monitor TypeID="System.Performance.AverageThreshold">
+    <DataTypes>
+      <DataType type="PerfDataType"/>
+    </DataTypes>
+  </Monitor>
+  <Monitor TypeID="System.Performance.ConsecutiveSamplesThreshold">
+    <DataTypes>
+      <DataType type="PerfDataType"/>
+    </DataTypes>
+  </Monitor>
+  <Monitor TypeID="System.Performance.DeltaThreshold">
+    <DataTypes>
+      <DataType type="PerfDataType"/>
+    </DataTypes>
+  </Monitor>
+  <Monitor TypeID="System.Performance.ThresholdMonitorType">
+    <DataTypes>
+      <DataType type="PerfDataType"/>
+    </DataTypes>
+  </Monitor>
+
+  <!-- -->
+
+  <Monitor TypeID="System.Performance.DoubleThreshold">
+    <DataTypes>
+      <DataType type="PerfDataType"/>
+    </DataTypes>
+  </Monitor>
+
+  <!-- -->
+
+  <Monitor TypeID="System.ApplicationLog.GenericLog.RepeatedEventSingleEvent2StateMonitorType">
+    <DataTypes>
+      <DataType type="AppLogGenericLogEntryDataType"/>
+      <Property name="TimeWindowStart"/>
+
+      <Property name="TimeWindowEnd"/>
+      
+      <Property name="TimeFirst"/>
+      <Property name="TimeLast"/>
+      <Property name="Count"/>
+      <Property name="Context" type="GenericDataItemType" subtype="AppLogGenericLogEntryDataType"/>
+    </DataTypes>
+  </Monitor>
+  <Monitor TypeID="System.ApplicationLog.GenericLog.RepeatedEventManualReset2StateMonitorType">
+    <DataTypes>
+      <Property name="TimeWindowStart"/>
+
+      <Property name="TimeWindowEnd"/>
+      
+      <Property name="TimeFirst"/>
+      <Property name="TimeLast"/>
+      <Property name="Count"/>
+      <Property name="Context" type="GenericDataItemType" subtype="AppLogGenericLogEntryDataType"/>
+    </DataTypes>
+  </Monitor>
+  <Monitor TypeID="System.ApplicationLog.GenericLog.RepeatedEventTimer2StateMonitorType">
+    <DataTypes>
+      <Property name="TimeWindowStart"/>
+
+      <Property name="TimeWindowEnd"/>
+      
+      <Property name="TimeFirst"/>
+      <Property name="TimeLast"/>
+      <Property name="Count"/>
+      <Property name="Context" type="GenericDataItemType" subtype="AppLogGenericLogEntryDataType"/>
+    </DataTypes>
+  </Monitor>
+
+  <!-- -->
+
+  <Monitor TypeID="System.ApplicationLog.GenericLog.2SingleEvent2StateMonitorType">
+    <DataTypes>
+      <DataType type="AppLogGenericLogEntryDataType"/>
+    </DataTypes>
+  </Monitor>
+  <Monitor TypeID="System.ApplicationLog.GenericLog.SingleEventManualReset2StateMonitorType">
+    <DataTypes>
+      <DataType type="AppLogGenericLogEntryDataType"/>
+    </DataTypes>
+  </Monitor>
+  <Monitor TypeID="System.ApplicationLog.GenericLog.SingleEventTimer2StateMonitorType">
+    <DataTypes>
+      <DataType type="AppLogGenericLogEntryDataType"/>
+    </DataTypes>
+  </Monitor>
+
+  <!-- -->
+
+  <Monitor TypeID="System.ApplicationLog.GenericCSVLog.RepeatedEventSingleEvent2StateMonitorType">
+    <DataTypes>
+      <DataType type="AppLogGenericLogEntryDataType"/>
+      <Property name="TimeWindowStart"/>
+
+      <Property name="TimeWindowEnd"/>
+      
+      <Property name="TimeFirst"/>
+      <Property name="TimeLast"/>
+      <Property name="Count"/>
+      <Property name="Context" type="GenericDataItemType" subtype="AppLogGenericLogEntryDataType"/>
+    </DataTypes>
+  </Monitor>
+
+  <Monitor TypeID="System.ApplicationLog.GenericCSVLog.RepeatedEventManualReset2StateMonitorType">
+    <DataTypes>
+      <Property name="TimeWindowStart"/>
+
+      <Property name="TimeWindowEnd"/>
+      
+      <Property name="TimeFirst"/>
+      <Property name="TimeLast"/>
+      <Property name="Count"/>
+      <Property name="Context" type="GenericDataItemType" subtype="AppLogGenericLogEntryDataType"/>
+    </DataTypes>
+  </Monitor>
+  <Monitor TypeID="System.ApplicationLog.GenericCSVLog.RepeatedEventTimer2StateMonitorType">
+    <DataTypes>
+      <Property name="TimeWindowStart"/>
+
+      <Property name="TimeWindowEnd"/>
+      
+      <Property name="TimeFirst"/>
+      <Property name="TimeLast"/>
+      <Property name="Count"/>
+      <Property name="Context" type="GenericDataItemType" subtype="AppLogGenericLogEntryDataType"/>
+    </DataTypes>
+  </Monitor>
+
+  <!-- -->
+
+  <Monitor TypeID="System.ApplicationLog.GenericCSVLog.2SingleEvent2StateMonitorType">
+    <DataTypes>
+      <DataType type="AppLogGenericLogEntryDataType"/>
+    </DataTypes>
+  </Monitor>
+  <Monitor TypeID="System.ApplicationLog.GenericCSVLog.SingleEventManualReset2StateMonitorType">
+    <DataTypes>
+      <DataType type="AppLogGenericLogEntryDataType"/>
+    </DataTypes>
+  </Monitor>
+  <Monitor TypeID="System.ApplicationLog.GenericCSVLog.SingleEventTimer2StateMonitorType">
+    <DataTypes>
+      <DataType type="AppLogGenericLogEntryDataType"/>
+    </DataTypes>
+  </Monitor>
+
+  <!-- -->
+
+  <Monitor TypeID="Microsoft.Windows.SingleEventLogManualReset2StateMonitorType">
+    <DataTypes>
+      <DataType type="EventDataType"/>
+    </DataTypes>
+  </Monitor>
+  <Monitor TypeID="Microsoft.Windows.SingleEventLogTimer2StateMonitorType">
+    <DataTypes>
+      <DataType type="EventDataType"/>
+    </DataTypes>
+  </Monitor>
+  <Monitor TypeID="Microsoft.Windows.2SingleEventLog2StateMonitorType">
+    <DataTypes>
+      <DataType type="EventDataType"/>
+    </DataTypes>
+  </Monitor>
+    
+  <!-- -->
+
+  <Monitor TypeID="Microsoft.Windows.CorrelatedEventLogManualReset2StateMonitorType">
+    <DataTypes>
+      <Property name="Item0Count"/>
+      <Property name="Item0Context" type="GenericDataItemType" subtype="EventDataType"/>
+      <Property name="Item1Count"/>
+      <Property name="Item1Context" type="GenericDataItemType" subtype="EventDataType"/>
+    </DataTypes>
+  </Monitor>
+  <Monitor TypeID="Microsoft.Windows.CorrelatedEventLogTimer2StateMonitorType"> <!-- Microsoft.Windows.CorrelatedEventLogSingleEventLog2StateMonitorType -->
+    <DataTypes>
+      <Property name="Item0Count"/>
+      <Property name="Item0Context" type="GenericDataItemType" subtype="EventDataType"/>
+      <Property name="Item1Count"/>
+      <Property name="Item1Context" type="GenericDataItemType" subtype="EventDataType"/>
+    </DataTypes>
+  </Monitor>
+  <Monitor TypeID="Microsoft.Windows.CorrelatedEventLogSingleEventLog2StateMonitorType"> <!-- Microsoft.Windows.2SingleEventLog2StateMonitorType -->
+    <DataTypes>
+      <DataType type="EventDataType"/>
+      <Property name="Item0Count"/>
+      <Property name="Item0Context" type="GenericDataItemType" subtype="EventDataType"/>
+      <Property name="Item1Count"/>
+      <Property name="Item1Context" type="GenericDataItemType" subtype="EventDataType"/>
+    </DataTypes>
+  </Monitor>
+
+  <!-- -->
+  <Monitor TypeID="Microsoft.Windows.MissingCorrelatedEventLogManualReset2StateMonitorType">
+    <DataTypes>
+      <Property name="Item0Count"/>
+      <Property name="Item0Context" type="GenericDataItemType" subtype="EventDataType"/>
+      <Property name="Item1Count"/>
+      <Property name="Item1Context" type="GenericDataItemType" subtype="EventDataType"/>
+    </DataTypes>
+  </Monitor>
+
+  <Monitor TypeID="Microsoft.Windows.MissingCorrelatedEventLogTimer2StateMonitorType">
+    <DataTypes>
+      <Property name="Item0Count"/>
+      <Property name="Item0Context" type="GenericDataItemType" subtype="EventDataType"/>
+      <Property name="Item1Count"/>
+      <Property name="Item1Context" type="GenericDataItemType" subtype="EventDataType"/>
+    </DataTypes>
+  </Monitor>
+
+  <!-- 30 *******-->
+
+  <Monitor TypeID="Microsoft.Windows.RepeatedEventLogManualReset2StateMonitorType">
+    <DataTypes>
+      
+        <Property name="TimeWindowStart"/>
+
+        <Property name="TimeWindowEnd"/>
+        
+        <Property name="TimeFirst"/>
+        <Property name="TimeLast"/>
+        <Property name="Count"/>
+        <Property name="Context" type="GenericDataItemType" subtype="EventDataType"/>
+      
+    </DataTypes>
+  </Monitor>
+
+  <Monitor TypeID="Microsoft.Windows.RepeatedEventLogTimer2StateMonitorType">
+    <DataTypes>
+      
+        <Property name="TimeWindowStart"/>
+
+        <Property name="TimeWindowEnd"/>
+        
+        <Property name="TimeFirst"/>
+        <Property name="TimeLast"/>
+        <Property name="Count"/>
+        <Property name="Context" type="GenericDataItemType" subtype="EventDataType"/>
+     
+    </DataTypes>
+  </Monitor>
+
+  <Monitor TypeID="Microsoft.Windows.RepeatedEventLogSingleEventLog2StateMonitorType">
+    <DataTypes>
+      
+        <DataType type="EventDataType"/>
+        <Property name="TimeWindowStart"/>
+
+        <Property name="TimeWindowEnd"/>
+        
+        <Property name="TimeFirst"/>
+        <Property name="TimeLast"/>
+        <Property name="Count"/>
+        <Property name="Context" type="GenericDataItemType" subtype="EventDataType"/>
+      
+    </DataTypes>
+  </Monitor>
+
+  <!-- -->
+
+  <Monitor TypeID="Microsoft.Windows.MissingEventLogManualReset2StateMonitorType"> <!-- ************************************ -->
+    <DataTypes>
+      
+        <Property name="TimeWindowStart"/>
+
+        <Property name="TimeWindowEnd"/>
+        
+        <Property name="TimeFirst"/>
+        <Property name="TimeLast"/>
+        <Property name="Count"/>
+        <Property name="Context" type="GenericDataItemType" subtype="EventDataType"/>
+      
+    </DataTypes>
+  </Monitor>
+  <Monitor TypeID="Microsoft.Windows.MissingEventLogTimer2StateMonitorType">  <!-- ************************************ -->
+    <DataTypes>
+     
+        <Property name="TimeWindowStart"/>
+
+        <Property name="TimeWindowEnd"/>
+        
+        <Property name="TimeFirst"/>
+        <Property name="TimeLast"/>
+        <Property name="Count"/>
+        <Property name="Context" type="GenericDataItemType" subtype="EventDataType"/>
+      
+    </DataTypes>
+  </Monitor>
+  <Monitor TypeID="Microsoft.Windows.MissingEventLogSingleEventLog2StateMonitorType">    <!-- ************************************ -->
+    <DataTypes>
+      
+        <DataType type="EventDataType"/>
+        <Property name="TimeWindowStart"/>
+
+        <Property name="TimeWindowEnd"/>
+        
+        <Property name="TimeFirst"/>
+        <Property name="TimeLast"/>
+        <Property name="Count"/>
+        <Property name="Context" type="GenericDataItemType" subtype="EventDataType"/>
+      
+    </DataTypes>
+  </Monitor>
+
+  <!-- -->
+
+  <Monitor TypeID="Microsoft.Windows.WmiBased.Performance.AverageThreshold">
+    <DataTypes>
+      
+        <DataType type="PerfDataType"/>
+      
+    </DataTypes>
+  </Monitor>
+  <Monitor TypeID="Microsoft.Windows.WmiBased.Performance.ConsecutiveSamplesThreshold">
+    <DataTypes>
+      
+        <DataType type="PerfDataType"/>
+     
+    </DataTypes>
+  </Monitor>
+  <Monitor TypeID="Microsoft.Windows.WmiBased.Performance.DeltaThreshold">
+    <DataTypes>
+      
+        <DataType type="PerfDataType"/>
+      
+    </DataTypes>
+  </Monitor>
+  <Monitor TypeID="Microsoft.Windows.WmiBased.Performance.ThresholdMonitorType">
+    <DataTypes>
+      
+        <DataType type="PerfDataType"/>
+      
+    </DataTypes>
+  </Monitor>
+
+  <!-- -->
+
+  <Monitor TypeID="Microsoft.Windows.WmiBased.Performance.DoubleThreshold">
+    <DataTypes>
+      
+        <DataType type="PerfDataType"/>
+      
+    </DataTypes>
+  </Monitor>
+
+  <!-- -->
+
+  <Monitor TypeID="System.SnmpTrapProvider.2SingleEvent2StateMonitorType">
+    <DataTypes>
+      
+        <DataType type="SnmpData"/>
+      
+    </DataTypes>
+  </Monitor>
+
+  <!-- -->
+
+  <Monitor TypeID="System.SnmpProbe.2SingleEvent2StateMonitorType">
+    <DataTypes>
+      
+        <DataType type="SnmpData"/>
+      
+    </DataTypes>
+  </Monitor>
+
+  <!-- -->
+
+  <Monitor TypeID="Microsoft.Windows.WmiEventProvider.SingleEventManualReset2StateMonitorType">
+    <DataTypes>
+      
+        <DataType type="PropertyBagDataType"/>
+      
+    </DataTypes>
+  </Monitor>
+  <Monitor TypeID="Microsoft.Windows.WmiEventProvider.SingleEventTimer2StateMonitorType">
+    <DataTypes>
+      
+        <DataType type="PropertyBagDataType"/>
+      
+    </DataTypes>
+  </Monitor>
+  <Monitor TypeID="Microsoft.Windows.WmiEventProvider.2SingleEvent2StateMonitorType">
+    <DataTypes>
+      
+        <DataType type="PropertyBagDataType"/>
+      
+    </DataTypes>
+  </Monitor>
+
+  <!-- -->
+
+  <Monitor TypeID="Microsoft.Windows.WmiEventProvider.RepeatedEventManualReset2StateMonitorType">
+    <DataTypes>
+      
+        <Property name="TimeWindowStart"/>
+
+        <Property name="TimeWindowEnd"/>
+        
+        <Property name="TimeFirst"/>
+        <Property name="TimeLast"/>
+        <Property name="Count"/>
+        <Property name="Context" type="GenericDataItemType" subtype="PropertyBagDataType"/>
+      
+    </DataTypes>
+  </Monitor>
+  <Monitor TypeID="Microsoft.Windows.WmiEventProvider.RepeatedEventTimer2StateMonitorType">
+    <DataTypes>
+      
+        <Property name="TimeWindowStart"/>
+
+        <Property name="TimeWindowEnd"/>
+        
+        <Property name="TimeFirst"/>
+        <Property name="TimeLast"/>
+        <Property name="Count"/>
+        <Property name="Context" type="GenericDataItemType" subtype="PropertyBagDataType"/>
+      
+    </DataTypes>
+  </Monitor>
+  <Monitor TypeID="Microsoft.Windows.WmiEventProvider.RepeatedEventSingleEvent2StateMonitorType">
+    <DataTypes>
+      
+        <DataType type="PropertyBagDataType"/>
+        <Property name="TimeWindowStart"/>
+
+        <Property name="TimeWindowEnd"/>
+        
+        <Property name="TimeFirst"/>
+        <Property name="TimeLast"/>
+        <Property name="Count"/>
+        <Property name="Context" type="GenericDataItemType" subtype="PropertyBagDataType"/>
+      
+    </DataTypes>
+  </Monitor>
+
+  <!-- -->
+
+  <Monitor TypeID="Microsoft.Windows.TimedScript.ThreeStateMonitorType">
+    <DataTypes>
+      
+        <DataType type="PropertyBagDataType"/>
+     
+    </DataTypes>
+  </Monitor>
+
+  <!-- -->
+  
+  <Monitor TypeID="Microsoft.Windows.TimedScript.TwoStateMonitorType">
+    <DataTypes>
+      
+        <DataType type="PropertyBagDataType"/>
+      
+    </DataTypes>
+  </Monitor>
+  
+  <!-- -->
+
+  <Monitor TypeID="Microsoft.Windows.CheckNTServiceStateMonitorType">
+    <DataTypes>
+      
+        <DataType type="PropertyBagDataType"/>
+      
+    </DataTypes>
+  </Monitor>
+  
+</Monitors>

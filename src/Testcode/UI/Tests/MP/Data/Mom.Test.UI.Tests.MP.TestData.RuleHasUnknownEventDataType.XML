@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ManagementPack Update="false"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Manifest>
+    <Identity>
+      <ID>Mom.Test.UI.Tests.MP.TestData.RuleHasUnknownEventDataType</ID>
+      <Version>1.0.0.1</Version>
+    </Identity>
+    <Name>Rule Has Unknown Event Data Type (internal name)</Name>
+    <References>
+      <Reference Alias="SystemMP">
+        <ID>System.MP</ID>
+        <Version>6.0.0.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="SystemMomMP">
+        <ID>System.Mom.MP</ID>
+        <Version>6.0.0.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="SystemWindowsMP">
+        <ID>System.Windows.MP</ID>
+        <Version>6.0.0.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+    </References>
+  </Manifest>
+  <Monitoring>
+    <Rules>
+      <Rule ID="Ruleabfce09052424c0fa6afb031f615ee11" Enabled="true" Target="SystemWindowsMP!System.Windows.Computer" ConfirmDelivery="false">
+        <Category>Event Collection</Category>
+        <DataSources>
+          <DataSource ID="Module50f89636309b4472bd4cc77fe267af02" TypeID="SystemWindowsMP!System.Windows.Event.DataProvider">
+            <ComputerName>$Target/Property[Type="SystemWindowsMP!System.Windows.Computer"]/PrincipalName$</ComputerName>
+            <LogName>Application</LogName>
+            <Expression>
+              <SimpleExpression>
+                <ValueExpression>
+                  <XPathQuery>UnknownEventDataType</XPathQuery>
+                </ValueExpression>
+                <Operator>Equal</Operator>
+                <ValueExpression>
+                  <Value VariantType="VT_BSTR">Test</Value>
+                </ValueExpression>
+              </SimpleExpression>
+            </Expression>
+          </DataSource>
+        </DataSources>
+        <ConditionDetection ID="Moduleb6499da9f9f141689d919f09e30bf248" TypeID="SystemMP!System.SchedulerFilter">
+          <SchedulerFilter>
+            <ProcessDataMode>Always</ProcessDataMode>
+          </SchedulerFilter>
+        </ConditionDetection>
+        <WriteActions>
+          <WriteAction ID="Modulec63309b7c10d4dcfae62ee58ef6fdc33" TypeID="SystemMomMP!System.Mom.Event.DataCollector" Target="SystemMomMP!System.Mom.ManagementServer"></WriteAction>
+        </WriteActions>
+      </Rule>
+    </Rules>
+  </Monitoring>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="Ruleabfce09052424c0fa6afb031f615ee11" SubElementID="Moduleb6499da9f9f141689d919f09e30bf248">
+          <Name>Moduleb6499da9f9f141689d919f09e30bf248</Name>
+        </DisplayString>
+        <DisplayString ElementID="Ruleabfce09052424c0fa6afb031f615ee11" SubElementID="Modulec63309b7c10d4dcfae62ee58ef6fdc33">
+          <Name>Modulec63309b7c10d4dcfae62ee58ef6fdc33</Name>
+        </DisplayString>
+        <DisplayString ElementID="Mom.Test.UI.Tests.MP.TestData.RuleHasUnknownEventDataType">
+          <Name>Rule Has Unknown Event Data Type (display name)</Name>
+        </DisplayString>
+        <DisplayString ElementID="Ruleabfce09052424c0fa6afb031f615ee11" SubElementID="Module50f89636309b4472bd4cc77fe267af02">
+          <Name>Module50f89636309b4472bd4cc77fe267af02</Name>
+        </DisplayString>
+        <DisplayString ElementID="Ruleabfce09052424c0fa6afb031f615ee11">
+          <Name>UnknownEventDataTypeRule</Name>
+          <Description>Testing the effect of referencing an unknown Event Data Type (bug 58555).</Description>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPack>

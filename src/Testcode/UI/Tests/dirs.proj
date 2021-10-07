@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" 
+  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+   <!--<Import Project="$(EnvironmentConfig)" />-->
+  <PropertyGroup>
+    <!-- Exclude project from generated solution files -->
+    <IncludeInSolutionFile>false</IncludeInSolutionFile >
+  </PropertyGroup>
+   <ItemGroup>
+     <ProjectReference Include="D:\OC\UI\Tests\MP\Mom.Test.UI.Tests.MP.csproj" />
+      <!--<ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\AdIntegration\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\AdvancedSearch\Mom.Test.UI.AdvancedSearch.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\AEMDeployment\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\AggregateMonitor\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\AlertView\Mom.Test.UI.AlertView.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\AlertWidget\Microsoft.EnterpriseManagement.Test.UI.AlertWidget.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\TopNWidgets\Microsoft.EnterpriseManagement.Test.UI.TopNWidgets.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\Attributes\Mom.Test.UI.Attributes.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\Authentication\Mom.Test.UI.Authentication.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\BrowserClassUnitTest\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\CompositionEngine\Microsoft.EnterpriseManagement.Test.UI.CompositionEngine.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\ConnectedFramework\Mom.Test.UI.ConnectedFramework.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\ConsoleCommand\Mom.Test.UI.ConsoleCommand.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\ConsoleFramework\Mom.Test.UI.ConsoleFramework.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\DashView\Mom.Test.UI.DashView.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\DataAccess\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\DataQuery\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\DataProviderDownload\Microsoft.EnterpriseManagement.Test.UI.DataProviderDownload.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\DataProviderDownload\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\DependencyMonitor\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\Controls\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\DataGrid\Microsoft.EnterpriseManagement.Test.UI.DataGrid.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\DataGrid\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\DeviceDiscovery\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\DeviceManagement\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\DiagnosticAndRecovery\Mom.Test.UI.DiagnosticAndRecovery.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\DistributedApplication\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\EventMonitor\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\EventView\Mom.Test.UI.EventView.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\Favorites\Mom.Test.UI.Favorites.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\Groups\Mom.Test.UI.Groups.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\KnowledgeEditing\Mom.Test.UI.KnowledgeEditing.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\LogFilesMonitor\Mom.Test.UI.LogFilesMonitor.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\MP\Mom.Test.UI.Tests.MP.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\MPElementProvider\Microsoft.EnterpriseManagement.Test.UI.MPElementProvider.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\NetworkWizard\Microsoft.EnterpriseManagement.Test.UI.NetworkWizard.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\Notification\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\OleDbMonitor\MOM.Test.UI.OleDbMonitor.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\OpsManNotifications\dirs.proj" /> 
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\Overrides\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\PendingActions\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\PendingNetworkDevices\Mom.Test.UI.NetworkMonitoring.PendingNetworkDevices.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\PerformanceView\Mom.Test.UI.PerfView.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\PersonalizationStorage\Microsoft.EnterpriseManagement.Test.UI.PersonalizationStorage.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\PortMonitor\MOM.Test.UI.PortMonitor.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\PowerMgmt\Mom.Test.UI.PowerMgmt.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\ProcessMonitor\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\ReportingConsole\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\Reports\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\Rules\Mom.Test.UI.Tests.Rules.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\RunAsAccount\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\RunAsProfile\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\Scenarios\Mom.Test.UI.Scenarios.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\ScriptingMonitor\Mom.Test.UI.ScriptingMonitor.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\ServiceDesigner\Mom.Test.UI.ServiceDesigner.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\ServiceDiagram\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\SharePointWebPart\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\MapWidget\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\HTMLDashboard\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\SLADashboard\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\SLASLO\Mom.Test.UI.SLASLO.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\SNMPMonitor\Mom.Test.UI.SNMPMonitor.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\StateView\Mom.Test.UI.StateView.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\Stress\Mom.Test.UI.Stress.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\Tasks\Mom.Test.UI.Tasks.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\TaskView\Mom.Test.UI.TaskView.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\UITaskInfrastructure\Microsoft.EnterpriseManagement.Test.UI.TaskInfrastructure.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\URLMonitoring\MOM.Test.UI.URLMonitoring.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\UserProfileManager\Microsoft.EnterpriseManagement.Test.UI.UserProfileManager.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\UserRole\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\WebConsole\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\WebPageView\Mom.Test.UI.WebPageViews.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\WindowsPerformanceCountersMonitor\Mom.Test.UI.WindowsPerformanceCountersMonitor.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\WindowsServiceMonitor\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\WindowsServiceTemplate\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\WMIEventMonitor\Mom.Test.UI.WMIEventMonitor.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\WMIPerformanceCountersMonitor\Mom.Test.UI.WMIPerformanceCountersMonitor.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\X-PlatAdminViews\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\ConfigurationAndPersonalization\Mom.Test.UI.ConfigurationAndPersonalization.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\ConfigurationStorage\Microsoft.EnterpriseManagement.Test.UI.ConfigurationStorage.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\ResourcePool\Mom.Test.UI.ResourcePool.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\ObjectPicker\Mom.Test.UI.ObjectPicker.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\ITProDashboard\Mom.Test.UI.ITProDashboard.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\dashboards\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\GTMTemplate\dirs.proj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\PerformanceWidget\Microsoft.EnterpriseManagement.Test.UI.PerformanceWidget.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\StateWidget\Microsoft.EnterpriseManagement.Test.UI.StateWidget.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\OMSummaryDashboard\Microsoft.EnterpriseManagement.Test.UI.OMSummaryDashboard.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\OM10Scenarios\Microsoft.EnterpriseManagement.Test.UI.OM10Scenarios.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\OM10WebScenarios\Microsoft.EnterpriseManagement.Test.UI.OM10WebScenarios.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\UIGQL\Microsoft.EnterpriseManagement.Test.UI.UIGQL.csproj" />
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\ServiceMap\Mom.Test.UI.ServiceMap.csproj" />                 
+      <ProjectReference Include="$(SRCROOT)\Testcode\UI\Tests\UIScale\dirs.proj" />-->
+     </ItemGroup>
+   <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />
+   <PropertyGroup>
+      <BuildDependsOn>ResolveReferences</BuildDependsOn>
+      <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+   </PropertyGroup>
+   <Target Name="VerifyAlteredTargetsUsed" />
+</Project>

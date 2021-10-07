@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DataTypes>
+  <DataType name="EventDataType" tag="System.Event.Data">
+    <Properties>
+      <!-- 
+      <Property name="type"/>
+      <Property name="time"/>
+      <Property name="sourceHealthServiceId"/>
+      -->
+      <!-- 
+      <Property name="EventOriginId"/>
+      <Property name="PublisherId"/>
+      -->
+      <Property name="PublisherName"/>
+      <Property name="EventSourceName"/>
+      <Property name="Channel"/>
+      <Property name="LoggingComputer"/>
+      <Property name="EventNumber"/>
+      <Property name="EventCategory"/>
+      <Property name="EventLevel"/>
+      <Property name="UserName"/>
+      <Property name="RawDescription"/>
+      <!-- 
+      <Property name="LCID"/>
+      <Property name="CollectDescription"/>
+      -->
+      <Property name="Params" type="EventParametersType"/>
+      <Property name="EventData" type="GenericDataItemType"/>
+      <Property name="EventDisplayNumber"/>
+      <Property name="EventDescription"/>
+      <!-- 
+      <Property name="CorrelationActivityId"/>
+      <Property name="CorrelationRelatedActivityId"/>
+      -->
+      <Property name="Opcode"/>
+      <Property name="Keywords"/>
+      <Property name="ProcessId"/>
+      <Property name="ThreadId"/>
+      <Property name="Version"/>
+      <!-- 
+      <Property name="ManagedEntityId"/>
+      <Property name="RuleId"/>
+      -->
+    </Properties>
+    <DefaultDescriptionStringID>System.Event.Data.DescriptionFormat</DefaultDescriptionStringID>
+  </DataType>
+  <DataType name="PerfDataType" tag="System.Performance.BaseData">
+    <Properties>
+      <Property name="TimeSampled"/>
+      <Property name="ObjectName"/>
+      <Property name="CounterName"/>
+      <Property name="InstanceName"/>
+      <Property name="IsNull"/>
+      <Property name="Value"/>
+      <!--
+      <Property name="SampleCount"/>
+      <Property name="FirstValue"/>
+      <Property name="LastValue"/>
+      <Property name="SampleValue"/>
+      -->
+    </Properties>
+    <DefaultDescription>Test</DefaultDescription>
+  </DataType>
+  <DataType name="SysLogDataType" tag="System.ApplicationLog.SysLogData">
+    <Properties>
+      <Property name="Facility"/>
+      <Property name="Severity"/>
+      <Property name="Priority"/>
+      <Property name="PriorityName"/>
+      <Property name="TimeStamp"/>
+      <Property name="HostName"/>
+      <Property name="Message"/>
+    </Properties>
+    <DefaultDescription>Test</DefaultDescription>
+  </DataType>
+  <DataType name="PropertyBagDataType" tag="System.PropertyBagData">
+    <Properties>
+      <!--
+      <Property name="ConversionType"/>
+      -->
+      <Property name ="Property"/>
+      <Property name ="Collection" type="PropertyCollectionType"/>
+    </Properties>
+  </DataType>
+  <DataType name="EventParametersType">
+    <Properties>
+      <Property name="Param"/>
+    </Properties>
+  </DataType>
+  <DataType name="PropertyCollectionType">
+    <Properties>
+      <Property name="Property"/>
+    </Properties>
+  </DataType>
+  <DataType name="ConsolidatorDataType" tag="System.ConsolidatorData">
+    <Properties>
+      <!-- 
+      <Property name="DataItem"/>    
+      ?? -->
+      <Property name="TimeWindowStart"/>
+      <Property name="TimeWindowEnd"/>
+      <Property name="TimeFirst"/>
+      <Property name="TimeLast"/>
+      <Property name="Count"/>
+      <Property name="Context" type="GenericDataItemType"/>
+    </Properties>
+ </DataType>
+  <DataType name="GenericDataItemType">
+    <Properties>
+      <Property name="DataItem"/>
+    </Properties>
+  </DataType>
+  <DataType name="CorrelatorDataType" tag="System.CorrelatorData">
+    <Properties>
+      <Property name="Item0Count"/>
+      <Property name="Item0Context" type="GenericDataItemType"/>
+      <Property name="Item1Count"/>
+      <Property name="Item1Context" type="GenericDataItemType"/>
+    </Properties>
+  </DataType>
+  <DataType name="AppLogGenericLogEntryDataType" tag="System.ApplicationLog.GenericLogEntryData">
+    <Properties>
+      <Property name="LogFileDirectory"/>
+      <Property name="LogFileType"/>
+      <Property name="LogFileName"/>
+      <Property name="Params" type="EventParametersType"/>
+    </Properties>
+  </DataType>
+  <DataType name="SnmpData" tag="System.SnmpData">
+    <Properties>
+      <Property name="Source"/>
+      <Property name="Destination"/>
+      <Property name="CommunityString"/>
+      <Property name="ErrorCode"/>
+      <Property name="Version"/>
+      <Property name="SnmpVarBinds" type="SnmpVarBindType"/>
+    </Properties>
+  </DataType>
+  <DataType name="SnmpVarBindType">
+    <Properties>
+      <Property name="SnmpVarBind" type="VarBindType"/>
+    </Properties>
+  </DataType>
+  <DataType name="VarBindType">
+    <Properties>
+      <Property name="OID"/>
+      <Property name="Syntax"/>
+      <Property name="Value"/>
+    </Properties>
+  </DataType>
+</DataTypes>

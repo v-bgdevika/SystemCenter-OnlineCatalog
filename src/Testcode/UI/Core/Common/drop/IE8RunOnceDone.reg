@@ -1,0 +1,8 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main]
+"DisableFirstRunCustomize"=dword:00000001
+"IE8RunOnceLastShown"=dword:00000001
+"IE8RunOnceLastShown_TIMESTAMP"=hex:fe,4f,f9,ca,f8,9b,c8,01
+"RunOnceComplete"=dword:00000001
+"RunOnceHasShown"=dword:00000001

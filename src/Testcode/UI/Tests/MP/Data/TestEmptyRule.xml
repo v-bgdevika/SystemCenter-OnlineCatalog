@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ManagementPack Update="false"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Manifest>
+    <Identity>
+      <ID>CustomManagementPack_8E7D354B3B2C43f1AF052C48509EA3C4</ID>
+      <Version>1.0.0.5</Version>
+    </Identity>
+    <Name>CustomManagementPack_8E7D354B3B2C43f1AF052C48509EA3C4</Name>
+    <References>
+      <Reference Alias="SystemMP">
+        <ID>System.MP</ID>
+        <Version>6.0.0.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="SystemMomMP">
+        <ID>System.Mom.MP</ID>
+        <Version>6.0.0.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="SystemWindowsMP">
+        <ID>System.Windows.MP</ID>
+        <Version>6.0.0.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+    </References>
+  </Manifest>
+  <TypeDefinitions>
+    <EntityTypes>
+      <ClassTypes>
+        <ClassType ID="UINameSpace6bbaca8b991346059dd94932c271c039.Group" Accessibility="Public" Base="SystemMomMP!System.Mom.InstanceGroup" Abstract="false" Hosted="false" Singleton="true"></ClassType>
+      </ClassTypes>
+    </EntityTypes>
+  </TypeDefinitions>
+  <Monitoring>
+    <Rules>
+      <Rule ID="Rule352b8ea485774435a393e0f1aa4d58c8" Enabled="true" Target="UINameSpace6bbaca8b991346059dd94932c271c039.Group" ConfirmDelivery="false">
+        <Category>Event Collection</Category>
+        <DataSources>
+          <DataSource ID="Module304e6aeeadc14288ba2103e448f3e331" TypeID="SystemWindowsMP!System.Windows.Event.DataProvider">
+            <ComputerName></ComputerName>
+            <LogName>Application</LogName>
+            <Expression></Expression>
+          </DataSource>
+        </DataSources>
+        <ConditionDetection ID="Moduled89876e22d254f3a81f492a77b4362a1" TypeID="SystemMP!System.SchedulerFilter">
+          <SchedulerFilter>
+            <ProcessDataMode>Always</ProcessDataMode>
+          </SchedulerFilter>
+        </ConditionDetection>
+        <WriteActions>
+          <WriteAction ID="Module0d229dc2e2c746a496366d7dcc98bdbb" TypeID="SystemMomMP!System.Mom.Event.DataCollector" Target="SystemMomMP!System.Mom.ManagementServer"></WriteAction>
+        </WriteActions>
+      </Rule>
+      <Rule ID="Rule57d5962ef6a842b49fd761529b6d9062" Enabled="true" Target="SystemWindowsMP!System.Windows.Computer" ConfirmDelivery="false">
+        <Category>Event Collection</Category>
+        <DataSources>
+          <DataSource ID="Modulec0d1e5a3f2ae47e6bd9af88917a1d9dd" TypeID="SystemWindowsMP!System.Windows.Event.DataProvider">
+            <ComputerName>$Target/Property[Type="SystemWindowsMP!System.Windows.Computer"]/PrincipalName$</ComputerName>
+            <LogName>Application</LogName>
+            <Expression>
+              <And>
+                <Expression>
+                  <SimpleExpression>
+                    <ValueExpression>
+                      <XPathQuery>EventNumber</XPathQuery>
+                    </ValueExpression>
+                    <Operator>Equal</Operator>
+                    <ValueExpression>
+                      <Value VariantType="VT_I4">1234</Value>
+                    </ValueExpression>
+                  </SimpleExpression>
+                </Expression>
+                <Expression>
+                  <RegExExpression>
+                    <ValueExpression>
+                      <XPathQuery>PublisherName</XPathQuery>
+                    </ValueExpression>
+                    <Operator>ContainsSubstring</Operator>
+                    <Pattern>Some custom parameter value</Pattern>
+                  </RegExExpression>
+                </Expression>
+              </And>
+            </Expression>
+          </DataSource>
+        </DataSources>
+        <ConditionDetection ID="Module8fa2e320aace41d1a9cfc87107d80d37" TypeID="SystemMP!System.SchedulerFilter">
+          <SchedulerFilter>
+            <ProcessDataMode>Always</ProcessDataMode>
+          </SchedulerFilter>
+        </ConditionDetection>
+        <WriteActions>
+          <WriteAction ID="Module1f27cc45fdfb4fd98c08e1519b881113" TypeID="SystemMomMP!System.Mom.Event.DataCollector" Target="SystemMomMP!System.Mom.ManagementServer"></WriteAction>
+        </WriteActions>
+      </Rule>
+      <Rule ID="Rulef3e957212ef1494b80777756f3dfab7e" Enabled="true" Target="SystemWindowsMP!System.Windows.Computer" ConfirmDelivery="false">
+        <Category>Event Collection</Category>
+        <DataSources>
+          <DataSource ID="Moduleb8c2ea8bf06a43bf84078dcb68707794" TypeID="SystemWindowsMP!System.Windows.Event.DataProvider">
+            <ComputerName>$Target/Property[Type="SystemWindowsMP!System.Windows.Computer"]/PrincipalName$</ComputerName>
+            <LogName>Application</LogName>
+            <Expression>
+              <And>
+                <Expression>
+                  <SimpleExpression>
+                    <ValueExpression>
+                      <XPathQuery>EventNumber</XPathQuery>
+                    </ValueExpression>
+                    <Operator>Equal</Operator>
+                    <ValueExpression>
+                      <Value VariantType="VT_I4">1234</Value>
+                    </ValueExpression>
+                  </SimpleExpression>
+                </Expression>
+                <Expression>
+                  <RegExExpression>
+                    <ValueExpression>
+                      <XPathQuery>Channel</XPathQuery>
+                    </ValueExpression>
+                    <Operator>ContainsSubstring</Operator>
+                    <Pattern>Some custom parameter value</Pattern>
+                  </RegExExpression>
+                </Expression>
+              </And>
+            </Expression>
+          </DataSource>
+        </DataSources>
+        <ConditionDetection ID="Module4b56abe821934e3c82d7d5e3fe5d57ce" TypeID="SystemMP!System.SchedulerFilter">
+          <SchedulerFilter>
+            <ProcessDataMode>Always</ProcessDataMode>
+          </SchedulerFilter>
+        </ConditionDetection>
+        <WriteActions>
+          <WriteAction ID="Module69da57fd790846dca811e55476aebd2f" TypeID="SystemMomMP!System.Mom.Event.DataCollector" Target="SystemMomMP!System.Mom.ManagementServer"></WriteAction>
+        </WriteActions>
+      </Rule>
+      <Rule ID="UINameSpace6bbaca8b991346059dd94932c271c039.Group.DiscoveryRule" Enabled="true" Target="UINameSpace6bbaca8b991346059dd94932c271c039.Group" ConfirmDelivery="false">
+        <Category>Discovery</Category>
+        <DataSources>
+          <DataSource ID="GroupPopulationDataSource" TypeID="SystemMomMP!System.Mom.Discovery.GroupPopulation">
+            <RuleId>$MPElement$</RuleId>
+            <GroupInstanceId>$MPElement[Name="UINameSpace6bbaca8b991346059dd94932c271c039.Group"]$</GroupInstanceId>
+            <MembershipRules>
+              <MembershipRule>
+                <TypeId>$MPElement[Name="SystemWindowsMP!System.Windows.Computer"]$</TypeId>
+                <RelationshipId>$MPElement[Name="SystemMomMP!System.Mom.InstanceGroupContainsManagedEntities"]$</RelationshipId>
+                <IncludeList>
+                  <ManagedEntityId>a036c833-8c04-4964-8f2b-8b8cb2662484</ManagedEntityId>
+                </IncludeList>
+              </MembershipRule>
+            </MembershipRules>
+          </DataSource>
+        </DataSources>
+        <WriteActions>
+          <WriteAction ID="DiscoveryWriteAction" TypeID="SystemMomMP!System.Mom.Discovery.DataCollector" Target="SystemMomMP!System.Mom.ManagementServer"></WriteAction>
+        </WriteActions>
+      </Rule>
+    </Rules>
+    <Monitors>
+      <UnitMonitor ID="Monitorea9874695d62495dbe9e6df161a94b67" Accessibility="Public" Enabled="true" Target="SystemMomMP!System.Mom.AllComputersGroup" ParentMonitorID="SystemMP!System.Availability" TypeID="SystemWindowsMP!System.Windows.Event.SingleEventLogManualReset2StateUnitMonitorType" ConfirmDelivery="false">
+        <Category>Performance Collection</Category>
+        <OperationalStates>
+          <OperationalState ID="Opstatee102f2ceca3941eb8ebbae71a5ead628" MonitorTypeStateID="ManualResetEventRaised" HealthState="Success"></OperationalState>
+          <OperationalState ID="Opstate390e9af18f444ddc840c054ccfbf6ecf" MonitorTypeStateID="EventRaised" HealthState="Error"></OperationalState>
+        </OperationalStates>
+        <Configuration>
+          <ComputerName></ComputerName>
+          <LogName>Application</LogName>
+          <Expression>
+            <SimpleExpression>
+              <ValueExpression>
+                <XPathQuery>EventDisplayNumber</XPathQuery>
+              </ValueExpression>
+              <Operator>Equal</Operator>
+              <ValueExpression>
+                <Value VariantType="VT_I4">111</Value>
+              </ValueExpression>
+            </SimpleExpression>
+          </Expression>
+        </Configuration>
+      </UnitMonitor>
+    </Monitors>
+  </Monitoring>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="Rule352b8ea485774435a393e0f1aa4d58c8">
+          <Name>EmptyRule</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="Rule57d5962ef6a842b49fd761529b6d9062">
+          <Name>ö ®lace, fro¶ an£Âsmart öÆväce.abcÄefghijklmnopqrstuvwxyz123©5ä7890-€'À.,&lt;&gt;?'":!Â@</Name>
+          <Description>¶xyz1¶3456ÂÅ90À='/.Ã&lt;&gt;?'¶:!€@$*¶&amp;¶icroäÆät .NET shifÁs ðocus from i€dividäal WeÆ siteð aüd devices to constelÂ©©ions of¶co®pðters, dÅvÆcesÂ and serviceÃ täat work togethÁÃ toÁdülÃvÁÄ bÁoader, richer sÆlutiäÃs. önðürnet users wiÄl haveü©ontroÀÄover how, wüen,Âand what infoÀma®io©Àis delivered to t®eÀ. ÃuÂinÀsseÅ willÅbe able to ¶ffer thað iöforÃation, pöusä</Description>
+        </DisplayString>
+        <DisplayString ElementID="Rulef3e957212ef1494b80777756f3dfab7e" SubElementID="Moduleb8c2ea8bf06a43bf84078dcb68707794">
+          <Name>Moduleb8c2ea8bf06a43bf84078dcb68707794</Name>
+        </DisplayString>
+        <DisplayString ElementID="Rulef3e957212ef1494b80777756f3dfab7e" SubElementID="Module69da57fd790846dca811e55476aebd2f">
+          <Name>Module69da57fd790846dca811e55476aebd2f</Name>
+        </DisplayString>
+        <DisplayString ElementID="Rule57d5962ef6a842b49fd761529b6d9062" SubElementID="Module1f27cc45fdfb4fd98c08e1519b881113">
+          <Name>Module1f27cc45fdfb4fd98c08e1519b881113</Name>
+        </DisplayString>
+        <DisplayString ElementID="Rulef3e957212ef1494b80777756f3dfab7e">
+          <Name>erson¶lize theiröexpe®i€nce oÂöyourÄsite, üi®ing th</Name>
+          <Description>öKeÆ Comp®nÆnt o£ the</Description>
+        </DisplayString>
+        <DisplayString ElementID="Rulef3e957212ef1494b80777756f3dfab7e" SubElementID="Module4b56abe821934e3c82d7d5e3fe5d57ce">
+          <Name>Module4b56abe821934e3c82d7d5e3fe5d57ce</Name>
+        </DisplayString>
+        <DisplayString ElementID="Rule352b8ea485774435a393e0f1aa4d58c8" SubElementID="Moduled89876e22d254f3a81f492a77b4362a1">
+          <Name>Moduled89876e22d254f3a81f492a77b4362a1</Name>
+        </DisplayString>
+        <DisplayString ElementID="Monitorea9874695d62495dbe9e6df161a94b67">
+          <Name>dsffadsfds</Name>
+          <Description>fasdfadsff</Description>
+        </DisplayString>
+        <DisplayString ElementID="UINameSpace6bbaca8b991346059dd94932c271c039.Group">
+          <Name>MyGroupOfOne</Name>
+          <Description>My Group Of One Machine</Description>
+        </DisplayString>
+        <DisplayString ElementID="CustomManagementPack_8E7D354B3B2C43f1AF052C48509EA3C4">
+          <Name>My Default Management Pack</Name>
+        </DisplayString>
+        <DisplayString ElementID="Rule57d5962ef6a842b49fd761529b6d9062" SubElementID="Modulec0d1e5a3f2ae47e6bd9af88917a1d9dd">
+          <Name>Modulec0d1e5a3f2ae47e6bd9af88917a1d9dd</Name>
+        </DisplayString>
+        <DisplayString ElementID="Monitorea9874695d62495dbe9e6df161a94b67" SubElementID="Opstatee102f2ceca3941eb8ebbae71a5ead628">
+          <Name>Manual Event Raised</Name>
+        </DisplayString>
+        <DisplayString ElementID="Rule57d5962ef6a842b49fd761529b6d9062" SubElementID="Module8fa2e320aace41d1a9cfc87107d80d37">
+          <Name>Module8fa2e320aace41d1a9cfc87107d80d37</Name>
+        </DisplayString>
+        <DisplayString ElementID="Rule352b8ea485774435a393e0f1aa4d58c8" SubElementID="Module0d229dc2e2c746a496366d7dcc98bdbb">
+          <Name>Module0d229dc2e2c746a496366d7dcc98bdbb</Name>
+        </DisplayString>
+        <DisplayString ElementID="Monitorea9874695d62495dbe9e6df161a94b67" SubElementID="Opstate390e9af18f444ddc840c054ccfbf6ecf">
+          <Name>Event Raised</Name>
+        </DisplayString>
+        <DisplayString ElementID="Rule352b8ea485774435a393e0f1aa4d58c8" SubElementID="Module304e6aeeadc14288ba2103e448f3e331">
+          <Name>Module304e6aeeadc14288ba2103e448f3e331</Name>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPack>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Resources>
+  <Section Name="PerformanceChartComponent" >
+    <Resource Name="Color"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.PerfChartConfigColumns.Color</Item>
+    </Resource>
+    <Resource Name="Show" Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.PerfChartConfigColumns.Show</Item>
+    </Resource>
+    <Resource Name="Name" Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.PerfChartConfigColumns.Target</Item>
+    </Resource>
+    <Resource Name="Minimum" Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.PerfChartConfigColumns.MinimumValue</Item>
+    </Resource>
+    <Resource Name="AverageValue" Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.PerfChartConfigColumns.AverageValue</Item>
+    </Resource>
+    <Resource Name="DisplayName" Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.Entity.DisplayName</Item>
+    </Resource>
+    <Resource Name="CounterName" Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.PerfChartConfigColumns.CounterName</Item>
+    </Resource>
+    <Resource Name="Path" Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.PerfChartConfigColumns.Path</Item>
+    </Resource>
+    <Resource Name="ObjectName" Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.PerfChartConfigColumns.ObjectName</Item>
+    </Resource>
+    <Resource Name="CounterName" Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.PerfChartConfigColumns.CounterName</Item>
+    </Resource>
+    <Resource Name="InstanceName" Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.PerfChartConfigColumns.InstanceName</Item>
+    </Resource>
+    <Resource Name="PerformanceWidget" Type="MPExtensionDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.PerformanceWidget</Item>
+    </Resource>
+  </Section>
+</Resources>

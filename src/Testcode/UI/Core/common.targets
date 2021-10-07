@@ -1,0 +1,102 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MCF_SDK>$(PkgSCOM_Test_Tools)\lib\net45\MCF\drop</MCF_SDK>
+    <MAUI_SDK_PATH> $(PkgSCOM_Test_Tools)\lib\net45\MAUI\drop</MAUI_SDK_PATH>
+    <MiscToolsDrop> $(PkgSCOM_Test_Tools)\lib\net45\MiscTools\x86</MiscToolsDrop>
+    <Src_Product_Presentation>$(SRCROOT)\product\Presentation</Src_Product_Presentation>
+    <ExternalRef>$(PkgSCOM_Microsoft_SystemCenter_External_VSTO)\lib\net45</ExternalRef>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- MCF binaries -->
+    <Reference Include="MCF.Infra.Types">
+      <HintPath>$(MCF_SDK)\MCF.Infra.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.CDSCom">
+      <HintPath>$(MCF_SDK)\Interop.CDSCom.dll</HintPath>
+    </Reference>
+    
+    <!-- MAUI binaries-->
+    <Reference Include="Maui.Core">
+      <HintPath>$(MAUI_SDK_PATH)\Maui.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Maui.TestLog">
+      <HintPath>$(MAUI_SDK_PATH)\Maui.TestLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Maui.InternetExplorer">
+      <HintPath>$(MAUI_SDK_PATH)\Maui.InternetExplorer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.mshtml">
+      <HintPath>$(MAUI_SDK_PATH)\Microsoft.mshtml.dll</HintPath>
+    </Reference>
+
+    <!--Product binaries-->
+    <ProjectReference Include="$(SRCROOT)\product\sdk\client\public\om\OM.csproj">
+        <Project>{1D2E8A45-CF14-4DAB-B0B8-8905AC83C715}</Project>
+         <Name>Microsoft.EnterpriseManagement.OperationsManager</Name>
+     </ProjectReference>
+    <Reference Include="Microsoft.EnterpriseManagement.Core">
+      <HintPath>$(TargetFolder)\Microsoft.EnterpriseManagement.Core.dll</HintPath>
+    </Reference>
+   <ProjectReference Include="$(Src_Product_Presentation)\Core\CompositionEngine\CompositionEngine.csproj">
+        <Project>{6988CD6B-8424-4D2D-A349-49F3B9BF564E}</Project>
+         <Name>Microsoft.EnterpriseManagement.CompositionEngine</Name>
+     </ProjectReference>
+     <ProjectReference Include="$(Src_Product_Presentation)\Components\Components.csproj">
+        <Project>{7E9FD0CC-ABEC-4B8F-8358-A351945AADB3}</Project>
+         <Name>Microsoft.EnterpriseManagement.Monitoring.Components</Name>
+     </ProjectReference>
+    <ProjectReference Include="$(Src_Product_Presentation)\Core\Core\Core.csproj">
+        <Project>{DE96C179-CD68-400A-ACC7-21CA6F8C30E2}</Project>
+         <Name>Microsoft.EnterpriseManagement.Presentation.Core</Name>
+     </ProjectReference>
+     <ProjectReference Include="$(Src_Product_Presentation)\Core\Security\Desktop\Security.csproj">
+        <Project>{02256C16-BC67-460E-979B-785BE7F453F0}</Project>
+         <Name>Microsoft.EnterpriseManagement.Presentation.Security</Name>
+     </ProjectReference>
+     <ProjectReference Include="$(Src_Product_Presentation)\Core\DataAccess\DataAccess.csproj">
+        <Project>{DC6FAB63-638F-42A5-AD5A-8368258EF397}</Project>
+         <Name>Microsoft.EnterpriseManagement.Presentation.DataAccess</Name>
+     </ProjectReference>
+    <ProjectReference Include="$(Src_Product_Presentation)\DataProviders\DataProviders.csproj">
+        <Project>{42E49D7D-7259-4313-B8DB-D6CD8DE11CE4}</Project>
+         <Name>Microsoft.EnterpriseManagement.Monitoring.DataProviders</Name>
+     </ProjectReference>
+    <ProjectReference Include="$(SRCROOT)\product\Common\Managed\BuildConstants\BuildConstants.csproj">
+        <Project>{6D1716B9-1593-4231-AD47-3609E299DD11}</Project>
+         <Name>Microsoft.Mom.BuildConstants</Name>
+     </ProjectReference>
+    <ProjectReference Include="$(SRCROOT)\product\ui\Common\Microsoft.Mom.UI.Common.csproj">
+        <Project>{57E9DBE7-7B2E-42E9-A65A-CC4C60E195E6}</Project>
+         <Name>Microsoft.Mom.UI.Common</Name>
+     </ProjectReference>
+     
+    <!-- Test binaries-->
+    <!-- <Reference Include="Mom.Test.UI.ConsoleFramework">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(INETROOT)\target\$(BuildType)\$(BuildArchitecture)\TESTDROP\UI\ConsoleFramework\Mom.Test.UI.ConsoleFramework.dll</HintPath>
+    </Reference> -->
+    <ProjectReference Include="$(SRCROOT)\Testcode\frmwrkcommon\src\FrmwrkCommon.csproj">
+        <Project>{5E86B60B-4C42-40A6-8645-7050DA7A8B68}</Project>
+         <Name>Microsoft.EnterpriseManagement.Test.FrmwrkCommon</Name>
+     </ProjectReference>
+    <Reference Include="PasswordManager">
+      <HintPath>$(MiscToolsDrop)\PasswordManager.dll</HintPath>
+    </Reference>
+
+    <!-- External non-MOM product binaries-->
+    <Reference Include="Microsoft.Office.Interop.Word">
+    <HintPath>$(ExternalRef)\i386\Microsoft.Office.Interop.Word.dll</HintPath>
+    </Reference>
+
+    <!--.Net binaries-->
+    <Reference Include="Accessibility" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Management" />
+    <Reference Include="System"/>
+    <Reference Include="System.Data"/>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml"/>
+  </ItemGroup>
+</Project>

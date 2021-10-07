@@ -1,0 +1,11 @@
+<StyleCopSettings>
+  <XmlHeadersPublicProtected>1</XmlHeadersPublicProtected>
+  <XmlHeadersMemberVariables>0</XmlHeadersMemberVariables>
+  <XmlHeadersValueTags>0</XmlHeadersValueTags>
+  <GeneratedCodeElementOrder>1</GeneratedCodeElementOrder>
+  <StyleCopHungarian>db,id</StyleCopHungarian>
+  <AnalyzeDesignerFiles>0</AnalyzeDesignerFiles>
+  <PublicAndProtectedOnly>1</PublicAndProtectedOnly>
+  <IncludeFields>1</IncludeFields>
+  <RequireValueTags>0</RequireValueTags>
+</StyleCopSettings>

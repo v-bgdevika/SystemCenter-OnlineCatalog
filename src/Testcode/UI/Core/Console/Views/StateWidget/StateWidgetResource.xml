@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Resources>
+  <Section Name="StateWidgetComponent" >
+    <Resource Name="TileNewInstance"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Configuration.Library!Microsoft.SystemCenter.CreateTemplateInstanceWizard.Title</Item>
+    </Resource>
+    <Resource Name="TitleSelectAClass"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.SingleTypePickerDialogTitle</Item>
+    </Resource>
+    <Resource Name="TitleAddGroupsOrObjects" Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.MultiObjectWithRecursionPickerDialogTitle</Item>
+    </Resource>
+    <Resource Name="DisplayOnlyMaintnanceMode" Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.StateWidgetCriteriaPageMaintenanceModeTitle</Item>
+    </Resource>
+    <Resource Name="ShowMembers" Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.ShowMembers</Item>
+    </Resource>
+    <Resource Name="Healthy" Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!OperationalDataTypes.ManagedEntity.HealthState.1</Item>
+    </Resource>
+    <Resource Name="Warning" Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!OperationalDataTypes.ManagedEntity.HealthState.2</Item>
+    </Resource>
+    <Resource Name="Critical" Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!OperationalDataTypes.ManagedEntity.HealthState.3</Item>
+    </Resource>
+    <Resource Name="NotMonitored" Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!OperationalDataTypes.ManagedEntity.HealthState.0</Item>
+    </Resource>
+    <Resource Name="StateWidget" Type="MPExtensionDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.StateWidget</Item>
+    </Resource>  
+    <Resource Name="EntityProperties" Type="MPExtensionDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.ManagedEntityPropertyTask</Item>
+    </Resource>
+    <Resource Name="DisplayName" Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.Entity.DisplayName</Item>
+    </Resource>
+    <Resource Name="Health" Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.Entity.HealthState</Item>
+    </Resource>
+    <Resource Name="Path" Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.Entity.Path</Item>
+    </Resource>
+    <Resource Name="MaintenanceMode" Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.Entity.InMaintenanceMode</Item>
+    </Resource>
+  </Section>
+</Resources>

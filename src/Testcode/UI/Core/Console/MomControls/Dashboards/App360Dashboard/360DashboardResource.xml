@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Resources>
+  <Section Name="AllApplicationsDashboard">
+    <Resource Name="Title"  Type="MPExtensionDisplayString">
+      <Item>Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards!Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards.AllApplicationsSummary</Item>
+    </Resource>
+  </Section>
+  <Section Name="ApplicationOverviewDashboard">
+    <Resource Name="Title"  Type="MPExtensionDisplayString">
+      <Item>Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards!Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards.ApplicationOverview</Item>
+    </Resource>
+  </Section>
+  <Section Name="AllApplicationsStateWidget">
+    <Resource Name="Title"  Type="MPExtensionDisplayString">
+      <Item>Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards!Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards.AllApplicationsStateWidget</Item>
+    </Resource>
+    <Resource Name="ColumnHealth"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.Entity.HealthState</Item>
+    </Resource>
+    <Resource Name="ColumnDisplayName"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.Entity.DisplayName</Item>
+    </Resource>
+    <Resource Name="ColumnAverageResponseTime"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards!Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards.AllApplicationsStateWidget.AverageResponseTimeColumn.Header</Item>
+    </Resource>
+    <Resource Name="ColumnAvailability"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards!Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards.AllApplicationsStateWidget.AvailabilityColumn.Header</Item>
+    </Resource>
+    <Resource Name="ColumnPerformance"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards!Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards.AllApplicationsStateWidget.PerformanceColumn.Header</Item>
+    </Resource>
+    <Resource Name="ColumnReliability"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards!Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards.AllApplicationsStateWidget.ReliabilityColumn.Header</Item>
+    </Resource>
+  </Section>
+  <Section Name="AllApplicationsSLAWidget">
+    <Resource Name="Title"  Type="MPExtensionDisplayString">
+      <Item>Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards!Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards.AllApplicationsSLAWidget</Item>
+    </Resource>
+	  <!--UI has changed, doesn't contain this two string any more-->
+    <!--<Resource Name="ColumnSLACompliance"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards!Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards.AllApplicationsSLAWidget.ComplianceColumn.Header</Item>
+    </Resource>
+    <Resource Name="ColumnSLAName"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.Entity.DisplayName</Item>
+    </Resource>-->
+  </Section>
+  <Section Name="DistributedApplicationWidget">
+    <Resource Name="Title"  Type="MPExtensionDisplayString">
+      <Item>Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards!Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards.DistributedApplicationStateWidget</Item>
+    </Resource>
+    <Resource Name="ColumnHealth"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.Entity.HealthState</Item>
+    </Resource>
+    <Resource Name="ColumnDisplayName"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.Entity.DisplayName</Item>
+    </Resource>
+    <Resource Name="ColumnMonitoredRequestsPerSecond"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards!Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards.DistributedApplicationStateWidget.MonitoredRequestsPerSecondColumn.Header</Item>
+    </Resource>
+    <Resource Name="ColumnAverageResponseTimeFromPOPs"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards!Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards.DistributedApplicationStateWidget.AverageResponseTimeColumn.Header</Item>
+    </Resource>
+    <Resource Name="ColumnActiveCriticalAlerts"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards!Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards.DistributedApplicationStateWidget.ActiveCriticalAlertsColumn.Header</Item>
+    </Resource>
+  </Section>
+  <Section Name="ComponentsWidget">
+    <Resource Name="Title"  Type="MPExtensionDisplayString">
+      <Item>Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards!Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards.ComponentsWidget</Item>
+    </Resource>
+    <Resource Name="ColumnHealth"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.Entity.HealthState</Item>
+    </Resource>
+    <Resource Name="ColumnDisplayName"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.Entity.DisplayName</Item>
+    </Resource>
+    <Resource Name="ColumnInstances"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards!Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards.ComponentsWidget.InstancesColumn.Header</Item>
+    </Resource>
+    <Resource Name="ColumnTier"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards!Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards.ComponentsWidget.TierColumn.Header</Item>
+    </Resource>
+  </Section>
+  <Section Name="PerfChart1Widget">
+    <Resource Name="Title"  Type="MPExtensionDisplayString">
+      <Item>Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards!Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards.PerfChart1</Item>
+    </Resource>
+  </Section>
+  <Section Name="PerfChart2Widget">
+    <Resource Name="Title"  Type="MPExtensionDisplayString">
+      <Item>Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards!Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards.PerfChart2</Item>
+    </Resource>
+  </Section>
+  <Section Name="PerfChart3Widget">
+    <Resource Name="Title"  Type="MPExtensionDisplayString">
+      <Item>Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards!Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards.PerfChart3</Item>
+    </Resource>
+  </Section>
+  <Section Name="AllAlertsWidget">
+    <Resource Name="Title"  Type="MPExtensionDisplayString">
+      <Item>Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards!Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Dashboards.AllAlertsWidget</Item>
+    </Resource>
+  </Section>
+</Resources>

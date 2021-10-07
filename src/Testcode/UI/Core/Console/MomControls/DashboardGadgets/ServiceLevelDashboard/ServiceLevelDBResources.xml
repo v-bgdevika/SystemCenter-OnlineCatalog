@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Resources>
+  <Section Name="SLADashboard">
+    <!-- 
+    possible types:
+    "String"
+    "ListOfString"
+    "ArrayOfString"
+    "ListOfKeyValuePairStringString"
+    "CDATA"
+    "MPDisplayString"
+    -->
+    <Resource Name="ExpectedSLATitle" Type="ListOfString">
+      <Item>Service Levels</Item>
+    </Resource>
+    <Resource Name="ExpectedSLOTitle" Type="ListOfString">
+      <Item>Service Level Objectives</Item>
+    </Resource>
+    <Resource Name="Groups" Type="ListOfString">
+      <Item>Health Service SLA</Item>
+    </Resource>
+    <Resource Name="State" Type="ListOfString">
+      <Item>State</Item>
+    </Resource>
+    <Resource Name="Name" Type="ListOfString">
+      <Item>Name</Item>
+    </Resource>
+    <Resource Name="TargetClass" Type="ListOfString">
+      <Item>Target Class</Item>
+    </Resource>
+    <Resource Name="NumInstances" Type="ListOfString">
+      <Item>Instances</Item>
+    </Resource>
+    <Resource Name="WKSTNN1" Type="ListOfString">
+      <Item>WKSTNN1</Item>
+    </Resource>
+    <Resource Name="SLO1" Type="ListOfString">
+      <Item>Health Service Availability SLO</Item>
+    </Resource>
+    <Resource Name="SLO2" Type="ListOfString">
+      <Item>Health Service Workflow SLO</Item>
+    </Resource>
+    <Resource Name="HealthyState" Type="ListOfString">
+      <Item>1</Item>
+    </Resource>
+    <Resource Name="WarningState" Type="ListOfString">
+      <Item>2</Item>
+    </Resource>
+    <Resource Name="CriticalState" Type="ListOfString">
+      <Item>3</Item>
+    </Resource>
+    <Resource Name="UnmonitoredState" Type="ListOfString">
+      <Item>4</Item>
+    </Resource>
+    <Resource Name="Target1" Type="ListOfString">
+      <Item>Windows Computer</Item>
+    </Resource>
+    <Resource Name="Target2" Type="ListOfString">
+      <Item>Health Service</Item>
+    </Resource>
+    <Resource Name="Zero" Type="ListOfString">
+      <Item>0</Item>
+    </Resource>
+    <Resource Name="One" Type="ListOfString">
+      <Item>1</Item>
+    </Resource>
+    <Resource Name="Two" Type="ListOfString">
+      <Item>2</Item>
+    </Resource>
+    <Resource Name="Three" Type="ListOfString">
+      <Item>3</Item>
+    </Resource>
+    <Resource Name="Four" Type="ListOfString">
+      <Item>4</Item>
+    </Resource>
+  </Section>
+</Resources> 

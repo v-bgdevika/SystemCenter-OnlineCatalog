@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Resources>
+  <Section Name="360Dashboard" >
+    <Resource Name="ApplicationMonitoring"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.ApplicationMonitoring.Library!Microsoft.SystemCenter.ApplicationMonitoring.UI.RootFolder</Item>
+    </Resource>
+    <Resource Name="AllApplications"  Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.ApplicationMonitoring.360.Template.Library!Microsoft.SystemCenter.ApplicationMonitoring.360.Template.3TierApplication.StateDashboard</Item>
+    </Resource>
+  </Section>
+</Resources>

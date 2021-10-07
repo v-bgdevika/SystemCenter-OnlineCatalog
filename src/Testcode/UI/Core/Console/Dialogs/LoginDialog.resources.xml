@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--Generated XML Definition for SilverlightControlWindow-->
+<Window Name="SilverlightControlWindow">
+  <Strings>
+    <!--TODO: UIClassMaker could not find the resource for this string Silverlight Control-->
+    <String Name="WindowTitleWeb" Value="Silverlight Control" />
+    <!--TODO: UIClassMaker could not find the resource for the string Sign Out-->
+    <String Name="SignOut" Value="Sign Out" />
+    <!--TODO: UIClassMaker could not find the resource for the string Sign in:-->
+    <String Name="SignIn" Value="Sign in:" />
+    <!--TODO: UIClassMaker could not find the resource for the string Using my current Windows credentials-->
+    <String Name="UsingMyCurrentWindowsCredentials" Value="Using my current Windows credentials" />
+    <!--TODO: UIClassMaker could not find the resource for the string As a different user-->
+    <String Name="AsADifferentUser" Value="As a different user" />
+    <!--TODO: UIClassMaker could not find the resource for the string Sign In-->
+    <String Name="SignIn" Value="Sign In" />
+    <!--TODO: UIClassMaker could not find the resource for the string Show error detail.-->
+    <String Name="ShowErrorDetail" Value="Show error detail." />
+  </Strings>
+  <Controls>
+    <Control Name="WindowsAuthRadioButton" QueryId=";[UIA]AutomationId='IntegratedModeRadioButton'" />
+    <Control Name="NetworkAuthRadioButton" QueryId=";[UIA]AutomationId='NetworkModeRadioButton'" />
+    <Control Name="UsernameTextBox" QueryId=";[UIA]AutomationId='UserNameTextBox'" />
+    <Control Name="PasswordTextBox" QueryId=";[UIA]AutomationId='PasswordTextBox'" />
+    <Control Name="ProgressBar" QueryId=";[UIA]ClassName='ProgressBar'" />
+    <Control Name="SignInButton" QueryId=";[UIA]AutomationId='SignInButton'" />
+    <Control Name="SignOutButton" QueryId=";[UIA]AutomationId='SignOutButton'" />
+    <Control Name="SignInErrorTextStaticControl" QueryId=";[UIA]AutomationId='SignInErrorText'" />
+    <Control Name="ShowErrorDetailLinkLabel" QueryId=";[UIA]AutomationId='SignInErrorDetailButton'" />
+    <Control Name="WelcomeBanner" QueryId=";[UIA]AutomationId='ApplicationGreetingBanner'" />
+  </Controls>
+</Window>

@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Tahoma" Size="8.25" />
+  <Class Name="Mom.Test.UI.Core.Common.Constants">
+    <Position X="0.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <FileName>Constants.cs</FileName>
+      <HashCode>BAACACAgAAGAAACAwAACAAAEAAEgBCCAAAAIIAAAAAk=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Common.KeyboardCodes">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>KeyboardCodes.cs</FileName>
+      <HashCode>WQYKBmAQAQAoAAjIAIEHAAgHDgUEACwCApIACASBACg=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Common.RandomStrings">
+    <Position X="8.25" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <FileName>RandomStrings.cs</FileName>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Common.ScreenCompare">
+    <Position X="0.5" Y="5.25" Width="2.5" />
+    <TypeIdentifier>
+      <FileName>ScreenCompare.cs</FileName>
+      <HashCode>AAAAAAAAgAAAAIAAAAAAAAAAAAAAAAAEAAACAEAEAgA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Common.Utilities">
+    <Position X="3.25" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <FileName>Utilities.cs</FileName>
+      <HashCode>ABADZQIIIJAMMsABAA0AHCQCAIAAGTEgCAkwgBABwwI=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Common.Win32Window">
+    <Position X="10.75" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <FileName>Win32Window.cs</FileName>
+      <HashCode>AgIAIAUAAAIhCEACYCAESAAQCAAgEABqGAIEDAEgAoA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Common.NativeMethods">
+    <Position X="8.25" Y="2.25" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>NativeMethods.cs</FileName>
+      <HashCode>AAAQAAhAEAIBAEAIISAhAEAAABAgACAAAAAAgAAAgIA=</HashCode>
+    </TypeIdentifier>
+    <NestedTypes>
+      <Delegate Name="Mom.Test.UI.Core.Common.NativeMethods.EnumWindowsProc" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>NativeMethods.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Struct Name="Mom.Test.UI.Core.Common.NativeMethods.Rect" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>NativeMethods.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Struct Name="Mom.Test.UI.Core.Common.NativeMethods.WindowPlacement" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>NativeMethods.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Struct Name="Mom.Test.UI.Core.Common.NativeMethods.WindowInfo" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>NativeMethods.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+  </Class>
+  <Class Name="Mom.Test.UI.Core.Common.Topology">
+    <Position X="11" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <FileName>Topology.cs</FileName>
+      <HashCode>AEABAABAAAAAAQAAAAAQAAQQEAAEAAAAAAAAAAAAAQA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+</ClassDiagram>

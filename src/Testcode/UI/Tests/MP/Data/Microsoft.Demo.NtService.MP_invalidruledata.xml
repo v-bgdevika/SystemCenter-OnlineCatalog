@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+This is a demo MP that shows how we can monitor NT Services.
+This MP discovers NT Services and provides availablity of the NT Services
+
+-->
+<ManagementPack xsi:noNamespaceSchemaLocation="..\..\sdk\server\MPInfrastructure\schema\mpschema.xsd"  xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:maml="http://schemas.microsoft.com/maml/2004/10">
+  <Manifest>
+    <Identity>
+      <ID>Microsoft.Demo.NTService.MP</ID>
+      <Version>6.0.0.0</Version>
+      <!-- the key: MOMv3\enlistment\MSPublicKey35.snk is used -->
+    </Identity>
+    <Name>Demo MP for Monitoring NT Services</Name>
+    <References>
+      <Reference Alias="System">
+        <ID>System.MP</ID>
+        <Version>6.0.0.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="Windows">
+        <ID>System.Windows.MP</ID>
+        <Version>6.0.0.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="Mom">
+        <ID>System.Mom.MP</ID>
+        <Version>6.0.0.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+    </References>
+  </Manifest>
+  <TypeDefinitions>
+    <EntityTypes>
+      <ClassTypes>
+        <!-- represents an nt service -->
+        <ClassType ID="Microsoft.Demo.NTService" Base="Windows!System.Windows.LocalApplication" Accessibility="Public" Hosted="true" Abstract="false">
+          <Property ID="ServiceName" Type="string" CaseSensitive="true" Key="true"></Property>
+          <Property ID="DisplayName" Type="string"></Property>
+          <Property ID="Description" Type="string"></Property>
+          <Property ID="BinaryName" Type="string"></Property>
+          <Property ID="StartMode" Type="string"></Property>
+        </ClassType>
+        <!-- represents a group of nt services-->
+        <ClassType ID="Microsoft.Demo.NTServiceGroup" Accessibility="Public" Base="System!System.Group" Abstract="false" Hosted="false" Singleton="true"></ClassType>
+      </ClassTypes>
+      <RelationshipTypes>
+        <RelationshipType ID="Microsoft.Demo.NTServiceGroupContainsServices" Base="System!System.Membership" Abstract="false" Accessibility="Public">
+          <Source>Microsoft.Demo.NTServiceGroup</Source>
+          <Target>Microsoft.Demo.NTService</Target>
+        </RelationshipType>
+      </RelationshipTypes>
+    </EntityTypes>
+    <MonitorTypes>
+      <!-- 2 state performance threshold monitor -->
+      <UnitMonitorType ID="Microsoft.Demo.CheckServiceState" Accessibility="Public">
+        <MonitorTypeStates>
+          <MonitorTypeState ID="Running"></MonitorTypeState>
+          <MonitorTypeState ID="NotRunning"></MonitorTypeState>
+        </MonitorTypeStates>
+        <Configuration>
+          <xsd:element name="ServiceName" type="xsd:string"></xsd:element>
+          <xsd:element name="Frequency" type="xsd:unsignedInt"></xsd:element>
+        </Configuration>
+        <MonitorImplementation>
+          <MemberModules>
+            <DataSource ID="DS" TypeID="Windows!System.Windows.WmiQueryProvider">
+              <NameSpace>ROOT\CIMV2</NameSpace>
+              <Query>SELECT * FROM Win32_Service WHERE Name="$Config/ServiceName$"</Query>
+              <Params>
+                <Param>DisplayName</Param>
+                <Param>StartMode</Param>
+                <Param>State</Param>
+              </Params>
+              <Frequency>$Config/Frequency$</Frequency>
+            </DataSource>
+            <ConditionDetection ID="ServiceRunning" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery>State</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value VariantType="VT_BSTR">Running</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </ConditionDetection>
+            <ConditionDetection ID="ServiceNotRunning" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery>State</XPathQuery>
+                  </ValueExpression>
+                  <Operator>NotEqual</Operator>
+                  <ValueExpression>
+                    <Value VariantType="VT_BSTR">Running</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </ConditionDetection>
+          </MemberModules>
+          <RegularDetections>
+            <RegularDetection MonitorTypeStateID="Running">
+              <Node ID="ServiceRunning">
+                <Node ID="DS"></Node>
+              </Node>
+            </RegularDetection>
+            <RegularDetection MonitorTypeStateID="NotRunning">
+              <Node ID="ServiceNotRunning">
+                <Node ID="DS"></Node>
+              </Node>
+            </RegularDetection>
+          </RegularDetections>
+        </MonitorImplementation>
+      </UnitMonitorType>
+    </MonitorTypes>
+    <OverrideDefinitions>
+      <OverrideDefinition Accessibility="Public" ID="CheckServiceStateFrequencyOverride" TypeID="Microsoft.Demo.CheckServiceState">
+        <XPathSelector>$Config/Frequency$</XPathSelector>
+        <ParameterType>int</ParameterType>
+      </OverrideDefinition>
+    </OverrideDefinitions>
+  </TypeDefinitions>
+  <Monitoring>
+    <Rules>
+      <Rule ID="Microsoft.Demo.NTService.DiscoveryRule" Target="Windows!System.Windows.Computer" Enabled="true">
+        <Category>Discovery</Category>
+        <DataSources>
+          <!-- check data source id -->
+          <DataSource ID="DS" TypeID="Windows!System.Windows.WmiQueryProvider">
+            <NameSpace>ROOT\CIMV2</NameSpace>
+            <Query>SELECT * FROM Win32_Service WHERE ServiceType="Own Process" AND Name="Spooler"</Query>
+            <Params>
+              <Param>Name</Param>
+              <Param>DisplayName</Param>
+              <Param>Description</Param>
+              <Param>PathName</Param>
+              <Param>StartMode</Param>
+            </Params>
+            <Frequency>6000</Frequency>
+          </DataSource>
+        </DataSources>
+        <ConditionDetection ID="Mapping" TypeID="System!System.Discovery.ClassSnapshotDataMapper">
+          <ClassId>$MPElement[Name="Microsoft.Demo.NTService"]$</ClassId>
+          <InstanceSettings>
+            <Settings>
+              <Setting>
+                <Name>$MPElement[Name="Windows!System.Windows.Computer"]/PrincipalName$</Name>
+                <Value>$Target/Property[Type="Windows!System.Windows.Computer"]/PrincipalName$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Microsoft.Demo.NTService"]/ServiceName$</Name>
+                <Value>$Data/Name$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Microsoft.Demo.NTService"]/DisplayName$</Name>
+                <Value>$Data/DisplayName$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Microsoft.Demo.NTService"]/Description$</Name>
+                <Value>$Data/Description$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Microsoft.Demo.NTService"]/BinaryName$</Name>
+                <Value>$Data/PathName$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Microsoft.Demo.NTService"]/StartMode$</Name>
+                <Value>$Data/StartMode$</Value>
+              </Setting>
+            </Settings>
+          </InstanceSettings>
+        </ConditionDetection>
+        <WriteActions>
+          <WriteAction ID="WA" TypeID="Mom!System.Mom.Discovery.DataCollector" Target="Mom!System.Mom.ManagementServer"></WriteAction>
+        </WriteActions>
+      </Rule>
+      <Rule ID="Microsoft.Demo.NTService.CollectSCMEvent" Target="Microsoft.Demo.NTService" Enabled="true">
+        <Category>Event Collection</Category>
+        <DataSources>
+          <!-- check data source id -->
+          <DataSource ID="DS" TypeID="Windows!System.Windows.Event.DataProvider">
+            <ComputerName>$Target/Host/Property[Type="Windows!System.Windows.Computer"]/PrincipalName$</ComputerName>
+            <LogName>System</LogName>
+            <Expression>
+              <And>
+                <Expression>
+                  <SimpleExpression>
+                    <ValueExpression>
+                      <XPathQuery>EventDisplayNumber</XPathQuery>
+                    </ValueExpression>
+                    <Operator>Equal</Operator>
+                    <ValueExpression>
+                      <Value VariantType="VT_UI4">7036</Value>
+                    </ValueExpression>
+                  </SimpleExpression>
+                </Expression>
+                <Expression>
+                  <SimpleExpression>
+                    <ValueExpression>
+                      <XPathQuery>Params/Param[1]</XPathQuery>
+                    </ValueExpression>
+                    <Operator>Equal</Operator>
+                    <ValueExpression>
+                      <Value>$Target/Property[Type="Microsoft.Demo.NTService"]/DisplayName$</Value>
+                    </ValueExpression>
+                  </SimpleExpression>
+                </Expression>
+              </And>
+            </Expression>
+          </DataSource>
+        </DataSources>
+        <WriteActions>
+          <WriteAction ID="WA" TypeID="Mom!System.Mom.Event.DataCollector" Target="Mom!System.Mom.ManagementServer"></WriteAction>
+        </WriteActions>
+      </Rule>
+      <Rule ID="Microsoft.Demo.NTService.CollectHandleCount" Target="Microsoft.Demo.NTService" Enabled="true">
+        <Category>Performance Collection</Category>
+        <DataSources>
+          <DataSource ID="DS" TypeID="System!System.Performance.DataProvider">
+            <ComputerName>$Target/Host/Property[Type="Windows!System.Windows.Computer"]/PrincipalName$</ComputerName>
+            <CounterName>Handle Count</CounterName>
+            <ObjectName>Process</ObjectName>
+            <InstanceName>spoolsv</InstanceName>
+            <Frequency>60</Frequency>
+          </DataSource>
+        </DataSources>
+        <WriteActions>
+          <WriteAction ID="WA" TypeID="Mom!System.Mom.Performance.DataCollector" Target="Mom!System.Mom.ManagementServer"></WriteAction>
+        </WriteActions>
+      </Rule>
+      <Rule ID="Microsoft.Demo.NTService.CollectAlert" Target="Microsoft.Demo.NTService" Enabled="true">
+        <Category>Alert</Category>
+        <DataSources>
+          <DataSource ID="DS1" TypeID="System!System.Health.AlertUpdateProvider">
+            <MonitorId>$MPElement[Name="Microsoft.Demo.NTService.ServiceRunning"]$</MonitorId>
+            <AutoResolve>true</AutoResolve>
+            <MinHealthStateToCreateAlert>2</MinHealthStateToCreateAlert>
+            <Priority>0</Priority>
+            <AlertName>Monitor $Data/MonitorId$ state change alert</AlertName>
+            <AlertDescription>Triggered by health state change of entity $Data/ManagedEntityId$</AlertDescription>
+          </DataSource>
+        </DataSources>
+        <WriteActions>
+          <WriteAction ID="WA1" TypeID="Mom!System.Mom.Health.AlertUpdateCollector" Target="Mom!System.Mom.ManagementServer"></WriteAction>
+        </WriteActions>
+      </Rule>
+      <Rule ID="Microsoft.Demo.NTService.CollectAlertForPerf" Target="Microsoft.Demo.NTService" Enabled="true">
+        <Category>Alert</Category>
+        <DataSources>
+          <DataSource ID="DS" TypeID="System!System.Performance.DataProvider">
+            <ComputerName>$Target/Host/Property[Type="Windows!System.Windows.Computer"]/PrincipalName$</ComputerName>
+            <CounterName>Handle Count</CounterName>
+            <ObjectName>Process</ObjectName>
+            <InstanceName>spoolsv</InstanceName>
+            <Frequency>60</Frequency>
+          </DataSource>
+        </DataSources>
+        <ConditionDetection ID="CD" TypeID="System!System.AlertMapper">
+          <Priority>0</Priority>
+          <Severity>1</Severity>
+          <AlertName>Service $Data/InstanceName$ perf data alert</AlertName>
+          <AlertDescription>Triggered by perf data collection of $Data/CounterName$</AlertDescription>
+          <Suppression>
+            <SuppressionValue />
+          </Suppression>
+        </ConditionDetection>
+        <WriteActions>
+          <WriteAction ID="WA1" TypeID="Mom!System.Mom.Health.AlertUpdateCollector" Target="Mom!System.Mom.ManagementServer"></WriteAction>
+        </WriteActions>
+      </Rule>
+      <Rule ID="Microsoft.Demo.NTService.PopulateGroup" Enabled="true" Target="Microsoft.Demo.NTServiceGroup">
+        <Category>Discovery</Category>
+        <DataSources>
+          <DataSource ID="DS" TypeID="Mom!System.Mom.Discovery.GroupPopulation">
+            <RuleId>$MPElement$</RuleId>
+            <GroupInstanceId>$Target/Id$</GroupInstanceId>
+            <MembershipRules>
+              <MembershipRule>
+                <TypeId>$MPElement[Name="Microsoft.Demo.NTService"]$</TypeId>
+                <RelationshipId>$MPElement[Name="Microsoft.Demo.NTServiceGroupContainsServices"]$</RelationshipId>
+                <Expression>
+                  <SimpleExpression>
+                    <ValueExpression>
+                      <Value VariantType="VT_BSTR">Hello</Value>
+                    </ValueExpression>
+                    <Operator>Equal</Operator>
+                    <ValueExpression>
+                      <Value VariantType="VT_BSTR">Hello</Value>
+                    </ValueExpression>
+                  </SimpleExpression>
+                </Expression>
+              </MembershipRule>
+            </MembershipRules>
+          </DataSource>
+        </DataSources>
+        <WriteActions>
+          <WriteAction ID="DataWriter" TypeID="Mom!System.Mom.Discovery.DataCollector" Target="Mom!System.Mom.ManagementServer"></WriteAction>
+        </WriteActions>
+      </Rule>
+    </Rules>
+    <Tasks>
+      <Task ID="Microsoft.Demo.NTService.StartService" Target="Microsoft.Demo.NTService" Accessibility="Public" Enabled="true">
+        <Category>Maintainence</Category>
+        <WriteAction ID="WA" TypeID="System!System.CommandExecuter">
+          <ApplicationName></ApplicationName>
+          <WorkingDirectory></WorkingDirectory>
+          <CommandLine>net start $Target/Property[Type="Microsoft.Demo.NTService"]/ServiceName$</CommandLine>
+          <TimeoutSeconds>60</TimeoutSeconds>
+          <RequireOutput>true</RequireOutput>
+          <Files></Files>
+        </WriteAction>
+      </Task>
+      <Task ID="Microsoft.Demo.NTService.StopService" Target="Microsoft.Demo.NTService" Accessibility="Public" Enabled="true">
+        <Category>Maintainence</Category>
+        <WriteAction ID="WA" TypeID="System!System.CommandExecuter">
+          <ApplicationName></ApplicationName>
+          <WorkingDirectory></WorkingDirectory>
+          <CommandLine>net stop $Target/Property[Type="Microsoft.Demo.NTService"]/ServiceName$</CommandLine>
+          <TimeoutSeconds>60</TimeoutSeconds>
+          <RequireOutput>true</RequireOutput>
+          <Files></Files>
+        </WriteAction>
+      </Task>
+      <Task ID="Microsoft.Demo.NTService.RunningServices" Target="Windows!System.Windows.Computer" Accessibility="Public" Enabled="true">
+        <Category>Maintainence</Category>
+        <WriteAction ID="WA" TypeID="System!System.CommandExecuter">
+          <ApplicationName></ApplicationName>
+          <WorkingDirectory></WorkingDirectory>
+          <CommandLine>net start</CommandLine>
+          <TimeoutSeconds>60</TimeoutSeconds>
+          <RequireOutput>true</RequireOutput>
+          <Files></Files>
+        </WriteAction>
+      </Task>
+    </Tasks>
+    <Monitors>
+      <UnitMonitor ID="Microsoft.Demo.NTService.ServiceRunning" Accessibility="Public" Target="Microsoft.Demo.NTService" Enabled="true" TypeID="Microsoft.Demo.CheckServiceState" ParentMonitorID="System!System.EntityHealth">
+        <OperationalStates>
+          <OperationalState HealthState="Success" MonitorTypeStateID="Running" ID="Success"></OperationalState>
+          <OperationalState HealthState="Error" MonitorTypeStateID="NotRunning" ID="Error"></OperationalState>
+        </OperationalStates>
+        <Configuration>
+          <ServiceName>$Target/Property[Type="Microsoft.Demo.NTService"]/ServiceName$</ServiceName>
+          <Frequency>15</Frequency>
+        </Configuration>
+      </UnitMonitor>
+      <DependencyMonitor ID="Microsoft.Demo.LocalApplicationHealth" Accessibility="Public" Target="Windows!System.Windows.Computer" Enabled="true" ParentMonitorID="System!System.EntityHealth" RelationshipType="Windows!System.Windows.ComputerHostsLocalApplication">
+        <Algorithm>WorstOf</Algorithm>
+        <MemberMonitor RefID="System!System.EntityHealth"></MemberMonitor>
+      </DependencyMonitor>
+      <DependencyMonitor ID="Microsoft.Demo.NTServiceGroupHealth" Accessibility="Public" Target="Microsoft.Demo.NTServiceGroup" Enabled="true" ParentMonitorID="System!System.EntityHealth" RelationshipType="Microsoft.Demo.NTServiceGroupContainsServices">
+        <Algorithm>WorstOf</Algorithm>
+        <MemberMonitor RefID="System!System.EntityHealth"></MemberMonitor>
+      </DependencyMonitor>
+    </Monitors>
+  </Monitoring>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <!--Management Pack-->
+        <DisplayString ElementID="Microsoft.Demo.NTService.MP">
+          <Name>NTService Demo Management Pack</Name>
+          <Description>This management pack demonstrates features of MOM v3 (for the M2 milestone) by monitoring NTServices.</Description>
+        </DisplayString>
+        <!-- Class Definition and Class properties-->
+        <DisplayString ElementID="Microsoft.Demo.NTService">
+          <Name>Windows NT Service</Name>
+          <Description>The Windows NT Service that is being monitored by Mom v3</Description>
+        </DisplayString>
+        <DisplayString ElementID="Microsoft.Demo.NTService" SubElementID="ServiceName">
+          <Name>Service Name</Name>
+          <Description>Internal name of the NT Service</Description>
+        </DisplayString>
+        <DisplayString ElementID="Microsoft.Demo.NTService" SubElementID="DisplayName">
+          <Name>Display Name</Name>
+          <Description>Localized display name of the NT Service</Description>
+        </DisplayString>
+        <DisplayString ElementID="Microsoft.Demo.NTService" SubElementID="Description">
+          <Name>Description</Name>
+          <Description>Describes the features provided by this service</Description>
+        </DisplayString>
+        <DisplayString ElementID="Microsoft.Demo.NTService" SubElementID="BinaryName">
+          <Name>Binary Name</Name>
+          <Description>Binary name for the NT Service</Description>
+        </DisplayString>
+        <DisplayString ElementID="Microsoft.Demo.NTService" SubElementID="StartMode">
+          <Name>Start Mode</Name>
+          <Description>Indicates if this NT Service is configured to start automatically on Windows startup</Description>
+        </DisplayString>
+        <!--Monitor Types-->
+        <DisplayString ElementID="Microsoft.Demo.CheckServiceState">
+          <Name>Service State Monitor</Name>
+          <Description>Is this NT Service currently running?</Description>
+        </DisplayString>
+        <DisplayString ElementID="Microsoft.Demo.CheckServiceState" SubElementID="Running">
+          <Name>Service Running</Name>
+          <Description>The monitored NT Service is currently 'Running'</Description>
+        </DisplayString>
+        <DisplayString ElementID="Microsoft.Demo.CheckServiceState" SubElementID="NotRunning">
+          <Name>Service Not Running</Name>
+          <Description>The monitored NT Service is currently 'Not Running'</Description>
+        </DisplayString>
+        <!--Rules-->
+        <DisplayString ElementID="Microsoft.Demo.NTService.DiscoveryRule">
+          <Name>Discovery rule to find all instances of  NT Services on a computer</Name>
+          <Description>This rule discovers all instances of Windows NT Services installed on this computer by querying WMI</Description>
+        </DisplayString>
+        <DisplayString ElementID="Microsoft.Demo.NTService.CollectSCMEvent">
+          <Name>Collect NT Service status events logged by the Service Control Manager </Name>
+          <Description>This rule looks at the System EventLog for all events logged by Service Control Manager (SCM) that relates to NT Services on this computer</Description>
+        </DisplayString>
+        <DisplayString ElementID="Microsoft.Demo.NTService.CollectHandleCount">
+          <Name>Collect Handle Count performance counter for NT Service processes  </Name>
+          <Description>This rule collects the handle count performance counter for the NT Service processes</Description>
+        </DisplayString>
+        <DisplayString ElementID="Microsoft.Demo.NTService.CollectAlert">
+          <Name>Create alert based on Service State monitor's state changes </Name>
+          <Description>This rule watches for state changes of the [Service Status Monitor] and creates alerts for each state change</Description>
+        </DisplayString>
+        <!--Tasks-->
+        <DisplayString ElementID="Microsoft.Demo.NTService.StartService">
+          <Name>Start Service</Name>
+          <Description>This task starts the specified NT Service using [net start] command</Description>
+        </DisplayString>
+        <DisplayString ElementID="Microsoft.Demo.NTService.StopService">
+          <Name>Stop Service</Name>
+          <Description>This task stops the specified NT Service using [net stop] command</Description>
+        </DisplayString>
+        <DisplayString ElementID="Microsoft.Demo.NTService.RunningServices">
+          <Name>List Running Services</Name>
+          <Description>This task returns a list of NT Services that are currently in the Running state on this computer</Description>
+        </DisplayString>
+        <!--Monitors-->
+        <DisplayString ElementID="Microsoft.Demo.NTService.ServiceRunning">
+          <Name>Service Status Monitor</Name>
+          <Description>This monitor calculates its health based on whether an NT Service is currenlty in the Running or NotRunning state</Description>
+        </DisplayString>
+      </DisplayStrings>
+      <KnowledgeArticles>
+        <KnowledgeArticle ID="NTServiceKnowledge" ElementID="Microsoft.Demo.NTService.ServiceRunning">
+          <MamlContent>
+            <maml:section>
+              <maml:title>Summary</maml:title>
+              <maml:para>This monitor checks the status of a Windows service by querying WMI on a timed interval.  When the service is in an unhealthy state an alert will be raised.  MOM views the service in one of two operational states:</maml:para>
+              <maml:list>
+                <maml:listItem>
+                  <maml:para>Running</maml:para>
+                </maml:listItem>
+                <maml:listItem>
+                  <maml:para>Not Running</maml:para>
+                </maml:listItem>
+              </maml:list>
+            </maml:section>
+            <maml:section>
+              <maml:title>Operational States</maml:title>
+              <maml:subTitle>This could be a sub-title</maml:subTitle>
+              <maml:para>A Windows service can be in a single state at one time.  Each possible state is detailed below together with the state of the entity that will be seen in MOM</maml:para>
+              <maml:table>
+                <maml:title>Service Status</maml:title>
+                <maml:tableHeader>
+                  <maml:row>
+                    <maml:headerEntry>
+                      <maml:para>Service State</maml:para>
+                    </maml:headerEntry>
+                    <maml:headerEntry>
+                      <maml:para>MOM State</maml:para>
+                    </maml:headerEntry>
+                    <maml:headerEntry>
+                      <maml:para>Description</maml:para>
+                    </maml:headerEntry>
+                  </maml:row>
+                </maml:tableHeader>
+                <maml:row>
+                  <maml:entry>
+                    <maml:para>Running</maml:para>
+                  </maml:entry>
+                  <maml:entry>
+                    <maml:para>Success</maml:para>
+                  </maml:entry>
+                  <maml:entry>
+                    <maml:para>The service is running normally</maml:para>
+                  </maml:entry>
+                </maml:row>
+                <maml:row>
+                  <maml:entry>
+                    <maml:para>Starting</maml:para>
+                  </maml:entry>
+                  <maml:entry>
+                    <maml:para>Error</maml:para>
+                  </maml:entry>
+                  <maml:entry>
+                    <maml:para>The service is starting and will not be functional until it enters the running state</maml:para>
+                  </maml:entry>
+                </maml:row>
+                <maml:row>
+                  <maml:entry>
+                    <maml:para>Stopped</maml:para>
+                  </maml:entry>
+                  <maml:entry>
+                    <maml:para>Error</maml:para>
+                  </maml:entry>
+                  <maml:entry>
+                    <maml:para>The service is stopped and is not functional</maml:para>
+                  </maml:entry>
+                </maml:row>
+                <maml:row>
+                  <maml:entry>
+                    <maml:para>Stopping</maml:para>
+                  </maml:entry>
+                  <maml:entry>
+                    <maml:para>Error</maml:para>
+                  </maml:entry>
+                  <maml:entry>
+                    <maml:para>The service was running and is now attempting to stop</maml:para>
+                  </maml:entry>
+                </maml:row>
+                <maml:row>
+                  <maml:entry>
+                    <maml:para>Paused</maml:para>
+                  </maml:entry>
+                  <maml:entry>
+                    <maml:para>Error</maml:para>
+                  </maml:entry>
+                  <maml:entry>
+                    <maml:para>The service has been paused by user intervention and will not be functional until it is resumed</maml:para>
+                  </maml:entry>
+                </maml:row>
+              </maml:table>
+            </maml:section>
+            <maml:section>
+              <maml:title>Related Links</maml:title>
+              <maml:para>All events for this service can be viewed using the following link:</maml:para>
+              <maml:para>
+                <maml:navigationLink>
+                  <maml:linkText>View all events</maml:linkText>
+                  <maml:uri condition="View" href="System.Views.EventView&amp;viewtarget={$TARGET$}" uri="MOM.Console.Exe"></maml:uri>
+                </maml:navigationLink>
+              </maml:para>
+              <maml:para>To start the service use the following link:</maml:para>
+              <maml:para>
+                <maml:navigationLink>
+                  <maml:linkText>Start the Service</maml:linkText>
+                  <maml:uri condition="Task" href="Microsoft.Demo.NTService.StartService&amp;tasktarget={$TARGET$}" uri="MOM.Console.Exe"></maml:uri>
+                </maml:navigationLink>
+              </maml:para>
+            </maml:section>
+          </MamlContent>
+        </KnowledgeArticle>
+      </KnowledgeArticles>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPack>

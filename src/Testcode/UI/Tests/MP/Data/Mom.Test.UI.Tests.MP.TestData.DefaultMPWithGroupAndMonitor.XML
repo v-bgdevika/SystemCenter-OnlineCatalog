@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ManagementPack Update="false"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Manifest>
+    <Identity>
+      <ID>CustomManagementPack_8E7D354B3B2C43f1AF052C48509EA3C4</ID>
+      <Version>1.0.0.2</Version>
+    </Identity>
+    <Name>CustomManagementPack_8E7D354B3B2C43f1AF052C48509EA3C4</Name>
+    <References>
+      <Reference Alias="System">
+        <ID>System.MP</ID>
+        <Version>6.0.0.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="SystemMomMP">
+        <ID>System.Mom.MP</ID>
+        <Version>6.0.0.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="SystemWindowsMP">
+        <ID>System.Windows.MP</ID>
+        <Version>6.0.0.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="MicrosoftWindowsServiceTemplateMP">
+        <ID>Microsoft.WindowsService.Template.MP</ID>
+        <Version>6.0.0.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+    </References>
+  </Manifest>
+  <TypeDefinitions>
+    <EntityTypes>
+      <ClassTypes>
+        <ClassType ID="UINameSpace1f93b224932a47a3a245a2f281cd0add.Group" Accessibility="Public" Base="SystemMomMP!System.Mom.InstanceGroup" Abstract="false" Singleton="true"></ClassType>
+        <ClassType ID="UINameSpace2f2790278f6849c693c3e60cd251bee9.WindowsService" Accessibility="Public" Base="MicrosoftWindowsServiceTemplateMP!System.Windows.OwnProcessNTService" Abstract="false" Hosted="true"></ClassType>
+      </ClassTypes>
+    </EntityTypes>
+  </TypeDefinitions>
+  <Monitoring>
+    <Rules>
+      <Rule ID="UINameSpace1f93b224932a47a3a245a2f281cd0add.Group.DiscoveryRule" Enabled="true" Target="UINameSpace1f93b224932a47a3a245a2f281cd0add.Group">
+        <Category>Discovery</Category>
+        <DataSources>
+          <DataSource ID="GroupPopulationDataSource" TypeID="SystemMomMP!System.Mom.Discovery.GroupPopulation">
+            <RuleId>$MPElement$</RuleId>
+            <GroupInstanceId>$MPElement[Name="UINameSpace1f93b224932a47a3a245a2f281cd0add.Group"]$</GroupInstanceId>
+            <MembershipRules>
+              <MembershipRule>
+                <TypeId>$MPElement[Name="SystemWindowsMP!System.Windows.Computer"]$</TypeId>
+                <RelationshipId>65403DBF-73DA-CAEE-486F-2C676A2C754B</RelationshipId>
+                <IncludeList>
+                  <ManagedEntityId>b0c68f2d-1c12-c8af-7ab9-54f28403ba0d</ManagedEntityId>
+                </IncludeList>
+              </MembershipRule>
+            </MembershipRules>
+          </DataSource>
+        </DataSources>
+        <WriteActions>
+          <WriteAction ID="DiscoveryWriteAction" TypeID="SystemMomMP!System.Mom.Discovery.DataCollector"></WriteAction>
+        </WriteActions>
+      </Rule>
+      <Rule ID="UINameSpace2f2790278f6849c693c3e60cd251bee9.WindowsService.DiscoveryRule" Enabled="true" Target="SystemWindowsMP!System.Windows.Computer">
+        <Category>Discovery</Category>
+        <DataSources>
+          <DataSource ID="WMIDataSource" TypeID="SystemWindowsMP!System.Windows.WmiQueryProvider">
+            <NameSpace>\\$Target/Property[Type="SystemWindowsMP!System.Windows.Computer"]/PrincipalName$\ROOT\CIMV2</NameSpace>
+            <Query>SELECT Name,DisplayName,Description,ProcessId FROM Win32_Service WHERE Name="Alerter"</Query>
+            <Params></Params>
+            <Frequency>60</Frequency>
+          </DataSource>
+        </DataSources>
+        <ConditionDetection ID="DiscoveryMappingCondition" TypeID="System!System.Discovery.ClassSnapshotDataMapper">
+          <ClassId>$MPElement[Name="UINameSpace2f2790278f6849c693c3e60cd251bee9.WindowsService"]$</ClassId>
+          <InstanceSettings>
+            <Settings>
+              <Setting>
+                <Name>$MPElement[Name="SystemWindowsMP!System.Windows.Computer"]/PrincipalName$</Name>
+                <Value>$Target/Property[Type="SystemWindowsMP!System.Windows.Computer"]/PrincipalName$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="MicrosoftWindowsServiceTemplateMP!System.Windows.NTService"]/ServiceName$</Name>
+                <Value>$Data/Name$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="MicrosoftWindowsServiceTemplateMP!System.Windows.NTService"]/DisplayName$</Name>
+                <Value>$Data/DisplayName$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="MicrosoftWindowsServiceTemplateMP!System.Windows.NTService"]/Description$</Name>
+                <Value>$Data/Description$</Value>
+              </Setting>
+            </Settings>
+          </InstanceSettings>
+        </ConditionDetection>
+        <WriteActions>
+          <WriteAction ID="DiscoveryWriteAction" TypeID="SystemMomMP!System.Mom.Discovery.DataCollector"></WriteAction>
+        </WriteActions>
+      </Rule>
+    </Rules>
+  </Monitoring>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="CustomManagementPack_8E7D354B3B2C43f1AF052C48509EA3C4">
+          <Name>My Default Management Pack</Name>
+        </DisplayString>
+        <DisplayString ElementID="UINameSpace1f93b224932a47a3a245a2f281cd0add.Group">
+          <Name>MyGroup</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="UINameSpace2f2790278f6849c693c3e60cd251bee9.WindowsService">
+          <Name>MyMonitorForAlterter</Name>
+          <Description></Description>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPack>

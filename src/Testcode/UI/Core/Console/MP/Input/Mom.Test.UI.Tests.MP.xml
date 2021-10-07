@@ -1,0 +1,922 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<varmap contact="momtui" owner="sunsingh" assembly="Mom.Test.UI.Tests.MP.dll" dsc="MP Imports via the UI" xmlns="http://smxinfranet/schemas/mcf/2002/01/varmap">
+  <states id="PreinstallStatusDisplayed" />
+  <states id="ManagementPackExportedFileNotPresent" />
+  <states id="ManagementPackExportedFilePresent" />
+  <var set="3" lvl="1" vid="1" act="true" cid="_f7f1be64-4003-4f71-bad3-5b175bb67837" cls="Mom.Test.UI.Tests.MP.ManagmentPacksInstallUI" dsc="Add MP From Disk: add single MP one by one and remove MP from toolstrip." focus="positive" cat="general" mode="auto" feature="/MOMv3/UI/Console/Administration/ManagementPacks">
+    <remarks>
+      BVT test case verifying the following areas:
+      1) Add single MP one by one from Disk.
+      2) Remove single MP from wizard via toolstrip.
+
+      Steps)
+      1) Add Exchange 2003 Monitoring MP.
+      2) Add Exchange 2003 Discovery MP.
+      3) Add Exchange Library MP.
+      4) Remove Exchange 2003 Monitoring MP via toolstrip.
+
+      Expected results:
+      The following MPs got installed: Exchange Library, Exchange 2003 Discovery MP.
+
+      Cleanup:
+      Delete the following MPs: Exchange Library, Exchange 2003 Discovery MP.
+    </remarks>
+    <rec key="TestData">MPsAddFromDisk="$CurrentDirectory$\Microsoft.Exchange.Server.2003.Monitoring.mp"</rec>
+    <rec key="TestData">MPsAddFromDisk="$CurrentDirectory$\Microsoft.Exchange.Server.2003.Discovery.mp"</rec>
+    <rec key="TestData">MPsAddFromDisk="$CurrentDirectory$\Microsoft.Exchange.Server.Library.mp"</rec>
+    <rec key="TestData">MPsRemoveFromToolStripRemoveButton=Exchange Server 2003 (Monitoring)</rec>
+    <rec key="ExpectedInstalledMP">Exchange Server 2003 (Discovery)</rec>
+    <rec key="ExpectedInstalledMP">Exchange Server Core Library</rec>
+    <fnc name="ImportManagementPacks">
+      <remarks>
+      </remarks>
+      <rec key="TimeoutInSeconds">480</rec>
+    </fnc>
+    <fnc name="DeleteInstallManagementPack">
+      <remarks>
+      </remarks>
+    </fnc>
+  </var>
+  <var set="3" lvl="1" vid="2" act="true" cid="_8ee26c26-448e-4682-ab8a-3fa1017c3b89" cls="Mom.Test.UI.Tests.MP.ManagmentPacksInstallUI" dsc="Add MP From Disk: add multiple MPs in batches; remove MPs from context menu." focus="positive" cat="general" mode="auto" feature="/MOMv3/UI/Console/Administration/ManagementPacks">
+    <remarks>
+      BVT test case verifying the following areas:
+      1) Add multiple MPs in a batch from Disk.
+      2) Add multiple MPs in multiple batch from Disk.
+      3) Remove multiple MPs from wizard via toolstip.
+
+      Steps)
+      1) Add Exchange Library MP and Exchange 2003 Discovery MP.
+      2) Add Exchange 2003 Monitoring MP &amp; IW Common Library MP.
+      3) Add IW Office 2003 MP &amp; IW Office 2007 MP.
+      4) Remove Exchange Library, Exchange 2003 Discovery &amp; Monitoring MP.
+
+      Expected results:
+      The following MPs got installed:
+      1) IW Common Library.
+      2) IW Office 2003 MP.
+      3) IW Office 2007 MP.
+
+      Cleanup:
+      Delete the following MPs.
+      1) IW Common Library.
+      2) IW Office 2003 MP.
+      3) IW Office 2007 MP.
+    </remarks>
+    <rec key="TestData">MPsAddFromDisk="$CurrentDirectory$\Microsoft.InformationWorker.CommonLibrary.mp" "$CurrentDirectory$\Microsoft.InformationWorker.Office.2003.mp" "$CurrentDirectory$\Microsoft.InformationWorker.Office.2007.mp"</rec>
+    <rec key="TestData">MPsRemoveFromToolStripRemoveButton=Information Worker Office 2003|Information Worker Office 2007</rec>
+    <rec key="ExpectedInstalledMP">Information Worker Library</rec>
+    <fnc name="ImportManagementPacks">
+      <remarks>
+      </remarks>
+      <rec key="TimeoutInSeconds">480</rec>
+    </fnc>
+    <fnc name="DeleteInstallManagementPack">
+      <remarks>
+      </remarks>
+    </fnc>
+  </var>
+  <var set="3" lvl="1" vid="3" act="true" cid="_28e2d8a3-9994-4dcb-9402-e245b670b004" cls="Mom.Test.UI.Tests.MP.ManagmentPacksInstallUI" dsc="Add MP From Catalog: add multiple MP groups" focus="positive" cat="general" mode="manual" feature="/MOMv3/UI/Console/Administration/ManagementPacks">
+    <remarks>
+      BVT test case verifying the following areas:
+      1) Add multiple MP groups from Catalog Dialog.
+
+      Steps)
+      1) Add SQL Server 2005 and SQL 2000 Group from Catalog Dialog.
+
+      Expected results:
+      The following MPs got installed:
+      1) SQL Server Core Library,
+      2) SQL Server 2000(Discovery),
+      3) SQL Server 2000(Monitoring).
+      4) SQL Server 2005(Discovery),
+      5) SQL Server 2005(Monitoring).
+
+      Cleanup:
+      Delete the following MPs:
+      1) SQL Server Core Library,
+      2) SQL Server 2000(Discovery),
+      3) SQL Server 2000(Monitoring).
+      4) SQL Server 2005(Discovery),
+      5) SQL Server 2005(Monitoring).
+    </remarks>
+    <rec key="TestData">MPGroupsNeedToSelectInCatalog=SQL Server 2000|SQL Server 2005;KeywordToFindMPsInCatalog=SQL Server</rec>
+    <rec key="ExpectedInstalledMP">SQL Server 2005 (Monitoring)</rec>
+    <rec key="ExpectedInstalledMP">SQL Server 2005 (Discovery)</rec>
+    <rec key="ExpectedInstalledMP">SQL Server 2000 (Monitoring)</rec>
+    <rec key="ExpectedInstalledMP">SQL Server 2000 (Discovery)</rec>
+    <fnc name ="RunCaseOnDebugBuild">
+      <remarks>
+        this method just only running on Debug build, throw VarUnsupported if product is signed build
+      </remarks>
+    </fnc>
+    <fnc name="ImportManagementPacks">
+      <remarks>
+      </remarks>
+      <rec key="TimeoutInSeconds">480</rec>
+    </fnc>
+    <fnc name="DeleteInstallManagementPack">
+      <remarks>
+      </remarks>
+    </fnc>
+  </var>
+  <var set="3" lvl="1" vid="4" act="true" cid="_6594d689-11f4-4de5-ba40-a9de60e56886" cls="Mom.Test.UI.Tests.MP.ManagmentPacksInstallUI" dsc="Add MP From Catalog: add multiple MPs" focus="positive" cat="general" mode="manual" feature="/MOMv3/UI/Console/Administration/ManagementPacks">
+    <remarks>
+      BVT test case verifying the following areas:
+      1) Add multiple MPs from Catalog Dialog.
+
+      Steps)
+      1) Add SQL Server 2005 (Discovery) and SQL Server Core Library from Catalog Dialog.
+
+      Expected results:
+      The following MPs got installed:
+      1) SQL Server Core Library,
+      2) SQL Server 2005(Discovery),
+
+      Cleanup:
+      Delete the following MPs:
+      1) SQL Server Core Library,
+      2) SQL Server 2005(Discovery)
+    </remarks>
+    <rec key="TestData">MPsNeedToSelectInCatalog=SQL Server 2005 (Discovery)|SQL Server Core Library;KeywordToFindMPsInCatalog=SQL Server</rec>
+    <rec key="ExpectedInstalledMP">SQL Server 2005 (Discovery)</rec>
+    <fnc name="ImportManagementPacks">
+      <remarks>
+      </remarks>
+      <rec key="TimeoutInSeconds">480</rec>
+    </fnc>
+    <fnc name="DeleteInstallManagementPack">
+      <remarks>
+      </remarks>
+    </fnc>
+  </var>
+  <var set="3" lvl="2" vid="1" act="true" cid="_6d2231b1-45c6-4358-b317-0a5ced570ffc" cls="Mom.Test.UI.Tests.MP.ManagmentPacksInstallUI" dsc="Resolve MPs added from Disk" focus="positive" cat="general" mode="auto" feature="/MOMv3/UI/Console/Administration/ManagementPacks">
+    <remarks>
+      BVT test case verifying the following areas:
+      1) Add MP from disk.
+      2) Resolve MP added from Disk via context menu.
+
+
+      Steps)
+      1) Add Exchange 2003 Monitoring, Discovery and Library MP
+      1) Resolve Exchange 2003 Monitoring MP via context menu.
+
+      Expected results:
+      The following MPs got installed:
+      1) Exchange Library,
+      2) Exchange 2003 Discovery,
+      3) Exchange 2003 Monitoring MP,
+      4) Windows Server Library MP.
+
+      Cleanup:
+      Delete the following MPs:
+      1) Exchange Library,
+      2) Exchange 2003 Discovery MP,
+      3) Exchange 2003 Monitoring MP
+      4) Windows Server Library MP.
+    </remarks>
+    <rec key="caseflag">SignedOnly</rec>
+	  <rec key="TestData">MPsAddFromDiskForResolve="$CurrentDirectory$\Microsoft.Exchange.Server.2003.Monitoring.mp" "$CurrentDirectory$\Microsoft.Exchange.Server.2003.Discovery.mp"</rec>
+	  <rec key="TestData">MPsAddFromDiskForResolve="$CurrentDirectory$\signed\Microsoft.SQLServer.2000.Monitoring.mp"</rec>
+	  <rec key="TestData">MPsResolveFromContextMenuForResolve=$signed$SQL Server 2000 (Monitoring)</rec>
+	  <rec key="TestData">MPsResolveFromContextMenuForResolve=Exchange Server 2003 (Monitoring)</rec>
+	  <rec key="ExpectedInstalledMPSigned">SQL Server 2000 (Monitoring)</rec>
+	  <rec key="ExpectedInstalledMPSigned">SQL Server 2000 (Discovery)</rec>
+	  <rec key="ExpectedInstalledMP">Exchange Server 2003 (Monitoring)</rec>
+	  <rec key="ExpectedInstalledMP">Exchange Server 2003 (Discovery)</rec>
+	  <rec key="ExpectedInstalledMP">Exchange Server Core Library</rec>
+	  <fnc name="ImportManagementPacks">
+      <remarks>
+      </remarks>
+      <rec key="TimeoutInSeconds">480</rec>
+    </fnc>
+    <fnc name="DeleteInstallManagementPack">
+      <remarks>
+      </remarks>
+    </fnc>
+  </var>
+  <var set="3" lvl="2" vid="2" act="true" cid="_05d63c6b-9c0c-4558-ab3e-223cfb678937" cls="Mom.Test.UI.Tests.MP.ManagmentPacksInstallUI" dsc="Resolve MPs added from Catalog" focus="positive" cat="general" mode="auto" feature="/MOMv3/UI/Console/Administration/ManagementPacks">
+    <remarks>
+      BVT test case verifying the following areas:
+      1) Add MP from disk.
+      2) Resolve MP added from Catalog via context menu.
+
+
+      Steps)
+      1) Add SQL server 2012 Monitoring MP from Catalog.
+      1) Resolve SQL server 2012 Monitoring MP via context menu.
+
+      Expected results:
+      The following MPs got installed:
+      1) SQL Server Core Library MP,
+      2) SQL server 2012 Discovery MP,
+      3) SQL server 2012 Monitoring MP.
+
+      Cleanup:
+      Delete the following MPs:
+      1) SQL Server Core Library MP,
+      2) SQL server 2012 Discovery MP,
+      3) SQL server 2012 Monitoring MP.
+    </remarks>
+    <rec key="caseflag">SignedOnly</rec>
+    <rec key="TestData">MPsNeedToSelectInCatalog=SQL Server 2012 (Monitoring);KeywordToFindMPsInCatalog=SQL Server</rec>
+    <rec key="TestData">MPsResolveFromContextMenu=SQL Server 2012 (Monitoring)</rec>
+    <rec key="ExpectedInstalledMP">SQL Server 2012 (Monitoring)</rec>
+    <rec key="ExpectedInstalledMP">SQL Server 2012 (Discovery)</rec>
+    <fnc name="ImportManagementPacks">
+      <remarks>
+      </remarks>
+      <rec key="TimeoutInSeconds">480</rec>
+    </fnc>
+    <fnc name="DeleteInstallManagementPack">
+      <remarks>
+      </remarks>
+    </fnc>
+  </var>
+  <var set="3" lvl="2" vid="3" act="true" cid="_E68ADFE4-5482-4c52-8238-ED12BE24C526" cls="Mom.Test.UI.Tests.MP.ManagmentPacksInstallUI" dsc="Updates available for installed management packs" focus="positive" cat="general" mode="auto" feature="/MOMv3/UI/Console/Administration/ManagementPacks">
+    <remarks>
+      Updates available for installed management packs
+      Steps:
+      1) Import old version (for example: 6545) MPs into SCOM
+      2) Go to administration -> right click Management Packs
+      3) Click import Management Packs...
+      4) Select "Add from Catalog..."
+      5) Select "Updates available for installed management packs" below View then click search button
+      6) Choose all MPs listed in the grid view
+      7) Click Add button -> click OK
+      8) We can see the MPs we chosen listed in the import list
+      9) Click install button
+      10) Wait until the import process ended
+      11) Some MPs imported successfully, but some not
+    </remarks>
+    <rec key="TestData">OldMPsAddFromDisk="$CurrentDirectory$\signed\Microsoft.SQLServer.2000.Monitoring.mp"</rec>
+    <rec key="TestData">OldMPsAddFromDisk="$CurrentDirectory$\signed\Microsoft.SQLServer.2000.Discovery.mp"</rec>
+    <rec key="TestData">OldMPsAddFromDisk="$CurrentDirectory$\debug\Microsoft.SQLServer.2005.Monitoring.mp"</rec>
+    <rec key="TestData">OldMPsAddFromDisk="$CurrentDirectory$\debug\Microsoft.SQLServer.2005.Discovery.mp"</rec>
+    <rec key="TestData">OldMPsAddFromDisk="$CurrentDirectory$\debug\Microsoft.SQLServer.Library.mp"</rec>
+    <rec key="ExpectedInstalledMPSigned">SQL Server 2000 (Monitoring)</rec>
+    <rec key="ExpectedInstalledMPSigned">SQL Server 2000 (Discovery)</rec>
+    <rec key="ExpectedInstalledMP">SQL Server 2005 (Monitoring)</rec>
+    <rec key="ExpectedInstalledMP">SQL Server 2005 (Discovery)</rec>
+    <fnc name="ImportManagementPacks">
+      <remarks>
+      </remarks>
+      <rec key="TimeoutInSeconds">480</rec>
+    </fnc>
+    <fnc name="GetOldManagmentPackVersion">
+    </fnc>
+    <fnc name="UpdateAvailableForInatalledManagementPacks">
+      <remarks>
+      </remarks>
+      <rec key="SearchItemSigned">SQL</rec>
+      <rec key="SearchItemNonsigned">SQL</rec>
+    </fnc>
+    <fnc name="VerifyAndDeleteNewManagementPackImported">
+    </fnc>
+  </var>
+  <var set="4" lvl="1" vid="1" cid="_eea2c2b6-28b6-4f85-93d9-ce50c6885b62" cls="Mom.Test.UI.Tests.MP.ManagmentPacksInstallUI" dsc="Create/Verify MP from Console UI" focus="positive" cat="general" mode="auto" permutation="rows" feature="/MOMv3/UI/Console/" act="true">
+    <remarks>Create MP, Verify MP in UI</remarks>
+    <recm key="MPName">
+      <val>UIBVTTest</val>
+    </recm>
+    <recm key="MPVersion">
+      <val>1.0.0.1</val>
+    </recm>
+    <recm key="MPDescription">
+      <val>$random$</val>
+    </recm>
+    <recm key="Knowledge">
+      <val>False</val>
+    </recm>
+    <recm key="KnowledgeContent">
+      <val>NA</val>
+    </recm>
+    <fnc name="CreateMP" />
+    <fnc name="VerifyCreatedMP" />
+    <fnc name="VerifyMPProperty" />
+    <fnc name="VerifyMPFolder" />
+    <fnc name="DeleteMP" />
+  </var>
+  <var set="4" lvl="1" vid="2" cid="_55d3077d-eef7-4fba-a872-162b17591fdd" cls="Mom.Test.UI.Tests.MP.ManagmentPacksInstallUI" dsc="Create/Export MP from Console UI" focus="positive" cat="general" mode="auto" permutation="rows" feature="/MOMv3/UI/Console/" act="true">
+    <remarks>Create, Export MP from UI</remarks>
+    <recm key="MPName">
+      <val>UITestBVT</val>
+    </recm>
+    <recm key="MPVersion">
+      <val>1.0.0.2</val>
+    </recm>
+    <recm key="MPDescription">
+      <val>$random$</val>
+    </recm>
+    <recm key="Knowledge">
+      <val>False</val>
+    </recm>
+    <recm key="KnowledgeContent">
+      <val>NA</val>
+    </recm>
+    <fnc name="CreateMP" />
+    <fnc name="VerifyCreatedMP" />
+    <fnc name="ExportMP" />
+    <fnc name="DeleteMP" />
+  </var>
+  <var set="4" lvl="1" vid="3" cid="_35d3077d-cef7-4fba-b862-262a17091fff" cls="Mom.Test.UI.Tests.MP.ManagmentPacksInstallUI" dsc="Create/Export MP from Console UI" focus="positive" cat="general" mode="auto" permutation="rows" feature="/MOMv3/UI/Console/" act="true">
+    <remarks>Verify importing .mpb Files from UI console</remarks>
+    <rec key="TestData">MPsAddFromDiskForResolve="$CurrentDirectory$\UI.Test.MPB.Debug.mpb"</rec>
+    <rec key="TestData">MPsAddFromDiskForResolve="$CurrentDirectory$\signed\UI.Test.MPB.Singed.mpb"</rec>
+    <rec key="ExpectedInstalledMP">UI.Test.MPB.Debug</rec>
+    <rec key="ExpectedInstalledMPSigned">UI.Test.MPB.Singed</rec>
+    <fnc name="ImportManagementPacks">
+      <remarks>
+      </remarks>
+      <rec key="TimeoutInSeconds">480</rec>
+    </fnc>
+    <fnc name="DeleteInstallManagementPack">
+      <remarks>
+      </remarks>
+    </fnc>
+  </var>
+  <var set="1" lvl="2" vid="1" cid="_2523e956-69ee-4c74-b0a5-ea58bdf0224d" cls="" dsc="Can NOT create a Management Pack without name" focus="negative" cat="general" mode="manual" feature="TBD">
+    <remarks>
+      Can NOT create a Management Pack without name
+
+      STEPS
+      1.Open the Operations Console and select the Administration navigation button
+      2.Choose the Management Pack node
+      3.Right click or from Action pane-Create Management Pack
+      4.Enter the description, but do NOT put any under the name
+
+      EXPECT
+      The "Next" button is disabled
+    </remarks>
+  </var>
+  <var set="1" lvl="1" vid="1" cid="_65748f2b-acce-44d6-b081-f144f1326885" cls="" dsc="Create a Management Pack from Action Pane" focus="positive" cat="general" mode="manual" feature="TBD">
+    <remarks>
+      Create a Management Pack from Action Pane
+
+      STEPS
+      1.Open the Operations Console and select the Administration navigation button
+      2.Choose the Management Pack node
+      3.Click Create Management Pack on the Action Pane
+      4.Enter the Name, Version, Description and click Next
+      5.Enter the Knowledge and click Create
+
+      EXPECT
+      Verify the Management Pack has been created in the MP view.
+    </remarks>
+  </var>
+  <var set="1" lvl="2" vid="3" cid="_032afdd0-ce62-4439-91c2-ca3bfbcff443" cls="" dsc="Verify sealed Management Pack can NOT be modified and Export" focus="negative" cat="general" mode="manual" feature="TBD">
+    <remarks>
+      Verify sealed Management Pack can NOT be modified and Export
+
+      STEPS
+      1.Open the Operations Console and select the Administration navigation button
+      2.Choose the Management Pack node
+      3.In the Management Pack view, choose the sealed management pack and click properties
+
+      EXPECT
+      Verify all the items in the properties dialog can NOT be modified.
+      Verify the Export Management Pack is disabled
+    </remarks>
+  </var>
+  <var set="1" lvl="2" vid="4" cid="_d32c7ed3-b0e1-4d52-83e8-c1ad523b6fa0" cls="" dsc="" focus="positive" cat="general" mode="manual" feature="TBD" />
+  <var set="1" lvl="2" vid="2" cid="_0c63b0cf-adf0-4c1b-9ff6-a5cd464f1c30" cls="" dsc="Can NOT create a Management Pack with invalid name" focus="negative" cat="general" mode="manual" feature="TBD">
+    <remarks>
+      Can NOT create a Management Pack with invalid name
+
+      STEPS
+      1.Open the Operations Console and select the Administration navigation button
+      2.Choose the Management Pack node
+      3.Right click or from Action pane-Create Management Pack
+      4.Enter the name not including the characters "a-z" or "A-Z", as "12345!@#$%"
+
+      EXPECT
+      The "Next" button is disabled.
+      If the name including the characters "a-z" or "A-Z", it could be created.
+    </remarks>
+  </var>
+  <var set="1" lvl="1" vid="2" cid="_406e671a-a0a4-4be9-8482-91d3d0a36f0a" cls="" dsc="Edit Management Pack Properties" focus="positive" cat="general" mode="manual" feature="TBD">
+    <remarks>
+      Edit Management Pack Properties
+
+      STEPS
+      1.Open the Operations Console and select the Administration navigation button
+      2.Choose the Management Pack node
+      3.Right Click MP just created in the MP view and select Properties
+      4.Modify the Name, Version and Description
+      5.Click ok
+      6.Open the Properties dialog again
+
+      EXPECT
+      Verify the MP properties have been changed to the latest one.
+    </remarks>
+  </var>
+  <var set="1" lvl="1" vid="3" cid="_b16b6f26-2097-453c-845d-6ee0553f9ce2" cls="" dsc="Edit Management Pack Properties from Action Pane" focus="positive" cat="general" mode="manual" feature="TBD">
+    <remarks>
+      Edit Management Pack Properties from Action Pane
+
+      STEPS
+      1.Open the Operations Console and select the Administration navigation button
+      2.Choose the Management Pack node
+      3.Click MP just created in the MP view and select Properties from Action Pane
+      4.Click the Knowledage tab and edit the knowledge
+      5.Click ok
+      6.Open the Properties dialog again
+
+      EXPECT
+      Verify the MP knowledge has been changed to the latest one.
+    </remarks>
+  </var>
+  <var set="1" lvl="1" vid="4" cid="_93217e66-43c6-414a-a1b4-4cffafea7e95" cls="" dsc="Import Management Pack from Action Pane" focus="positive" cat="general" mode="manual" feature="TBD">
+    <remarks>
+      Import Management Pack from Action Pane
+
+      STEPS
+      1.Open the Operations Console and select the Administration navigation button
+      2.Choose the Management Pack node
+      3.Click Import Management Pack from Action Pane
+      4.Select the MP file that needs to be imported and click Open
+      Verify the MP is in the list.
+
+      5.Click Properties
+      Verify the MP properties window pop up.
+
+      6.Click Help
+      Verify the Operation Manager Help documents pop up
+
+      7.Click Import
+      Verify the MP has been imported in the MP view.
+    </remarks>
+  </var>
+  <var set="1" lvl="1" vid="5" cid="_628ef3e2-bfe5-4265-8176-33d70b1ce408" cls="" dsc="Verify Multiple Selected for Improt MPs" focus="positive" cat="general" mode="manual" feature="TBD">
+    <remarks>
+      Verify Multiple Selected for Improt MPs
+
+      STEPS
+      1.Open the Operations Console and select the Administration navigation button
+      2.Right click the Management Pack node and select Import Management Pack
+      3.On the Select MPs to import window, Press Shift and multiple select some MPs, as Microsoft.InformationWorker.CommonLibrary.mp,Microsoft.InformationWorker.office.2003.mp,Microsoft.InformationWorker.office.2007.mp
+      4.Click Open
+      Verify all the MPs have been listed here.
+
+      5.Click Import
+      Verify all the MPs have been imported in the MP view.
+    </remarks>
+  </var>
+  <var set="1" lvl="1" vid="6" cid="_2b159818-9547-4795-ab3c-0f07326f5347" cls="" dsc="Verify Add/Remove MP for Improt MPs" focus="positive" cat="general" mode="manual" feature="TBD">
+    <remarks>
+      Verify Add/Remove MP for Improt MPs
+
+      STEPS
+      1.Open the Operations Console and select the Administration navigation button
+      2.Right click the Management Pack node and select Import Management Pack
+      3.Select the MPs that need to be imported, as Microsoft.InformationWorker.CommonLibrary.mp
+      4.Click Open
+      Verify the MP is in the list.
+
+      5.Click Add, select another MP, as Microsoft.InformationWorker.office.2003.mp and click Open
+      Verify the two MPs are in the list
+
+      6.Select the MP, as Microsoft.InformationWorker.office.2003.mp and click Remove
+      Verify the MP Microsoft.InformationWorker.office.2003.mp is not in the list any more.
+
+      7.Click Import
+      Verify the MP has been imported in the MP view.
+    </remarks>
+  </var>
+  <var set="1" lvl="1" vid="7" cid="_bb70d3ac-bab6-4283-81cb-bbed5a5847f8" cls="" dsc="Verify the dependency import" focus="positive" cat="general" mode="manual" feature="TBD" permutation="rows">
+    <remarks>
+      Verify the dependency import
+
+      STEPS
+      1.Choose MP1 and MP2 which are not imported, make sure MP1 depends on MP2
+      2.Open the Operations Console and select the Administration navigation button
+      3.Choose the Management Pack node
+      4.Import the MP1
+      Verify the MP1 can NOT be imported.
+      Verify the indicator is red error.
+      Verify the error msg like "The MP will fail to import because it depends on the following MP: MP2 "
+
+      5.Add the MP2
+      Verify the indicator is changed to green.
+      Veirfy the error msg is not there.
+
+      6.Click Import
+      Verify the MP2 is imported first.
+      Verify the MP1 is imported after that.
+    </remarks>
+    <recm key="MP1">
+      <val>Microsoft.SQLServer.2000.Discovery.mp</val>
+    </recm>
+    <recm key="MP2">
+      <val>Microsoft.SQLServer.Library.mp</val>
+    </recm>
+  </var>
+  <var set="1" lvl="1" vid="8" cid="_e239c740-cfe5-4da5-a39e-180c80a3a317" cls="" dsc="Export Management Pack" focus="positive" cat="general" mode="manual" feature="TBD">
+    <remarks>
+      Export Management Pack
+
+      STEPS
+      1.Open the Operations Console and select the Administration navigation button
+      2.Choose the Management Pack node
+      3.Right Click unsealed MP and select Export Management Pack
+      4.Select the path/location to export to and Click OK
+      Verify the Information window pop up, the msg like "Management Pack sucessfully exported....."
+
+      5.Open the XML file that just exported
+      Verify the properties like ID, Name, Verison is correct
+    </remarks>
+  </var>
+  <var set="1" lvl="1" vid="9" cid="_12d2ec1c-b263-46a0-b3b4-efce525aa26b" cls="" dsc="Export Management Pack from Action Pane" focus="positive" cat="general" mode="manual" feature="TBD">
+    <remarks>
+      Export Management Pack from Action Pane
+
+      STEPS
+      1.Open the Operations Console and select the Administration navigation button
+      2.Choose the Management Pack node
+      3.Click the MP that need to be exported and Select Export Management Pack from Action Pane
+      4.Select the path/location to export to and Click OK
+      Verify the Information window pop up, the msg like "Management Pack sucessfully exported....."
+
+      5.Open the XML file that just exported
+      Verify the properties like ID, Name, Verison is correct
+    </remarks>
+  </var>
+  <var set="1" lvl="1" vid="10" cid="_b734b7ba-e70e-40dc-8a37-58e395517c05" cls="" dsc="Look for a Management Pack and clear" focus="positive" cat="general" mode="manual" feature="TBD">
+    <remarks>
+      Look for a Management Pack and clear
+
+      STEPS
+      1.Open the Operations Console and select the Administration navigation button
+      2.Choose the Management Pack node
+      3.Create a MP with the setting specified
+      4.In the Find bar type in the search criteria
+      5.Click Find now
+      Verify in the MP view, the search result are as expected
+
+      6.Click Clear
+      Verify the Find bar is cleared and the MP view back to the original
+    </remarks>
+  </var>
+  <var set="1" lvl="1" vid="11" cid="_6e0f947d-ab15-49e2-ba5d-92155ff61b00" cls="" dsc="Sort by every column in Management Pack view by clicking column titles" focus="positive" cat="general" mode="manual" feature="TBD">
+    <remarks>
+      Sort by every column in Management Pack view by clicking column titles
+
+      STEPS
+      1.Open the Operations Console and select the Administration navigation button
+      2.Choose the Management Pack node
+      3.In the MP view, click every column titles twice to sort asc and dsc, as Name, Version, Sealed, Data Created, Description
+
+      EXPECT
+      Verify the sort indicator appeared and can be changed properly.
+      Verify the view is sorted by asc or dsc
+    </remarks>
+  </var>
+  <var set="1" lvl="1" vid="12" cid="_c01f5f2f-19f2-49e5-adc3-cfc8fcaa7e57" cls="" dsc="Delete Management Pack" focus="positive" cat="general" mode="manual" feature="TBD">
+    <remarks>
+      Delete Management Pack
+
+      STEPS
+      1.Open the Operations Console and select the Administration navigation button
+      2.Choose the Management Pack node
+      3.Right Click MP and select delete
+      4.Click Yes, if the information window pop up, the msg like "Deleting a Management Pack might affect the scoping of some user roles. Are you sure you want to delete...."
+
+      EXPECT
+      Verify the MP has been deleted from the MP view.
+    </remarks>
+  </var>
+  <var set="1" lvl="1" vid="13" cid="_c9f19b6b-3d2e-4efd-99e7-31c8c771e9e6" cls="" dsc="Delete Management Pack from Action Pane" focus="positive" cat="general" mode="manual" feature="TBD">
+    <remarks>
+      Delete Management Pack from Action Pane
+
+      STEPS
+      1.Open the Operations Console and select the Administration navigation button
+      2.Choose the Management Pack node
+      3.Click the MP that need to be deleted and Select delete from Action Pane
+      4.Click Yes, if the information window pop up, the msg like "Deleting a Management Pack might affect the scoping of some user roles. Are you sure you want to delete...."
+
+      EXPECT
+      Verify the MP has been deleted from the MP view.
+    </remarks>
+  </var>
+  <var set="1" lvl="3" vid="1" cid="_0c9a3046-154f-43c1-b3d3-65b6d6af457b" cls="" dsc="Test if the underlying connection through UI  uses https(SSL) connection to the web service, if not verify a message is shown to the user and user is not allowed to proceed to download the Mp from catalog" focus="negative" cat="security" mode="manual" feature="/Operations Manager/UI/Console/Administration/MP">
+    <remarks>
+      1 Update the TestWebservice To not use Https Connection.
+      2 Launch the UI
+      3 Go to Admin Space and click Import ManagementPack
+      4 From Import MangementPackPage  Click add and Select import From catalog option
+
+
+      Expected: user should be shown with the error message for https failure
+    </remarks>
+  </var>
+  <var set="1" lvl="1" vid="14" cid="_2bc6fd8a-91ff-4e65-9021-a7a6f7e78834" cls="" dsc="Verify the dependency delete" focus="positive" cat="general" mode="manual" feature="TBD" permutation="rows">
+    <remarks>
+      Verify the dependency delete
+
+      STEPS
+      1.Choose MP1 and MP2 which have been imported, make sure MP1 depends on MP2
+      2.Open the Operations Console and select the Administration navigation button
+      3.Choose the Management Pack node
+      4.Delete the MP2
+      Verify the MP2 can NOT be deleted.
+      Verify the Dependent Management Packs window pop up.
+      Verify the msg like "Following MP depends on the MP you are trying on delete. Please delete the following MP manually first "
+      Verify the MP1 is in the list.
+
+      5.Delete MP1
+      Verify it can be deleted
+
+      6.Delete MP2
+      Verify it can be deleted as well.
+    </remarks>
+    <recm key="MP1">
+      <val>Microsoft.SQLServer.2000.Discovery.mp</val>
+    </recm>
+    <recm key="MP2">
+      <val>Microsoft.SQLServer.Library.mp</val>
+    </recm>
+  </var>
+  <var set="1" lvl="3" vid="2" cid="_6204771d-1ae9-4466-b64f-80f52bb21d7d" cls="" dsc="Test If  user is  presented with the error/warning message if web service certificate is not issued from the trusted source, not issued to microsoft.com domain  and is not within the validity date" focus="negative" cat="security" mode="manual" feature="/Operations Manager/UI/Console/Administration/MP" permutation="rows">
+    <remarks>
+      2 Launch the UI
+      3 Go to Admin Space and click Import ManagementPack
+      4 From Import MangementPackPage  Click add and Select import From catalog option
+
+
+      Expected: user should be shown with the error/warning message if any of the recm value is true
+    </remarks>
+    <recm key="CertificateValidityDate">
+      <val>invalid</val>
+    </recm>
+    <recm key="certificateIssueTo Microsoft.com">
+      <val>False</val>
+    </recm>
+    <recm key="CertificateinTrustedZone">
+      <val>False</val>
+    </recm>
+  </var>
+  <var set="2" lvl="1" vid="1" cid="_6b6d3a8d-d4fb-4e9f-8966-7afa525ff4be" cls="Mom.Test.UI.Tests.MP.ManagmentPacksInstallUI" dsc="For Status Not Installed : Verify More Information UI for Updates and Recommendations View" focus="positive" cat="general" mode="auto" permutation="rows" feature="/MOMv3/UI/Console/" act="true">
+    <!-- This Test case will work only on signed Machine -->
+    <remarks>
+      BVT test case verifying the functionality of More Information UI for Recommendations
+      
+      Steps :
+        1. Go to Administration 
+        2. Open Updates and Recommendations View
+        3. Select given Workload
+        4. Click More Information Link on Action pane
+        
+      Expected Result:
+        More Information UI should open properly and display the detail information about give Worklaod.
+    </remarks>
+    <recm key="WorkloadStatus">
+      <val>Not Installed</val>
+    </recm>
+    <fnc name="MoreInformationUI" />
+  </var>
+  <var set="2" lvl="1" vid="6" cid="_6b6d3a8d-d4fb-4e9f-8966-7afa525ff3cj" cls="Mom.Test.UI.Tests.MP.ManagmentPacksInstallUI" dsc="For Status Update Available : Verify More Information UI for Updates and Recommendations View" focus="positive" cat="general" mode="auto" permutation="rows" feature="/MOMv3/UI/Console/" act="true">
+    <!-- This Test case will work only on signed Machine -->
+    <remarks>
+      BVT test case verifying the functionality of More Information UI for Updates
+
+      Steps :
+      1. Go to Administration
+      2. Open Updates and Recommendations View
+      3. Select given Workload
+      4. Click More Information Link on Action pane
+
+      Expected Result:
+      More Information UI should open properly and display the detail information about give Worklaod.
+    </remarks>
+    <recm key="WorkloadStatus">
+      <val>Update Available</val>
+    </recm>
+    <fnc name="MoreInformationUI" />
+  </var>
+  <var set="2" lvl="1" vid="7" cid="_6b6d3a8d-d4fb-4e9f-8966-7afa525f5fee" cls="Mom.Test.UI.Tests.MP.ManagmentPacksInstallUI" dsc="For Status Partially Installed : Verify More Information UI for Updates and Recommendations View" focus="positive" cat="general" mode="auto" permutation="rows" feature="/MOMv3/UI/Console/" act="true">
+    <!-- This Test case will work only on signed Machine -->
+    <remarks>
+      BVT test case verifying the functionality of More Information UI for Updates
+
+      Steps :
+      1. Go to Administration
+      2. Open Updates and Recommendations View
+      3. Select given Workload
+      4. Click More Information Link on Action pane
+
+      Expected Result:
+      More Information UI should open properly and display the detail information about give Worklaod.
+    </remarks>
+    <recm key="WorkloadStatus">
+      <val>Partially Installed</val>
+    </recm>
+    <fnc name="MoreInformationUI" />
+  </var>
+  <var set="2" lvl="1" vid="2" cid="_0ac9358a-3126-4fb1-9e11-50c328a7590a" cls="Mom.Test.UI.Tests.MP.ManagmentPacksInstallUI" dsc="Verify Page Refresh for Updates and Recommendations View" focus="positive" cat="general" mode="auto" permutation="rows" feature="/MOMv3/UI/Console/" act="true">
+    <!-- This Test case will work only on signed Machine -->
+    <remarks>
+      BVT test case verifying the functionality of Refresh
+
+      Steps :
+      1. Go to Administration
+      2. Open Updates and Recommendations View
+      3. Right Click on Updates and Recommendations View
+      4. Click Refresh
+
+      Expected Result:
+        Reloading of Updates and Recommendations View should not take more than 3 sec.
+    </remarks>
+    <fnc name="RefreshUpdatesAndRecommendationsView" />
+  </var>
+  
+    <var set="2" lvl="1" vid="3" cid="_284fcff7-3126-4fb1-9e11-50c328a7590a" cls="Mom.Test.UI.Tests.MP.ManagmentPacksInstallUI" dsc="Verify Page Refresh by connecting to catalog after cache expired for Updates and Recommendations View" focus="positive" cat="general" mode="auto" permutation="rows" feature="/MOMv3/UI/Console/" act="true">
+    <!-- This Test case will work only on signed Machine -->
+    <remarks>
+      BVT test case verifying the functionality of Refresh after Online Catalog connection Cache Expiry.
+
+      Steps :
+      1. Go to Administration
+      2. Open Updates and Recommendations View
+      3. Right Click on Updates and Recommendations View
+      4. Click Refresh
+      5. Change the date to next date (ie., +24 hrs. By default the Online catalog cache expires in 24 hrs)
+      6. Click Refresh
+      7. Change the date back to original date
+
+      Expected Result:
+        Reloading of Updates and Recommendations View should take more than 3 sec (which means it has connected to catalog and refreshed).
+    </remarks>
+    <fnc name="RefreshUpdatesAndRecommendationsViewAfterCacheExpiry" />
+  </var>
+  <var set="2" lvl="1" vid="8" cid="_284fcff7-c37b-4c9c-b0ad-f2acb14b0bff" cls="Mom.Test.UI.Tests.MP.ManagmentPacksInstallUI" dsc="Verify View Guide for Updates and Recommendations View" focus="positive" cat="general" mode="auto" permutation="rows" feature="/MOMv3/UI/Console/" act="true">    
+    <remarks>Verify ViewGuide for Updates and Recommendations View</remarks>
+    <fnc name="ViewGuide" />
+  </var>
+  <var set="2" lvl="1" vid="9" cid="_284fcff7-c37b-4c9c-b0ad-f2acb14b0fef" cls="Mom.Test.UI.Tests.MP.ManagmentPacksInstallUI" dsc="Verify View DLC Page for Updates and Recommendations View" focus="positive" cat="general" mode="auto" permutation="rows" feature="/MOMv3/UI/Console/" act="true">
+    <remarks>Verify View DLC Page for Updates and Recommendations View</remarks>
+    <fnc name="ViewDLCPage" />
+  </var>
+  <var set="2" lvl="1" vid="4" cid="_3b767c6f-578d-44ef-93ff-f47f53a6913c" cls="Mom.Test.UI.Tests.MP.ManagmentPacksInstallUI" dsc="Verify Get MP for Updates and Recommendations View" focus="positive" cat="general" mode="auto" permutation="rows" feature="/MOMv3/UI/Console/" act="true">
+    <!-- This Test case will work only on signed Machine -->
+    <remarks>
+      BVT test case verifying the functionality of Get MP
+
+      Steps :
+      1. Go to Administration
+      2. Open Updates and Recommendations View
+      3. Select a Workload
+      4. Click Get MP Link on Action pane
+      5. Press Install button on Select Management Packs Wizard
+
+      Expected Result:
+        All Management Packs of Selected work should installed properly and That workload should not appear on view.
+    </remarks>
+    <fnc name="GetMP" />
+  </var>
+  <var set="2" lvl="1" vid="5" cid="_25e52b19-ba3f-4de7-855e-3b04a67f67ec" cls="Mom.Test.UI.Tests.MP.ManagmentPacksInstallUI" dsc="Verify Get All MPs for Updates and Recommendations View" focus="positive" cat="general" mode="auto" permutation="rows" feature="/MOMv3/UI/Console/" act="true">
+    <!-- This Test case will work only on signed Machine -->
+    <remarks>
+      BVT test case verifying the functionality of More Information UI
+
+      Steps :
+      1. Go to Administration
+      2. Open Updates and Recommendations View
+      3. Select a Workload
+      4. Click Get All MPs Link on Action pane
+      5. Press Install button on Select Management Packs Wizard
+
+      Expected Result:
+        All Management Packs of all workloads should installed properly and There will not be any workload on view.
+    </remarks>
+    <fnc name="GetAllMPs" />
+  </var>
+  <var set="1" lvl="3" vid="3" cid="_421c3193-94c5-4104-a193-6d4acc8079a8" cls="" dsc="Test user experience is not changed if the web service certificate is issued from the trusted source,issued to microsoft.com domain  and is within the validity period" focus="positive" cat="security" mode="manual" feature="/Operations Manager/UI/Console/Administration/MP">
+    <remarks>
+      2 Launch the UI
+      3 Go to Admin Space and click Import ManagementPack
+      4 From Import MangementPackPage  Click add and Select import From catalog option
+
+
+      Expected: user experience should not change and select MP  from catalog  page should be launched
+    </remarks>
+  </var>
+  <var set="1" lvl="3" vid="4" cid="_fde83403-7553-4819-8d12-d68871b284b9" cls="" dsc="Verify if UI displays the certificate status (green or red) on the “select Management packs from catalog” dialog .And user could also view the detail of the certificate" focus="positive" cat="security" mode="manual" feature="/Operations Manager/UI/Console/Administration/MP">
+    <remarks>
+      1 Update the TestWebservice To not use Https Connection.
+      2 Launch the UI
+      3 Go to Admin Space and click Import ManagementPack
+      4 From Import MangementPackPage  Click add and Select import From catalog option
+
+
+      Expected: user should be shown with the certificate icon .and after clicking the icon user should be able to view the certificate details
+    </remarks>
+  </var>
+  <var set="1" lvl="3" vid="5" cid="_1b0edfae-f425-439d-b40b-681d3211a51b" cls="" dsc="Verify customer is importing the file which is strongly named" focus="positive" cat="security" mode="manual" feature="/Operations Manager/UI/Console/Administration/MP">
+    <remarks>
+      •	Verify  if the  import happens only when the system name received from the metadata is same as the MP id  Of the File obtained from download center
+      •	Change the system name obtained from the Metadata so that it doesn’t matches the MP id Of the File obtained from download center and verify if the imports fails with the proper error message, MP is marked as Red
+      •	Verify all the dependent MP ID of the MP to be imported with the strong Name.
+      If not imports fails with the proper error message, and all MP is marked as Red
+      •	Verify selection of MP  from Catalog  is Disabled if the MPID information of MP or it’s Dependent MP is missing from the Meta Data File
+      •	Verify that the Select Management pack Catalog has a new column called MPID to verify the MPID returned from the metadata
+    </remarks>
+  </var>
+  <var set="1" lvl="3" vid="6" cid="_a14ee037-59f5-4eb5-b30f-ef78fa6a4ab7" cls="" dsc="Verify that the customer are importing the correct version of the file shown to them in MP Catalog" focus="positive" cat="security" mode="manual" feature="/Operations Manager/UI/Console/Administration/MP">
+    <remarks>
+      •	Verify  import happens only when the version received from the metadata  is same as the version of the  File obtained from download center
+      •	Change the  version obtained from the Metadata so that it doesn’t matches the version Of the File obtained from download center and verify if the imports fails with the proper error message
+      •	Verify All the dependent MP version also matches with the version in the MP file  for the dependent MP
+      •	Verify selection of MP  from Catalog  is Disabled if the version information of MP or it’s Dependent MP is missing from the Meta Data File
+    </remarks>
+  </var>
+  <var set="1" lvl="3" vid="7" cid="_bc517a28-7d9d-4247-9d0f-5055f28b0851" cls="" dsc="Verify MP Imported are properly signed with correct public key" focus="positive" cat="security" mode="manual" feature="/Operations Manager/UI/Console/Administration/MP">
+    <remarks>
+      •	Verify Imports  is successful if the Mp are properly signed with  Microsoft public key
+      •	Verify  Import Fails with the proper error message and MP is marked as red if the MP is not fully signed with correct public key token
+      •	Verify  Import Fails with the proper error message and  all the MPs are marked as red if the Dependent MPs are not fully signed with correct public key token
+      •	Verify selection of MP  from Catalog  is disabled if the Public Key information of MP or it’s Dependent MP is missing from the Meta Data File
+    </remarks>
+  </var>
+  <var set="5" lvl="1" vid="1" cid="_ebfe823c-68e0-45b3-8bee-32f1655d9a1b" cls="Mom.Test.UI.Tests.MP.ManagmentPacksInstallUI" dsc="Verify override Enabled is set from override properites window" focus="positive" cat="general" mode="auto" permutation="rows" feature="/MOMv3/UI/Console/" act="true">
+    <remarks>
+      Verify the override parameter of sources is successful.
+
+      steps:
+      1) navigates to Adminitration and to Tune management pack view.
+      2) selects the first MP after setting min alert to 1 in "identify management packs to tune" view. clicks on the Tune Alerts action.
+      3) selects first alert in tune alerts window and clicks View Sources action.
+      4) selects first alert in view sources and calls override.
+      5) overrides the parameter and verifies the same.
+      6) closes the view sources dialog and tune alerts window and returns.
+
+      Expected Result:
+      The given parameter should be overidden with the value successfully.
+    </remarks>
+    <recm key="OverrideOrDisable">
+      <val>Override</val>
+    </recm>
+    <recm key="OverrideParameter">
+      <val>Enabled</val>
+    </recm>
+    <recm key="OverrideParameterValue">
+      <val>True</val>
+    </recm>
+    <recm key="ComboMPName">
+      <val>Default Management Pack</val>
+    </recm>
+    <fnc name="EditOverrideFromSources" />
+  </var>
+  <var set="5" lvl="1" vid="2" cid="_2684db18-049c-4cfe-a3aa-3352d2e1f257" cls="Mom.Test.UI.Tests.MP.ManagmentPacksInstallUI" dsc="Verify disable override properites window" focus="positive" cat="general" mode="auto" permutation="rows" feature="/MOMv3/UI/Console/" act="true">
+    <remarks>
+      Verify the Disable overrides works from view sources dialog.
+
+      steps:
+      1) navigates to Adminitration and to Tune management pack view.
+      2) selects the first MP after setting min alert to 1 in "identify management packs to tune" view. clicks on the Tune Alerts action.
+      3) selects first alert in tune alerts window and clicks View Sources action.
+      4) selects first alert in view sources and calls Disable.
+      5) verifies if its successful.
+      6) closes the view sources dialog and tune alerts window and returns.
+
+      Expected Result:
+      The Disable overrides should be successful.
+    </remarks>
+    <recm key="OverrideOrDisable">
+      <val>Disable</val>
+    </recm>
+    <recm key="ComboMPName">
+      <val>Default Management Pack</val>
+    </recm>
+    <fnc name="EditOverrideFromSources" />
+  </var>
+  <var set="6" lvl="1" vid="1" cid="_ad4e52a3-e0be-405a-bbe0-083297012dc6" cls="Mom.Test.UI.Tests.MP.ManagmentPacksInstallUI" dsc="Automation to install and then uninstall all MPs for every categories in OC" focus="positive" cat="general" mode="auto" permutation="rows" feature="/MOMv3/UI/Console/" act="true">
+    <!-- This Test case will work only on signed Machine -->
+    <remarks>
+      Automation to install and then uninstall all MPs for every categories in OC
+    </remarks>
+
+    <fnc name="OnlineCatalogCategoryAutomation" />
+  </var>
+  
+  <var set="1" lvl="3" vid="8" cid="_86dee356-d9f4-4324-a8b5-50301f315cee" cls="" dsc="Verify Selection of the MP is disabled if it’s downloaded Uri is missing. From the metadata information received from the web service" focus="negative" cat="security" mode="manual" feature="/Operations Manager/UI/Console/Administration/MP" />
+  <var set="1" lvl="3" vid="9" cid="_7f62923c-26ac-497c-8929-c99a6155f992" cls="" dsc="Verify UI doesn’t hang if the download Uri for any dependent MP or the selected MP  is missing or if the file can’t be located at the specified URI" focus="negative" cat="security" mode="manual" feature="/Operations Manager/UI/Console/Administration/MP" />
+  <var set="1" lvl="3" vid="10" cid="_ca9682a0-9c59-466c-b3a5-da09caa0a695" cls="" dsc="Verify for the URl injection .Check to see no scripts get executed on the client machine while trying to process the download link to get  MP File" focus="negative" cat="security" mode="manual" feature="/Operations Manager/UI/Console/Administration/MP" />
+  <var set="1" lvl="3" vid="11" cid="_618f3ad9-89c7-4337-8a7d-82fefdfcdd13" cls="" dsc="Test for the Sql Store Procedure Injection, Identify the Store Proc which takes user Input as parameter and do the code review/Execution of the store proc for the malicious execution of the SQL cmd. Like Drop table X, etc" focus="negative" cat="security" mode="manual" feature="/Operations Manager/UI/Console/Administration/MP" />
+  <var set="1" lvl="3" vid="12" cid="_7a6275d6-e1df-4687-8b6c-ec459b5628ca" cls="" dsc="Test To check if proper handling is done when UI crashes in the middle of the any metadata validation Process. Verify all the file is deleted from the temp dir" focus="positive" cat="security" mode="manual" feature="/Operations Manager/UI/Console/Administration/MP" />
+  <grp>
+    <grp gid="Import" act="true" cls="Mom.Test.UI.Tests.MP.ManagementPacksInstallUIGroup">
+      <rec key="MPCatalogWebService">https://sunsingh-test1-vm1/ManagementPackCatalogWebService.asmx</rec>
+      <varref set="3" />
+      <varref set="4" lvl="1" />
+      <varref set="1" />
+      <!--      <varref set="2" />  --> <!-- For Updates and Recommendatinos disabling all the PP1 BVT as dev code is in progress  -->
+  <varref set="6" />   <!-- For Online Catalog Category Automation  -->
+      <varref set="5" />
+    </grp>
+    <!--
+    <grp gid="Create" act="true" cls="Mom.Test.UI.Tests.MP.ManagementPacksInstallUIGroup">
+      <varref set="4" lvl="1" vid="1" />
+    </grp>
+    -->
+  </grp>
+</varmap>

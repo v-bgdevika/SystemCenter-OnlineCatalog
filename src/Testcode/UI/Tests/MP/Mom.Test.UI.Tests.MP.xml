@@ -1,0 +1,332 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<varmap contact="momtui" owner="zhihaoq" assembly="Mom.Test.UI.Tests.MP.dll" dsc="MP Imports via the UI" xmlns="http://smxinfranet/schemas/mcf/2002/01/varmap">
+  <states id="PreinstallStatusDisplayed" />
+  <states id="ManagementPackExportedFileNotPresent" />
+  <states id="ManagementPackExportedFilePresent" />
+  <var set="3" lvl="1" vid="1" act="true" cid="_f7f1be64-4003-4f71-bad3-5b175bb67837" cls="Mom.Test.UI.Tests.MP.ManagmentPacksInstallUI" dsc="Handling of valid Imports of MPs" focus="positive" cat="general" mode="auto" feature="/MOMv3/UI/Console/Administration/ManagementPacks">
+    <remarks>BVT test case verifying the following areas: 
+1)Add multiple MPs one by one from Disk. 
+2)Add multiple MPs in a batch from Disk.
+3)Add multiple MPs in multiple batch from Disk. 
+4)Remove single MPs from wizard. 
+5)Remove multiple MPs from wizard.   
+
+Steps)
+1) Add Exchange Library MP.
+2) Add Exchange 2003 Discovery MP.
+3) Add Exchange 2003 Monitoring MP &amp; IW Common Library MP.
+4) Add IW Office 2003 MP &amp; IW Office 2007 MP. 
+5) Remove Exchange 2003 Monitoring MP. 
+6) Remove IW Office 2003 MP &amp; IW Office 2007 MP.  
+
+Expected results: 
+The following MPs got installed: Exchange Library, 2003 Discovery MP, IW Common Library MP.
+
+Cleanup: 
+Delete the following MPs: Exchange Library, 2003 Discovery MP, IW Common Library MP.</remarks>
+    <rec key="TestData">MPsAddFromDisk="\\smx.net\builds\MOMv3.SP1\en\6278\debug\x86\SelectCDImage\ManagementPacks\Microsoft.Exchange.Server.Library.mp"</rec>
+    <rec key="TestData">MPsAddFromDisk="\\smx.net\builds\MOMv3.SP1\en\6278\debug\x86\SelectCDImage\ManagementPacks\Microsoft.Exchange.Server.2003.Discovery.mp"</rec>
+    <rec key="TestData">MPsAddFromDisk="\\smx.net\builds\MOMv3.SP1\en\6278\debug\x86\SelectCDImage\ManagementPacks\Microsoft.Exchange.Server.2003.Monitoring.mp" "\\smx.net\builds\MOMv3.SP1\en\6278\debug\x86\SelectCDImage\ManagementPacks\Microsoft.InformationWorker.CommonLibrary.mp"</rec>
+    <rec key="TestData">MPsAddFromDisk="\\smx.net\builds\MOMv3.SP1\en\6278\debug\x86\SelectCDImage\ManagementPacks\Microsoft.InformationWorker.Office.2003.mp" "\\smx.net\builds\MOMv3.SP1\en\6278\debug\x86\SelectCDImage\ManagementPacks\Microsoft.InformationWorker.Office.2007.mp"</rec>
+    <rec key="TestData">MPsRemoveFromToolStripRemoveButton=Exchange Server 2003 (Monitoring)</rec>
+    <rec key="TestData">MPsRemoveFromToolStripRemoveButton=Information Worker Office 2003|Information Worker Office 2007</rec>
+    <fnc name="ImportManagementPacks">
+      <remarks>
+      </remarks>
+    </fnc>
+  </var>
+  <var set="3" lvl="1" vid="2" act="true" cid="_6d2231b1-45c6-4358-b317-0a5ced570ffc" cls="Mom.Test.UI.Tests.MP.ManagmentPacksInstallUI" dsc="describe test" focus="positive" cat="general" mode="manual" feature="/MOMv3/UI/Console/Administration/ManagementPacks">
+  </var>
+  <var set="4" lvl="1" vid="1" cid="_eea2c2b6-28b6-4f85-93d9-ce50c6885b62" cls="Mom.Test.UI.Tests.MP.ManagmentPacksInstallUI" dsc="Create MP from Console UI" focus="positive" cat="general" mode="auto" permutation="rows" feature="/MOMv3/UI/Console/" act="true">
+    <remarks>Create, Export MP from UI</remarks>
+    <recm key="MPName">
+      <val>UIBVTTest</val>
+    </recm>
+    <recm key="MPVersion">
+      <val>1.0.0.1</val>
+    </recm>
+    <recm key="MPDescription">
+      <val>$random$</val>
+    </recm>
+    <recm key="Knowledge">
+      <val>False</val>
+    </recm>
+    <recm key="KnowledgeContent">
+      <val>NA</val>
+    </recm>
+    <fnc name="CreateMP">
+    </fnc>
+    <fnc name="VerifyCreatedMP" />
+    <fnc name="VerifyMPFolder" />
+    <fnc name="ExportMP" />
+    <fnc name="DeleteMP" />
+  </var>
+  <var set="1" lvl="1" vid="1" cid="_65748f2b-acce-44d6-b081-f144f1326885" cls="" dsc="Create a Management Pack from Action Pane" focus="positive" cat="general" mode="manual" feature="TBD">
+    <remarks>Create a Management Pack from Action Pane
+
+      STEPS
+      1.Open the Operations Console and select the Administration navigation button
+      2.Choose the Management Pack node
+      3.Click Create Management Pack on the Action Pane
+      4.Enter the Name, Version, Description and click Next
+      5.Enter the Knowledge and click Create
+ 
+      EXPECT
+      Verify the Management Pack has been created in the MP view.</remarks>
+  </var>
+  <var set="1" lvl="2" vid="1" cid="_2523e956-69ee-4c74-b0a5-ea58bdf0224d" cls="" dsc="Can NOT create a Management Pack without name" focus="negative" cat="general" mode="manual" feature="TBD">
+    <remarks>Can NOT create a Management Pack without name
+
+      STEPS
+      1.Open the Operations Console and select the Administration navigation button
+      2.Choose the Management Pack node
+      3.Right click or from Action pane-Create Management Pack
+      4.Enter the description, but do NOT put any under the name
+ 
+      EXPECT
+      The "Next" button is disabled</remarks>
+  </var>
+  <var set="1" lvl="2" vid="2" cid="_0c63b0cf-adf0-4c1b-9ff6-a5cd464f1c30" cls="" dsc="Can NOT create a Management Pack with invalid name" focus="negative" cat="general" mode="manual" feature="TBD">
+    <remarks>Can NOT create a Management Pack with invalid name
+
+      STEPS
+      1.Open the Operations Console and select the Administration navigation button
+      2.Choose the Management Pack node
+      3.Right click or from Action pane-Create Management Pack
+      4.Enter the name not including the characters "a-z" or "A-Z", as "12345!@#$%"
+ 
+      EXPECT
+      The "Next" button is disabled.
+      If the name including the characters "a-z" or "A-Z", it could be created.</remarks>
+  </var>
+  <var set="1" lvl="1" vid="2" cid="_406e671a-a0a4-4be9-8482-91d3d0a36f0a" cls="" dsc="Edit Management Pack Properties" focus="positive" cat="general" mode="manual" feature="TBD">
+    <remarks>Edit Management Pack Properties
+
+      STEPS
+      1.Open the Operations Console and select the Administration navigation button
+      2.Choose the Management Pack node
+      3.Right Click MP just created in the MP view and select Properties
+      4.Modify the Name, Version and Description
+      5.Click ok
+      6.Open the Properties dialog again
+
+      EXPECT
+      Verify the MP properties have been changed to the latest one.</remarks>
+  </var>
+  <var set="1" lvl="1" vid="3" cid="_b16b6f26-2097-453c-845d-6ee0553f9ce2" cls="" dsc="Edit Management Pack Properties from Action Pane" focus="positive" cat="general" mode="manual" feature="TBD">
+    <remarks>Edit Management Pack Properties from Action Pane
+
+      STEPS
+      1.Open the Operations Console and select the Administration navigation button
+      2.Choose the Management Pack node
+      3.Click MP just created in the MP view and select Properties from Action Pane
+      4.Click the Knowledage tab and edit the knowledge
+      5.Click ok
+      6.Open the Properties dialog again
+
+      EXPECT
+      Verify the MP knowledge has been changed to the latest one.</remarks>
+  </var>
+  <var set="1" lvl="2" vid="3" cid="_032afdd0-ce62-4439-91c2-ca3bfbcff443" cls="" dsc="Verify sealed Management Pack can NOT be modified and Export" focus="negative" cat="general" mode="manual" feature="TBD">
+    <remarks>Verify sealed Management Pack can NOT be modified and Export
+
+      STEPS
+      1.Open the Operations Console and select the Administration navigation button
+      2.Choose the Management Pack node
+      3.In the Management Pack view, choose the sealed management pack and click properties
+ 
+      EXPECT
+      Verify all the items in the properties dialog can NOT be modified.
+      Verify the Export Management Pack is disabled</remarks>
+  </var>
+  <var set="1" lvl="1" vid="4" cid="_93217e66-43c6-414a-a1b4-4cffafea7e95" cls="" dsc="Import Management Pack from Action Pane" focus="positive" cat="general" mode="manual" feature="TBD">
+    <remarks>Import Management Pack from Action Pane
+
+      STEPS
+      1.Open the Operations Console and select the Administration navigation button
+      2.Choose the Management Pack node
+      3.Click Import Management Pack from Action Pane
+      4.Select the MP file that needs to be imported and click Open
+      Verify the MP is in the list.
+
+      5.Click Properties
+      Verify the MP properties window pop up.
+
+      6.Click Help
+      Verify the Operation Manager Help documents pop up
+
+      7.Click Import
+      Verify the MP has been imported in the MP view.</remarks>
+  </var>
+  <var set="1" lvl="1" vid="5" cid="_628ef3e2-bfe5-4265-8176-33d70b1ce408" cls="" dsc="Verify Multiple Selected for Improt MPs" focus="positive" cat="general" mode="manual" feature="TBD">
+    <remarks>Verify Multiple Selected for Improt MPs
+
+      STEPS
+      1.Open the Operations Console and select the Administration navigation button
+      2.Right click the Management Pack node and select Import Management Pack
+      3.On the Select MPs to import window, Press Shift and multiple select some MPs, as Microsoft.InformationWorker.CommonLibrary.mp,Microsoft.InformationWorker.office.2003.mp,Microsoft.InformationWorker.office.2007.mp
+      4.Click Open
+      Verify all the MPs have been listed here.
+
+      5.Click Import
+      Verify all the MPs have been imported in the MP view.</remarks>
+  </var>
+  <var set="1" lvl="1" vid="6" cid="_2b159818-9547-4795-ab3c-0f07326f5347" cls="" dsc="Verify Add/Remove MP for Improt MPs" focus="positive" cat="general" mode="manual" feature="TBD">
+    <remarks>Verify Add/Remove MP for Improt MPs
+
+      STEPS
+      1.Open the Operations Console and select the Administration navigation button
+      2.Right click the Management Pack node and select Import Management Pack
+      3.Select the MPs that need to be imported, as Microsoft.InformationWorker.CommonLibrary.mp
+      4.Click Open
+      Verify the MP is in the list.
+
+      5.Click Add, select another MP, as Microsoft.InformationWorker.office.2003.mp and click Open
+      Verify the two MPs are in the list
+
+      6.Select the MP, as Microsoft.InformationWorker.office.2003.mp and click Remove
+      Verify the MP Microsoft.InformationWorker.office.2003.mp is not in the list any more.
+    
+      7.Click Import
+      Verify the MP has been imported in the MP view.</remarks>
+  </var>
+  <var set="1" lvl="1" vid="7" cid="_bb70d3ac-bab6-4283-81cb-bbed5a5847f8" cls="" dsc="Verify the dependency import" focus="positive" cat="general" mode="manual" feature="TBD" permutation="rows">
+    <remarks>Verify the dependency import
+
+      STEPS
+      1.Choose MP1 and MP2 which are not imported, make sure MP1 depends on MP2
+      2.Open the Operations Console and select the Administration navigation button
+      3.Choose the Management Pack node
+      4.Import the MP1
+      Verify the MP1 can NOT be imported. 
+      Verify the indicator is red error. 
+      Verify the error msg like "The MP will fail to import because it depends on the following MP: MP2 "
+
+       5.Add the MP2
+       Verify the indicator is changed to green.
+       Veirfy the error msg is not there.
+
+        6.Click Import
+        Verify the MP2 is imported first.
+        Verify the MP1 is imported after that.</remarks>
+    <recm key="MP1">
+      <val>Microsoft.SQLServer.2000.Discovery.mp</val>
+    </recm>
+    <recm key="MP2">
+      <val>Microsoft.SQLServer.Library.mp</val>
+    </recm>
+  </var>
+  <var set="1" lvl="1" vid="8" cid="_e239c740-cfe5-4da5-a39e-180c80a3a317" cls="" dsc="Export Management Pack" focus="positive" cat="general" mode="manual" feature="TBD">
+    <remarks>Export Management Pack
+
+      STEPS
+      1.Open the Operations Console and select the Administration navigation button
+      2.Choose the Management Pack node
+      3.Right Click unsealed MP and select Export Management Pack
+      4.Select the path/location to export to and Click OK
+      Verify the Information window pop up, the msg like "Management Pack sucessfully exported....."
+ 
+      5.Open the XML file that just exported
+      Verify the properties like ID, Name, Verison is correct</remarks>
+  </var>
+  <var set="1" lvl="1" vid="9" cid="_12d2ec1c-b263-46a0-b3b4-efce525aa26b" cls="" dsc="Export Management Pack from Action Pane" focus="positive" cat="general" mode="manual" feature="TBD">
+    <remarks>Export Management Pack from Action Pane
+
+      STEPS
+      1.Open the Operations Console and select the Administration navigation button
+      2.Choose the Management Pack node
+      3.Click the MP that need to be exported and Select Export Management Pack from Action Pane
+      4.Select the path/location to export to and Click OK
+      Verify the Information window pop up, the msg like "Management Pack sucessfully exported....."
+ 
+      5.Open the XML file that just exported
+      Verify the properties like ID, Name, Verison is correct</remarks>
+  </var>
+  <var set="1" lvl="1" vid="10" cid="_b734b7ba-e70e-40dc-8a37-58e395517c05" cls="" dsc="Look for a Management Pack and clear" focus="positive" cat="general" mode="manual" feature="TBD">
+    <remarks>Look for a Management Pack and clear
+
+      STEPS
+      1.Open the Operations Console and select the Administration navigation button
+      2.Choose the Management Pack node
+      3.Create a MP with the setting specified
+      4.In the Find bar type in the search criteria
+      5.Click Find now
+      Verify in the MP view, the search result are as expected
+
+      6.Click Clear
+      Verify the Find bar is cleared and the MP view back to the original</remarks>
+  </var>
+  <var set="1" lvl="1" vid="11" cid="_6e0f947d-ab15-49e2-ba5d-92155ff61b00" cls="" dsc="Sort by every column in Management Pack view by clicking column titles" focus="positive" cat="general" mode="manual" feature="TBD">
+    <remarks>Sort by every column in Management Pack view by clicking column titles
+
+      STEPS
+      1.Open the Operations Console and select the Administration navigation button
+      2.Choose the Management Pack node
+      3.In the MP view, click every column titles twice to sort asc and dsc, as Name, Version, Sealed, Data Created, Description
+ 
+      EXPECT
+      Verify the sort indicator appeared and can be changed properly.
+      Verify the view is sorted by asc or dsc</remarks>
+  </var>
+  <var set="1" lvl="1" vid="12" cid="_c01f5f2f-19f2-49e5-adc3-cfc8fcaa7e57" cls="" dsc="Delete Management Pack" focus="positive" cat="general" mode="manual" feature="TBD">
+    <remarks>Delete Management Pack
+
+      STEPS
+      1.Open the Operations Console and select the Administration navigation button
+      2.Choose the Management Pack node
+      3.Right Click MP and select delete
+      4.Click Yes, if the information window pop up, the msg like "Deleting a Management Pack might affect the scoping of some user roles. Are you sure you want to delete...."
+ 
+      EXPECT
+      Verify the MP has been deleted from the MP view.</remarks>
+  </var>
+  <var set="1" lvl="1" vid="13" cid="_c9f19b6b-3d2e-4efd-99e7-31c8c771e9e6" cls="" dsc="Delete Management Pack from Action Pane" focus="positive" cat="general" mode="manual" feature="TBD">
+    <remarks>Delete Management Pack from Action Pane
+
+      STEPS
+      1.Open the Operations Console and select the Administration navigation button
+      2.Choose the Management Pack node
+      3.Click the MP that need to be deleted and Select delete from Action Pane
+      4.Click Yes, if the information window pop up, the msg like "Deleting a Management Pack might affect the scoping of some user roles. Are you sure you want to delete...."
+ 
+      EXPECT
+      Verify the MP has been deleted from the MP view.</remarks>
+  </var>
+  <var set="1" lvl="1" vid="14" cid="_2bc6fd8a-91ff-4e65-9021-a7a6f7e78834" cls="" dsc="Verify the dependency delete" focus="positive" cat="general" mode="manual" feature="TBD" permutation="rows">
+    <remarks>Verify the dependency delete
+
+      STEPS
+      1.Choose MP1 and MP2 which have been imported, make sure MP1 depends on MP2
+      2.Open the Operations Console and select the Administration navigation button
+      3.Choose the Management Pack node
+      4.Delete the MP2
+      Verify the MP2 can NOT be deleted.
+      Verify the Dependent Management Packs window pop up. 
+      Verify the msg like "Following MP depends on the MP you are trying on delete. Please delete the following MP manually first "
+      Verify the MP1 is in the list.
+
+       5.Delete MP1
+       Verify it can be deleted
+
+       6.Delete MP2
+       Verify it can be deleted as well.</remarks>
+    <recm key="MP1">
+      <val>Microsoft.SQLServer.2000.Discovery.mp</val>
+    </recm>
+    <recm key="MP2">
+      <val>Microsoft.SQLServer.Library.mp</val>
+    </recm>
+  </var>
+  <grp>
+    <grp gid="Import" act="true" cls="Mom.Test.UI.Tests.MP.ManagementPacksInstallUIGroup">
+      <varref set="3" />
+      <varref set="4" lvl="1" vid="1" />
+      <varref set="1" />
+    </grp>
+    <!--
+    <grp gid="Create" act="true" cls="Mom.Test.UI.Tests.MP.ManagementPacksInstallUIGroup">
+      <varref set="4" lvl="1" vid="1" />
+    </grp>
+    -->
+  </grp>
+</varmap>

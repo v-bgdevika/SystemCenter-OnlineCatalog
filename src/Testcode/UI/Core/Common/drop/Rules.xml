@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Rules>
+<Rule ID="TestGenericCSVTextLogRule">
+  <DataTypes>
+    <Property name="PublisherName"/>
+    <Property name="EventSourceName"/>
+    <Property name="Channel"/>
+    <Property name="LoggingComputer"/>
+    <Property name="EventNumber"/>
+    <Property name="EventCategory"/>
+    <Property name="EventLevel"/>
+    <Property name="UserName"/>
+    <Property name="RawDescription"/>
+    <!-- 
+      <Property name="LCID"/>
+      <Property name="CollectDescription"/>
+      -->
+    <Property name="Params" type="EventParametersType"/>
+    <Property name="EventData" type="GenericDataItemType" subtype="AppLogGenericLogEntryDataType"/>
+    <Property name="EventDisplayNumber"/>
+    <Property name="EventDescription"/>
+    <!-- 
+      <Property name="CorrelationActivityId"/>
+      <Property name="CorrelationRelatedActivityId"/>
+      -->
+    <Property name="Opcode"/>
+    <Property name="Keywords"/>
+    <Property name="ProcessId"/>
+    <Property name="ThreadId"/>
+    <Property name="Version"/>
+  </DataTypes>
+
+</Rule>
+
+  <Rule ID="TestGenericTextLogRule">
+    <DataTypes>
+      <Property name="PublisherName"/>
+      <Property name="EventSourceName"/>
+      <Property name="Channel"/>
+      <Property name="LoggingComputer"/>
+      <Property name="EventNumber"/>
+      <Property name="EventCategory"/>
+      <Property name="EventLevel"/>
+      <Property name="UserName"/>
+      <Property name="RawDescription"/>
+      <!-- 
+      <Property name="LCID"/>
+      <Property name="CollectDescription"/>
+      -->
+      <Property name="Params" type="EventParametersType"/>
+      <Property name="EventData" type="GenericDataItemType" subtype="AppLogGenericLogEntryDataType"/>
+      <Property name="EventDisplayNumber"/>
+      <Property name="EventDescription"/>
+      <!-- 
+      <Property name="CorrelationActivityId"/>
+      <Property name="CorrelationRelatedActivityId"/>
+      -->
+      <Property name="Opcode"/>
+      <Property name="Keywords"/>
+      <Property name="ProcessId"/>
+      <Property name="ThreadId"/>
+      <Property name="Version"/>
+    </DataTypes>
+
+  </Rule>
+
+  <Rule ID="TestNTEventLogRule">
+    <DataTypes>
+      <Property name="PublisherName"/>
+      <Property name="EventSourceName"/>
+      <Property name="Channel"/>
+      <Property name="LoggingComputer"/>
+      <Property name="EventNumber"/>
+      <Property name="EventCategory"/>
+      <Property name="EventLevel"/>
+      <Property name="UserName"/>
+      <Property name="RawDescription"/>
+      <!-- 
+      <Property name="LCID"/>
+      <Property name="CollectDescription"/>
+      -->
+      <Property name="Params" type="EventParametersType"/>
+      <Property name="EventData" type="GenericDataItemType"/>
+      <Property name="EventDisplayNumber"/>
+      <Property name="EventDescription"/>
+      <!-- 
+      <Property name="CorrelationActivityId"/>
+      <Property name="CorrelationRelatedActivityId"/>
+      -->
+      <Property name="Opcode"/>
+      <Property name="Keywords"/>
+      <Property name="ProcessId"/>
+      <Property name="ThreadId"/>
+      <Property name="Version"/>
+    </DataTypes>
+
+  </Rule>
+
+  <Rule ID="TestSNMPTrapRule">
+    <DataTypes>
+      <Property name="PublisherName"/>
+      <Property name="EventSourceName"/>
+      <Property name="Channel"/>
+      <Property name="LoggingComputer"/>
+      <Property name="EventNumber"/>
+      <Property name="EventCategory"/>
+      <Property name="EventLevel"/>
+      <Property name="UserName"/>
+      <Property name="RawDescription"/>
+      <!-- 
+      <Property name="LCID"/>
+      <Property name="CollectDescription"/>
+      -->
+      <Property name="Params" type="EventParametersType"/>
+      <Property name="EventData" type="GenericDataItemType" subtype="SnmpData"/>
+      <Property name="EventDisplayNumber"/>
+      <Property name="EventDescription"/>
+      <!-- 
+      <Property name="CorrelationActivityId"/>
+      <Property name="CorrelationRelatedActivityId"/>
+      -->
+      <Property name="Opcode"/>
+      <Property name="Keywords"/>
+      <Property name="ProcessId"/>
+      <Property name="ThreadId"/>
+      <Property name="Version"/>
+    </DataTypes>
+
+  </Rule>
+
+  <Rule ID="TestSysLogRule">
+    <DataTypes>
+      <Property name="PublisherName"/>
+      <Property name="EventSourceName"/>
+      <Property name="Channel"/>
+      <Property name="LoggingComputer"/>
+      <Property name="EventNumber"/>
+      <Property name="EventCategory"/>
+      <Property name="EventLevel"/>
+      <Property name="UserName"/>
+      <Property name="RawDescription"/>
+      <!-- 
+      <Property name="LCID"/>
+      <Property name="CollectDescription"/>
+      -->
+      <Property name="Params" type="EventParametersType"/>
+      <Property name="EventData" type="GenericDataItemType" subtype="SysLogDataType"/>
+      <Property name="EventDisplayNumber"/>
+      <Property name="EventDescription"/>
+      <!-- 
+      <Property name="CorrelationActivityId"/>
+      <Property name="CorrelationRelatedActivityId"/>
+      -->
+      <Property name="Opcode"/>
+      <Property name="Keywords"/>
+      <Property name="ProcessId"/>
+      <Property name="ThreadId"/>
+      <Property name="Version"/>
+    </DataTypes>
+
+  </Rule>
+
+  <Rule ID="TestWMIEventRule">
+    <DataTypes>
+      <Property name="PublisherName"/>
+      <Property name="EventSourceName"/>
+      <Property name="Channel"/>
+      <Property name="LoggingComputer"/>
+      <Property name="EventNumber"/>
+      <Property name="EventCategory"/>
+      <Property name="EventLevel"/>
+      <Property name="UserName"/>
+      <Property name="RawDescription"/>
+      <!-- 
+      <Property name="LCID"/>
+      <Property name="CollectDescription"/>
+      -->
+      <Property name="Params" type="EventParametersType"/>
+      <Property name="EventData" type="GenericDataItemType" subtype="PropertyBagDataType"/>
+      <Property name="EventDisplayNumber"/>
+      <Property name="EventDescription"/>
+      <!-- 
+      <Property name="CorrelationActivityId"/>
+      <Property name="CorrelationRelatedActivityId"/>
+      -->
+      <Property name="Opcode"/>
+      <Property name="Keywords"/>
+      <Property name="ProcessId"/>
+      <Property name="ThreadId"/>
+      <Property name="Version"/>
+    </DataTypes>
+
+  </Rule>
+
+
+</Rules>

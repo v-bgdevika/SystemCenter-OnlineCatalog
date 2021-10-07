@@ -1,0 +1,500 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="14.0">
+  <!-- <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" /> -->
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" /> 
+  <!-- <Import Project="$(EnvironmentConfig)" /> 
+  <Import Project="$(SRCROOT)\Testcode\UI\Core\common.targets" />
+  <Import Project="$(SRCROOT)\Build\test.external.prism.settings" />
+  <Import Project="$(SRCROOT)\Build\test.external.unity.settings" />-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{915D3D10-2959-45E2-96B2-7D02CE3CD4CF}</ProjectGuid>
+    <RootNamespace>Mom.Test.UI.Core.Common</RootNamespace>
+    <AssemblyName>Mom.Test.UI.Core.Common</AssemblyName>
+    <OutputType>Library</OutputType>
+    <WarningsNotAsErrors>1030,618,162,414,67,8002,1570,1591,1572,1573,1587</WarningsNotAsErrors>
+    <NoWarn>1030,618,162,414,67,8002,1570,1591,1572,1573,1587</NoWarn>
+    <DefineConstants>TESTCODE</DefineConstants>
+    <SignAssembly>false</SignAssembly>
+    <OutDir>D:\OC\out</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <!-- <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet> -->
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <!-- <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet> -->
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration"/>
+    <Reference Include="WindowsBase" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Windows.Forms" />
+    <!--<Reference Include="System.Windows" />-->
+    
+    <!--Newly added refes -->
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Text.RegularExpressions" />
+    <Reference Include="System.Linq" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <!--<Reference Include="PresentationFramework" />-->
+  </ItemGroup>
+  <!--<PropertyGroup Condition="'$(BuildType)' == 'debug'">
+    <DocumentationFile>D:\OC\UI\Core\Common\Mom.Test.UI.Core.Common.XML</DocumentationFile>
+  </PropertyGroup>-->
+  <ItemGroup>
+    <!--New references adding -->
+    <Reference Include="Microsoft.Mom.Modules.DataTypes">
+      <HintPath>D:\CxCache\MPMainOM2012.1.0.0.2\lib\net45\retail\Microsoft.Mom.Modules.DataTypes.dll</HintPath>
+    </Reference>
+    <!--<ProjectReference Include="$(SRCROOT)\product\common\Managed\BuildConstants\BuildConstants.csproj">
+      <Project>{6D1716B9-1593-4231-AD47-3609E299DD11}</Project>
+      <Name>Microsoft.Mom.BuildConstants</Name>
+    </ProjectReference>-->
+    <Reference Include="Microsoft.Mom.BuildConstants">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012R2UR2.1.0.0.2\lib\net45\retail\Microsoft.Mom.BuildConstants.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.Extensibility">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012R2.1.0.0.2\lib\net45\retail\Microsoft.EnterpriseManagement.UI.Extensibility.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.Test.ScCommon">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainBaseOSTestAutomation.1.0.0.2\lib\net45\retail\Microsoft.EnterpriseManagement.Test.ScCommon.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.Test.BaseCommon">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainBaseOSTestAutomation.1.0.0.2\lib\net45\retail\Microsoft.EnterpriseManagement.Test.BaseCommon.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.Test.FrmwrkCommon">
+    <SpecificVersion>False</SpecificVersion>
+    <HintPath>D:\CxCache\MPMainBaseOSTestAutomation.1.0.0.2\lib\net45\retail\Microsoft.EnterpriseManagement.Test.FrmwrkCommon.dll</HintPath>
+    <Private>False</Private>
+  </Reference>
+
+    <Reference Include="Microsoft.EnterpriseManagement.Common">
+    <SpecificVersion>False</SpecificVersion>
+    <HintPath>D:\CxCache\MPMainOM2012SP1.1.0.0.4\lib\net45\retail\Microsoft.EnterpriseManagement.Common.dll</HintPath>
+    <Private>False</Private>
+  </Reference>
+    <!--<Reference Include="Microsoft.EnterpriseManagement.OperationsManager.Common">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012SP1.1.0.0.4\lib\net45\retail\Microsoft.EnterpriseManagement.OperationsManager.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>-->
+    <Reference Include="Microsoft.EnterpriseManagement.OperationsManager">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012SP1.1.0.0.4\lib\net45\retail\Microsoft.EnterpriseManagement.OperationsManager.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.Monitoring.Components">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainSolutionItems.1.0.0.2\lib\net45\Replication\Libraries\OM2012SP1\Microsoft.EnterpriseManagement.Monitoring.Components.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.Presentation.Security">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012SP1.1.0.0.4\lib\net45\retail\Microsoft.EnterpriseManagement.Presentation.Security.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.Presentation.DataAccess">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012SP1.1.0.0.4\lib\net45\retail\Microsoft.EnterpriseManagement.Presentation.DataAccess.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+     <Reference Include="System.Collections">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\SlnGen.Corext.6.0.1\tools\net461\System.Collections.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <!--New references adding Done-->
+    <Reference Include="Microsoft.EnterpriseManagement.Packaging">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\SCOM.Microsoft.SystemCenter.External.SM.retail.10.22.1019\lib\net45\retail\Microsoft.EnterpriseManagement.Packaging.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.Monitoring.DataProviders">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012SP1.1.0.0.4\lib\net45\retail\Microsoft.EnterpriseManagement.Monitoring.DataProviders.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <!-- <ProjectReference Include="$(SRCROOT)\product\sdk\server\MPInfrastructure\container\packaging\packaging.csproj"> -->
+    <!-- <Project>{4A789ED7-83EB-4D1F-9AE6-51BF0D74531B}</Project> -->
+    <!-- <Name>Microsoft.EnterpriseManagement.Packaging</Name> -->
+    <!-- </ProjectReference> -->
+    <Reference Include="Microsoft.EnterpriseManagement.CompositionEngine.Extensibility">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012SP1.1.0.0.4\lib\net45\retail\Microsoft.EnterpriseManagement.CompositionEngine.Extensibility.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <!-- <ProjectReference Include="$(SRCROOT)\product\Presentation\DataProviders.Library\DataProviders.Library.csproj"> -->
+    <!-- <Project>{C9141959-382A-430C-B12C-DFB55ECA26DD}</Project> -->
+    <!-- <Name>Microsoft.EnterpriseManagement.Presentation.DataProviders.Library</Name> -->
+    <!-- </ProjectReference> -->
+    <Reference Include="Microsoft.EnterpriseManagement.Presentation.DataProviders.Library">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012SP1.1.0.0.4\lib\net45\retail\Microsoft.EnterpriseManagement.Presentation.DataProviders.Library.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+
+    <!-- <ProjectReference Include="$(SRCROOT)\product\Presentation\DataProviders.Management\DataProviders.Management.csproj"> -->
+    <!-- <Project>{1B6F51E4-4FF5-488E-A45B-6A6F1A96FC15}</Project> -->
+    <!-- <Name>Microsoft.EnterpriseManagement.Management.DataProviders</Name> -->
+    <!-- </ProjectReference> -->
+    <Reference Include="Microsoft.EnterpriseManagement.Management.DataProviders">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012SP1.1.0.0.4\lib\net45\retail\Microsoft.EnterpriseManagement.Management.DataProviders.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+
+    <!-- <ProjectReference Include="$(SRCROOT)\product\Presentation\Visual\Visual.csproj"> -->
+    <!-- <Project>{3047E728-D86A-45E9-BD2D-A032B959DF69}</Project> -->
+    <!-- <Name>Microsoft.EnterpriseManagement.Presentation.Visual</Name> -->
+    <!-- </ProjectReference> -->
+    <Reference Include="Microsoft.EnterpriseManagement.Presentation.Visual">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012SP1.1.0.0.4\lib\net45\retail\Microsoft.EnterpriseManagement.Presentation.Visual.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    
+    <Reference Include="Microsoft.EnterpriseManagement.Presentation.Core">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012R2UR1.1.0.0.2\lib\net45\retail\Microsoft.EnterpriseManagement.Presentation.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <!-- <ProjectReference Include="$(SRCROOT)\product\Presentation\Controls\Controls\WPF\Microsoft.SystemCenter.OperationsManager.Controls.WPF.csproj"> -->
+    <!-- <Project>{8512B667-1F9D-4C54-A1EA-6B92AE956328}</Project> -->
+    <!-- <Name>Microsoft.EnterpriseManagement.Presentation.Controls</Name> -->
+    <!-- </ProjectReference> -->
+    <Reference Include="Microsoft.EnterpriseManagement.Presentation.VisualMicrosoft.EnterpriseManagement.Presentation.Controls">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012SP1.1.0.0.4\lib\net45\retail\Microsoft.EnterpriseManagement.Presentation.Controls.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+
+    <!--<ProjectReference Include="$(SRCROOT)\product\DataGeneration\Core\Core.csproj">
+      <Project>{95AA61B3-8385-4E29-BEBE-BCC55A3EE80C}</Project>
+      <Name>Microsoft.EnterpriseManagement.Test.DataGeneration.Core</Name>
+    </ProjectReference>-->
+    <!--<ProjectReference Include="$(SRCROOT)\product\DataGeneration\OperationsManager\OperationsManager.csproj">
+      <Project>{B42C5D79-C8FC-46C2-A302-3DF965B90448}</Project>
+      <Name>Microsoft.EnterpriseManagement.Test.DataGeneration.OperationsManager</Name>
+    </ProjectReference>-->
+    <!-- <ProjectReference Include="$(SRCROOT)\Testcode\momcommon\src\ScCommon.csproj"> -->
+    <!-- <Project>{6EE53C47-97F9-455A-B99F-84FFBD85EF7B}</Project> -->
+    <!-- <Name>Microsoft.EnterpriseManagement.Test.ScCommon</Name> -->
+    <!-- </ProjectReference> -->
+    
+    <!--Showing warning -->
+    <!--<Reference Include="Microsoft.EnterpriseManagement.Test.ScCommon">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainBaseOSTestAutomation.1.0.0.1\lib\net45\signed\Microsoft.EnterpriseManagement.Test.ScCommon.dll</HintPath>
+      <Private>False</Private>
+    </Reference>-->
+
+    <!-- <ProjectReference Include="$(SRCROOT)\product\Common\Managed\MOMCommonUtils\Microsoft.Mom.Common.csproj"> -->
+    <!-- <Project>{DA69B55B-E56A-4192-B001-5EF05BBF3CAA}</Project> -->
+    <!-- <Name>Microsoft.Mom.Common</Name> -->
+    <!-- </ProjectReference> -->
+    <!--<Reference Include="Microsoft.Mom.Common">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012SP1.1.0.0.4\lib\net45\retail\Microsoft.Mom.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>-->
+
+    <!-- <ProjectReference Include="$(SRCROOT)\product\ui\OpsMgr\Components\Microsoft.Mom.UI.Components.csproj"> -->
+    <!-- <Project>{1465D4C7-4FC8-4EEF-BA63-5947B915C5F6}</Project> -->
+    <!-- <Name>Microsoft.Mom.UI.Components</Name> -->
+    <!-- </ProjectReference> -->
+    <Reference Include="Microsoft.Mom.UI.Components">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012SP1.1.0.0.4\lib\net45\retail\Microsoft.Mom.UI.Components.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+
+    <!-- <ProjectReference Include="$(SRCROOT)\Testcode\common\src\BaseCommon.csproj"> -->
+    <!-- <Project>{FE25D6CB-C786-4DA0-BDB4-47638978CF73}</Project> -->
+    <!-- <Name>Microsoft.EnterpriseManagement.Test.BaseCommon</Name> -->
+    <!-- </ProjectReference> -->
+    <!--<Reference Include="Microsoft.EnterpriseManagement.Test.BaseCommon">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012SP1.1.0.0.4\lib\net45\retail\Microsoft.EnterpriseManagement.Test.BaseCommon.dll</HintPath>
+      <Private>False</Private>
+    </Reference>-->
+    <!--<ProjectReference Include="$(SRCROOT)\product\common\Native\svc\src\ServiceCommon.vcxproj">
+      <Project>{2A1DED59-E3D0-4261-93ED-8AC6A1761D00}</Project>
+      <Name>Microsoft.Mom.ServiceCommon</Name>
+    </ProjectReference>-->
+  </ItemGroup>
+  <ItemGroup>
+    <!--New References added-->
+    <!--<Reference Include="Microsoft.EnterpriseManagement.Instrumentation">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Test_Dependency\$(BuildArchitecture)\bin\Microsoft.EnterpriseManagement.Instrumentation.dll</HintPath>
+    </Reference>-->
+    <Reference Include="Microsoft.Practices.Prism">
+      <!--<HintPath>$(PkgSCOM_Microsoft_SystemCenter_External_Prism)\lib\net45\Net\Bin\Microsoft.Practices.Prism.dll</HintPath>-->
+      <HintPath>D:\CxCache\MPMainPrism.1.0.0.2\lib\net45\Net\Bin\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.UnityExtensions">
+      <!--<HintPath>$(PkgSCOM_Microsoft_SystemCenter_External_Prism)\lib\net45\Net\Bin\Microsoft.Practices.Prism.UnityExtensions.dll</HintPath>-->
+      <HintPath>D:\CxCache\MPMainPrism.1.0.0.2\lib\net45\Net\Bin\Microsoft.Practices.Prism.UnityExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Interactivity">
+      <!--<HintPath>$(PkgSCOM_Microsoft_SystemCenter_External_Prism)\lib\net45\Net\Bin\Microsoft.Practices.Prism.UnityExtensions.dll</HintPath>-->
+      <HintPath>D:\CxCache\MPMainPrism.1.0.0.2\lib\net45\Net\Bin\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions">
+      <!--<HintPath>$(PkgSCOM_Microsoft_SystemCenter_External_Prism)\lib\net45\Net\Bin\Microsoft.Practices.Prism.UnityExtensions.dll</HintPath>-->
+      <HintPath>D:\CxCache\MPMainPrism.1.0.0.2\lib\net45\Net\Bin\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>D:\CxCache\MPMainPrism.1.0.0.2\lib\net45\Net\Bin\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity">
+      <SpecificVersion>False</SpecificVersion>
+      <!--<HintPath>$(PkgSCOM_Microsoft_SystemCenter_External_Unity)\lib\net45\Net\Bin\Microsoft.Practices.Unity.dll</HintPath>-->
+      <HintPath>D:\CxCache\MPMainPrism.1.0.0.2\lib\net45\Net\Bin\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.Monitoring.DataProviders">
+      <SpecificVersion>False</SpecificVersion>
+      <!--<HintPath>$(PkgSCOM_Microsoft_SystemCenter_External_Unity)\lib\net45\Net\Bin\Microsoft.Practices.Unity.dll</HintPath>-->
+      <HintPath>D:\CxCache\MPMainOM2012SP1.1.0.0.4\lib\net45\retail\Microsoft.EnterpriseManagement.Monitoring.DataProviders.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.CompositionEngine">
+      <SpecificVersion>False</SpecificVersion>
+      <!--<HintPath>$(PkgSCOM_Microsoft_SystemCenter_External_Unity)\lib\net45\Net\Bin\Microsoft.Practices.Unity.dll</HintPath>-->
+      <HintPath>D:\CxCache\MPMainOM2012R2UR1.1.0.0.2\lib\net45\retail\Microsoft.EnterpriseManagement.CompositionEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Permissions">
+      <!--<HintPath>$(PkgSCOM_Microsoft_SystemCenter_External_Unity)\lib\net45\Net\Bin\Microsoft.Practices.Unity.dll</HintPath>-->
+      <HintPath>D:\CxCache\SlnGen.Corext.6.0.1\tools\net461\System.Security.Permissions.dll</HintPath>
+    </Reference>
+     <Reference Include="Microsoft.EnterpriseManagement.UI.Administration">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012R2UR2.1.0.0.2\lib\net45\retail\Microsoft.EnterpriseManagement.UI.Administration.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <!--New References Done-->
+   
+    <Reference Include="Maui.Core">
+      <HintPath>D:\CxCache\SCOM.Test.Tools.1.0.2\lib\net4\MAUI\drop\Maui.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Maui.InternetExplorer">
+      <HintPath>D:\CxCache\SCOM.Test.Tools.1.0.2\lib\net4\MAUI\drop\Maui.InternetExplorer.dll</HintPath>
+    </Reference>
+    <Reference Include="Maui.TestLog">
+      <HintPath>D:\CxCache\SCOM.Test.Tools.1.0.2\lib\net4\MAUI\drop\Maui.TestLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.Core">
+      <HintPath>D:\CxCache\SCOM.Microsoft.SystemCenter.External.SM.retail.10.22.1019\lib\net45\retail\Microsoft.EnterpriseManagement.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DTSClientLib">
+      <HintPath>D:\CxCache\SCOM.Test.Tools.1.0.2\lib\net45\MCF\drop\DTSClientLib.dll</HintPath>
+    </Reference>
+    <Reference Include="MCF.Infra.FrmwrkEE">
+      <HintPath>D:\CxCache\SCOM.Test.Tools.1.0.2\lib\net45\MCF\drop\MCF.Infra.FrmwrkEE.dll</HintPath>
+    </Reference>
+    <Reference Include="MCF.Infra.Logger">
+      <HintPath>D:\CxCache\SCOM.Test.Tools.1.0.2\lib\net45\MCF\drop\MCF.Infra.Logger.dll</HintPath>
+    </Reference>
+    <!--<Reference Include="MCF.Infra.Types">
+      <HintPath>D:\CxCache\SCOM.Test.Tools.1.0.2\lib\net45\MCF\drop\MCF.Infra.Types.dll</HintPath>
+    </Reference>-->
+    <Reference Include="MCF.Infra.Types">
+      <!-- <HintPath>$(PkgSCOM_Test_Tools)\lib\net45\MCF\drop\MCF.Infra.Types.dll</HintPath> -->
+      <HintPath>D:\CxCache\SCOM.Test.Tools.1.0.2\lib\net4\MCF\drop\MCF.Infra.Types.dll</HintPath>
+    </Reference>
+   <Reference Include="Interop.RemoteExec">
+      <HintPath>D:\CxCache\SCOM.Test.Tools.1.0.2\lib\net45\MCF\drop\Interop.RemoteExec.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.CDSCom">
+      <HintPath>D:\CxCache\SCOM.Test.Tools.1.0.2\lib\net45\MCF\drop\Interop.CDSCom.dll</HintPath>
+    </Reference>
+    <Reference Include="MRMClientLib">
+      <HintPath>D:\CxCache\SCOM.Test.Tools.1.0.2\lib\net45\MCF\drop\MRMClientLib.dll</HintPath>
+    </Reference>
+    <Reference Include="PasswordManager">
+      <HintPath>D:\CxCache\SCOM.Test.Tools.1.0.2\lib\net45\MiscTools\x86\PasswordManager.dll</HintPath>
+    </Reference>
+    <!--<Reference Include="Microsoft.Mom.Common">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\New folder\Microsoft.Mom.Common.dll</HintPath>
+    </Reference>-->
+    <!--<Reference Include="Microsoft.Mom.Common">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\CxCache\MPMainOM2012R2UR1.1.0.0.2\lib\net45\retail\Microsoft.Mom.Common.dll</HintPath>
+    </Reference>-->
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BootStrapper.cs" />
+    <Compile Include="ConnectionContext.cs" />
+    <Compile Include="Constants.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="D:\OC\product\common\managed\MOMCommonUtils\IdUtil.cs" /> 
+    <Compile Include="DashboardQueries\DataQueries.cs" />
+    <Compile Include="DashboardQueries\SDKConnectionManager.cs" />
+    <Compile Include="KeyboardCodes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ManagementPackConstants.cs" />
+    <Compile Include="Mcf.cs" />
+    <Compile Include="NativeMethods.cs" />
+    <Compile Include="ProxyBootStrapper.cs" />
+    <!--<Compile Include="RandomPermutation.cs" />-->
+    <Compile Include="RandomStrings.cs" />
+    <Compile Include="Topology.cs" />
+    <Compile Include="Utilities.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <!--<Compile Include="DataGenLocationUtilities.cs" />-->
+    <Compile Include="VirtualFolderNameUtility.cs" />
+    <Compile Include="WebConsoleConfigurationManager.cs" />
+    <Compile Include="Win32Window.cs" />
+    <None Include="CommonDiagram.cd" />
+    <None Include="drop\AddNegotiateProvider.cmd" />
+    <None Include="drop\AddTestAccountsToUserRoles.ps1" />
+    <None Include="drop\DisableIEAutoRecovery.reg" />
+    <None Include="drop\EventMonitor_TestData.xsd" />
+    <None Include="drop\EventMonitor_TestDataFragment.xsd" />
+    <None Include="drop\fixaax64.reg" />
+    <None Include="drop\IE8RunOnceDone.reg" />
+    <None Include="drop\IEProxy-W2K8.reg" />
+    <None Include="drop\IESecuritySettings.reg" />
+    <None Include="drop\RemoveTestAccountsFromUserRoles.ps1" />
+    <None Include="drop\RunAsUserRole_run.cmd" />
+    <None Include="drop\RunAsRole_run.cmd" />
+    <None Include="drop\SetupDesktopMonitoringPortal.cmd" />
+    <None Include="drop\SetupIE.cmd" />
+    <None Include="drop\SetupWebConsole.cmd" />
+    <None Include="drop\ui_fixaa64.cmd" />
+    <None Include="drop\ui_prereq.cmd" />
+    <None Include="placefile" />
+    <None Include="drop\SetGlobalHttpCompressionScheme.cmd" />
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="drop\CreateMonitoringPortalShortcut.vbs" />
+    <Content Include="drop\DataTypes.xml" />
+    <Content Include="drop\DisableIEESC.vbs" />
+    <Content Include="drop\Monitors.xml" />
+    <Content Include="drop\Rules.xml" />
+    <Content Include="drop\SetupPortalForIIS.vbs" />
+    <Content Include="UI.Test.MP.xml" />
+  </ItemGroup>
+  <ItemGroup />
+  <!-- <import project="$(extendedtargetspath)\microsoft.csharp.targets" />  -->
+   
+  <ItemGroup>
+    <Robocopy Include="$(OutDir)\$(AssemblyName).dll">
+      <DestinationFolder>$(TestDrop)\UI\Common</DestinationFolder>
+    </Robocopy>
+    <Robocopy Include="drop\ui_prereq.cmd">
+      <DestinationFolder>$(TestDrop)\UI\Common</DestinationFolder>
+    </Robocopy>
+    <Robocopy Include="drop\RunAsUserRole_run.cmd">
+      <DestinationFolder>$(TestDrop)\UI\Common</DestinationFolder>
+    </Robocopy>
+    <Robocopy Include="drop\RunAsRole_run.cmd">
+      <DestinationFolder>$(TestDrop)\UI\Common</DestinationFolder>
+    </Robocopy>
+    <Robocopy Include="drop\AddTestAccountsToUserRoles.ps1">
+      <DestinationFolder>$(TestDrop)\UI\Common</DestinationFolder>
+    </Robocopy>
+    <Robocopy Include="drop\RemoveTestAccountsFromUserRoles.ps1">
+      <DestinationFolder>$(TestDrop)\UI\Common</DestinationFolder>
+    </Robocopy>
+    <Robocopy Include="drop\EventMonitor_TestData.xsd">
+      <DestinationFolder>$(TestDrop)\UI\Common</DestinationFolder>
+    </Robocopy>
+    <Robocopy Include="drop\EventMonitor_TestDataFragment.xsd">
+      <DestinationFolder>$(TestDrop)\UI\Common</DestinationFolder>
+    </Robocopy>
+    <Robocopy Include="drop\ui_fixaa64.cmd">
+      <DestinationFolder>$(TestDrop)\UI\Common</DestinationFolder>
+    </Robocopy>
+    <Robocopy Include="drop\fixaax64.reg">
+      <DestinationFolder>$(TestDrop)\UI\Common</DestinationFolder>
+    </Robocopy>
+    <Robocopy Include="drop\IESecuritySettings.reg">
+      <DestinationFolder>$(TestDrop)\UI\Common</DestinationFolder>
+    </Robocopy>
+    <Robocopy Include="drop\IEProxy-W2K8.reg">
+      <DestinationFolder>$(TestDrop)\UI\Common</DestinationFolder>
+    </Robocopy>
+    <Robocopy Include="drop\IE8RunOnceDone.reg">
+      <DestinationFolder>$(TestDrop)\UI\Common</DestinationFolder>
+    </Robocopy>
+    <Robocopy Include="drop\DataTypes.xml">
+      <DestinationFolder>$(TestDrop)\UI\Common</DestinationFolder>
+    </Robocopy>
+    <Robocopy Include="drop\Monitors.xml">
+      <DestinationFolder>$(TestDrop)\UI\Common</DestinationFolder>
+    </Robocopy>
+    <Robocopy Include="drop\Rules.xml">
+      <DestinationFolder>$(TestDrop)\UI\Common</DestinationFolder>
+    </Robocopy>
+    <Robocopy Include="drop\DisableIEESC.vbs">
+      <DestinationFolder>$(TestDrop)\UI\Common</DestinationFolder>
+    </Robocopy>
+    <Robocopy Include="drop\DisableIEAutoRecovery.reg">
+      <DestinationFolder>$(TestDrop)\UI\Common</DestinationFolder>
+    </Robocopy>
+    <Robocopy Include="drop\SetupIE.cmd">
+      <DestinationFolder>$(TestDrop)\UI\Common</DestinationFolder>
+    </Robocopy>
+    <Robocopy Include="drop\Throttle-SQLMemory.ps1">
+      <DestinationFolder>$(TestDrop)\UI\Common</DestinationFolder>
+    </Robocopy>
+    <Robocopy Include="drop\CreateMonitoringPortalShortcut.vbs">
+      <DestinationFolder>$(TestDrop)\UI\Common\MonitoringPortalSetup\MonitoringPortal</DestinationFolder>
+    </Robocopy>
+    <Robocopy Include="drop\SetupDesktopMonitoringPortal.cmd">
+      <DestinationFolder>$(TestDrop)\UI\Common\MonitoringPortalSetup\MonitoringPortal</DestinationFolder>
+    </Robocopy>
+    <Robocopy Include="drop\SetupWebConsole.cmd">
+      <DestinationFolder>$(TestDrop)\UI\Common\WebConsole</DestinationFolder>
+    </Robocopy>
+    <Robocopy Include="drop\SetupPortalForIIS.vbs">
+      <DestinationFolder>$(TestDrop)\UI\Common\WebConsole</DestinationFolder>
+    </Robocopy>
+    <Robocopy Include="drop\SetGlobalHttpCompressionScheme.cmd">
+      <DestinationFolder>$(TestDrop)\UI\Common\WebConsole</DestinationFolder>
+    </Robocopy>
+    <Robocopy Include="drop\AddNegotiateProvider.cmd">
+      <DestinationFolder>$(TestDrop)\UI\Common\WebConsole</DestinationFolder>
+    </Robocopy>
+  </ItemGroup>
+<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

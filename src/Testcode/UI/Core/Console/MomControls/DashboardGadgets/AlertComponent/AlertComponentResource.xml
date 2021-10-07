@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Resources>
+  <Section Name="AlertComponentTask">
+    <Resource Name="CloseAlertTask" Type="MPExtensionDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.CloseAlertsTask</Item>
+    </Resource>
+    <Resource Name="SetResolutionTask" Type="MPExtensionDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.SetAlertResolutionStatesTask</Item>
+    </Resource>
+    <Resource Name="OpenHealthExporerTask" Type="MPExtensionDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.HealthExplorerTask</Item>
+    </Resource>
+    <Resource Name="OpenAlertPropertyTask" Type="MPExtensionDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.AlertPropertyTask</Item>
+    </Resource>
+  </Section>
+</Resources> 

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Resources>
+  <Section Name="ObjectPickerComponent">
+    <Resource Name="Name" Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.Entity.DisplayName</Item>
+    </Resource>
+    <Resource Name="Path" Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.Entity.Path</Item>
+    </Resource>
+    <Resource Name="Type" Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.Entity.Type</Item>
+    </Resource>
+    <Resource Name="Title" Type="MPDisplayString">
+      <Item>Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.Library.SingleObjectPickerComponent.Title"</Item>
+    </Resource>
+  </Section>
+</Resources> 
