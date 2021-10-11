@@ -132,7 +132,7 @@ extends:
          - task: CmdLine@2
            displayName: 'Build SQL'
            inputs:
-           script: 'build-sql.cmd'
+           script: 'createAdminStoredProcedureSql.cmd'
               
           # - task: MSBuild@1
             # displayName: 'Build Testcode'
