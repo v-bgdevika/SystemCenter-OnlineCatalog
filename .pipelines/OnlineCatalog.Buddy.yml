@@ -128,6 +128,11 @@ extends:
            displayName: 'Run Roslyn Analyzers'
            inputs:
              copyLogsOnly: true
+
+         - task: CmdLine@2
+           displayName: 'Build SQL'
+           inputs:
+           script: 'build-sql.cmd'
               
           # - task: MSBuild@1
             # displayName: 'Build Testcode'
