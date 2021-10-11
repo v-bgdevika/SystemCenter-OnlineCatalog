@@ -114,15 +114,15 @@ extends:
              Contents: '**\bin\**'
              TargetFolder: '$(Build.SourcesDirectory)\out\'
              
-         - task: Semmle@1
-           displayName: 'codeql'
-           inputs:
-             sourceCodeDirectory: '$(Build.SourcesDirectory)'
-             language: 'csharp'
-             querySuite: 'Recommended'
-             timeout: '1800'
-             ram: '16384'
-             addProjectDirToScanningExclusionList: true
+        #  - task: Semmle@1
+        #    displayName: 'codeql'
+        #    inputs:
+        #      sourceCodeDirectory: '$(Build.SourcesDirectory)'
+        #      language: 'csharp'
+        #      querySuite: 'Recommended'
+        #      timeout: '1800'
+        #      ram: '16384'
+        #      addProjectDirToScanningExclusionList: true
              
          - task: securedevelopmentteam.vss-secure-development-tools.build-task-roslynanalyzers.RoslynAnalyzers@3
            displayName: 'Run Roslyn Analyzers'
@@ -131,6 +131,7 @@ extends:
 
          - task: CmdLine@2
            displayName: 'Build SQL'
+           workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
            inputs:
              script: 'createAdminStoredProcedureSql.cmd'
               
