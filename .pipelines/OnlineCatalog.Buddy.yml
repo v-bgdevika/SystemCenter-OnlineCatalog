@@ -131,8 +131,8 @@ extends:
 
          - task: CmdLine@2
            displayName: 'Build SQL'
-           workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
            inputs:
+             workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
              script: 'createAdminStoredProcedureSql.cmd'
               
           # - task: MSBuild@1
