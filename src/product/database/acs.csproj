@@ -56,10 +56,11 @@
     <Reference Include="System.configuration" />
   </ItemGroup>
    <Target Name="GenerateDBSetupSQL" BeforeTargets="Build">
+
      
 		 
 	<Message Text="BUILDMSG2: Creating $(BaseOutputPath)ManagementPackCatalog.Tables.Setup.sql" />
-    <Exec command="cmd.exe /c createTableSql.bat $(BaseOutputPath)Debug" />
+    <Exec command="cmd.exe /c createTableSql.bat $(BaseOutputPath)" />
 	 
    <!-- <Message Text="BUILDMSG2: Creating $(IntermediateOutputPath)CreateStoredProcedureSql.sql" />
     <Exec command="cmd.exe CreateStoredProcedureSql.bat $(IntermediateOutputPath)" />
