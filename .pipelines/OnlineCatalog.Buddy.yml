@@ -113,6 +113,12 @@ extends:
              SourceFolder: '$(Build.SourcesDirectory)\src\product\'
              Contents: '**\bin\**'
              TargetFolder: '$(Build.SourcesDirectory)\out\'
+
+         - task: CopyFiles@2
+           inputs:
+             SourceFolder: '$(Build.SourcesDirectory)\src\product\database'
+             Contents: '**\bin\**'
+             TargetFolder: '$(Build.SourcesDirectory)\out\DB'
              
         #  - task: Semmle@1
         #    displayName: 'codeql'
