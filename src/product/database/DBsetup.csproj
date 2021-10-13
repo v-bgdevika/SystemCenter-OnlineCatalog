@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    
+    <ProjectGuid>{895C3FB8-EC57-469D-A182-4E4138037774}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DBSetup</RootNamespace>
+    <AssemblyName>DBSetup</AssemblyName>
+  </PropertyGroup>
+  
+
+   <ItemGroup>
+   <Robocopy Include="$(IntermediateOutputPath)\ManagementPackCatalog.Tables.Setup.sql">
+      <DestinationFolder>D:\OnlineCatalog\src\product\database</DestinationFolder>
+    </Robocopy>
+    <!--<Robocopy Include="$(IntermediateOutputPath)\build_mom_db_admin.sql">
+      <DestinationFolder>$(TargetFolder)\SelectCDImage\setup\$(BuildArchitecture);$(TargetFolder)\DB</DestinationFolder>
+    </Robocopy>
+    <Robocopy Include="$(IntermediateOutputPath)\build_mom_db_postMPimport.sql">
+      <DestinationFolder>$(TargetFolder)\SelectCDImage\setup\$(BuildArchitecture);$(TargetFolder)\DB</DestinationFolder>
+    </Robocopy>-->
+	</ItemGroup>
+
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
+  <Target Name="GenerateDBSetupSQL" BeforeTargets="Build">
+     
+		 
+	<Message Text="BUILDMSG2: Creating $(BaseOutputPath)ManagementPackCatalog.Tables.Setup.sql" />
+    <Exec command="cmd.exe /c createTableSql.bat $(BaseOutputPath)$(BuildArchitecture)" />
+	 
+   <!-- <Message Text="BUILDMSG2: Creating $(IntermediateOutputPath)CreateStoredProcedureSql.sql" />
+    <Exec command="cmd.exe CreateStoredProcedureSql.bat $(IntermediateOutputPath)" />
+	
+	<Message Text="BUILDMSG2: Creating $(IntermediateOutputPath)createAdminStoredProcedureSql.sql" />
+    <Exec command="cmd.exe createAdminStoredProcedureSql.bat $(IntermediateOutputPath)" />-->
+
+ 
+   
+
+  </Target>                            
+  <PropertyGroup>
+    <BuildDependsOn>
+		GenerateDBSetupSQL;
+		
+    </BuildDependsOn>
+  </PropertyGroup>
+</Project>
