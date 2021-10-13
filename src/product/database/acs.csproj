@@ -59,7 +59,7 @@
      
 		 
 	<Message Text="BUILDMSG2: Creating $(BaseOutputPath)ManagementPackCatalog.Tables.Setup.sql" />
-    <Exec command="cmd.exe /c createTableSql.bat $(BaseOutputPath)" />
+    <Exec command="cmd.exe /c createTableSql.bat $(BaseOutputPath)Debug" />
 	 
    <!-- <Message Text="BUILDMSG2: Creating $(IntermediateOutputPath)CreateStoredProcedureSql.sql" />
     <Exec command="cmd.exe CreateStoredProcedureSql.bat $(IntermediateOutputPath)" />
