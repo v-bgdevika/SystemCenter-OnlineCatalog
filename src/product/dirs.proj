@@ -6,7 +6,7 @@
     <ProjectReference Include=".\access\access.csproj" />
     <ProjectReference Include=".\webservice\webservice.csproj" />
     <ProjectReference Include=".\admin\dirs.proj" /> 
-    <ProjectReference Include=".\database\DBsetup.csproj" />	<!--This folder does not generate any binaries. It is used to create OC database schemas only.	-->
+    <ProjectReference Include=".\database\acs.csproj" />	<!--This folder does not generate any binaries. It is used to create OC database schemas only.	-->
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />
   <PropertyGroup>
