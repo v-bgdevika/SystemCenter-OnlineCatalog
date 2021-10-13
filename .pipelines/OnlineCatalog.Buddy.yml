@@ -129,11 +129,11 @@ extends:
            inputs:
              copyLogsOnly: true
 
-         - task: CmdLine@2
-           displayName: 'Build SQL'
-           inputs:
-             workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
-             script: 'createAdminStoredProcedureSql.cmd'
+        #  - task: CmdLine@2
+        #    displayName: 'Build SQL'
+        #    inputs:
+        #      workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
+        #      script: 'createAdminStoredProcedureSql.cmd'
               
           # - task: MSBuild@1
             # displayName: 'Build Testcode'
