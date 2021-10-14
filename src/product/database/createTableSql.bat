@@ -1,6 +1,6 @@
 @ECHO OFF
 
-type nul > ManagementPackCatalog.Tables.Setup.sql
+type nul > %1\ManagementPackCatalog.Tables.Setup.sql
 REM name of the output file
 set OUTFILE=%1\ManagementPackCatalog.Tables.Setup.sql
 
