@@ -83,18 +83,18 @@ extends:
            displayName: 'Build SQL'
            inputs:
              workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
-             script: 'cmd.exe /c createTableSql.bat $(OUTPUTROOT)\DB '  
+             script: 'cmd.exe /c createTableSql.bat $(OUTPUTROOT) '  
          - task: CmdLine@2
            displayName: 'Build SQL'
            inputs:
              workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
-             script: 'cmd.exe /c createStoredProcedureSql.bat $(OUTPUTROOT)\DB '
+             script: 'cmd.exe /c createStoredProcedureSql.bat $(OUTPUTROOT)'
 
          - task: CmdLine@2
            displayName: 'Build SQL'
            inputs:
              workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
-             script: 'cmd.exe /c createStoredProcedureSql.bat $(OUTPUTROOT)\DB '                   
+             script: 'cmd.exe /c createStoredProcedureSql.bat $(OUTPUTROOT)'                   
          - task: MSBuild@1
            displayName: 'Build Product'
            inputs:
