@@ -79,24 +79,9 @@ extends:
             filePath: '$(Build.SourcesDirectory)\.config\dllversioning.ps1'
             arguments: $(Build.BuildNumber)
                                  
-         - task: CmdLine@2
-           displayName: 'Build SQL Tables'
-           inputs:
-             workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
-             script: 'cmd.exe /c createTableSql.bat $(Build.SourcesDirectory)'  
-         - task: CmdLine@2
-           displayName: 'Build SQL Proceedures'
-           inputs:
-             workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
-             script: 'cmd.exe /c createStoredProcedureSql.bat $(Build.SourcesDirectory)'
-
-         - task: CmdLine@2
-           displayName: 'Build SQL AdminSPs'
-           inputs:
-             workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
-             script: 'cmd.exe /c createAdminStoredProcedureSql.bat $(Build.SourcesDirectory)'                   
+                          
          - task: MSBuild@1
-           displayName: 'Build Product'
+           displayName: 'Build Product Debug'
            inputs:
               solution: '$(Build.SourcesDirectory)\SystemCenterOnlineCatalogBuild.sln'
               msbuildLocationMethod: 'location'
@@ -110,7 +95,7 @@ extends:
               createLogFile: true
 
          - task: MSBuild@1
-           displayName: 'Build Product'
+           displayName: 'Build Product Release'
            inputs:
               solution: '$(Build.SourcesDirectory)\SystemCenterOnlineCatalogBuild.sln'
               msbuildLocationMethod: 'location'
@@ -128,8 +113,23 @@ extends:
            inputs:
              SourceFolder: '$(Build.SourcesDirectory)\src\product\'
              Contents: '**\bin\**'
-             TargetFolder: '$(Build.SourcesDirectory)\out\'
+             TargetFolder: '$(Build.SourcesDirectory)\out'
+         - task: CmdLine@2
+           displayName: 'Build SQL Tables'
+           inputs:
+             workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
+             script: 'cmd.exe /c createTableSql.bat $(OUTPUTROOT)'  
+         - task: CmdLine@2
+           displayName: 'Build SQL Proceedures'
+           inputs:
+             workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
+             script: 'cmd.exe /c createStoredProcedureSql.bat $(OUTPUTROOT)'
 
+         - task: CmdLine@2
+           displayName: 'Build SQL AdminSPs'
+           inputs:
+             workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
+             script: 'cmd.exe /c createAdminStoredProcedureSql.bat $(OUTPUTROOT)' 
        
              
         #  - task: Semmle@1
