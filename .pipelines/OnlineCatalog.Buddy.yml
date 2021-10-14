@@ -94,7 +94,7 @@ extends:
            displayName: 'Build SQL'
            inputs:
              workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
-             script: 'cmd.exe /c createStoredProcedureSql.bat $(OUTPUTROOT)'                   
+             script: 'cmd.exe /c createAdminStoredProcedureSql.bat $(OUTPUTROOT)'                   
          - task: MSBuild@1
            displayName: 'Build Product'
            inputs:
