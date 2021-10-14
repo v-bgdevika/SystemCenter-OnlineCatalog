@@ -1,7 +1,9 @@
 @ECHO OFF
 
+type nul > %1\ManagementPackCatalog.StoredProcedures.Setup.sql
+
 REM name of the output file
-set OUTFILE=%1\CreateStoredProcedureSql.sql
+set OUTFILE=%1\ManagementPackCatalog.StoredProcedures.Setup.sql
 
 set script_dir=\database
 
