@@ -86,7 +86,7 @@ extends:
             
          
          - task: MSBuild@1
-           displayName: 'Build Product'
+           displayName: 'Build Product Debug'
            inputs:
               solution: '$(Build.SourcesDirectory)\SystemCenterOnlineCatalogBuild.sln'
               msbuildLocationMethod: 'location'
@@ -98,11 +98,43 @@ extends:
               maximumCpuCount: true
               logProjectEvents: true
 
+         - task: MSBuild@1
+           displayName: 'Build Product Release'
+           inputs:
+              solution: '$(Build.SourcesDirectory)\SystemCenterOnlineCatalogBuild.sln'
+              msbuildLocationMethod: 'location'
+              msbuildLocation: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
+              platform: 'x64'
+              configuration: 'Release'
+              msbuildArguments: '/t:Restore,build'
+              clean: true
+              maximumCpuCount: true
+              logProjectEvents: true
+              createLogFile: true
+
          - task: CopyFiles@2
            inputs:
-             SourceFolder: '$(Build.SourcesDirectory)\src\product\'
+             SourceFolder: '$(Build.SourcesDirectory)\src\product'
              Contents: '**\bin\**'
-             TargetFolder: '$(Build.SourcesDirectory)\out\'
+             TargetFolder: '$(Build.SourcesDirectory)\out'
+            
+         - task: CmdLine@2
+           displayName: 'Build SQL Tables'
+           inputs:
+             workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
+             script: 'cmd.exe /c createTableSql.bat $(OUTPUTROOT)'  
+
+         - task: CmdLine@2
+           displayName: 'Build SQL Procedures'
+           inputs:
+             workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
+             script: 'cmd.exe /c createStoredProcedureSql.bat $(OUTPUTROOT)'
+
+         - task: CmdLine@2
+           displayName: 'Build SQL AdminSPs'
+           inputs:
+             workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
+             script: 'cmd.exe /c createAdminStoredProcedureSql.bat $(OUTPUTROOT)' 
              
          - task: Semmle@1
            displayName: 'codeql'

@@ -84,7 +84,7 @@ extends:
               arguments: $(Build.BuildNumber)
             
           - task: MSBuild@1
-            displayName: 'Build Product'
+            displayName: 'Build Product Debug'
             inputs:
               solution: '$(Build.SourcesDirectory)\SystemCenterOnlineCatalogBuild.sln'
               msbuildLocationMethod: 'location'
@@ -98,7 +98,7 @@ extends:
               createLogFile: true
               
           - task: MSBuild@1
-            displayName: 'Build Product'
+            displayName: 'Build Product Release'
             inputs:
               solution: '$(Build.SourcesDirectory)\SystemCenterOnlineCatalogBuild.sln'
               msbuildLocationMethod: 'location'
@@ -112,9 +112,27 @@ extends:
 
           - task: CopyFiles@2
             inputs:
-             SourceFolder: '$(Build.SourcesDirectory)\src\product\'
+             SourceFolder: '$(Build.SourcesDirectory)\src\product'
              Contents: '**\bin\**'
-             TargetFolder: '$(Build.SourcesDirectory)\out\'
+             TargetFolder: '$(Build.SourcesDirectory)\out'
+
+          - task: CmdLine@2
+            displayName: 'Build SQL Tables'
+            inputs:
+              workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
+              script: 'cmd.exe /c createTableSql.bat $(OUTPUTROOT)'  
+
+          - task: CmdLine@2
+            displayName: 'Build SQL Procedures'
+            inputs:
+              workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
+              script: 'cmd.exe /c createStoredProcedureSql.bat $(OUTPUTROOT)'
+
+          - task: CmdLine@2
+            displayName: 'Build SQL AdminSPs'
+            inputs:
+              workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
+              script: 'cmd.exe /c createAdminStoredProcedureSql.bat $(OUTPUTROOT)' 
 
           # - task: MSBuild@1
           #   displayName: 'Build Testcode'
