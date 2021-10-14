@@ -9,8 +9,8 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Microsoft.ManagementPackCatalog.Access</RootNamespace>
     <AssemblyName>Microsoft.ManagementPackCatalog.Access</AssemblyName>
-	<BuildRoot>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), msbuildroot.marker))</BuildRoot>
-	<OutDir>$(BuildRoot)\out</OutDir>
+	<!-- <BuildRoot>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), msbuildroot.marker))</BuildRoot> -->
+	<!-- <OutDir>$(BuildRoot)\out</OutDir> -->
    </PropertyGroup>
  
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
