@@ -79,6 +79,11 @@ extends:
             filePath: '$(Build.SourcesDirectory)\.config\dllversioning.ps1'
             arguments: $(Build.BuildNumber)
                                  
+         - task: CmdLine@2
+           displayName: 'Build SQL'
+           inputs:
+             workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
+             script: 'cmd.exe /c createTableSql.bat'                     
          - task: MSBuild@1
            displayName: 'Build Product'
            inputs:
@@ -135,11 +140,7 @@ extends:
            inputs:
              copyLogsOnly: true
 
-        #  - task: CmdLine@2
-        #    displayName: 'Build SQL'
-        #    inputs:
-        #      workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
-        #      script: 'createAdminStoredProcedureSql.cmd'
+      
               
           # - task: MSBuild@1
             # displayName: 'Build Testcode'
