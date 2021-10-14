@@ -121,7 +121,7 @@ extends:
              script: 'cmd.exe /c createTableSql.bat $(OUTPUTROOT)'  
              
          - task: CmdLine@2
-           displayName: 'Build SQL Proceedures'
+           displayName: 'Build SQL Procedures'
            inputs:
              workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
              script: 'cmd.exe /c createStoredProcedureSql.bat $(OUTPUTROOT)'
