@@ -32,7 +32,7 @@ variables:
   MINOR: 0
   BUILD: $[counter(variables['MINOR'], 0)]
   REVISION: 0
-
+  CodeQL.Enabled: true
   WindowsContainerImage: 'cdpxwin1809.azurecr.io/global/vse2019:latest' # Docker image which is used to build the project https://aka.ms/obpipelines/containers
 
 resources:
@@ -48,6 +48,12 @@ extends:
     cloudvault: # https://aka.ms/obpipelines/cloudvault
       enabled: false
     # globalSdl: # https://aka.ms/obpipelines/sdl
+      codeql:
+        compiled: 
+          ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/sdl') }}:
+            enabled: true
+          ${{ else }}:
+            enabled: false
       # tsa:
         # enabled: false # onebranch publish all sdl results to TSA. If TSA is disabled all SDL tools will forced into 'break' build mode.
       credscan:
