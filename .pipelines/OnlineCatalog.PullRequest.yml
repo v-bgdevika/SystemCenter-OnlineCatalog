@@ -50,7 +50,7 @@ extends:
     # globalSdl: # https://aka.ms/obpipelines/sdl
       codeql:
         compiled: 
-          ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/sdl') }}:
+          ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
             enabled: true
           ${{ else }}:
             enabled: false
