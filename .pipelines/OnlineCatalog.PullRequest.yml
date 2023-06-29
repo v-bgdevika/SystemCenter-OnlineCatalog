@@ -48,13 +48,7 @@ extends:
     cloudvault: # https://aka.ms/obpipelines/cloudvault
       enabled: false
     globalSdl: # https://aka.ms/obpipelines/sdl
-      codeql:
-        compiled: 
-          ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
-            enabled: true
-          ${{ else }}:
-            enabled: false
-        tsaEnabled: true
+      
       tsa:
         enabled: true # onebranch publish all sdl results to TSA. If TSA is disabled all SDL tools will forced into 'break' build mode.
       credscan:
@@ -65,6 +59,13 @@ extends:
         break: true # always break the build on policheck issues. You can disable it by setting to 'false'
       roslyn:
         break: true # Roslyn issues. You can disable it by setting to 'false'
+      codeql:
+        compiled: 
+          ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
+            enabled: true
+          ${{ else }}:
+            enabled: false
+        tsaEnabled: true
 
     stages:
     - stage: build
