@@ -32,7 +32,7 @@ variables:
   MINOR: 0
   BUILD: $[counter(variables['MINOR'], 0)]
   REVISION: 0
-
+  CodeQL.Enabled: true
   WindowsContainerImage: 'cdpxwin1809.azurecr.io/global/vse2019:latest' # Docker image which is used to build the project https://aka.ms/obpipelines/containers
 
 resources:
@@ -47,9 +47,9 @@ extends:
   parameters:
     cloudvault: # https://aka.ms/obpipelines/cloudvault
       enabled: false
-    # globalSdl: # https://aka.ms/obpipelines/sdl
-      # tsa:
-        # enabled: false # onebranch publish all sdl results to TSA. If TSA is disabled all SDL tools will forced into 'break' build mode.
+    globalSdl: # https://aka.ms/obpipelines/sdl
+      tsa:
+        enabled: true # onebranch publish all sdl results to TSA. If TSA is disabled all SDL tools will forced into 'break' build mode.
       credscan:
         suppressionsFile: $(Build.SourcesDirectory)\.config\CredScanSuppressions.json
       binskim:
@@ -58,6 +58,13 @@ extends:
         break: true # always break the build on policheck issues. You can disable it by setting to 'false'
       roslyn:
         break: true # Roslyn issues. You can disable it by setting to 'false'
+      codeql:
+        compiled: 
+          ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
+            enabled: true
+          ${{ else }}:
+            enabled: false
+        tsaEnabled: true
 
     stages:
     - stage: build
