@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "rolloutMetadata": {
       "serviceModelPath": "ServiceModel.json",
-      "name": "WorkloadNexusService-1.0.0.0",
+      "name": "OnlineCatalogService-1.0.0.0",
       "rolloutType": "Major",
       "buildSource": {
         "parameters": {
@@ -18,7 +18,7 @@
     },
     "orchestratedSteps": [
       {
-        "name": "WorkloadNexusService-AzureStorageAccount",
+        "name": "OnlineCatalogService-AzureStorageAccount",
         "targetType": "ServiceResource",
         "targetName": "storageaccount-eus2euaponlinecatalog",
         "actions": [
