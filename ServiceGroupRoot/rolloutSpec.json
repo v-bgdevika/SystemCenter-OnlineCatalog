@@ -7,7 +7,7 @@
       "rolloutType": "Major",
       "buildSource": {
         "parameters": {
-          "versionFile": "BuildVer.txt"
+          "versionFile": "Version.txt"
         }
       },
       "notification": {
