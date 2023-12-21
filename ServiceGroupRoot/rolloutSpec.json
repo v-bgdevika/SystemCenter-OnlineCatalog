@@ -20,7 +20,7 @@
       {
         "name":"storage",
         "targetType": "ServiceResourceDefinition",
-        "targetName": "storageServiceResourceDefinition",
+        "targetName": "ocsstorageaccount-eus",
         "actions": ["deploy"]
       }
     ]
