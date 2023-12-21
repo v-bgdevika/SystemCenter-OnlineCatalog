@@ -4,6 +4,7 @@
     "rolloutMetadata": {
       "serviceModelPath": "ServiceModel.json",
       "name": "Microsoft.Azure.Ev2.Tutorial",
+      "rolloutType": "Major",
       "buildSource": {
         "parameters": {
           "versionFile": "version.txt"
