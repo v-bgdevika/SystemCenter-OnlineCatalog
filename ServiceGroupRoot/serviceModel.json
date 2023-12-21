@@ -9,7 +9,7 @@
   },
     "serviceResourceGroupDefinitions": [
         {
-            "name": "storageServiceResourceGroupDefinition",
+            "name": "ocsstorageaccount-eus",
             "serviceResourceDefinitions": [
                 {
                     "name": "ocsstorageaccount-eus",
