@@ -20,10 +20,12 @@
       {
         "name": "WorkloadNexusService-AzureStorageAccount",
         "targetType": "ServiceResource",
-        "targetName": "storageaccount-eastus",
+        "targetName": "storageaccount-eus2euaponlinecatalog",
         "actions": [
           "Deploy"
         ]
       }
+      
     ]
-}      
+  }
+  
