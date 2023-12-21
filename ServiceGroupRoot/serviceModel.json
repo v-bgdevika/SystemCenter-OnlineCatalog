@@ -12,7 +12,7 @@
             "name": "MicrosoftScomInfraResources",
             "serviceResourceDefinitions": [
                 {
-                    "name": "WorkloadNexusService-ServiceFabric",
+                    "name": "WorkloadNexusService-AzureStorage",
                     "armTemplatePath": "Templates\\storage.deploymentTemplate.json"
                 }
             ]
@@ -27,8 +27,8 @@
         "azureSubscriptionId": "dc7b0c81-a5f5-42c8-8c20-58cbf7c1c8f0",
         "serviceResources": [
           {
-            "name": "Keyvault-eus2euap",
-            "instanceOf": "WorkloadNexusService-AzurekeyVault",
+            "name": "storageaccount-eus2euap",
+            "instanceOf": "WorkloadNexusService-AzureStorage",
             "ArmParametersPath": "Parameters\\Storage.deploymentParameters.json"
           }
         ]
