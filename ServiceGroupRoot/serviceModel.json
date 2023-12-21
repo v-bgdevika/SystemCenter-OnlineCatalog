@@ -5,13 +5,13 @@
       "serviceIdentifier":"dd62a956-59c1-4276-ac54-f4f9d7a731f0",
       "serviceGroup": "Microsoft.Azure.Ev2.Tutorial.v-saneelam",
       "environment": "test",
-      "TenantId":"72f988bf-86f1-41af-91ab-2d7cd011db47"
+      "TenantId":"33e01921-4d64-4f8c-a055-5bdaffd5e33d"
     },
     "serviceResourceGroupDefinitions": [
       {
         "name": "storageServiceResourceGroupDefinition",
         "azureResourceGroupName": "ev2-tutorial-v-saneelam-$location()",
-        "subscriptionKey": "Ev2Tutorial",
+        "azureSubscriptionId": "dc7b0c81-a5f5-42c8-8c20-58cbf7c1c8f0",
         "serviceResourceDefinitions": [
           {
             "name": "storageServiceResourceDefinition",
