@@ -4,7 +4,7 @@
     "serviceMetadata": {
         "serviceIdentifier":"dd62a956-59c1-4276-ac54-f4f9d7a731f0",
         "serviceGroup": "ScomDataplane",
-        "environment": "test",
+        "environment": "prod",
         "TenantId":"33e01921-4d64-4f8c-a055-5bdaffd5e33d"
     },
     "serviceResourceGroupDefinitions": [
@@ -21,10 +21,10 @@
     ],
     "serviceResourceGroups": [
       {
-        "azureResourceGroupName": "SCOMProdPub",
+        "azureResourceGroupName": "onlinecatalogservice",
         "location": "eastus",
         "instanceOf": "MicrosoftScomInfraResources",
-        "azureSubscriptionId": "dc7b0c81-a5f5-42c8-8c20-58cbf7c1c8f0",
+        "azureSubscriptionId": "ad182a56-d7c4-4218-af2f-aa1250e26ee5",
         "serviceResources": [
           {
             "name": "storageaccount-eus2euaponlinecatalog",
