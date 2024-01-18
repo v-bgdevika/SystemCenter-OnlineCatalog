@@ -20,7 +20,7 @@
       {
         "name":"vmss",
         "targetType": "ServiceResourceDefinition",
-        "targetName": "ocsvmss-eus",
+        "targetName": "ocsvmss-onlinecatalog",
         "actions": ["deploy"]
       }
     ]
