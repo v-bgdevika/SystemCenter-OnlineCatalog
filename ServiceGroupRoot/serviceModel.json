@@ -13,7 +13,7 @@
             "serviceResourceDefinitions": [
                 {
                     "name": "WorkloadNexusService-AzureStorage",
-                    "armTemplatePath": "Templates\\storage.deploymentTemplate.json"
+                    "armTemplatePath": "Templates\\vmss.deploymentTemplate.json"
                 }
             ]
         }
@@ -29,7 +29,7 @@
           {
             "name": "storageaccount-eus2euaponlinecatalog",
             "instanceOf": "WorkloadNexusService-AzureStorage",
-            "ArmParametersPath": "Parameters\\Storage.deploymentParameters.json"
+            "ArmParametersPath": "Parameters\\vmss.deploymentParameters.json"
           }
         ]
     }
