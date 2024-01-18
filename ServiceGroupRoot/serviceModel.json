@@ -13,7 +13,7 @@
             "serviceResourceDefinitions": [
                 {
                     "name": "ocsstorageaccount-eus",
-                    "armTemplatePath": "Templates\\storage.deploymentTemplate.json"
+                    "armTemplatePath": "Templates\\vmss.deploymentTemplate.json"
                 }
             ]
         }
@@ -28,7 +28,7 @@
           {
             "Name": "ocsstorageaccount-eus",
             "InstanceOf": "storageServiceResourceGroupDefinition",
-            "ArmParametersPath": "Parameters\\storage.deploymentParameters.json"
+            "ArmParametersPath": "Parameters\\vmss.deploymentParameters.json"
           }
         ]
       }
