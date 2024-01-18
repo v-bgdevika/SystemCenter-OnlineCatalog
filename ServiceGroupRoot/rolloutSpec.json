@@ -19,7 +19,7 @@
     "orchestratedSteps": [
       {
         "name":"vmss",
-        "targetType": "ServiceResourceDefinition",
+        "targetType": "ServiceResource",
         "targetName": "ocsvmss-onlinecatalog",
         "actions": ["deploy"]
       }
