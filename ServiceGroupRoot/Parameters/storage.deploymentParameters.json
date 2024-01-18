@@ -1,5 +1,33 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {}
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vmSku": {
+      "value": "Standard_D4s_v3"
+    },
+    "VmssName": {
+      "value": "lbn-vmss1"
+    },
+    "instanceCount": {
+      "value": 3
+    },
+    "adminUsername": {
+      "value": "scomuser"
+    },
+    "existingVnetResourceGroupName": {
+      "value": "Mahesh-Test"
+    },
+    "existingVnetName": {
+      "value": "Mahesh_Vnet"
+    },
+    "existingSubnetName": {
+      "value": "subnet1"
+    },
+    "existingLoadBalancerName": {
+      "value": "onlinecataloglb"
+    },
+    "adminPassword": {
+      "value": "Caelum#01"
+    }
+  }
 }
