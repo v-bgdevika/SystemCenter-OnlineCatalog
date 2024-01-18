@@ -116,8 +116,14 @@ extends:
         
          - task: CopyFiles@2
            inputs:
-             SourceFolder: '$(Build.SourcesDirectory)\src\product'
-             Contents: '**\bin\**'
+             SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release'
+             Contents: '**/*.dll'
+             TargetFolder: '$(Build.SourcesDirectory)\out'
+
+         - task: CopyFiles@2
+           inputs:
+             SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice'
+             Contents: 'ManagementPackCatalogWebService.asmx'
              TargetFolder: '$(Build.SourcesDirectory)\out'
 
          - task: CmdLine@2
