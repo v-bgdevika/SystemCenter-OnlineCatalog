@@ -18,9 +18,9 @@
     },
     "orchestratedSteps": [
       {
-        "name":"storage",
+        "name":"vmss",
         "targetType": "ServiceResourceDefinition",
-        "targetName": "ocsstorageaccount-eus",
+        "targetName": "ocsvmss-eus",
         "actions": ["deploy"]
       }
     ]
