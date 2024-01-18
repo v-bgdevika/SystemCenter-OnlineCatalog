@@ -5,14 +5,14 @@
         "serviceIdentifier":"dd62a956-59c1-4276-ac54-f4f9d7a731f0",
         "serviceGroup": "ScomDataplane",
         "environment": "prod",
-        "TenantId":"33e01921-4d64-4f8c-a055-5bdaffd5e33d"
+        "TenantId":"72f988bf-86f1-41af-91ab-2d7cd011db47"
     },
     "serviceResourceGroupDefinitions": [
         {
             "name": "MicrosoftScomInfraResources",
             "serviceResourceDefinitions": [
                 {
-                    "name": "WorkloadNexusService-AzureStorage",
+                    "name": "WorkloadNexusService-VMSS",
                     "armTemplatePath": "Templates\\vmss.deploymentTemplate.json"
                 }
             ]
@@ -21,14 +21,14 @@
     ],
     "serviceResourceGroups": [
       {
-        "azureResourceGroupName": "onlinecatalogservice",
+        "azureResourceGroupName": "mahesh-test",
         "location": "eastus",
         "instanceOf": "MicrosoftScomInfraResources",
-        "azureSubscriptionId": "ad182a56-d7c4-4218-af2f-aa1250e26ee5",
+        "azureSubscriptionId": "248cd838-6ec8-4f4f-8828-80588385e88f",
         "serviceResources": [
           {
             "name": "storageaccount-eus2euaponlinecatalog",
-            "instanceOf": "WorkloadNexusService-AzureStorage",
+            "instanceOf": "WorkloadNexusService-VMSS",
             "ArmParametersPath": "Parameters\\vmss.deploymentParameters.json"
           }
         ]
