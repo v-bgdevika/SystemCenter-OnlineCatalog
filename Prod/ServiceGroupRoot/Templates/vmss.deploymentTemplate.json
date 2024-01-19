@@ -85,7 +85,7 @@
       }
     },
     "variables": {
-      "namingInfix": "[toLower(substring(concat(parameters('vmssName'), uniqueString(resourceGroup().id)), 0, 9))]",
+      "namingInfix": "[toLower(substring(concat(parameters('vmssName'), uniqueString(resourceGroup().id)), 0, 24))]",
       "longNamingInfix": "[toLower(parameters('vmssName'))]",
       "VmssName": "[concat(variables('namingInfix'))]",
       "VmssOSDiskName": "[concat(variables('VmssName'), '_OSDisk')]",
@@ -93,10 +93,10 @@
       "nicName": "[concat(variables('namingInfix'), 'nic')]",
       "ipConfigName": "[concat(variables('namingInfix'), 'ipconfig')]",
       "loadBalancerBackEndName": "bp1",
-      "KeyVault": "Mahesh-keyVault",
+      "KeyVault": "SCOMOCKeyVault",
       "Extension": "CustomScriptExtension",
       "Extension1": "KeyVaultWindows",
-      "idName": "ocservice-identity",
+      "idName": "ocservice-certificate-msi",
       "osType": {
         "publisher": "MicrosoftWindowsServer",
         "offer": "WindowsServer",
@@ -297,7 +297,7 @@
                 "linkOnRenewal": true,
                 "requireInitialSync": true,
                 "observedCertificates":[                   {
-                  "url": "https://mahesh-keyvault.vault.azure.net/secrets/cert",
+                  "url": "https://scomockeyvault.vault.azure.net/secrets/SCOMOnlineCatalogKeyVaultCertificate",
                   "certificateStoreName": "MY",
                   "certificateStoreLocation": "LocalMachine",
                   "accounts": "Network Service"
