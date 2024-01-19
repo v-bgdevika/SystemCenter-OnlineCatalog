@@ -225,10 +225,10 @@
     "properties": {
       "frontendIPConfigurations": [
         {
-          "name": "frntip",
+          "name": "frntdip",
           "properties": {
             "publicIPAddress": {
-              "id": "[resourceId('Microsoft.Network/publicIPAddresses', 'online-catalog-pip')]"
+              "id": "[resourceId('Microsoft.Network/publicIPAddresses', 'onlinecatalog-test-pip')]"
             }
           }
         }
@@ -252,7 +252,7 @@
             "idleTimeoutInMinutes": 4,
             "frontendIPConfigurations": [
               {
-                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('existingLoadBalancerName')), '/frontendIPConfigurations/frntip')]"
+                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('existingLoadBalancerName')), '/frontendIPConfigurations/frntdip')]"
               }
             ],
             "backendAddressPool": {
