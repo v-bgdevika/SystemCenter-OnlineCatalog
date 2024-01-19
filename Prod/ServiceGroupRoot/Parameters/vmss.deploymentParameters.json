@@ -6,7 +6,7 @@
       "value": "Standard_D4s_v3"
     },
     "VmssName": {
-      "value": "lbn-vmss1"
+      "value": "online-catalog-test-vmss"
     },
     "instanceCount": {
       "value": 3
@@ -15,16 +15,16 @@
       "value": "scomuser"
     },
     "existingVnetResourceGroupName": {
-      "value": "Mahesh-Test"
+      "value": "SCOMProdPub"
     },
     "existingVnetName": {
-      "value": "Mahesh_Vnet"
+      "value": "SCOMProdPub-vnet"
     },
     "existingSubnetName": {
-      "value": "subnet1"
+      "value": "default"
     },
     "existingLoadBalancerName": {
-      "value": "onlinecataloglb"
+      "value": "online-catalog-test"
     },
     "adminPassword": {
       "value": "Caelum#01"
