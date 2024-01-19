@@ -228,7 +228,7 @@
           "name": "frntip",
           "properties": {
             "publicIPAddress": {
-              "id": "[resourceId('Microsoft.Network/publicIPAddresses', 'pip')]"
+              "id": "[resourceId('Microsoft.Network/publicIPAddresses', 'online-catalog-pip')]"
             }
           }
         }
