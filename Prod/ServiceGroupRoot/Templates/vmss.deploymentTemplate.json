@@ -85,7 +85,7 @@
     },
     "location": {
       "type": "string",
-      "defaultValue": "[parameters('location')]",
+      "defaultValue": "eastus",
       "metadata": {
         "description": "Default location"
       }
