@@ -6,7 +6,7 @@
       "value": "Standard_D4s_v3"
     },
     "VmssName": {
-      "value": "online-catalog-test-vmss"
+      "value": "OCS-VMSS1"
     },
     "instanceCount": {
       "value": 3
