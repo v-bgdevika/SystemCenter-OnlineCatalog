@@ -20,7 +20,7 @@
     ],
     "serviceResourceGroups": [
       {
-        "AzureResourceGroupName":"Mahesh-Test",
+        "AzureResourceGroupName":"SCOMProdPub",
         "Location": "eastus",
         "InstanceOf": "ocsvmss-eus",
         "AzureSubscriptionId": "dc7b0c81-a5f5-42c8-8c20-58cbf7c1c8f0",
