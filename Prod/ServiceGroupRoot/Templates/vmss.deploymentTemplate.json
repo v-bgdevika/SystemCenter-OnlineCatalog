@@ -85,7 +85,7 @@
       }
     },
     "variables": {
-      "namingInfix": "[toLower(substring(concat(parameters('vmssName'), uniqueString(resourceGroup().id)), 0, 24))]",
+      "namingInfix": "[toLower(substring(concat(parameters('vmssName'), uniqueString(resourceGroup().id)), 0, 9))]",
       "longNamingInfix": "[toLower(parameters('vmssName'))]",
       "VmssName": "[concat(variables('namingInfix'))]",
       "VmssOSDiskName": "[concat(variables('VmssName'), '_OSDisk')]",
