@@ -158,6 +158,19 @@ extends:
            displayName: 'Run Roslyn Analyzers'
            inputs:
              copyLogsOnly: true
+
+         - powershell: |$configContent = @"<?xml version="1.0" encoding="UTF-8"?><!-- Web.Config Configuration File -->
+                        <configuration>
+                        <connectionStrings>
+    
+                        </connectionStrings>
+                        <system.webServer>
+                        <directoryBrowse enabled="false" />
+                        </system.webServer>
+                        </configuration>"@
+
+           $configContent | Out-File -FilePath "TargetFolder: '$(Build.SourcesDirectory)\out\web.config' -Encoding UTF8
+           displayName: 'Create web.config file'
               
           # - task: MSBuild@1
             # displayName: 'Build Testcode'
