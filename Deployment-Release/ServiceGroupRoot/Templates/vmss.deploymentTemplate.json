@@ -1,0 +1,321 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vmSku": {
+      "type": "string",
+      "defaultValue": "Standard_D4s_v3",
+      "metadata": {
+        "description": "Size of VMs in the VM Scale Set."
+      }
+    },
+    "windowsOSVersion": {
+      "type": "string",
+      "defaultValue": "2022-Datacenter",
+      "allowedValues": [
+        "2008-R2-SP1",
+        "2012-Datacenter",
+        "2012-R2-Datacenter",
+        "2016-Datacenter",
+        "2019-Datacenter",
+        "2022-Datacenter",
+        "2022-datacenter-azure-edition"
+      ],
+      "metadata": {
+        "description": "The Windows version for the VM. This will pick a fully patched image of this given Windows version. Allowed values: 2008-R2-SP1, 2012-Datacenter, 2012-R2-Datacenter."
+      }
+    },
+    "VmssName": {
+      "type": "string",
+      "metadata": {
+        "description": "String used as a base for naming resources. Must be 3-61 characters in length and globally unique across Azure. A hash is prepended to this string for some resources, and resource-specific information is appended."
+      },
+      "maxLength": 61
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "eastus",
+      "metadata": {
+      "description": "Default location"
+    }
+    },
+    "instanceCount": {
+      "type": "int",
+      "metadata": {
+        "description": "Number of VM instances (100 or less)."
+      },
+      "minValue": 3,
+      "maxValue": 10
+    },
+    "existingVnetResourceGroupName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the resourceGroup for the existing virtual network to deploy the scale set into."
+      }
+    },
+    "existingVnetName": {
+      "type": "string",
+      "metadata": {
+        "description": "vName of the existing virtual network to deploy the scale set into."
+      }
+    },
+    "existingSubnetName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the existing subnet to deploy the scale set into."
+      }
+    },
+  "existingLoadBalancerName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the existing subnet to deploy the scale set into."
+      }
+    },
+    "adminUsername": {
+      "type": "string",
+      "metadata": {
+        "description": "Admin username on all VMs."
+      }
+    },
+    "adminPassword": {
+      "type": "securestring",
+      "metadata": {
+        "description": "Admin password on all VMs."
+      }
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "eastus",
+      "metadata": {
+        "description": "Default location"
+      }
+    }
+  },
+  "variables": {
+    "namingInfix": "[toLower(substring(concat(parameters('vmssName'), uniqueString(resourceGroup().id)), 0, 9))]",
+    "longNamingInfix": "[toLower(parameters('vmssName'))]",
+    "VmssName": "[concat(variables('namingInfix'))]",
+    "VmssOSDiskName": "[concat(variables('VmssName'), '_OSDisk')]",
+    "VmssIPConfigName": "[concat(variables('VmssName'), 'ipconfig')]",
+    "nicName": "[concat(variables('namingInfix'), 'nic')]",
+    "ipConfigName": "[concat(variables('namingInfix'), 'ipconfig')]",
+    "loadBalancerBackEndName": "bp1",
+    "KeyVault": "SCOMOCKeyVault",
+    "Extension": "CustomScriptExtension",
+    "Extension1": "KeyVaultWindows",
+    "idName": "ocservice-certificate-msi",
+    "osType": {
+      "publisher": "MicrosoftWindowsServer",
+      "offer": "WindowsServer",
+      "sku": "[parameters('windowsOSVersion')]",
+      "version": "latest"
+    },
+    "imageReference": "[variables('osType')]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
+      "apiVersion": "2022-01-31-preview",
+      "name": "[variables('idName')]",
+      "location": "[parameters('location')]"
+    },
+    {
+      "type": "Microsoft.Compute/virtualMachineScaleSets",
+      "name": "[variables('namingInfix')]",
+      "location": "[parameters('location')]",
+      "apiVersion": "2020-12-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('idName'))]"
+      ],
+      "sku": {
+        "name": "[parameters('vmSku')]",
+        "tier": "Standard",
+        "capacity": "[parameters('instanceCount')]"
+      },
+      "identity": {
+        "type": "UserAssigned",
+        "userAssignedIdentities": {
+          "[resourceID('Microsoft.ManagedIdentity/userAssignedIdentities/',variables('idName'))]": {
+            
+          }
+        }
+      },        
+      "properties": {
+        "overprovision": "true",
+        "upgradePolicy": {
+          "mode": "Automatic"
+        },
+        "virtualMachineProfile": {
+          "storageProfile": {
+            "osDisk": {
+              "createOption": "FromImage",
+              "caching": "ReadWrite"
+            },
+            "imageReference": "[variables('imageReference')]"
+          },
+          "osProfile": {
+            "computerNamePrefix": "[variables('namingInfix')]",
+            "adminUsername": "[parameters('adminUsername')]",
+            "adminPassword": "[parameters('adminPassword')]"
+          },
+          "networkProfile": {
+            "networkInterfaceConfigurations": [
+              {
+                "name": "[variables('nicName')]",
+                "properties": {
+                  "primary": true,
+                  "ipConfigurations": [
+                    {
+                      "name": "[variables('ipConfigName')]",
+                      "properties": {
+                        "subnet": {
+                          "id": "[resourceId(parameters('existingVnetResourceGroupName'), 'Microsoft.Network/virtualNetworks/subnets', parameters('existingVnetName'), parameters('existingSubNetName'))]"
+                        },
+                        "loadBalancerBackendAddressPools": [
+                        {
+                          "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', parameters('existingLoadBalancerName'), variables('loadBalancerBackEndName'))]"
+                        }
+                      ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Compute/virtualMachineScaleSets/extensions",
+      "apiVersion": "2018-06-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.Compute/virtualMachineScaleSets/', variables('vmssName'))]",          
+        "[resourceId('Microsoft.Compute/virtualMachineScaleSets/extensions', variables('vmssName'), variables('Extension1'))]"
+      ],
+      "name": "[concat(parameters('VmssName'), '/', variables('Extension'))]",
+      "location": "[parameters('location')]",
+      "properties": {
+          "publisher": "Microsoft.Compute",
+          "type": "CustomScriptExtension",
+          "typeHandlerVersion": "1.10",
+          "autoUpgradeMinorVersion": true,
+          "settings": {
+              "fileUris": [
+                  "https://onlinecatalogappstorage.blob.core.windows.net/script/webserverscript.ps1"
+              ]
+          },
+          "protectedSettings": {
+            "commandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File webserverscript.ps1')]"
+      }
+    }
+  },
+  {
+    "type": "Microsoft.Network/loadBalancers",
+    "apiVersion": "2022-05-01",
+    "name": "[parameters('existingLoadBalancerName')]",
+    "location": "[parameters('location')]",
+    "dependsOn": [
+      "[resourceId('Microsoft.Compute/virtualMachineScaleSets/', variables('vmssName'))]"
+    ],
+    "sku": {
+      "name": "Standard",
+      "tier": "Regional"
+  },
+    "properties": {
+      "frontendIPConfigurations": [
+        {
+          "name": "frntdip",
+          "properties": {
+            "publicIPAddress": {
+              "id": "[resourceId('Microsoft.Network/publicIPAddresses', 'onlinecatalog-test-pip')]"
+            }
+          }
+        }
+      ],
+      "backendAddressPools": [
+        {
+          "name": "bp1",
+          "properties": {}
+        }
+      ],
+      "loadBalancingRules": [],
+      "probes": [],
+      "inboundNatRules": [],
+      "outboundRules": [
+        {
+          "name": "OutboundRule1",
+          "properties": {
+            "allocatedOutboundPorts": 0,
+            "protocol": "All",
+            "enableTcpReset": true,
+            "idleTimeoutInMinutes": 4,
+            "frontendIPConfigurations": [
+              {
+                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('existingLoadBalancerName')), '/frontendIPConfigurations/frntdip')]"
+              }
+            ],
+            "backendAddressPool": {
+              "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('existingLoadBalancerName')), '/backendAddressPools/bp1')]"
+            }
+          }
+        }
+      ],
+      "inboundNatPools": []
+    }
+  },    
+  {
+    "type": "Microsoft.KeyVault/vaults/accessPolicies",
+    "name": "[concat(variables('KeyVault'), '/add')]",
+    "apiVersion": "2019-09-01",
+    "dependsOn": [
+      "[resourceId('Microsoft.Compute/virtualMachineScaleSets/', variables('vmssName'))]"
+    ],
+    "properties": {
+      "accessPolicies": [
+        {
+          "tenantId": "[subscription().tenantid]",
+          "objectId": "[reference(variables('idName'), '2015-08-31-PREVIEW').principalId]",
+          "permissions": {
+            "certificates": ["all"],
+            "keys": [ "all"],
+            "secrets": ["all"]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "type": "Microsoft.Compute/virtualMachineScaleSets/extensions",
+    "name": "[concat(parameters('vmssName'), '/', variables('Extension1'))]",
+    "apiVersion": "2022-08-01",
+    "dependsOn": [
+      "[resourceId('Microsoft.Compute/virtualMachineScaleSets/', variables('vmssName'))]"
+    ],
+    "location": "[parameters('location')]",
+    "properties": {
+       "publisher": "Microsoft.Azure.KeyVault",
+       "type": "KeyVaultForWindows",
+       "typeHandlerVersion": "3.0",
+       "autoUpgradeMinorVersion": true,
+       "settings": {
+          "secretsManagementSettings": {
+              "pollingIntervalInS": "3600",
+              "linkOnRenewal": true,
+              "requireInitialSync": true,
+              "observedCertificates":[                   {
+                "url": "https://scomockeyvault.vault.azure.net/secrets/SCOMOnlineCatalogKeyVaultCertificate",
+                "certificateStoreName": "MY",
+                "certificateStoreLocation": "LocalMachine",
+                "accounts": "Network Service"
+            }]
+          },
+          "authenticationSettings": {
+              "msiEndpoint":  "http://169.254.169.254/metadata/identity/oauth2/token",
+              "msiClientId": "[reference(variables('idName'), '2015-08-31-PREVIEW').clientId]"
+          }
+       }
+    }
+ }
+]
+}
