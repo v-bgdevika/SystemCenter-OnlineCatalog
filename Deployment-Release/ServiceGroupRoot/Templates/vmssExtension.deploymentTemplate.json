@@ -7,42 +7,29 @@
           "type": "string"
       }
   },
-  "variables": {},
+  "variables": {
+    "Extension": "DeployCodeExtension"
+  },
   "resources": [
-      {
-          "type": "Microsoft.Compute/virtualMachineScaleSets",
-          "name": "[parameters('vmssName')]",
-          "apiVersion": "2018-06-01",
-          "location": "[resourceGroup().location]",
-          "...": "",
-          "properties": {
-              "...": "",
-              "virtualMachineProfile": {
-                  "...": "",
-                  "extensionProfile": {
-                      "extensions": [
-                          {
-                              "name": "DeployCodeExtension",
-                              "properties": {
-                                  "publisher": "Microsoft.Compute",
-                                  "type": "CustomScriptExtension",
-                                  "typeHandlerVersion": "1.10",
-                                  "autoUpgradeMinorVersion": true,
-                                  "settings": {
-                                      "fileUris": [
-                                          "https://onlinecatalogstorage1.blob.core.windows.net/scripts/deploycode.ps1"
-                                      ],
-                                      "timestamp": 202101021
-                                  },
-                                  "protectedSettings": {
-                                      "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File deploycode.ps1 -SomeParameter \"foobar\""
-                                  }
-                              }
-                          }
-                      ]
-                  }
-              }
-          }
+    {
+      "type": "Microsoft.Compute/virtualMachineScaleSets/extensions",
+      "apiVersion": "2018-06-01",
+      "name": "[concat(parameters('VmssName'), '/', variables('Extension'))]",
+      "location": "[resourceGroup().location]",
+      "properties": {
+          "publisher": "Microsoft.Compute",
+          "type": "CustomScriptExtension",
+          "typeHandlerVersion": "1.10",
+          "autoUpgradeMinorVersion": true,
+          "settings": {
+              "fileUris": [
+                  "https://onlinecatalogappstorage.blob.core.windows.net/script/deploycode.ps1"
+              ]
+          },
+          "protectedSettings": {
+            "commandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File deploycode.ps1')]"
       }
+    }
+  }
   ]
 }
