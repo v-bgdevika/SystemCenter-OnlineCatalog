@@ -2,32 +2,8 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "vmSku": {
-      "value": "Standard_D4s_v3"
-    },
     "VmssName": {
-      "value": "OCS-VMSS1"
-    },
-    "instanceCount": {
-      "value": 3
-    },
-    "adminUsername": {
-      "value": "scomuser"
-    },
-    "existingVnetResourceGroupName": {
-      "value": "SCOMProdPub"
-    },
-    "existingVnetName": {
-      "value": "SCOMProdPub-vnet"
-    },
-    "existingSubnetName": {
-      "value": "default"
-    },
-    "existingLoadBalancerName": {
-      "value": "online-catalog-test"
-    },
-    "adminPassword": {
-      "value": "Caelum#01"
+      "value": "new-vmss2"
     }
   }
 }
