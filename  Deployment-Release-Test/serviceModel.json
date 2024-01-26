@@ -13,7 +13,7 @@
             "serviceResourceDefinitions": [
                 {
                     "name": "vmssServiceResourceGroupDefinition",
-                    "armTemplatePath": "Templates\\vmss.deploymentTemplate.json"
+                    "armTemplatePath": "Templates\\vmss-extension.deploymentTemplate.json"
                 }
             ]
         }
@@ -28,7 +28,7 @@
           {
             "Name": "ocsvmss-onlinecatalog",
             "InstanceOf": "vmssServiceResourceGroupDefinition",
-            "ArmParametersPath": "Parameters\\vmss.deploymentParameters.json"
+            "ArmParametersPath": "Parameters\\vmss-extension.deploymentParameters.json"
           }
         ]
       }
