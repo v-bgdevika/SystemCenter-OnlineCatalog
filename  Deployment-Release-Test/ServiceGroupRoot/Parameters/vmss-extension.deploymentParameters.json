@@ -11,9 +11,6 @@
     "customScriptStorageAccountName": {
       "value": "storagemaheshtest123"
     },
-    "existingVnetResourceGroupName": {
-      "value": "Mahesh-Test"
-    },
     "customScriptFileUri": {
       "value": "https://storagemaheshtest123.blob.core.windows.net/scripts/IIS-Deploy-Code.ps1"
     }
