@@ -81,8 +81,7 @@
       "metadata": {
         "description": "Azure Storage Uri of the custom script file e.g. https://test.blob.core.windows.net/scripts/test.ps1"
       }
-    }
-  },
+    },
       "adminUsername": {
         "type": "string",
         "metadata": {
@@ -114,6 +113,7 @@
       "loadBalancerBackEndName": "bp1",
       "KeyVault": "Mahesh-keyVault",
       "Extension": "CustomScriptExtension",
+          "accountid": "[concat('/subscriptions/',subscription().subscriptionId,'/resourceGroups/',parameters('customScriptStorageAccountResourceGroup'),'/providers/','Microsoft.Storage/storageAccounts/', parameters('customScriptStorageAccountName'))]",
       "Extension1": "KeyVaultWindows",
       "idName": "ocservice-identity",
       "osType": {
