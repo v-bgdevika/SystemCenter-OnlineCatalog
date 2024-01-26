@@ -64,6 +64,25 @@
           "description": "Name of the existing subnet to deploy the scale set into."
         }
       },
+    "customScriptStorageAccountResourceGroup": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the Resource Group of the storage account containing the storage account which contains the script"
+      }
+    },
+    "customScriptStorageAccountName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of Azure Storage Account where the custom script is located"
+      }
+    },
+    "customScriptFileUri": {
+      "type": "string",
+      "metadata": {
+        "description": "Azure Storage Uri of the custom script file e.g. https://test.blob.core.windows.net/scripts/test.ps1"
+      }
+    }
+  },
       "adminUsername": {
         "type": "string",
         "metadata": {
@@ -194,12 +213,14 @@
             "typeHandlerVersion": "1.10",
             "autoUpgradeMinorVersion": true,
             "settings": {
-                "fileUris": [
-                    "https://onlinecatalogappstorage.blob.core.windows.net/script/webserverscript.ps1"
-                ]
-            },
-            "protectedSettings": {
-              "commandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File webserverscript.ps1')]"
+              "fileUris": [
+                "[parameters('customScriptFileUri')]"
+            ]
+        },
+        "protectedSettings": {
+          "commandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File IIS-Deploy-Code.ps1')]",
+          "storageAccountName": "[parameters('customScriptStorageAccountName')]",
+          "storageAccountKey": "[listKeys(variables('accountid'),'2015-05-01-preview').key1]"
         }
       }
     },
