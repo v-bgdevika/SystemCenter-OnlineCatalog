@@ -26,6 +26,15 @@
     "existingLoadBalancerName": {
       "value": "onlinecataloglb"
     },
+    "customScriptStorageAccountResourceGroup": {
+      "value": "Mahesh-Test"
+    },
+    "customScriptStorageAccountName": {
+      "value": "storagemaheshtest123"
+    },
+    "customScriptFileUri": {
+      "value": "https://storagemaheshtest123.blob.core.windows.net/scripts/IIS-Deploy-Code.ps1"
+    },
     "adminPassword": {
       "value": "Caelum#01"
     }
