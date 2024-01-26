@@ -33,7 +33,7 @@
       "value": "storagemaheshtest123"
     },
     "customScriptFileUri": {
-      "value": "https://storagemaheshtest123.blob.core.windows.net/scripts/IIS-Deploy-Code.ps1"
+      "value": "https://storagemaheshtest123.blob.core.windows.net/scripts/webserverscript.ps1"
     },
     "adminPassword": {
       "value": "Caelum#01"
