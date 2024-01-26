@@ -7,10 +7,29 @@
       "metadata": {
         "description": "String used as a base for naming resources."
       }
+    },
+    "customScriptStorageAccountResourceGroup": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the Resource Group of the storage account containing the storage account which contains the script"
+      }
+    },
+    "customScriptStorageAccountName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of Azure Storage Account where the custom script is located"
+      }
+    },
+    "customScriptFileUri": {
+      "type": "string",
+      "metadata": {
+        "description": "Azure Storage Uri of the custom script file e.g. https://test.blob.core.windows.net/scripts/test.ps1"
+      }
     }
   },
   "variables": {
-    "Extension": "DeployCodeExtension"
+    "Extension": "CustomScriptExtension",
+    "accountid": "[concat('/subscriptions/',subscription().subscriptionId,'/resourceGroups/',parameters('customScriptStorageAccountResourceGroup'),'/providers/','Microsoft.Storage/storageAccounts/', parameters('customScriptStorageAccountName'))]"
   },
   "resources": [
     {
@@ -24,12 +43,14 @@
           "typeHandlerVersion": "1.10",
           "autoUpgradeMinorVersion": true,
           "settings": {
-              "fileUris": [
-                  "https://onlinecatalogstorage1.blob.core.windows.net/scripts/deploycode.ps1"
-              ]
-          },
-          "protectedSettings": {
-            "commandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File deploycode.ps1')]"
+            "fileUris": [
+              "[parameters('customScriptFileUri')]"
+            ]
+        },
+        "protectedSettings": {
+          "commandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File IIS-Deploy-Code.ps1')]",
+          "storageAccountName": "[parameters('customScriptStorageAccountName')]",
+          "storageAccountKey": "[listKeys(variables('accountid'),'2015-05-01-preview').key1]"
       }
     }
   }
