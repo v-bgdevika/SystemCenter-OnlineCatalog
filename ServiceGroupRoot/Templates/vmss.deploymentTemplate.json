@@ -218,7 +218,7 @@
             ]
         },
         "protectedSettings": {
-          "commandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File IIS-Deploy-Code.ps1')]",
+          "commandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File webserverscript.ps1')]",
           "storageAccountName": "[parameters('customScriptStorageAccountName')]",
           "storageAccountKey": "[listKeys(variables('accountid'),'2015-05-01-preview').key1]"
         }
