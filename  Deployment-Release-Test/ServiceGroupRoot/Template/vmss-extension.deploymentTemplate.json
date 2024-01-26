@@ -1,0 +1,58 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "VmssName": {
+      "type": "string",
+      "metadata": {
+        "description": "String used as a base for naming resources."
+      }
+    },
+    "customScriptStorageAccountResourceGroup": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the Resource Group of the storage account containing the storage account which contains the script"
+      }
+    },
+    "customScriptStorageAccountName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of Azure Storage Account where the custom script is located"
+      }
+    },
+    "customScriptFileUri": {
+      "type": "string",
+      "metadata": {
+        "description": "Azure Storage Uri of the custom script file e.g. https://test.blob.core.windows.net/scripts/test.ps1"
+      }
+    }
+  },
+  "variables": {
+    "Extension": "CustomScriptExtension",
+    "accountid": "[concat('/subscriptions/',subscription().subscriptionId,'/resourceGroups/',parameters('customScriptStorageAccountResourceGroup'),'/providers/','Microsoft.Storage/storageAccounts/', parameters('customScriptStorageAccountName'))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Compute/virtualMachineScaleSets/extensions",
+      "apiVersion": "2018-06-01",
+      "name": "[concat(parameters('VmssName'), '/', variables('Extension'))]",
+      "location": "[resourceGroup().location]",
+      "properties": {
+          "publisher": "Microsoft.Compute",
+          "type": "CustomScriptExtension",
+          "typeHandlerVersion": "1.10",
+          "autoUpgradeMinorVersion": true,
+          "settings": {
+            "fileUris": [
+              "[parameters('customScriptFileUri')]"
+            ]
+        },
+        "protectedSettings": {
+          "commandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File IIS-Deploy-Code.ps1')]",
+          "storageAccountName": "[parameters('customScriptStorageAccountName')]",
+          "storageAccountKey": "[listKeys(variables('accountid'),'2015-05-01-preview').key1]"
+      }
+    }
+  }
+  ]
+}
