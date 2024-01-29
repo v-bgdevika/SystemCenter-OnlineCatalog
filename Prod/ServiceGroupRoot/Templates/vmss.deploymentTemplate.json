@@ -228,7 +228,7 @@
           "name": "LoadBalancerFrontEnd",
           "properties": {
             "publicIPAddress": {
-              "id": "[resourceId('Microsoft.Network/publicIPAddresses', 'onlinecatalog-test-pip')]"
+              "id": "[resourceId('Microsoft.Network/publicIPAddresses', 'LB-PUBLIC1')]"
             }
           }
         }
