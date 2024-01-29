@@ -6,7 +6,7 @@
       "value": "Standard_D4as_v4"
     },
     "VmssName": {
-      "value": "SCOMOnlineCatalog-VMSS"
+      "value": "OCS-VMSS"
     },
     "instanceCount": {
       "value": 3
