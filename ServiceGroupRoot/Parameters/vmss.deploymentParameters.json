@@ -6,7 +6,7 @@
       "value": "Standard_D4s_v3"
     },
     "VmssName": {
-      "value": "lbn-vmss1"
+      "value": "lbn-vmss2"
     },
     "instanceCount": {
       "value": 3
