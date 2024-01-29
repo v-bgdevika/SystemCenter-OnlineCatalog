@@ -99,7 +99,7 @@
     "VmssIPConfigName": "[concat(variables('VmssName'), 'ipconfig')]",
     "nicName": "[concat(variables('namingInfix'), 'nic')]",
     "ipConfigName": "[concat(variables('namingInfix'), 'ipconfig')]",
-    "loadBalancerBackEndName": "bp1",
+    "loadBalancerBackEndName": "LB-BE-POOL01",
     "KeyVault": "SCOMOCKeyVault",
     "Extension": "CustomScriptExtension",
     "Extension1": "KeyVaultWindows",
@@ -235,7 +235,7 @@
       ],
       "backendAddressPools": [
         {
-          "name": "bp1",
+          "name": "LB-BE-POOL01",
           "properties": {}
         }
       ],
@@ -256,7 +256,7 @@
               }
             ],
             "backendAddressPool": {
-              "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('existingLoadBalancerName')), '/backendAddressPools/bp1')]"
+              "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('existingLoadBalancerName')), '/backendAddressPools/LB-BE-POOL01')]"
             }
           }
         }
