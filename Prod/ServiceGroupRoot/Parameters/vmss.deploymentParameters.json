@@ -3,10 +3,10 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "vmSku": {
-      "value": "Standard_D4s_v3"
+      "value": "Standard_D4as_v4"
     },
     "VmssName": {
-      "value": "OCS-VMSS1"
+      "value": "SCOMOnlineCatalog-VMSS"
     },
     "instanceCount": {
       "value": 3
