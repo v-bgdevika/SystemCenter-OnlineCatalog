@@ -102,7 +102,7 @@
       "loadBalancerBackEndName": "LB-BE-POOL01",
       "KeyVault": "SCOMOCKeyVault",
       "Extension": "CustomScriptExtension",
-      "Extension1": "KeyVaultWindows",
+      "Extension1": "KeyVaultforWindows",
       "idName": "ocservice-certificate-msi",
       "osType": {
         "publisher": "MicrosoftWindowsServer",
