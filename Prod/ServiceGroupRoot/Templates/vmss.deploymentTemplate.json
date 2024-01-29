@@ -32,13 +32,6 @@
         },
         "maxLength": 61
       },
-      "location": {
-        "type": "string",
-        "defaultValue": "eastus",
-        "metadata": {
-        "description": "Default location"
-      }
-      },
       "instanceCount": {
         "type": "int",
         "metadata": {
@@ -65,12 +58,30 @@
           "description": "Name of the existing subnet to deploy the scale set into."
         }
       },
-    "existingLoadBalancerName": {
+	  "existingLoadBalancerName": {
         "type": "string",
         "metadata": {
           "description": "Name of the existing subnet to deploy the scale set into."
         }
       },
+    "customScriptStorageAccountResourceGroup": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the Resource Group of the storage account containing the storage account which contains the script"
+      }
+    },
+    "customScriptStorageAccountName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of Azure Storage Account where the custom script is located"
+      }
+    },
+    "customScriptFileUri": {
+      "type": "string",
+      "metadata": {
+        "description": "Azure Storage Uri of the custom script file e.g. https://test.blob.core.windows.net/scripts/test.ps1"
+      }
+    },
       "adminUsername": {
         "type": "string",
         "metadata": {
@@ -85,7 +96,7 @@
       },
       "location": {
         "type": "string",
-        "defaultValue": "eastus",
+        "defaultValue": "[resourceGroup().location]",
         "metadata": {
           "description": "Default location"
         }
@@ -102,8 +113,9 @@
       "loadBalancerBackEndName": "LB-BE-POOL01",
       "KeyVault": "SCOMOCKeyVault",
       "Extension": "CustomScriptExtension",
-      "Extension1": "KeyVaultforWindows",
-      "idName": "ocservice-certificate-msi",
+          "accountid": "[concat('/subscriptions/',subscription().subscriptionId,'/resourceGroups/',parameters('customScriptStorageAccountResourceGroup'),'/providers/','Microsoft.Storage/storageAccounts/', parameters('customScriptStorageAccountName'))]",
+      "Extension1": "KeyVaultWindows",
+      "idName": "ocservice-identity",
       "osType": {
         "publisher": "MicrosoftWindowsServer",
         "offer": "WindowsServer",
@@ -117,12 +129,12 @@
         "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
         "apiVersion": "2022-01-31-preview",
         "name": "[variables('idName')]",
-        "location": "[parameters('location')]"
+        "location": "[resourceGroup().location]"
       },
       {
         "type": "Microsoft.Compute/virtualMachineScaleSets",
         "name": "[variables('namingInfix')]",
-        "location": "[parameters('location')]",
+        "location": "[resourceGroup().location]",
         "apiVersion": "2020-12-01",
         "dependsOn": [
           "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('idName'))]"
@@ -171,7 +183,7 @@
                           "subnet": {
                             "id": "[resourceId(parameters('existingVnetResourceGroupName'), 'Microsoft.Network/virtualNetworks/subnets', parameters('existingVnetName'), parameters('existingSubNetName'))]"
                           },
-                          "loadBalancerBackendAddressPools": [
+						              "loadBalancerBackendAddressPools": [
                           {
                             "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', parameters('existingLoadBalancerName'), variables('loadBalancerBackEndName'))]"
                           }
@@ -194,19 +206,21 @@
           "[resourceId('Microsoft.Compute/virtualMachineScaleSets/extensions', variables('vmssName'), variables('Extension1'))]"
         ],
         "name": "[concat(parameters('VmssName'), '/', variables('Extension'))]",
-        "location": "[parameters('location')]",
+        "location": "[resourceGroup().location]",
         "properties": {
             "publisher": "Microsoft.Compute",
             "type": "CustomScriptExtension",
             "typeHandlerVersion": "1.10",
             "autoUpgradeMinorVersion": true,
             "settings": {
-                "fileUris": [
-                    "https://onlinecatalogappstorage.blob.core.windows.net/script/webserverscript.ps1"
-                ]
-            },
-            "protectedSettings": {
-              "commandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File webserverscript.ps1')]"
+              "fileUris": [
+                "[parameters('customScriptFileUri')]"
+            ]
+        },
+        "protectedSettings": {
+          "commandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File webserverscript.ps1')]",
+          "storageAccountName": "[parameters('customScriptStorageAccountName')]",
+          "storageAccountKey": "[listKeys(variables('accountid'),'2015-05-01-preview').key1]"
         }
       }
     },
@@ -214,7 +228,7 @@
       "type": "Microsoft.Network/loadBalancers",
       "apiVersion": "2022-05-01",
       "name": "[parameters('existingLoadBalancerName')]",
-      "location": "[parameters('location')]",
+      "location": "[resourceGroup().location]",
       "dependsOn": [
         "[resourceId('Microsoft.Compute/virtualMachineScaleSets/', variables('vmssName'))]"
       ],
@@ -292,7 +306,7 @@
       "dependsOn": [
         "[resourceId('Microsoft.Compute/virtualMachineScaleSets/', variables('vmssName'))]"
       ],
-      "location": "[parameters('location')]",
+      "location": "[resourceGroup().location]",
       "properties": {
          "publisher": "Microsoft.Azure.KeyVault",
          "type": "KeyVaultForWindows",
@@ -318,4 +332,4 @@
       }
    }
   ]
-  }
+}
