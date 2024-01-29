@@ -1,33 +1,42 @@
 {
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "vmSku": {
-      "value": "Standard_D4as_v4"
-    },
-    "VmssName": {
-      "value": "OCS-VMSS"
-    },
-    "instanceCount": {
-      "value": 3
-    },
-    "adminUsername": {
-      "value": "scomuser"
-    },
-    "existingVnetResourceGroupName": {
-      "value": "SCOMProdPub"
-    },
-    "existingVnetName": {
-      "value": "SCOMProdPub-vnet"
-    },
-    "existingSubnetName": {
-      "value": "default"
-    },
-    "existingLoadBalancerName": {
-      "value": "LB-OCStandard001"
-    },
-    "adminPassword": {
-      "value": "Caelum#01"
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "vmSku": {
+        "value": "Standard_D4as_v4"
+      },
+      "VmssName": {
+        "value": "OCS-VMSS"
+      },
+      "instanceCount": {
+        "value": 3
+      },
+      "adminUsername": {
+        "value": "scomuser"
+      },
+      "existingVnetResourceGroupName": {
+        "value": "SCOMProdPub"
+      },
+      "existingVnetName": {
+        "value": "SCOMProdPub-vnet"
+      },
+      "existingSubnetName": {
+        "value": "default"
+      },
+      "existingLoadBalancerName": {
+        "value": "LB-OCStandard001"
+      },
+      "customScriptStorageAccountResourceGroup": {
+        "value": "SCOMProdPub"
+      },
+      "customScriptStorageAccountName": {
+        "value": "onlinecatalogappstorage1"
+      },
+      "customScriptFileUri": {
+        "value": "https://onlinecatalogappstorage1.blob.core.windows.net/scripts/webserverscript.ps1"
+      },
+      "adminPassword": {
+        "value": "Caelum#01"
+      }
     }
   }
-}
