@@ -24,7 +24,7 @@
       "value": "default"
     },
     "existingLoadBalancerName": {
-      "value": "online-catalog-test"
+      "value": "LB-OCStandard001"
     },
     "adminPassword": {
       "value": "Caelum#01"
