@@ -23,7 +23,7 @@
         "AzureResourceGroupName":"SCOMProdPub",
         "Location": "eastus",
         "InstanceOf": "ocsvmss-eus",
-        "AzureSubscriptionId": "248cd838-6ec8-4f4f-8828-80588385e88f",
+        "AzureSubscriptionId": "dc7b0c81-a5f5-42c8-8c20-58cbf7c1c8f0",
         "ServiceResources": [
           {
             "Name": "ocsvmss-onlinecatalog",
