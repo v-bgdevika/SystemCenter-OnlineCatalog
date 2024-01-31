@@ -36,7 +36,7 @@
       "type": "Microsoft.Compute/virtualMachineScaleSets/extensions",
       "apiVersion": "2018-06-01",
       "name": "[concat(parameters('VmssName'), '/', variables('Extension'))]",
-      "location": "[resourceGroup().location]",
+      "location": "eastus",
       "properties": {
           "publisher": "Microsoft.Compute",
           "type": "CustomScriptExtension",
