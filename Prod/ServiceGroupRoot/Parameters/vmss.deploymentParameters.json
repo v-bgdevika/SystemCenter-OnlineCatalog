@@ -26,15 +26,6 @@
       "existingLoadBalancerName": {
         "value": "LB-OCStandard001"
       },
-      "customScriptStorageAccountResourceGroup": {
-        "value": "SCOMProdPub"
-      },
-      "customScriptStorageAccountName": {
-        "value": "onlinecatalogappstorage1"
-      },
-      "customScriptFileUri": {
-        "value": "https://onlinecatalogappstorage1.blob.core.windows.net/scripts/webserverscript.ps1"
-      },
       "adminPassword": {
         "value": "Caelum#01"
       }
