@@ -31,7 +31,7 @@ variables:
   MINOR: 0
   BUILD: $[counter(variables['MINOR'], 0)]
   REVISION: 0
-  CodeQL.Enabled: true
+  CodeQL.Enabled: false
   WindowsContainerImage: 'cdpxwin1809.azurecr.io/global/vse2019:latest' # Docker image which is used to build the project https://aka.ms/obpipelines/containers
 
 resources:
@@ -50,7 +50,7 @@ extends:
       codeql:
         compiled: 
           ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/sdl') }}:
-            enabled: true
+            enabled: false
           ${{ else }}:
             enabled: false
       # tsa:
