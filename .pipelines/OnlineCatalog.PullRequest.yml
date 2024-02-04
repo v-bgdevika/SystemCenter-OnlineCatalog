@@ -64,7 +64,7 @@ extends:
             enabled: false
           ${{ else }}:
             enabled: false
-        tsaEnabled: true
+        tsaEnabled: false
 
     stages:
     - stage: build
