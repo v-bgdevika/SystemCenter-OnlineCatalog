@@ -118,30 +118,44 @@ extends:
               logProjectEvents: true
 
           - task: PowerShell@2
+            displayName: 'Create BuildPackage folder'
+            inputs:
+              targetType: 'inline'
+              script: |
+               New-Item -ItemType Directory -Force -Path '$(Build.SourcesDirectory)\out\BuildPackage'
+
+          - task: PowerShell@2
+            displayName: 'Create PreCompiledBuildPackage folder'
+            inputs:
+              targetType: 'inline'
+              script: |
+               New-Item -ItemType Directory -Force -Path '$(Build.SourcesDirectory)\out\PreCompiledBuildPackage'
+
+          - task: PowerShell@2
             displayName: 'Create bin folder'
             inputs:
               targetType: 'inline'
               script: |
-               New-Item -ItemType Directory -Force -Path '$(Build.SourcesDirectory)\out\bin'
+               New-Item -ItemType Directory -Force -Path '$(Build.SourcesDirectory)\out\BuildPackage\bin'
 
           - task: PowerShell@2
             displayName: 'Create web.config file'
             inputs:
               targetType: 'inline'
               script: |
-               New-Item -ItemType File -Force -Path '$(Build.SourcesDirectory)\out\web.config'
+               New-Item -ItemType File -Force -Path '$(Build.SourcesDirectory)\out\BuildPackage\web.config'
 
           - task: CopyFiles@2
             inputs:
               SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release'
               Contents: '**/*.dll'
-              TargetFolder: '$(Build.SourcesDirectory)\out\bin'
+              TargetFolder: '$(Build.SourcesDirectory)\out\BuildPackage\bin'
 
           - task: CopyFiles@2
             inputs:
               SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice'
-              Contents: '**/*ManagementPackCatalogWebService.asmx'
-              TargetFolder: '$(Build.SourcesDirectory)\out'
+              Contents: 'ManagementPackCatalogWebService.asmx'
+              TargetFolder: '$(Build.SourcesDirectory)\out\BuildPackage'
 
           - task: CmdLine@2
             displayName: 'Build SQL Tables'
