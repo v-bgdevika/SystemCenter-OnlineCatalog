@@ -185,8 +185,9 @@ extends:
           - task: onebranch.pipeline.signing@1
             inputs:
               command: 'sign'
+              signing_environment: "azure-ado"
               signing_profile: 'internal_azure_service'
-              files_to_sign: '**/*.exe;**/*.dll;**/*.ps1'
+              files_to_sign: '**/*.exe;**/*.dll;**/*.ps1;**/*.asmx;**/*.config'
               search_root: '$(Build.SourcesDirectory)\out'
               
           - task: Semmle@1
