@@ -137,6 +137,12 @@ extends:
               targetType: 'inline'
               script: |
                New-Item -ItemType Directory -Force -Path '$(Build.SourcesDirectory)\out\BuildPackage\bin'
+               
+          - task: CmdLine@2
+            displayName: 'Run aspnet_compiler'
+            inputs:
+              script: 
+               'aspnet_compiler -p "$(Build.SourcesDirectory)\out\BuildPackage" -v / "$(Build.SourcesDirectory)\out\PreCompiledBuildPackage"'
 
           - task: PowerShell@2
             displayName: 'Create web.config file'
