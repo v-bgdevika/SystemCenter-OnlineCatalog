@@ -118,10 +118,10 @@ extends:
               logProjectEvents: true
 
           - task: UseDotNet@2
-            displayName: 'Install .NET Framework 4.0.30319'
+            displayName: 'Install .NET Framework 2.235.0'
             inputs:
               packageType: 'sdk'
-              version: '4.0.30319'
+              version: '2.235.0'
               installationPath: $(Agent.ToolsDirectory)/dotnet
 
           - task: PowerShell@2
@@ -167,7 +167,7 @@ extends:
           - task: CmdLine@2
             displayName: 'Run aspnet_compiler'
             inputs:
-              script: '"$(Agent.ToolsDirectory)/dotnet/dotnet.exe" C:\Windows\Microsoft.NET\Framework\v4.0.30319\aspnet_compiler -p "$(Build.SourcesDirectory)\out\BuildPackage" -v / "$(Build.SourcesDirectory)\out\PreCompiledBuildPackage"'
+              script: '"$(Agent.ToolsDirectory)/dotnet/dotnet.exe" C:\Windows\Microsoft.NET\Framework\v2.235.0\aspnet_compiler -p "$(Build.SourcesDirectory)\out\BuildPackage" -v / "$(Build.SourcesDirectory)\out\PreCompiledBuildPackage"'
 
           - task: CmdLine@2
             displayName: 'Build SQL Tables'
