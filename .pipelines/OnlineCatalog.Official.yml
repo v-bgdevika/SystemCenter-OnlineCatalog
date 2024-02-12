@@ -165,13 +165,9 @@ extends:
               TargetFolder: '$(Build.SourcesDirectory)\out\BuildPackage'
 
           - task: CmdLine@2
-            displayName: 'Setting the environment variable path'
-            inputs:
-              script: '"$(Build.SourcesDirectory)\init.ps1"'
-          - task: CmdLine@2
             displayName: 'Run aspnet_compiler'
             inputs:
-              script: '"$(Agent.ToolsDirectory)\dotnet\dotnet.exe" C:\Windows\Microsoft.NET\Framework64\v4.0.30319\aspnet_compiler  "$(Build.SourcesDirectory)\out\BuildPackage" -v / "$(Build.SourcesDirectory)\out\PreCompiledBuildPackage"'
+              script: '"$(Agent.ToolsDirectory)\dotnet\dotnet C:\Windows\Microsoft.NET\Framework64\v4.0.30319\aspnet_compiler -v / -p "$(Build.SourcesDirectory)\out\BuildPackage" -c "$(Build.SourcesDirectory)\out\PreCompiledBuildPackage"'
 
           - task: CmdLine@2
             displayName: 'Build SQL Tables'
