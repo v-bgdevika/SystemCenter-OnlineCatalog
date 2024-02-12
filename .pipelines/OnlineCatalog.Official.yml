@@ -163,8 +163,10 @@ extends:
               SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice'
               Contents: 'ManagementPackCatalogWebService.asmx'
               TargetFolder: '$(Build.SourcesDirectory)\out\BuildPackage'
-
-          script: '"$(Agent.ToolsDirectory)\\dotnet\\dotnet" "$(Agent.ToolsDirectory)\\dotnet\\aspnet_compiler.dll" -v / -p "$(Build.SourcesDirectory)\\out\\BuildPackage" -c "$(Build.SourcesDirectory)\\out\\PreCompiledBuildPackage"'
+          - task: CmdLine@2
+            displayName: 'Run aspnet_compiler'
+            inputs:
+              script: '"$(Agent.ToolsDirectory)\\dotnet\\dotnet" "$(Agent.ToolsDirectory)\\dotnet\\aspnet_compiler.dll" -v / -p "$(Build.SourcesDirectory)\\out\\BuildPackage" -c "$(Build.SourcesDirectory)\\out\\PreCompiledBuildPackage"'
           - task: CmdLine@2
             displayName: 'Build SQL Tables'
             inputs:
