@@ -121,7 +121,7 @@ extends:
             displayName: 'Install .NET Framework 2.235.0'
             inputs:
               packageType: 'sdk'
-              version: '2.235.0'
+              version: '4.0.x'
               installationPath: $(Agent.ToolsDirectory)/dotnet
 
           - task: PowerShell@2
