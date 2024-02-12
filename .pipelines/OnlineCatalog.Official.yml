@@ -163,6 +163,11 @@ extends:
               SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice'
               Contents: 'ManagementPackCatalogWebService.asmx'
               TargetFolder: '$(Build.SourcesDirectory)\out\BuildPackage'
+        
+          - task: CmdLine@2
+            displayName: 'Setting the environment variable path'
+            inputs:
+              script: '"$(Build.SourcesDirectory)\init.ps1"'
 
           - task: CmdLine@2
             displayName: 'Run aspnet_compiler'
