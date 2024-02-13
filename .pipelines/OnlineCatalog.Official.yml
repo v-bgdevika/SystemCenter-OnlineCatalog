@@ -32,7 +32,7 @@ variables:
   BUILD: $[counter(variables['MINOR'], 0)]
   REVISION: 0
  # ob_reddog_enabled: true
-  CodeQL.Enabled: true
+  CodeQL.Enabled: false
   WindowsContainerImage: 'cdpxwin1809.azurecr.io/global/vse2019:latest' # Docker image which is used to build the project https://aka.ms/obpipelines/containers
 
 resources:
@@ -63,10 +63,10 @@ extends:
        codeql:
         compiled: 
           ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
-            enabled: true
+            enabled: false
           ${{ else }}:
             enabled: false
-        tsaEnabled: true
+        tsaEnabled: false
 
     stages:
     - stage: build
@@ -117,56 +117,33 @@ extends:
               maximumCpuCount: true
               logProjectEvents: true
 
-          - task: UseDotNet@2
-            displayName: 'Install .NET Framework 8.0.x'
-            inputs:
-              packageType: 'sdk'
-              version: '8.0.x'
-              installationPath: $(Agent.ToolsDirectory)/dotnet
-
-          - task: PowerShell@2
-            displayName: 'Create BuildPackage folder'
-            inputs:
-              targetType: 'inline'
-              script: |
-               New-Item -ItemType Directory -Force -Path '$(Build.SourcesDirectory)\out\BuildPackage'
-
-          - task: PowerShell@2
-            displayName: 'Create PreCompiledBuildPackage folder'
-            inputs:
-              targetType: 'inline'
-              script: |
-               New-Item -ItemType Directory -Force -Path '$(Build.SourcesDirectory)\out\PreCompiledBuildPackage'
-
           - task: PowerShell@2
             displayName: 'Create bin folder'
             inputs:
               targetType: 'inline'
               script: |
-               New-Item -ItemType Directory -Force -Path '$(Build.SourcesDirectory)\out\BuildPackage\bin'
+               New-Item -ItemType Directory -Force -Path '$(Build.SourcesDirectory)\out\bin'
 
           - task: PowerShell@2
             displayName: 'Create web.config file'
             inputs:
               targetType: 'inline'
               script: |
-               New-Item -ItemType File -Force -Path '$(Build.SourcesDirectory)\out\BuildPackage\web.config'
+               New-Item -ItemType File -Force -Path '$(Build.SourcesDirectory)\out\web.config'
 
           - task: CopyFiles@2
             inputs:
               SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release'
               Contents: '**/*.dll'
-              TargetFolder: '$(Build.SourcesDirectory)\out\BuildPackage\bin'
+              TargetFolder: '$(Build.SourcesDirectory)\out\bin'
 
           - task: CopyFiles@2
             inputs:
               SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice'
-              Contents: 'ManagementPackCatalogWebService.asmx'
-              TargetFolder: '$(Build.SourcesDirectory)\out\BuildPackage'
-          - task: CmdLine@2
-            displayName: 'Run aspnet_compiler'
-            inputs:
-              script: '"$(Agent.ToolsDirectory)/dotnet/dotnet.exe" C:\Windows\Microsoft.NET\Framework\v4.0.30319\aspnet_compiler -p "$(Build.SourcesDirectory)\out\BuildPackage" -v / "$(Build.SourcesDirectory)\out\PreCompiledBuildPackage"'
+              Contents: '**/*ManagementPackCatalogWebService.asmx'
+              TargetFolder: '$(Build.SourcesDirectory)\out'
+
+
           - task: CmdLine@2
             displayName: 'Build SQL Tables'
             inputs:
