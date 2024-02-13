@@ -103,6 +103,8 @@ extends:
               maximumCpuCount: true
               logProjectEvents: true
               createLogFile: true
+              PrecompileBeforePublish: true
+              EnableUpdateable: false
               
           - task: MSBuild@1
             displayName: 'Build Product Release'
@@ -116,6 +118,8 @@ extends:
               clean: true
               maximumCpuCount: true
               logProjectEvents: true
+              PrecompileBeforePublish: true
+              EnableUpdateable: false
 
           - task: PowerShell@2
             displayName: 'Create bin folder'
