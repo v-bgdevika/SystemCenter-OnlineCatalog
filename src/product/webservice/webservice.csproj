@@ -9,8 +9,6 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Microsoft.ManagementPackCatalog.WebService</RootNamespace>
     <AssemblyName>Microsoft.ManagementPackCatalog.WebService</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,7 +18,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,7 +26,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <OutputPath>bin\Debug</OutputPath>
@@ -49,9 +45,6 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
-  <Target Name="PrecompileWeb" AfterTargets="Build">
-    <AspNetCompiler VirtualPath="/mpdownload" PhysicalPath="D:\mpdownload" TargetPath="D:\newtest\" Force="true" Debug="true" />
-  </Target>
   <ItemGroup>
     <Compile Include="ManagementPackCatalogWebService.asmx.cs" />
     <Compile Include="ManagementPackCatalogXmlGenerator.cs" />
