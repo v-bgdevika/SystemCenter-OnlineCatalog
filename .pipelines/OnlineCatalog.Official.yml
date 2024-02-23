@@ -179,7 +179,7 @@ extends:
           - task: CmdLine@2
             displayName: 'Run aspnet_compiler'
             inputs:
-              script: '"$(Agent.ToolsDirectory)\dotnet\dotnet.exe" C:\Windows\Microsoft.NET\Framework64\v4.0.30319\aspnet_compiler -p "$(Build.SourcesDirectory)\out\BuildPackage" -v / "$(Build.SourcesDirectory)\out\PreCompiledBuildPackage"'
+              script: '"$(Agent.ToolsDirectory)\dotnet\dotnet.exe" C:\Windows\Microsoft.NET\Framework64\v4.0.30319\aspnet_compiler -p "$(Build.SourcesDirectory)\SystemCenter-OnlineCatalog\out\BuildPackage" -v / "$(Build.SourcesDirectory)\out\PreCompiledBuildPackage"'
               
           - task: CmdLine@2
             displayName: 'Build SQL Tables'
