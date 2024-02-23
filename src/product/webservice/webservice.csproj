@@ -9,6 +9,8 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Microsoft.ManagementPackCatalog.WebService</RootNamespace>
     <AssemblyName>Microsoft.ManagementPackCatalog.WebService</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
