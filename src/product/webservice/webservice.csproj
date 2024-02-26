@@ -14,10 +14,10 @@
      <PostBuildEvent>
       mkdir "$(System.DefaultWorkingDirectory)\CustomOutputDirectory"
       mkdir "$(System.DefaultWorkingDirectory)\CustomOutputDirectory\bin"
-      copy "$(MSBuildStartupDirectory)\src\product\webservice\DefaultWsdlHelpGenerator.aspx" $(System.DefaultWorkingDirectory)\CustomOutputDirectory
-      copy "$(MSBuildStartupDirectory)\src\product\webservice\ManagementPackCatalogWebService.asmx" $(System.DefaultWorkingDirectory)\CustomOutputDirectory
-      copy "$(MSBuildStartupDirectory)\src\product\webservice\web.config" $(System.DefaultWorkingDirectory)\CustomOutputDirectory
-      copy "$(MSBuildStartupDirectory)\src\product\webservice\bin\Release\*.dll" $(System.DefaultWorkingDirectory)\CustomOutputDirectory\bin
+      copy "$(System.DefaultWorkingDirectory)\src\product\webservice\DefaultWsdlHelpGenerator.aspx" $(System.DefaultWorkingDirectory)\CustomOutputDirectory
+      copy "$(System.DefaultWorkingDirectory)\src\product\webservice\ManagementPackCatalogWebService.asmx" $(System.DefaultWorkingDirectory)\CustomOutputDirectory
+      copy "$(System.DefaultWorkingDirectory)\src\product\webservice\web.config" $(System.DefaultWorkingDirectory)\CustomOutputDirectory
+      copy "$(System.DefaultWorkingDirectory)\src\product\webservice\bin\Release\*.dll" $(System.DefaultWorkingDirectory)\CustomOutputDirectory\bin
     </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
