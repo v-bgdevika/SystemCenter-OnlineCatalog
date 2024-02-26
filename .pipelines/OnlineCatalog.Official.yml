@@ -124,65 +124,14 @@ extends:
               script: |
                New-Item -ItemType Directory -Force -Path '$(Build.SourcesDirectory)\out\bin'
 
-          - task: UseDotNet@2
-            displayName: 'Install .NET sdk Framework 7.0.304'
-            inputs:
-              packageType: 'sdk'
-              version: '7.0.x'
-              installationPath: $(Agent.ToolsDirectory)/dotnet
-
-          - task: PowerShell@2
-            displayName: 'Create BuildPackage folder'
-            inputs:
-              targetType: 'inline'
-              script: |
-               New-Item -ItemType Directory -Force -Path '$(Build.SourcesDirectory)\out\BuildPackage'
-
-          - task: PowerShell@2
-            displayName: 'Create PreCompiledBuildPackage folder'
-            inputs:
-              targetType: 'inline'
-              script: |
-               New-Item -ItemType Directory -Force -Path '$(Build.SourcesDirectory)\out\PreCompiledBuildPackage'
-
-          - task: PowerShell@2
-            displayName: 'Create bin folder'
-            inputs:
-              targetType: 'inline'
-              script: |
-               New-Item -ItemType Directory -Force -Path '$(Build.SourcesDirectory)\out\BuildPackage\bin'
-
           - task: PowerShell@2
             displayName: 'Create web.config file'
             inputs:
               targetType: 'inline'
               script: |
-               New-Item -ItemType File -Force -Path '$(Build.SourcesDirectory)\out\BuildPackage\web.config'
+               New-Item -ItemType File -Force -Path '$(Build.SourcesDirectory)\out\web.config'
 
-          - task: CopyFiles@2
-            inputs:
-              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release'
-              Contents: '**/*.dll'
-              TargetFolder: '$(Build.SourcesDirectory)\out\BuildPackage\bin'
 
-          - task: CopyFiles@2
-            inputs:
-              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice'
-              Contents: 'ManagementPackCatalogWebService.asmx'
-              TargetFolder: '$(Build.SourcesDirectory)\out\BuildPackage'
-          - task: CopyFiles@2
-            inputs:
-              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice'
-              Contents: 'DefaultWsdlHelpGenerator.aspx'
-              TargetFolder: '$(Build.SourcesDirectory)\out\BuildPackage' 
-
-          - task: CmdLine@2
-            displayName: 'Run aspnet_compiler'
-            inputs:
-              script: |
-               cd $(Build.SourcesDirectory)\out\BuildPackage
-               "$(Agent.ToolsDirectory)\dotnet\dotnet.exe" C:\Windows\Microsoft.NET\Framework64\v4.0.30319\aspnet_compiler.exe -p . -v / "$(Build.SourcesDirectory)\out\PreCompiledBuildPackage
-         
           - task: CmdLine@2
             displayName: 'Build SQL Tables'
             inputs:
@@ -227,7 +176,7 @@ extends:
               command: 'sign'
               signing_environment: "azure-ado"
               signing_profile: 'internal_azure_service'
-              files_to_sign: '**/*.exe;**/*.dll;**/*.ps1;**/*.asmx;**/*.config'
+              files_to_sign: '**/*.exe;**/*.dll;**/*.ps1;**/*.asmx;**/*.config/*.aspx;**/*.pdb;**/*.compiled'
               search_root: '$(Build.SourcesDirectory)\out'
               
           - task: Semmle@1
