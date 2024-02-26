@@ -12,12 +12,12 @@
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <TargetFrameworkProfile />
      <PostBuildEvent>
-      mkdir $(TargetDir)\CustomOutputDirectory
-      mkdir $(TargetDir)\CustomOutputDirectory\bin
-      copy "$(MSBuildStartupDirectory)\src\product\webservice\DefaultWsdlHelpGenerator.aspx" $(TargetDir)\CustomOutputDirectory
-      copy "$(MSBuildStartupDirectory)\src\product\webservice\ManagementPackCatalogWebService.asmx" $(TargetDir)\CustomOutputDirectory
-      copy "$(MSBuildStartupDirectory)\src\product\webservice\web.config" $(TargetDir)\CustomOutputDirectory
-      copy "$(MSBuildStartupDirectory)\src\product\webservice\bin\Release\*.dll" $(TargetDir)\CustomOutputDirectory\bin
+      mkdir $(MSBuildStartupDirectory)\CustomOutputDirectory
+      mkdir $(MSBuildStartupDirectory)\CustomOutputDirectory\bin
+      copy "$(MSBuildStartupDirectory)\src\product\webservice\DefaultWsdlHelpGenerator.aspx" $(MSBuildStartupDirectory)\CustomOutputDirectory
+      copy "$(MSBuildStartupDirectory)\src\product\webservice\ManagementPackCatalogWebService.asmx" $(MSBuildStartupDirectory)\CustomOutputDirectory
+      copy "$(MSBuildStartupDirectory)\src\product\webservice\web.config" $(MSBuildStartupDirectory)\CustomOutputDirectory
+      copy "$(MSBuildStartupDirectory)\src\product\webservice\bin\Release\*.dll" $(MSBuildStartupDirectory)\CustomOutputDirectory\bin
     </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
