@@ -12,8 +12,8 @@
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <TargetFrameworkProfile />
      <PostBuildEvent>
-      mkdir "$(Build.SourcesDirectory)\CustomOutputDirectory"
-      mkdir "$(Build.SourcesDirectory)\CustomOutputDirectory\bin"
+      mkdir $(Build.SourcesDirectory)\CustomOutputDirectory
+      mkdir $(Build.SourcesDirectory)\CustomOutputDirectory\bin
       copy "$(Build.SourcesDirectory)\src\product\webservice\DefaultWsdlHelpGenerator.aspx" $(Build.SourcesDirectory)\CustomOutputDirectory
       copy "$(Build.SourcesDirectory)\src\product\webservice\ManagementPackCatalogWebService.asmx" $(Build.SourcesDirectory)\CustomOutputDirectory
       copy "$(Build.SourcesDirectory)\src\product\webservice\web.config" $(Build.SourcesDirectory)\CustomOutputDirectory
