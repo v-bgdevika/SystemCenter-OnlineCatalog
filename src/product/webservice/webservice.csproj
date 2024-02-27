@@ -11,8 +11,37 @@
     <AssemblyName>Microsoft.ManagementPackCatalog.WebService</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <TargetFrameworkProfile />
-     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <_BaseDir>$(MSBuildThisFileDirectory)</_BaseDir>
+    <BaseDir>$([System.IO.Path]::GetFullPath('$(_BaseDir)'))</BaseDir>  
   </PropertyGroup>
+  <ItemGroup>
+  <PublishedFiles Include="$(BaseDir)\DefaultWsdlHelpGenerator.aspx"/>
+  <PublishedFiles Include="$(BaseDir)\ManagementPackCatalogWebService.asmx"/>
+  <PublishedFiles Include="$(BaseDir)\web.config"/>
+  <ServiceOutputFiles Include="$(BaseDir)\$(OutputPath)Microsoft.ManagementPackCatalog.WebService.dll"/>
+  <ServiceOutputFiles Include="$(BaseDir)\$(OutputPath)Microsoft.ManagementPackCatalog.Access.dll"/>
+  <ServiceOutputFiles Include="$(BaseDir)\$(OutputPath)Microsoft.ManagementPackCatalog.Classes.dll"/>
+ </ItemGroup>
+ <Target Name="publishedfile" AfterTargets="Build">
+<Copy SourceFiles="@(PublishedFiles)" DestinationFolder="$(OutputPath)\CustomOutputDirectory\" SkipUnchangedFiles="true"/>
+ <Copy SourceFiles="@(ServiceOutputFiles)" DestinationFolder="$(OutputPath)\CustomOutputDirectory\bin\" SkipUnchangedFiles="true"/>
+</Target>
+<Target Name="ShowReservedProperties" AfterTargets="BeforeBuild">
+    <Message Text=" MSBuildProjectDirectory  = $(MSBuildProjectDirectory)" Importance="high" />
+    <Message Text=" MSBuildProjectFile  = $(MSBuildProjectFile)" Importance="high" />
+    <Message Text=" MSBuildProjectExtension  = $(MSBuildProjectExtension)" Importance="high" />
+    <Message Text=" MSBuildProjectFullPath  = $(MSBuildProjectFullPath)" Importance="high" />
+    <Message Text=" MSBuildProjectName  = $(MSBuildProjectName)" Importance="high" />
+    <Message Text=" MSBuildBinPath  = $(MSBuildBinPath)" Importance="high" />
+    <Message Text=" MSBuildProjectDefaultTargets  = $(MSBuildProjectDefaultTargets)" Importance="high" />
+    <Message Text=" MSBuildExtensionsPath  = $(MSBuildExtensionsPath)" Importance="high" />
+    <Message Text=" MSBuildStartupDirectory  = $(MSBuildStartupDirectory)" Importance="high"/>
+    <Message Text=" OutputPath  = $(OutputPath)" Importance="high"/>
+   <Message Text=" BaseDir  = $(BaseDir)" Importance="high"/>
+    <Message Text=" MSBuildThisFileDirectory  = $(MSBuildThisFileDirectory)" Importance="high"/>
+
+</Target>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -83,6 +112,9 @@
       <Name>access</Name>
     </ProjectReference>
   </ItemGroup>
+    <Target Name="PrecompileWeb" AfterTargets="Build">
+    <AspNetCompiler VirtualPath="/mpdownload" PhysicalPath="$(OutputPath)\CustomOutputDirectory\" TargetPath="$(OutputPath)\PrecompiledOutput\" Force="true" Debug="true" />
+  </Target>
   <ItemGroup>
     <Content Include="DefaultWsdlHelpGenerator.aspx" />
   </ItemGroup>
