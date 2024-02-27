@@ -124,23 +124,7 @@ extends:
               installationPath: $(Agent.ToolsDirectory)/dotnet
 
 
-          - task: CmdLine@2
-            displayName: 'Build SQL Tables'
-            inputs:
-              workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
-              script: 'cmd.exe /c $(Build.SourcesDirectory)\src\product\database\createTableSql.bat $(OUTPUTROOT)'  
 
-          - task: CmdLine@2
-            displayName: 'Build SQL Procedures'
-            inputs:
-              workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
-              script: 'cmd.exe /c createStoredProcedureSql.bat $(OUTPUTROOT)'
-
-          - task: CmdLine@2
-            displayName: 'Build SQL AdminSPs'
-            inputs:
-              workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
-              script: 'cmd.exe /c createAdminStoredProcedureSql.bat $(OUTPUTROOT)' 
 
           # - task: MSBuild@1
           #   displayName: 'Build Testcode'
@@ -163,14 +147,6 @@ extends:
           #    Contents: '**\bin\**'
           #    TargetFolder: '$(Build.SourcesDirectory)\out\'
 
-          - task: onebranch.pipeline.signing@1
-            inputs:
-              command: 'sign'
-              signing_environment: "azure-ado"
-              signing_profile: 'internal_azure_service'
-              files_to_sign: '**/*.exe;**/*.dll;**/*.ps1;**/*.asmx;**/*.config/*.aspx;**/*.pdb;**/*.compiled'
-              search_root: '$(Build.SourcesDirectory)\out'
-              
           - task: Semmle@1
             displayName: 'codeql'
             inputs:
