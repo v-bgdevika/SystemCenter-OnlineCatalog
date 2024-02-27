@@ -18,7 +18,7 @@
   <ItemGroup>
   <PublishedFiles Include="$(BaseDir)\DefaultWsdlHelpGenerator.aspx"/>
   <PublishedFiles Include="$(BaseDir)\ManagementPackCatalogWebService.asmx"/>
-  <PublishedFiles Include="$(BaseDir)\web.config"/>
+ 
   <ServiceOutputFiles Include="$(BaseDir)\$(OutputPath)Microsoft.ManagementPackCatalog.WebService.dll"/>
   <ServiceOutputFiles Include="$(BaseDir)\$(OutputPath)Microsoft.ManagementPackCatalog.Access.dll"/>
   <ServiceOutputFiles Include="$(BaseDir)\$(OutputPath)Microsoft.ManagementPackCatalog.Classes.dll"/>
