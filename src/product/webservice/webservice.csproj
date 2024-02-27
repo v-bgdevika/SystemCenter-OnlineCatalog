@@ -2,10 +2,6 @@
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-  <RootDirectory>$(Build.SourcesDirectory)</RootDirectory>
-</PropertyGroup>
-
-  <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{71BD8693-1B51-4742-87C0-0AAC14EDFF5F}</ProjectGuid>
@@ -15,15 +11,6 @@
     <AssemblyName>Microsoft.ManagementPackCatalog.WebService</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <TargetFrameworkProfile />
-    
-     <PostBuildEvent>
-      mkdir $(Build.SourcesDirectory)\CustomOutputDirectory
-      mkdir $(Build.SourcesDirectory)\CustomOutputDirectory\bin
-      copy "$(Build.SourcesDirectory)\src\product\webservice\DefaultWsdlHelpGenerator.aspx" $(Build.SourcesDirectory)\CustomOutputDirectory
-      copy "$(Build.SourcesDirectory)\src\product\webservice\ManagementPackCatalogWebService.asmx" $(Build.SourcesDirectory)\CustomOutputDirectory
-      copy "$(Build.SourcesDirectory)\src\product\webservice\web.config" $(Build.SourcesDirectory)\CustomOutputDirectory
-      copy "$(Build.SourcesDirectory)\src\product\webservice\bin\Release\*.dll" $(Build.SourcesDirectory)\CustomOutputDirectory\bin
-    </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -95,9 +82,6 @@
       <Name>access</Name>
     </ProjectReference>
   </ItemGroup>
-   <Target Name="PrecompileWeb" AfterTargets="Build">
-    <AspNetCompiler VirtualPath="/mpdownload" PhysicalPath="\CustomOutputDirectory" TargetPath="\PrecompiledOutput\" Force="true" Debug="true" />
-   </Target>
   <ItemGroup>
     <Content Include="DefaultWsdlHelpGenerator.aspx" />
   </ItemGroup>
