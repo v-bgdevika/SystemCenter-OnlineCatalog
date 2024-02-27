@@ -20,7 +20,6 @@
   <PublishedFiles Include="$(BaseDir)\ManagementPackCatalogWebService.asmx"/>
  
   <ServiceOutputFiles Include="$(BaseDir)\$(OutputPath)Microsoft.ManagementPackCatalog.WebService.dll"/>
-  <ServiceOutputFiles Include="$(BaseDir)\$(OutputPath)Microsoft.ManagementPackCatalog.Access.dll"/>
   <ServiceOutputFiles Include="$(BaseDir)\$(OutputPath)Microsoft.ManagementPackCatalog.Classes.dll"/>
  </ItemGroup>
  <Target Name="publishedfile" AfterTargets="Build">
