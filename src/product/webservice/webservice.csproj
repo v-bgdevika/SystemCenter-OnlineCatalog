@@ -19,6 +19,7 @@
   <PublishedFiles Include="$(BaseDir)\DefaultWsdlHelpGenerator.aspx"/>
   <PublishedFiles Include="$(BaseDir)\ManagementPackCatalogWebService.asmx"/>
   <ServiceOutputFiles Include="$(BaseDir)\$(OutputPath)Microsoft.ManagementPackCatalog.WebService.dll"/>
+  <ServiceOutputFiles Include="$(BaseDir)\$(OutputPath)Microsoft.ManagementPackCatalog.classes.dll"/>
 
  </ItemGroup>
  <Target Name="publishedfile" AfterTargets="Build">
@@ -111,7 +112,7 @@
     </ProjectReference>
   </ItemGroup>
     <Target Name="PrecompileWeb" AfterTargets="Build">
-    <AspNetCompiler VirtualPath="/mpdownload" PhysicalPath="$(OutputPath)\CustomOutputDirectory\" TargetPath="$(OutputPath)\PrecompiledOutput\" Force="true" Debug="true" />
+    <AspNetCompiler VirtualPath="/mpdownload" PhysicalPath="$(OutputPath)CustomOutputDirectory\" TargetPath="$(OutputPath)PrecompiledOutput\" Force="true" Debug="true" />
     <Copy SourceFiles="$(BaseDir)\web.config" DestinationFolder="$(OutputPath)\PrecompiledOutput\" SkipUnchangedFiles="true"/>
     <Copy SourceFiles="$(BaseDir)\$(OutputPath)Microsoft.ManagementPackCatalog.Access.dll" DestinationFolder="$(OutputPath)\PrecompiledOutput\bin\" SkipUnchangedFiles="true"/>
   </Target>
