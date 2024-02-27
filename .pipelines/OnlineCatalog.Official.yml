@@ -116,22 +116,63 @@ extends:
               clean: true
               maximumCpuCount: true
               logProjectEvents: true
+          - task: UseDotNet@2
+            displayName: 'Install .NET Framework 8.0.x'
+            inputs:
+              packageType: 'sdk'
+              version: '8.0.x'
+              installationPath: $(Agent.ToolsDirectory)/dotnet
+
+          - task: PowerShell@2
+            displayName: 'Create BuildPackage folder'
+            inputs:
+              targetType: 'inline'
+              script: |
+               New-Item -ItemType Directory -Force -Path '$(Build.SourcesDirectory)\out\BuildPackage'
+
+          - task: PowerShell@2
+            displayName: 'Create PreCompiledBuildPackage folder'
+            inputs:
+              targetType: 'inline'
+              script: |
+               New-Item -ItemType Directory -Force -Path '$(Build.SourcesDirectory)\out\PreCompiledBuildPackage'
 
           - task: PowerShell@2
             displayName: 'Create bin folder'
             inputs:
               targetType: 'inline'
               script: |
-               New-Item -ItemType Directory -Force -Path '$(Build.SourcesDirectory)\out\bin'
+               New-Item -ItemType Directory -Force -Path '$(Build.SourcesDirectory)\out\BuildPackage\bin'
 
           - task: PowerShell@2
             displayName: 'Create web.config file'
             inputs:
               targetType: 'inline'
               script: |
-               New-Item -ItemType File -Force -Path '$(Build.SourcesDirectory)\out\web.config'
+               New-Item -ItemType File -Force -Path '$(Build.SourcesDirectory)\out\BuildPackage\web.config'
 
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release'
+              Contents: '**/*.dll'
+              TargetFolder: '$(Build.SourcesDirectory)\out\BuildPackage\bin'
 
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice'
+              Contents: 'ManagementPackCatalogWebService.asmx'
+              TargetFolder: '$(Build.SourcesDirectory)\out\BuildPackage'
+          
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice'
+              Contents: 'DefaultWsdlHelpGenerator.aspx'
+              TargetFolder: '$(Build.SourcesDirectory)\out\BuildPackage'
+        
+          - task: CmdLine@2
+            displayName: 'Setting the environment variable path'
+            inputs:
+              script: '"$(Build.SourcesDirectory)\init.ps1"'
           - task: CmdLine@2
             displayName: 'Build SQL Tables'
             inputs:
