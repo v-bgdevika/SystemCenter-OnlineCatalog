@@ -131,9 +131,6 @@ extends:
               script: |
                New-Item -ItemType File -Force -Path '$(Build.SourcesDirectory)\out\BuildPackage\web.config'
 
-
-          
-
           - task: CmdLine@2
             displayName: 'Build SQL Tables'
             inputs:
