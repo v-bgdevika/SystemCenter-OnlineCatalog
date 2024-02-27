@@ -117,10 +117,10 @@ extends:
               maximumCpuCount: true
               logProjectEvents: true
           - task: UseDotNet@2
-            displayName: 'Install .NET Framework 8.0.x'
+            displayName: 'Install .NET Framework 7.0.x'
             inputs:
               packageType: 'sdk'
-              version: '8.0.x'
+              version: '7.0.x'
               installationPath: $(Agent.ToolsDirectory)/dotnet
 
           - task: PowerShell@2
@@ -170,9 +170,9 @@ extends:
               TargetFolder: '$(Build.SourcesDirectory)\out\BuildPackage'
         
           - task: CmdLine@2
-            displayName: 'Setting the environment variable path'
+            displayName: 'Run aspnet_compiler'
             inputs:
-              script: '"$(Build.SourcesDirectory)\init.ps1"'
+              script: '"$(Agent.ToolsDirectory)/dotnet/dotnet.exe" C:\Windows\Microsoft.NET\Framework\v4.0.30319\aspnet_compiler.exe -p "$(Build.SourcesDirectory)\out\BuildPackage" -v / "$(Build.SourcesDirectory)\out\PreCompiledBuildPackage"'
           - task: CmdLine@2
             displayName: 'Build SQL Tables'
             inputs:
