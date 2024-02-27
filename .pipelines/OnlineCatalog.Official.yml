@@ -124,13 +124,6 @@ extends:
               installationPath: $(Agent.ToolsDirectory)/dotnet
 
 
-          - task: PowerShell@2
-            displayName: 'Create web.config file'
-            inputs:
-              targetType: 'inline'
-              script: |
-               New-Item -ItemType File -Force -Path '$(Build.SourcesDirectory)\out\BuildPackage\web.config'
-
           - task: CmdLine@2
             displayName: 'Build SQL Tables'
             inputs:
