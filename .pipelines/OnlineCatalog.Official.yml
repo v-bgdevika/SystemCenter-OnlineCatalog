@@ -134,7 +134,7 @@ extends:
           - task: CopyFiles@2
             inputs:
               SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release\PrecompiledOutput\bin'
-              Contents: '*'
+              Contents: '**/*.dll'
               TargetFolder: '$(Build.SourcesDirectory)\out\bin'
 
               
