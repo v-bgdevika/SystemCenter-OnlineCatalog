@@ -125,16 +125,28 @@ extends:
               version: '7.0.x'
               installationPath: $(Agent.ToolsDirectory)/dotnet
 
-    - task: CopyFiles@2
-      inputs:
-      sourceFolder: '$(Build.SourcesDirectory)'
-      contents: '**/$(BuildConfiguration)/**/?(*.exe|*.dll|*.pdb)'
-      targetFolder: '$(Build.ArtifactStagingDirectory)'
+          - task: CmdLine@2
+            displayName: 'Build SQL Tables'
+            inputs:
+              workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
+              script: 'cmd.exe /c $(Build.SourcesDirectory)\src\product\database\createTableSql.bat $(OUTPUTROOT)'
 
-    - task: PublishBuildArtifacts@1
-      inputs:
-      pathToPublish: '$(Build.ArtifactStagingDirectory)'
-      artifactName: drop
+
+          - task: Semmle@1
+            displayName: 'codeql'
+            inputs:
+             sourceCodeDirectory: '$(Build.SourcesDirectory)'
+             language: 'csharp'
+             querySuite: 'Recommended'
+             timeout: '1800'
+             ram: '16384'
+             addProjectDirToScanningExclusionList: true
+             
+          - task: securedevelopmentteam.vss-secure-development-tools.build-task-roslynanalyzers.RoslynAnalyzers@3
+            displayName: 'Run Roslyn Analyzers'
+            inputs:
+              copyLogsOnly: true
+         
 
 
 
