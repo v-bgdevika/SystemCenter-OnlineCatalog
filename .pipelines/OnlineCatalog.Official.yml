@@ -140,17 +140,9 @@ extends:
             displayName: 'Run Roslyn Analyzers'
             inputs:
               copyLogsOnly: true
-
       - task: PublishBuildArtifacts@1
         displayName: 'Publish Build Artifacts'
         inputs:
         pathtoPublish: '$(Build.BinariesDirectory)'
         artifactName: 'MyBuildOutput'
         publishLocation: 'Container'
-    
-         
-
-
-
-  
-         
