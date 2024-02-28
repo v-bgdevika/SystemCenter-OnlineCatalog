@@ -168,8 +168,8 @@ extends:
               command: 'sign'
               signing_environment: "azure-ado"
               signing_profile: 'internal_azure_service'
-              files_to_sign: '**/*.exe;**/*.dll;**/*.ps1;**/*.asmx;**/*.aspx;**/*.pdb;**/*.compiled'
-              search_root: '$(Build.SourcesDirectory)\out'
+              files_to_sign: '**/*.dll;**/*.pdb;**/*.compiled'
+              search_root: '$(Build.SourcesDirectory)\out\bin'
 
 
           - task: Semmle@1
