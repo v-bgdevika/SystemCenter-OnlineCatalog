@@ -117,6 +117,12 @@ extends:
               maximumCpuCount: true
               logProjectEvents: true
 
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release\PrecompiledOutput'
+              Contents: '*'
+              TargetFolder: '$(Build.SourcesDirectory)\out'
+
               
           - task: UseDotNet@2
             displayName: 'Install .NET Framework 7.0.x'
@@ -140,9 +146,3 @@ extends:
             displayName: 'Run Roslyn Analyzers'
             inputs:
               copyLogsOnly: true
-      - task: PublishBuildArtifacts@1
-        displayName: 'Publish Build Artifacts'
-        inputs:
-        pathtoPublish: '$(Build.BinariesDirectory)'
-        artifactName: 'MyBuildOutput'
-        publishLocation: 'Container'
