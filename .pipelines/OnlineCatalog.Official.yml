@@ -123,6 +123,20 @@ extends:
               Contents: '*'
               TargetFolder: '$(Build.SourcesDirectory)\out'
 
+          - task: PowerShell@2
+            displayName: 'Create bin folder'
+            inputs:
+              targetType: 'inline'
+              script: |
+               New-Item -ItemType Directory -Force -Path '$(Build.SourcesDirectory)\out\bin'
+
+
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release\PrecompiledOutput\bin'
+              Contents: '*'
+              TargetFolder: '$(Build.SourcesDirectory)\out\bin'
+
               
           - task: UseDotNet@2
             displayName: 'Install .NET Framework 7.0.x'
