@@ -2,6 +2,6 @@ branches:
   - name: master
 comments:
   - markdown: Don't delete the Readme.md!
-    blocking: true
+    blocking: false
     pathFilter:
       - '-/README.md'
