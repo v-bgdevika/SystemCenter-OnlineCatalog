@@ -120,7 +120,19 @@ extends:
           - task: CopyFiles@2
             inputs:
               SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release\PrecompiledOutput'
-              Contents: '*.asmx;*.aspx'
+              Contents: '*.asmx'
+              TargetFolder: '$(Build.SourcesDirectory)\out'
+
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release\PrecompiledOutput'
+              Contents: '*.aspx'
+              TargetFolder: '$(Build.SourcesDirectory)\out'
+
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release\PrecompiledOutput'
+              Contents: '*.config'
               TargetFolder: '$(Build.SourcesDirectory)\out'
 
           - task: PowerShell@2
@@ -135,6 +147,17 @@ extends:
             inputs:
               SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release\PrecompiledOutput\bin'
               Contents: '*.dll'
+              TargetFolder: '$(Build.SourcesDirectory)\out\bin'
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release\PrecompiledOutput\bin'
+              Contents: '*.pdb'
+              TargetFolder: '$(Build.SourcesDirectory)\out\bin'
+
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release\PrecompiledOutput\bin'
+              Contents: '*.compiled'
               TargetFolder: '$(Build.SourcesDirectory)\out\bin'
 
               
