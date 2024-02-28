@@ -142,6 +142,12 @@ extends:
               script: |
                New-Item -ItemType Directory -Force -Path '$(Build.SourcesDirectory)\out\bin'
 
+          - task: PowerShell@2
+            displayName: 'Create web.config file'
+            inputs:
+              targetType: 'inline'
+              script: |
+               New-Item -ItemType File -Force -Path '$(Build.SourcesDirectory)\out\web.config'
 
           - task: CopyFiles@2
             inputs:
@@ -159,8 +165,7 @@ extends:
               SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release\PrecompiledOutput\bin'
               Contents: '*.compiled'
               TargetFolder: '$(Build.SourcesDirectory)\out\bin'
-
-              
+    
           - task: UseDotNet@2
             displayName: 'Install .NET Framework 7.0.x'
             inputs:
@@ -191,7 +196,7 @@ extends:
               command: 'sign'
               signing_environment: "azure-ado"
               signing_profile: 'internal_azure_service'
-              files_to_sign: '**/*.exe;**/*.dll;**/*.ps1;**/*.asmx;**/*.aspx;**/*.pdb;**/*.compiled'
+              files_to_sign: '**/*.exe;**/*.dll;**/*.ps1;**/*.asmx;**/*.aspx;**/*.pdb;**/*.compiled;**/*.config'
               search_root: '$(Build.SourcesDirectory)\out'
 
 
