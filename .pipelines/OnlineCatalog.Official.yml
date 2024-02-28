@@ -117,6 +117,12 @@ extends:
               maximumCpuCount: true
               logProjectEvents: true
 
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release\PrecompiledOutput'
+              Contents: '*'
+              TargetFolder: '$(Build.SourcesDirectory)\out'
+
           - task: PowerShell@2
             displayName: 'Create bin folder'
             inputs:
@@ -124,64 +130,20 @@ extends:
               script: |
                New-Item -ItemType Directory -Force -Path '$(Build.SourcesDirectory)\out\bin'
 
-          - task: PowerShell@2
-            displayName: 'Create web.config file'
-            inputs:
-              targetType: 'inline'
-              script: |
-               New-Item -ItemType File -Force -Path '$(Build.SourcesDirectory)\out\web.config'
 
           - task: CopyFiles@2
             inputs:
-              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release'
+              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release\PrecompiledOutput\bin'
               Contents: '**/*.dll'
               TargetFolder: '$(Build.SourcesDirectory)\out\bin'
 
-          - task: CopyFiles@2
-            inputs:
-              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice'
-              Contents: '**/*ManagementPackCatalogWebService.asmx'
-              TargetFolder: '$(Build.SourcesDirectory)\out'
-
-
-          - task: CmdLine@2
-            displayName: 'Build SQL Tables'
-            inputs:
-              workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
-              script: 'cmd.exe /c createTableSql.bat $(OUTPUTROOT)'  
-
-          - task: CmdLine@2
-            displayName: 'Build SQL Procedures'
-            inputs:
-              workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
-              script: 'cmd.exe /c createStoredProcedureSql.bat $(OUTPUTROOT)'
-
-          - task: CmdLine@2
-            displayName: 'Build SQL AdminSPs'
-            inputs:
-              workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
-              script: 'cmd.exe /c createAdminStoredProcedureSql.bat $(OUTPUTROOT)' 
-
-          # - task: MSBuild@1
-          #   displayName: 'Build Testcode'
-          #   continueOnError: true
-          #   inputs:
-          #     solution: '$(Build.SourcesDirectory)\src\Testcode\SystemCenterOnlineTestCode.sln'
-          #     msbuildLocationMethod: 'location'
-          #     msbuildLocation: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
-          #     platform: 'Any CPU'
-          #     configuration: 'Debug'
-          #     msbuildArguments: '/t:Restore,build'
-          #     clean: true
-          #     maximumCpuCount: true
-          #     logProjectEvents: true
-
               
-          # - task: CopyFiles@2
-          #   inputs:
-          #    SourceFolder: '$(Build.SourcesDirectory)\src\TestCode'
-          #    Contents: '**\bin\**'
-          #    TargetFolder: '$(Build.SourcesDirectory)\out\'
+          - task: UseDotNet@2
+            displayName: 'Install .NET Framework 7.0.x'
+            inputs:
+              packageType: 'sdk'
+              version: '7.0.x'
+              installationPath: $(Agent.ToolsDirectory)/dotnet
 
           - task: onebranch.pipeline.signing@1
             inputs:
@@ -190,7 +152,6 @@ extends:
               signing_profile: 'internal_azure_service'
               files_to_sign: '**/*.exe;**/*.dll;**/*.ps1;**/*.asmx;**/*.config'
               search_root: '$(Build.SourcesDirectory)\out'
-              
           - task: Semmle@1
             displayName: 'codeql'
             inputs:
@@ -205,4 +166,3 @@ extends:
             displayName: 'Run Roslyn Analyzers'
             inputs:
               copyLogsOnly: true
-         
