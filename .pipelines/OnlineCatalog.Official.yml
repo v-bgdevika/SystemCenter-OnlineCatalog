@@ -142,11 +142,12 @@ extends:
               copyLogsOnly: true
 
     - task: PublishBuildArtifacts@1
+    displayName: 'Publish Build Artifacts'
     inputs:
       pathtoPublish: '$(Build.BinariesDirectory)'
       artifactName: 'MyBuildOutput'
       publishLocation: 'Container'
-    displayName: 'Publish Build Artifacts'
+    
          
 
 
