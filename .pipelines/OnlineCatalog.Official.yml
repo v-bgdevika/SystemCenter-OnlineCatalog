@@ -116,6 +116,8 @@ extends:
               clean: true
               maximumCpuCount: true
               logProjectEvents: true
+
+              
           - task: UseDotNet@2
             displayName: 'Install .NET Framework 7.0.x'
             inputs:
@@ -123,7 +125,16 @@ extends:
               version: '7.0.x'
               installationPath: $(Agent.ToolsDirectory)/dotnet
 
+    - task: CopyFiles@2
+      inputs:
+      sourceFolder: '$(Build.SourcesDirectory)'
+      contents: '**/$(BuildConfiguration)/**/?(*.exe|*.dll|*.pdb)'
+      targetFolder: '$(Build.ArtifactStagingDirectory)'
 
+    - task: PublishBuildArtifacts@1
+      inputs:
+      pathToPublish: '$(Build.ArtifactStagingDirectory)'
+      artifactName: drop
 
 
           # - task: MSBuild@1
