@@ -125,12 +125,6 @@ extends:
               version: '7.0.x'
               installationPath: $(Agent.ToolsDirectory)/dotnet
 
-          - task: CmdLine@2
-            displayName: 'Build SQL Tables'
-            inputs:
-              workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
-              script: 'cmd.exe /c $(Build.SourcesDirectory)\src\product\database\createTableSql.bat $(OUTPUTROOT)'
-
 
           - task: Semmle@1
             displayName: 'codeql'
@@ -146,6 +140,13 @@ extends:
             displayName: 'Run Roslyn Analyzers'
             inputs:
               copyLogsOnly: true
+
+    - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: '$(Build.BinariesDirectory)'
+      artifactName: 'MyBuildOutput'
+      publishLocation: 'Container'
+    displayName: 'Publish Build Artifacts'
          
 
 
