@@ -165,13 +165,6 @@ extends:
               SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release\PrecompiledOutput\bin'
               Contents: '*.compiled'
               TargetFolder: '$(Build.SourcesDirectory)\out\bin'
-    
-          - task: UseDotNet@2
-            displayName: 'Install .NET Framework 7.0.x'
-            inputs:
-              packageType: 'sdk'
-              version: '7.0.x'
-              installationPath: $(Agent.ToolsDirectory)/dotnet
 
           - task: CmdLine@2
             displayName: 'Build SQL Tables'
