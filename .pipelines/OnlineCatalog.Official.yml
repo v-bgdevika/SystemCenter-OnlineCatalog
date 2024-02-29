@@ -117,6 +117,24 @@ extends:
               maximumCpuCount: true
               logProjectEvents: true
 
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release\PrecompiledOutput'
+              Contents: '*.asmx'
+              TargetFolder: '$(Build.SourcesDirectory)\out'
+
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release\PrecompiledOutput'
+              Contents: '*.aspx'
+              TargetFolder: '$(Build.SourcesDirectory)\out'
+
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release\PrecompiledOutput'
+              Contents: '*.config'
+              TargetFolder: '$(Build.SourcesDirectory)\out'
+
           - task: PowerShell@2
             displayName: 'Create bin folder'
             inputs:
@@ -133,16 +151,20 @@ extends:
 
           - task: CopyFiles@2
             inputs:
-              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release'
-              Contents: '**/*.dll'
+              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release\PrecompiledOutput\bin'
+              Contents: '*.dll'
+              TargetFolder: '$(Build.SourcesDirectory)\out\bin'
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release\PrecompiledOutput\bin'
+              Contents: '*.pdb'
               TargetFolder: '$(Build.SourcesDirectory)\out\bin'
 
           - task: CopyFiles@2
             inputs:
-              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice'
-              Contents: '**/*ManagementPackCatalogWebService.asmx'
-              TargetFolder: '$(Build.SourcesDirectory)\out'
-
+              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release\PrecompiledOutput\bin'
+              Contents: '*.compiled'
+              TargetFolder: '$(Build.SourcesDirectory)\out\bin'
 
           - task: CmdLine@2
             displayName: 'Build SQL Tables'
@@ -162,35 +184,15 @@ extends:
               workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
               script: 'cmd.exe /c createAdminStoredProcedureSql.bat $(OUTPUTROOT)' 
 
-          # - task: MSBuild@1
-          #   displayName: 'Build Testcode'
-          #   continueOnError: true
-          #   inputs:
-          #     solution: '$(Build.SourcesDirectory)\src\Testcode\SystemCenterOnlineTestCode.sln'
-          #     msbuildLocationMethod: 'location'
-          #     msbuildLocation: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
-          #     platform: 'Any CPU'
-          #     configuration: 'Debug'
-          #     msbuildArguments: '/t:Restore,build'
-          #     clean: true
-          #     maximumCpuCount: true
-          #     logProjectEvents: true
-
-              
-          # - task: CopyFiles@2
-          #   inputs:
-          #    SourceFolder: '$(Build.SourcesDirectory)\src\TestCode'
-          #    Contents: '**\bin\**'
-          #    TargetFolder: '$(Build.SourcesDirectory)\out\'
-
           - task: onebranch.pipeline.signing@1
             inputs:
               command: 'sign'
               signing_environment: "azure-ado"
               signing_profile: 'internal_azure_service'
-              files_to_sign: '**/*.exe;**/*.dll;**/*.ps1;**/*.asmx;**/*.config'
+              files_to_sign: '**/*.exe;**/*.dll;**/*.ps1;**/*.asmx;**/*.aspx;**/*.pdb;**/*.compiled;**/*.config'
               search_root: '$(Build.SourcesDirectory)\out'
-              
+
+
           - task: Semmle@1
             displayName: 'codeql'
             inputs:
@@ -205,4 +207,3 @@ extends:
             displayName: 'Run Roslyn Analyzers'
             inputs:
               copyLogsOnly: true
-         
