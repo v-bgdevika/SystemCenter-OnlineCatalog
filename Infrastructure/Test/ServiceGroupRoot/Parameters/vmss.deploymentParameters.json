@@ -1,0 +1,42 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vmSku": {
+      "value": "Standard_D4s_v3"
+    },
+    "VmssName": {
+      "value": "scoc-vmss"
+    },
+    "instanceCount": {
+      "value": 2
+    },
+    "adminUsername": {
+      "value": "scomuser"
+    },
+    "existingVnetResourceGroupName": {
+      "value": "Mahesh-Test"
+    },
+    "existingVnetName": {
+      "value": "Mahesh_Vnet"
+    },
+    "existingSubnetName": {
+      "value": "subnet1"
+    },
+    "existingLoadBalancerName": {
+      "value": "onlinecataloglb"
+    },
+    "customScriptStorageAccountResourceGroup": {
+      "value": "Mahesh-Test"
+    },
+    "customScriptStorageAccountName": {
+      "value": "storagemaheshtest123"
+    },
+    "customScriptFileUri": {
+      "value": "https://storagemaheshtest123.blob.core.windows.net/scripts/webserverscript.ps1"
+    },
+    "adminPassword": {
+      "value": "Caelum#01"
+    }
+  }
+}
