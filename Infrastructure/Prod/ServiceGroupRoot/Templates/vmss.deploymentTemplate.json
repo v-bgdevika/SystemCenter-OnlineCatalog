@@ -40,7 +40,7 @@
       "minValue": 3,
       "maxValue": 10
     },
-    "existingVnetResourceGroupName": {
+    "existingResourceGroupName": {
       "type": "string",
       "metadata": {
         "description": "Name of the resourceGroup for the existing virtual network to deploy the scale set into."
@@ -76,12 +76,6 @@
         "description": "Admin password on all VMs."
       }
     },
-    "customScriptStorageAccountResourceGroup": {
-      "type": "string",
-      "metadata": {
-       "description": "Name of the Resource Group of the storage account containing the storage account which contains the script"
-      }
-    },
     "customScriptStorageAccountName": {
       "type": "string",
       "metadata": {
@@ -114,7 +108,7 @@
     "KeyVault": "SCOMOCKeyVault",
     "Extension": "CustomScriptExtension",
     "Extension1": "KeyVaultWindows",
-    "accountid": "[concat('/subscriptions/',subscription().subscriptionId,'/resourceGroups/',parameters('customScriptStorageAccountResourceGroup'),'/providers/','Microsoft.Storage/storageAccounts/', parameters('customScriptStorageAccountName'))]",
+    "accountid": "[concat('/subscriptions/',subscription().subscriptionId,'/resourceGroups/',parameters('existingResourceGroupName'),'/providers/','Microsoft.Storage/storageAccounts/', parameters('customScriptStorageAccountName'))]",
     "idName": "ocservice-certificate-msi",
     "osType": {
       "publisher": "MicrosoftWindowsServer",
@@ -181,7 +175,7 @@
                       "name": "[variables('ipConfigName')]",
                       "properties": {
                         "subnet": {
-                          "id": "[resourceId(parameters('existingVnetResourceGroupName'), 'Microsoft.Network/virtualNetworks/subnets', parameters('existingVnetName'), parameters('existingSubNetName'))]"
+                          "id": "[resourceId(parameters('existingResourceGroupName'), 'Microsoft.Network/virtualNetworks/subnets', parameters('existingVnetName'), parameters('existingSubNetName'))]"
                         },
                         "loadBalancerBackendAddressPools": [
                         {

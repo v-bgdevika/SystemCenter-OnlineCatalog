@@ -14,7 +14,7 @@
     "adminUsername": {
       "value": "scomuser"
     },
-    "existingVnetResourceGroupName": {
+    "existingResourceGroupName": {
       "value": "SCOMProdPub"
     },
     "existingVnetName": {
@@ -25,9 +25,6 @@
     },
     "existingLoadBalancerName": {
       "value": "LB-OCStandard001"
-    },
-    "customScriptStorageAccountResourceGroup": {
-      "value": "SCOMProdPub"
     },
     "customScriptStorageAccountName": {
       "value": "onlinecatalogappsa"

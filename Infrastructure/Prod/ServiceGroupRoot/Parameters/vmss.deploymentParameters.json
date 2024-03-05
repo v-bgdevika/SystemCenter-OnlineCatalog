@@ -14,16 +14,13 @@
     "adminUsername": {
       "value": "scomuser"
     },
-    "customScriptStorageAccountResourceGroup": {
-      "value": "SCOMProdPub"
-    },
     "customScriptStorageAccountName": {
       "value": "onlinecatalogappstorage1"
     },
     "customScriptFileUri": {
       "value": "https://onlinecatalogappstorage1.blob.core.windows.net/scripts/webserverscript.ps1"
     },
-    "existingVnetResourceGroupName": {
+    "existingResourceGroupName": {
       "value": "SCOMProdPub"
     },
     "existingVnetName": {
