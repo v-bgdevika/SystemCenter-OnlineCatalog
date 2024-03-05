@@ -1,4 +1,3 @@
-
 #################################################################################
 #                           Onebranch Retail Pipeline                           #
 # This pipeline was created by EasyStart from a sample located at:              #
@@ -21,7 +20,7 @@ parameters: # parameters are shown up in ADO UI in a build queue time
   default: false
 
 variables:
-  # CDP_DEFINITION_BUILD_COUNT: $[counter('', 0)] # needed for onebranch.pipeline.version task https://aka.ms/obpipelines/versioning
+  CDP_DEFINITION_BUILD_COUNT: $[counter('', 0)] # needed for onebranch.pipeline.version task https://aka.ms/obpipelines/versioning
   system.debug: ${{ parameters.debug }}
   ENABLE_PRS_DELAYSIGN: 1
   ROOT: $(Build.SourcesDirectory)
@@ -32,6 +31,7 @@ variables:
   MINOR: 0
   BUILD: $[counter(variables['MINOR'], 0)]
   REVISION: 0
+ # ob_reddog_enabled: true
   CodeQL.Enabled: false
   WindowsContainerImage: 'cdpxwin1809.azurecr.io/global/vse2019:latest' # Docker image which is used to build the project https://aka.ms/obpipelines/containers
 
@@ -43,22 +43,24 @@ resources:
       ref: refs/heads/main
 
 extends:
-  template: v2/OneBranch.NonOfficial.CrossPlat.yml@templates # https://aka.ms/obpipelines/templates
+  template: v2/OneBranch.Official.CrossPlat.yml@templates # https://aka.ms/obpipelines/templates
   parameters:
     cloudvault: # https://aka.ms/obpipelines/cloudvault
-      enabled: false
+      enabled: true
+   # reddog: # https://aka.ms/obpipelines/reddog
+     # enabled: true
     globalSdl: # https://aka.ms/obpipelines/sdl
-      tsa:
-        enabled: true # onebranch publish all sdl results to TSA. If TSA is disabled all SDL tools will forced into 'break' build mode.
-      credscan:
-        suppressionsFile: $(Build.SourcesDirectory)\.config\CredScanSuppressions.json
-      binskim:
-        break: true # always break the build on binskim issues. You can disable it by setting to 'false'
-      policheck:
-        break: true # always break the build on policheck issues. You can disable it by setting to 'false'
-      roslyn:
-        break: true # Roslyn issues. You can disable it by setting to 'false'
-      codeql:
+       tsa:
+         enabled: true # onebranch publish all sdl results to TSA. If TSA is disabled all SDL tools will forced into 'break' build mode.
+       credscan:
+         suppressionsFile: $(Build.SourcesDirectory)\.config\CredScanSuppressions.json
+       binskim:
+         break: true # always break the build on binskim issues in addition to TSA upload
+       policheck:
+         break: true
+       roslyn:
+         break: true # Roslyn issues. You can disable it by setting to 'false'
+       codeql:
         compiled: 
           ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
             enabled: false
@@ -75,39 +77,36 @@ extends:
         
         variables:
            ob_outputDirectory: '$(Build.SourcesDirectory)\out' # this directory is uploaded to pipeline artifacts, reddog and cloudvault. More info at https://aka.ms/obpipelines/artifacts
-           ob_sdl_binskim_enabled: true
-           ob_sdl_binskim_scanOutputDirectoryOnly: true
+           ob_sdl_codeSignValidation_excludes:  -|**\Debug\**;
+           ob_sdl_binskim_scanOutputDirectoryOnly: true # https://aka.ms/obpipelines/sdl
+           ob_symbolsPublishing: true # https://aka.ms/obpipelines/symbols
            ob_sdl_roslyn_break: true
-          # ob_sdl_binskim_break: true # https://aka.ms/obpipelines/sdl
-          # ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}: # conditionally enable symbolsPublishing for master branch #only
-            # ob_symbolsPublishing_enabled: true # https://aka.ms/obpipelines/symbols
-          
-          # ob_sdl_suppression_suppressionFile: $(Build.SourcesDirectory)\.gdn\job.gdnsuppress
+         
 
         steps:
-         
-         - task: PowerShell@2
-           inputs:
-            filePath: '$(Build.SourcesDirectory)\.config\dllversioning.ps1'
-            arguments: $(Build.BuildNumber)
+        
+          - task: PowerShell@2
+            inputs:
+              filePath: '$(Build.SourcesDirectory)\.config\dllversioning.ps1'
+              arguments: $(Build.BuildNumber)
             
-         
-         - task: MSBuild@1
-           displayName: 'Build Product Debug'
-           inputs:
+          - task: MSBuild@1
+            displayName: 'Build Product Debug'
+            inputs:
               solution: '$(Build.SourcesDirectory)\SystemCenterOnlineCatalogBuild.sln'
               msbuildLocationMethod: 'location'
               msbuildLocation: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
-              platform: 'Any CPU'
+              platform: 'x64'
               configuration: 'Debug'
               msbuildArguments: '/t:Restore,build'
               clean: true
               maximumCpuCount: true
               logProjectEvents: true
-
-         - task: MSBuild@1
-           displayName: 'Build Product Release'
-           inputs:
+              createLogFile: true
+              
+          - task: MSBuild@1
+            displayName: 'Build Product Release'
+            inputs:
               solution: '$(Build.SourcesDirectory)\SystemCenterOnlineCatalogBuild.sln'
               msbuildLocationMethod: 'location'
               msbuildLocation: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
@@ -117,37 +116,78 @@ extends:
               clean: true
               maximumCpuCount: true
               logProjectEvents: true
-              createLogFile: true
 
-         - task: CopyFiles@2
-           inputs:
-             SourceFolder: '$(Build.SourcesDirectory)\src\product'
-             Contents: '**\bin\**'
-             TargetFolder: '$(Build.SourcesDirectory)\out'
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release\PrecompiledOutput'
+              Contents: '*.asmx'
+              TargetFolder: '$(Build.SourcesDirectory)\out'
+
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release\PrecompiledOutput'
+              Contents: '*.aspx'
+              TargetFolder: '$(Build.SourcesDirectory)\out'
+
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release\PrecompiledOutput'
+              Contents: '*.config'
+              TargetFolder: '$(Build.SourcesDirectory)\out'
+
+          - task: PowerShell@2
+            displayName: 'Create bin folder'
+            inputs:
+              targetType: 'inline'
+              script: |
+               New-Item -ItemType Directory -Force -Path '$(Build.SourcesDirectory)\out\bin'
+
+          - task: PowerShell@2
+            displayName: 'Create web.config file'
+            inputs:
+              targetType: 'inline'
+              script: |
+               New-Item -ItemType File -Force -Path '$(Build.SourcesDirectory)\out\web.config'
+
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release\PrecompiledOutput\bin'
+              Contents: '*.dll'
+              TargetFolder: '$(Build.SourcesDirectory)\out\bin'
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release\PrecompiledOutput\bin'
+              Contents: '*.pdb'
+              TargetFolder: '$(Build.SourcesDirectory)\out\bin'
+
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release\PrecompiledOutput\bin'
+              Contents: '*.compiled'
+              TargetFolder: '$(Build.SourcesDirectory)\out\bin'
+
+          - task: CmdLine@2
+            displayName: 'Build SQL Tables'
+            inputs:
+              workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
+              script: 'cmd.exe /c createTableSql.bat $(OUTPUTROOT)'  
+
+          - task: CmdLine@2
+            displayName: 'Build SQL Procedures'
+            inputs:
+              workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
+              script: 'cmd.exe /c createStoredProcedureSql.bat $(OUTPUTROOT)'
+
+          - task: CmdLine@2
+            displayName: 'Build SQL AdminSPs'
+            inputs:
+              workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
+              script: 'cmd.exe /c createAdminStoredProcedureSql.bat $(OUTPUTROOT)' 
 
 
-            
-      - task: CmdLine@2
-        displayName: 'Build SQL Tables'
-        inputs:
-             workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
-             script: 'cmd.exe /c createTableSql.bat $(OUTPUTROOT)'  
-
-      - task: CmdLine@2
-        displayName: 'Build SQL Procedures'
-        inputs:
-             workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
-             script: 'cmd.exe /c createStoredProcedureSql.bat $(OUTPUTROOT)'
-
-      - task: CmdLine@2
-        displayName: 'Build SQL AdminSPs'
-        inputs:
-             workingDirectory: '$(Build.SourcesDirectory)\src\product\database'
-             script: 'cmd.exe /c createAdminStoredProcedureSql.bat $(OUTPUTROOT)' 
-             
-      - task: Semmle@1
-        displayName: 'codeql'
-        inputs:
+          - task: Semmle@1
+            displayName: 'codeql'
+            inputs:
              sourceCodeDirectory: '$(Build.SourcesDirectory)'
              language: 'csharp'
              querySuite: 'Recommended'
@@ -155,30 +195,7 @@ extends:
              ram: '16384'
              addProjectDirToScanningExclusionList: true
              
-      - task: securedevelopmentteam.vss-secure-development-tools.build-task-roslynanalyzers.RoslynAnalyzers@3
-        displayName: 'Run Roslyn Analyzers'
-        inputs:
+          - task: securedevelopmentteam.vss-secure-development-tools.build-task-roslynanalyzers.RoslynAnalyzers@3
+            displayName: 'Run Roslyn Analyzers'
+            inputs:
               copyLogsOnly: true
-
-          # - task: MSBuild@1
-            # displayName: 'Build Testcode'
-            # continueOnError: true
-            # inputs:
-              # solution: '$(Build.SourcesDirectory)\src\Testcode\SystemCenterOnlineTestCode.sln'
-              # msbuildLocationMethod: 'location'
-              # msbuildLocation: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
-              # platform: 'Any CPU'
-              # configuration: 'Debug'
-              # msbuildArguments: '/t:Restore,build'
-              # clean: true
-              # maximumCpuCount: true
-              # logProjectEvents: true
-
-              
-          # - task: CopyFiles@2
-            # inputs:
-             # SourceFolder: '$(Build.SourcesDirectory)\src\TestCode'
-             # Contents: '**\bin\**'
-             # TargetFolder: '$(Build.SourcesDirectory)\out\'
-
-         
