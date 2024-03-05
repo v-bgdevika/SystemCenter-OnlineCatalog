@@ -1,0 +1,44 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vmSku": {
+      "value": "Standard_D4s_v3"
+    },
+    "VmssName": {
+      "value": "scoc-vmss"
+    },
+    "instanceCount": {
+      "value": 2
+    },
+    "adminUsername": {
+      "value": "scomuser"
+    },
+    "existingResourceGroupName": {
+      "value": "SCOMProdPub"
+    },
+    "existingVnetName": {
+      "value": "SCOMProdPub-vnet"
+    },
+    "existingSubnetName": {
+      "value": "subnet1"
+    },
+    "existingLoadBalancerName": {
+      "value": "LB-OCStandard001"
+    },
+    "customScriptStorageAccountName": {
+      "value": "onlinecatalogappsa"
+    },
+    "customScriptFileUri": {
+      "value": "https://onlinecatalogappsa.blob.core.windows.net/scripts/webserverscript.ps1"
+    },
+    "adminPassword": {
+      "reference": {
+        "keyVault": {
+          "id": "/subscriptions/248cd838-6ec8-4f4f-8828-80588385e88f/resourceGroups/SCOMProdPub/providers/Microsoft.KeyVault/vaults/SCOMOCDevKeyVault"
+        },
+        "secretName": "scoc-vmss-password"
+      }
+    }
+  }
+}
