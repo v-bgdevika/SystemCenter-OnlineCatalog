@@ -309,7 +309,7 @@
                 "linkOnRenewal": true,
                 "requireInitialSync": true,
                 "observedCertificates":[                   {
-                  "url": "https://mahesh-keyvault.vault.azure.net/secrets/test1",
+                  "url": "https://scomocdevkeyvault.vault.azure.net/secrets/test1",
                   "certificateStoreName": "MY",
                   "certificateStoreLocation": "LocalMachine",
                   "accounts": "Network Service"
