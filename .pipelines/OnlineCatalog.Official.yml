@@ -95,7 +95,7 @@ extends:
             inputs:
               solution: '$(Build.SourcesDirectory)\SystemCenterOnlineCatalogBuild.sln'
               msbuildLocationMethod: 'location'
-              msbuildLocation: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
+              msbuildLocation: 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
               platform: 'x64'
               configuration: 'Debug'
               msbuildArguments: '/t:Restore,build'
@@ -109,7 +109,7 @@ extends:
             inputs:
               solution: '$(Build.SourcesDirectory)\SystemCenterOnlineCatalogBuild.sln'
               msbuildLocationMethod: 'location'
-              msbuildLocation: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
+              msbuildLocation: 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
               platform: 'x64'
               configuration: 'Release'
               msbuildArguments: '/t:Restore,build'
