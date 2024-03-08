@@ -1,89 +1,90 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{71BD8693-1B51-4742-87C0-0AAC14EDFF5F}</ProjectGuid>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Microsoft.ManagementPackCatalog.WebService</RootNamespace>
-    <AssemblyName>Microsoft.ManagementPackCatalog.WebService</AssemblyName>
-    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
-    <_BaseDir>$(MSBuildThisFileDirectory)</_BaseDir>
-    <BaseDir>$([System.IO.Path]::GetFullPath('$(_BaseDir)'))</BaseDir>
-    <TargetFramework>net48</TargetFramework>
-<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-  </PropertyGroup>
-  <ItemGroup>
-    <PublishedFiles Include="$(BaseDir)\DefaultWsdlHelpGenerator.aspx" />
-    <PublishedFiles Include="$(BaseDir)\ManagementPackCatalogWebService.asmx" />
-    <ServiceOutputFiles Include="$(BaseDir)\$(OutputPath)Microsoft.ManagementPackCatalog.WebService.dll" />
-    <ServiceOutputFiles Include="$(BaseDir)\$(OutputPath)Microsoft.ManagementPackCatalog.classes.dll" />
-  </ItemGroup>
-  <Target Name="publishedfile" AfterTargets="Build">
-    <Copy SourceFiles="@(PublishedFiles)" DestinationFolder="$(OutputPath)\CustomOutputDirectory\" SkipUnchangedFiles="true" />
-    <Copy SourceFiles="@(ServiceOutputFiles)" DestinationFolder="$(OutputPath)\CustomOutputDirectory\bin\" SkipUnchangedFiles="true" />
-
-</Target>
-  <Target Name="Print" AfterTargets="Build">
-<Message Text="$(OutputPath)" Importance="high" />
-  </Target>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>bin\Release</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="system" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Configuration.Install" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Management" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Web.Services" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\classes\classes.csproj" />
-    <ProjectReference Include="..\access\access.csproj" />
-  </ItemGroup>
-  <Target Name="PrecompileWeb" AfterTargets="Build">
-    <AspNetCompiler VirtualPath="/" PhysicalPath="$(OutputPath)CustomOutputDirectory\" TargetPath="$(OutputPath)PrecompiledOutput\" Force="true" Debug="true" ToolPath="C:\Windows\Microsoft.NET\Framework64\v4.0.30319" />
-    <Copy SourceFiles="$(BaseDir)\$(OutputPath)Microsoft.ManagementPackCatalog.Access.dll" DestinationFolder="$(OutputPath)\PrecompiledOutput\bin\" SkipUnchangedFiles="true" />
-  </Target>
-  <ItemGroup>
-    <Content Include="DefaultWsdlHelpGenerator.aspx" />
-  </ItemGroup>
-  <!--<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />-->
+	<PropertyGroup>
+		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+		<ProjectGuid>{71BD8693-1B51-4742-87C0-0AAC14EDFF5F}</ProjectGuid>
+		<AppDesignerFolder>Properties</AppDesignerFolder>
+		<OutputType>Library</OutputType>
+		<RootNamespace>Microsoft.ManagementPackCatalog.WebService</RootNamespace>
+		<AssemblyName>Microsoft.ManagementPackCatalog.WebService</AssemblyName>
+		<GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+		<_BaseDir>$(MSBuildThisFileDirectory)</_BaseDir>
+		<BaseDir>$([System.IO.Path]::GetFullPath('$(_BaseDir)'))</BaseDir>
+		<TargetFrameworks>net48;netstandard2.0</TargetFrameworks>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	</PropertyGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net48'">
+		<ServiceOutputNet48 Include="$(BaseDir)\$(OutputPath)Microsoft.ManagementPackCatalog.WebService.dll" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+		<PublishedFiles Include="$(BaseDir)ManagementPackCatalogWebService.asmx" />
+		<ServiceOutputFiles Include="$(BaseDir)\$(OutputPath)Microsoft.ManagementPackCatalog.classes.dll" />
+		<ServiceOutputFiles Include="$(BaseDir)\$(OutputPath)Microsoft.ManagementPackCatalog.Access.dll" />
+	</ItemGroup>
+	<Target Name="publishedfile1" AfterTargets="Build" Condition="'$(TargetFramework)' == 'netstandard2.0'">
+		<Message Text="****$(OutputPath)" Importance="high"></Message>
+		<Message Text="****$(BaseDir)" Importance="high"></Message>
+		<Message Text="****(BaseDir)\$(OutputPath)" Importance="high"></Message>
+		<Copy SourceFiles="@(PublishedFiles)" DestinationFolder="$(BaseDir)\CustomOutputDirectory\" SkipUnchangedFiles="true" />
+		<Copy SourceFiles="@(ServiceOutputFiles)" DestinationFolder="$(BaseDir)\CustomOutputDirectory\bin\" SkipUnchangedFiles="true" />
+	</Target>
+	<Target Name="publishedfile2" AfterTargets="Build" Condition="'$(TargetFramework)' == 'net48'">
+		<Copy SourceFiles="@(ServiceOutputNet48)" DestinationFolder="$(BaseDir)\CustomOutputDirectory\bin\" SkipUnchangedFiles="true" />
+	</Target>
+	<ItemGroup Condition="'$(TargetFramework)' != 'net48'">
+		<Compile Remove="**\*.cs" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net48'">
+		<Reference Include="System.Web.Services" />
+	</ItemGroup>
+	<ItemGroup>
+		<Reference Include="system" />
+		<Reference Include="System.Xml" />
+		<Reference Include="System.Configuration.Install" />
+		<Reference Include="System.Data" />
+		<Reference Include="System.Management" />
+		<Reference Include="System.Security" />
+		<Reference Include="System.ServiceModel" />
+	</ItemGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>full</DebugType>
+		<Optimize>false</Optimize>
+		<OutputPath>bin\Debug\</OutputPath>
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<PlatformTarget>AnyCPU</PlatformTarget>
+		<Prefer32Bit>false</Prefer32Bit>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<DebugType>pdbonly</DebugType>
+		<Optimize>true</Optimize>
+		<OutputPath>bin\Release\</OutputPath>
+		<DefineConstants>TRACE</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<PlatformTarget>AnyCPU</PlatformTarget>
+		<Prefer32Bit>false</Prefer32Bit>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+		<OutputPath>bin\Debug</OutputPath>
+		<DefineConstants>TRACE</DefineConstants>
+		<Optimize>true</Optimize>
+		<DebugType>pdbonly</DebugType>
+		<PlatformTarget>x64</PlatformTarget>
+		<ErrorReport>prompt</ErrorReport>
+		<Prefer32Bit>false</Prefer32Bit>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+		<OutputPath>bin\Release</OutputPath>
+		<DefineConstants>TRACE</DefineConstants>
+		<Optimize>true</Optimize>
+		<DebugType>pdbonly</DebugType>
+		<PlatformTarget>x64</PlatformTarget>
+		<ErrorReport>prompt</ErrorReport>
+		<Prefer32Bit>false</Prefer32Bit>
+	</PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\classes\classes.csproj" />
+		<ProjectReference Include="..\access\access.csproj" />
+	</ItemGroup>
 </Project>

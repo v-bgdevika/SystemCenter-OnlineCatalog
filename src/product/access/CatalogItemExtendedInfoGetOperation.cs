@@ -12,7 +12,6 @@ namespace Microsoft.ManagementPackCatalog.Access
     using System.Configuration;
     using System.Data;
     using System.Data.SqlClient;
-    using System.Text;
     using Microsoft.ManagementPackCatalog.Classes;
 
     /// <summary>
