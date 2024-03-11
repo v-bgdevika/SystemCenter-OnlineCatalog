@@ -121,9 +121,53 @@ extends:
 
          - task: CopyFiles@2
            inputs:
-             SourceFolder: '$(Build.SourcesDirectory)\src\product'
-             Contents: '**\bin\**'
-             TargetFolder: '$(Build.SourcesDirectory)\out'
+              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release\PrecompiledOutput'
+              Contents: '*.asmx'
+              TargetFolder: '$(Build.SourcesDirectory)\out'
+
+         - task: CopyFiles@2
+           inputs:
+              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release\PrecompiledOutput'
+              Contents: '*.aspx'
+              TargetFolder: '$(Build.SourcesDirectory)\out'
+
+         - task: CopyFiles@2
+           inputs:
+              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release\PrecompiledOutput'
+              Contents: '*.config'
+              TargetFolder: '$(Build.SourcesDirectory)\out'
+
+         - task: PowerShell@2
+           displayName: 'Create bin folder'
+           inputs:
+              targetType: 'inline'
+              script: |
+               New-Item -ItemType Directory -Force -Path '$(Build.SourcesDirectory)\out\bin'
+
+         - task: PowerShell@2
+           displayName: 'Create web.config file'
+           inputs:
+              targetType: 'inline'
+              script: |
+               New-Item -ItemType File -Force -Path '$(Build.SourcesDirectory)\out\web.config'
+
+         - task: CopyFiles@2
+           inputs:
+              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release\PrecompiledOutput\bin'
+              Contents: '*.dll'
+              TargetFolder: '$(Build.SourcesDirectory)\out\bin'
+
+         - task: CopyFiles@2
+           inputs:
+              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release\PrecompiledOutput\bin'
+              Contents: '*.pdb'
+              TargetFolder: '$(Build.SourcesDirectory)\out\bin'
+
+         - task: CopyFiles@2
+           inputs:
+              SourceFolder: '$(Build.SourcesDirectory)\src\product\webservice\bin\Release\PrecompiledOutput\bin'
+              Contents: '*.compiled'
+              TargetFolder: '$(Build.SourcesDirectory)\out\bin'
             
          - task: CmdLine@2
            displayName: 'Build SQL Tables'
